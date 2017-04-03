@@ -34,7 +34,14 @@ class ViewController: UIViewController {
         self.usernameTextField.layer.shadowOpacity = 2
         self.usernameTextField.layer.shadowRadius = 5
         self.usernameTextField.layer.shadowOffset = CGSize.zero
-        
+
+
+        self.usernameTextField.layer.cornerRadius = 10.0
+        self.usernameTextField.layer.shadowColor = UIColor.white.cgColor
+        self.usernameTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.usernameTextField.layer.shadowRadius = 5.0
+        self.usernameTextField.layer.shadowOpacity = 1.0
+
         self.usernameTextField.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.8)
             make.centerX.equalToSuperview()
@@ -44,7 +51,13 @@ class ViewController: UIViewController {
     
     func createPasswordField() {
         self.view.addSubview(self.passwordTextField)
-        passwordTextField.backgroundColor = .white
+        self.passwordTextField.backgroundColor = .white
+
+        self.passwordTextField.layer.cornerRadius = 10.0
+        self.passwordTextField.layer.shadowColor = UIColor.white.cgColor
+        self.passwordTextField.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.passwordTextField.layer.shadowRadius = 5.0
+        self.passwordTextField.layer.shadowOpacity = 1.0
         
         self.passwordTextField.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.8)
@@ -65,10 +78,15 @@ class ViewController: UIViewController {
     
     func createButton() {
         
-        loginButton.backgroundColor = .white
-        loginButton.setTitle("Login", for: .normal)
-        loginButton.setTitleColor(.black, for: .normal)
-        
+        self.loginButton.backgroundColor = .white
+        self.loginButton.setTitle("Login", for: .normal)
+        self.loginButton.setTitleColor(.black, for: .normal)
+        self.loginButton.layer.cornerRadius = 4
+        self.loginButton.layer.shadowColor = UIColor.white.cgColor
+        self.loginButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+        self.loginButton.layer.shadowRadius = 3.0
+        self.loginButton.layer.shadowOpacity = 3.0
+
         self.view.addSubview(self.loginButton)
         loginButton.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.3)
