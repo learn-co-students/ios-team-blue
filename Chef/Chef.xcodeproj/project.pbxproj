@@ -12,6 +12,7 @@
 		07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
+		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -22,6 +23,7 @@
 		07BAD8401E92959400F3354A /* Chef.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chef.xcdatamodel; sourceTree = "<group>"; };
 		07BAD8451E92959400F3354A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BAD8471E92959400F3354A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
 		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				07BAD83A1E92959400F3354A /* ViewController.swift */,
 				07BAD8441E92959400F3354A /* LaunchScreen.storyboard */,
 				07BAD8471E92959400F3354A /* Info.plist */,
+				7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */,
 				07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */,
 				7B97B15B1E92D5930005B23D /* Assets.xcassets */,
 			);
@@ -153,6 +156,7 @@
 			files = (
 				7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */,
 				07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */,
+				7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
