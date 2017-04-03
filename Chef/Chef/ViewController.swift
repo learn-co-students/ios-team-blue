@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.view.backgroundColor = .white
         createBackgroundImage()
         createUsernameTextField()
         createPasswordField()
@@ -77,7 +76,6 @@ class ViewController: UIViewController {
     }
     
     func createButton() {
-        
         self.loginButton.backgroundColor = .white
         self.loginButton.setTitle("Login", for: .normal)
         self.loginButton.setTitleColor(.black, for: .normal)
@@ -93,12 +91,15 @@ class ViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
-        
         loginButton.addTarget(self, action: #selector(loginButtonPressed), for: .touchUpInside)
     }
 
+
+
     func loginButtonPressed() {
-        
+        guard usernameTextField.text != "", passwordTextField.text != "" else {usernameTextField.shake();
+            passwordTextField.shake();
+            return}
     }
 
 
