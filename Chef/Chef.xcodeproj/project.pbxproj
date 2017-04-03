@@ -12,6 +12,7 @@
 		07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */; };
 		07BAD8431E92959400F3354A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8421E92959400F3354A /* Assets.xcassets */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
+		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,9 @@
 		07BAD8421E92959400F3354A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07BAD8451E92959400F3354A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BAD8471E92959400F3354A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
+		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
+		F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				07BAD8371E92959400F3354A /* Chef */,
 				07BAD8361E92959400F3354A /* Products */,
+				9FC8CD16B59E236A239FE2E7 /* Pods */,
+				E8C44C4BA5842F6E1D88C6D4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = Chef;
 			sourceTree = "<group>";
 		};
+		9FC8CD16B59E236A239FE2E7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */,
+				CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		E8C44C4BA5842F6E1D88C6D4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 07BAD84A1E92959400F3354A /* Build configuration list for PBXNativeTarget "Chef" */;
 			buildPhases = (
+				E142DF22390154F3DB9A4676 /* [CP] Check Pods Manifest.lock */,
 				07BAD8311E92959400F3354A /* Sources */,
 				07BAD8321E92959400F3354A /* Frameworks */,
 				07BAD8331E92959400F3354A /* Resources */,
+				8D12AC146838FC75C29B3907 /* [CP] Embed Pods Frameworks */,
+				66A8D12698146CB43E26D4A7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -130,6 +157,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		66A8D12698146CB43E26D4A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chef/Pods-Chef-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D12AC146838FC75C29B3907 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chef/Pods-Chef-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E142DF22390154F3DB9A4676 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		07BAD8311E92959400F3354A /* Sources */ = {
@@ -251,6 +326,7 @@
 		};
 		07BAD84B1E92959400F3354A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = T2QNE7E45K;
@@ -264,6 +340,7 @@
 		};
 		07BAD84C1E92959400F3354A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = T2QNE7E45K;
