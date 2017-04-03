@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Chef
-//
-//  Created by Carlos Hernandez on 4/3/17.
-//  Copyright © 2017 Blue Team. All rights reserved.
-//
-
 import UIKit
 import CoreData
 import Firebase
@@ -15,15 +7,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        FIRApp.configure()
 
         let viewController = ViewController()
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
-        
-        FIRApp.configure()
+
         return true
     }
 
@@ -97,4 +89,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-
