@@ -6,7 +6,7 @@ class LoginViewController: UIViewController {
     var usernameTextField: UITextField!
     var passwordTextField: UITextField!
     var loginButton: UIButton!
-    var userIsSigningUp: Bool = false
+    var userIsSigningUp: Bool = true    // temporarily setting to true, should initially be false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,14 +25,26 @@ class LoginViewController: UIViewController {
         guard let email = self.usernameTextField.text, let password = self.passwordTextField.text else {
             return
         }
-        FirebaseManager.signUp(email: email, password: password, completion: nil)
+        FirebaseManager.signUp(email: email, password: password) { success in
+            if success {
+                self.logIn()
+            }
+        }
     }
 
     func logIn() {
         guard let email = self.usernameTextField.text, let password = self.passwordTextField.text else {
             return
         }
-        FirebaseManager.login(email: email, password: password, completion: nil)
+        FirebaseManager.login(email: email, password: password) { success in
+            if success {
+                self.pushToTabBarController()
+            }
+        }
+    }
+
+    func pushToTabBarController() {
+        print(#function)
     }
 
 }
