@@ -12,8 +12,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
 
         let loginViewController = LoginViewController()
+
+        let navViewController: UINavigationController = {
+            let nvc = UINavigationController()
+            nvc.setNavigationBarHidden(true, animated: true)
+            nvc.setViewControllers([loginViewController], animated: true)
+            return nvc
+        }()
+
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = loginViewController
+        window?.rootViewController = navViewController
         window?.makeKeyAndVisible()
 
         return true
