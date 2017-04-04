@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     var usernameTextField: UITextField!
     var passwordTextField: UITextField!
@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 }
 
 
-extension ViewController {
+extension LoginViewController {
 
     func createUI() {
         self.createBackgroundImage()

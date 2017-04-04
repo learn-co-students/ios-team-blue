@@ -11,9 +11,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
 
-        let viewController = ViewController()
+        let loginViewController = LoginViewController()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = viewController
+        window?.rootViewController = loginViewController
         window?.makeKeyAndVisible()
 
         return true
