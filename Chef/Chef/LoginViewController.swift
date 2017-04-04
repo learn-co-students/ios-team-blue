@@ -58,6 +58,7 @@ extension LoginViewController {
             tf.layer.shadowOffset = CGSize.zero
             tf.autocapitalizationType = .none
             tf.autocorrectionType = .no
+            tf.keyboardType = .emailAddress
             return tf
         }()
 
