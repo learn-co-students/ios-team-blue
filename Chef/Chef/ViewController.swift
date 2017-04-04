@@ -6,17 +6,33 @@ class ViewController: UIViewController {
     var usernameTextField: UITextField!
     var passwordTextField: UITextField!
     var loginButton: UIButton!
+    var userIsSigningUp: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createUI()
     }
 
-    func signUpButtonTapped() {
+    func buttonTapped() {
+        if userIsSigningUp {
+            self.signUp()
+        } else {
+            self.logIn()
+        }
+    }
+
+    func signUp() {
         guard let email = self.usernameTextField.text, let password = self.passwordTextField.text else {
             return
         }
         FirebaseManager.signUp(email: email, password: password, completion: nil)
+    }
+
+    func logIn() {
+        guard let email = self.usernameTextField.text, let password = self.passwordTextField.text else {
+            return
+        }
+        FirebaseManager.login(email: email, password: password, completion: nil)
     }
 
 }
@@ -100,7 +116,7 @@ extension ViewController {
             make.centerY.equalToSuperview()
         }
 
-        self.loginButton.addTarget(self, action: #selector(signUpButtonTapped), for: .touchUpInside)
+        self.loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
 
 }
