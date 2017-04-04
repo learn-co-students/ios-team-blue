@@ -2,7 +2,7 @@ import UIKit
 import SnapKit
 
 class ViewController: UIViewController {
-    
+
     var usernameTextField: UITextField!
     var passwordTextField: UITextField!
     var loginButton: UIButton!
@@ -118,5 +118,5 @@ extension ViewController {
 
         self.loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
-
+    
 }

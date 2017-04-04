@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8381E92959400F3354A /* AppDelegate.swift */; };
-		07BAD83B1E92959400F3354A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* ViewController.swift */; };
+		07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* LoginViewController.swift */; };
 		07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
 		07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8701E92E7B000F3354A /* FirebaseManager.swift */; };
@@ -22,7 +22,7 @@
 /* Begin PBXFileReference section */
 		07BAD8351E92959400F3354A /* Chef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BAD8381E92959400F3354A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07BAD83A1E92959400F3354A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07BAD83A1E92959400F3354A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		07BAD8401E92959400F3354A /* Chef.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chef.xcdatamodel; sourceTree = "<group>"; };
 		07BAD8451E92959400F3354A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BAD8471E92959400F3354A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				07BAD8381E92959400F3354A /* AppDelegate.swift */,
-				07BAD83A1E92959400F3354A /* ViewController.swift */,
+				07BAD83A1E92959400F3354A /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -159,7 +159,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 8X5723UG7D;
+						DevelopmentTeam = T2QNE7E45K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -251,7 +251,7 @@
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
 				7B8ADF241E92EFE6000A3362 /* Extensions.swift in Sources */,
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
-				07BAD83B1E92959400F3354A /* ViewController.swift in Sources */,
+				07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
 			);
@@ -369,7 +369,7 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8X5723UG7D;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -384,7 +384,7 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8X5723UG7D;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
