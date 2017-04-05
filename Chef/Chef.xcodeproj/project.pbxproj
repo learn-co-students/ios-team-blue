@@ -17,6 +17,8 @@
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
 		7B8ADF241E92EFE6000A3362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF231E92EFE6000A3362 /* Extensions.swift */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
+		98CFE1741E942BFB000C05A6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1731E942BFB000C05A6 /* Secrets.swift */; };
+		98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1751E942C2C000C05A6 /* GoogleVision.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B8ADF231E92EFE6000A3362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		98CFE1731E942BFB000C05A6 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		98CFE1751E942C2C000C05A6 /* GoogleVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVision.swift; sourceTree = "<group>"; };
 		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
 		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
 		F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,6 +74,8 @@
 			children = (
 				07BAD8701E92E7B000F3354A /* FirebaseManager.swift */,
 				7B8ADF231E92EFE6000A3362 /* Extensions.swift */,
+				98CFE1731E942BFB000C05A6 /* Secrets.swift */,
+				98CFE1751E942C2C000C05A6 /* GoogleVision.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -250,6 +256,8 @@
 			files = (
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
 				7B8ADF241E92EFE6000A3362 /* Extensions.swift in Sources */,
+				98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */,
+				98CFE1741E942BFB000C05A6 /* Secrets.swift in Sources */,
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
 				07BAD83B1E92959400F3354A /* ViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
