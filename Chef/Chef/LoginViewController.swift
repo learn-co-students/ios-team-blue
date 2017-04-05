@@ -1,11 +1,10 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
-    var usernameTextField: UITextField!
-    var passwordTextField: UITextField!
-    var loginButton: UIButton!
+    var usernameTextField: LoginTextField!
+    var passwordTextField: LoginTextField!
     var userIsSigningUp: Bool = true    // temporarily setting to true, should initially be false
 
     override func viewDidLoad() {
@@ -28,6 +27,8 @@ class LoginViewController: UIViewController {
         FirebaseManager.signUp(email: email, password: password) { success in
             if success {
                 self.logIn()
+            } else {
+                self.shakeTextFields()
             }
         }
     }
@@ -39,6 +40,8 @@ class LoginViewController: UIViewController {
         FirebaseManager.login(email: email, password: password) { success in
             if success {
                 self.pushToTabBarController()
+            } else {
+                self.shakeTextFields()
             }
         }
     }
@@ -54,51 +57,10 @@ extension LoginViewController {
 
     func createUI() {
         self.createBackgroundImage()
+        self.createHeaderText()
         self.createUsernameTextField()
         self.createPasswordField()
         self.createButton()
-    }
-
-    func createUsernameTextField() {
-        self.usernameTextField = {
-            let tf = UITextField()
-            tf.backgroundColor = .white
-            tf.backgroundColor = .white
-            tf.layer.shadowColor = UIColor.lightGray.cgColor
-            tf.layer.shadowOpacity = 2
-            tf.layer.shadowRadius = 5
-            tf.layer.shadowOffset = CGSize.zero
-            tf.autocapitalizationType = .none
-            tf.autocorrectionType = .no
-            tf.keyboardType = .emailAddress
-            return tf
-        }()
-
-        self.view.addSubview(self.usernameTextField)
-
-        self.usernameTextField.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.66)
-        }
-    }
-
-    func createPasswordField() {
-        self.passwordTextField = {
-            let tf = UITextField()
-            tf.backgroundColor = .white
-            tf.autocapitalizationType = .none
-            tf.isSecureTextEntry = true
-            return tf
-        }()
-
-        self.view.addSubview(self.passwordTextField)
-
-        self.passwordTextField.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.usernameTextField.snp.bottom).offset(20)
-        }
     }
 
     func createBackgroundImage() {
@@ -112,24 +74,72 @@ extension LoginViewController {
         }
     }
 
+    func createHeaderText() {
+        let headerLabel = UILabel()
+        headerLabel.text = "Chef"
+        headerLabel.textColor = .white
+        headerLabel.font = UIFont(name: "Avenir-Medium", size: 48)
+
+        self.view.addSubview(headerLabel)
+
+        headerLabel.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(75)
+        }
+    }
+
+    func createUsernameTextField() {
+        self.usernameTextField = LoginTextField()
+        self.usernameTextField.keyboardType = .emailAddress
+
+        self.view.addSubview(self.usernameTextField)
+
+        self.usernameTextField.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().multipliedBy(0.66)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(28)
+        }
+    }
+
+    func createPasswordField() {
+        self.passwordTextField = LoginTextField()
+        self.passwordTextField.isSecureTextEntry = true
+
+        self.view.addSubview(self.passwordTextField)
+
+        self.passwordTextField.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(28)
+        }
+    }
+
     func createButton() {
-        self.loginButton = {
+        let loginButton: UIButton = {
             let lb = UIButton()
             lb.backgroundColor = .white
             lb.setTitle("Login", for: .normal)
             lb.setTitleColor(.black, for: .normal)
+            lb.layer.cornerRadius = 5
             return lb
         }()
 
-        self.view.addSubview(self.loginButton)
+        self.view.addSubview(loginButton)
 
-        self.loginButton.snp.makeConstraints { (make) in
+        loginButton.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.3)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
 
-        self.loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    func shakeTextFields() {
+        self.usernameTextField.shake()
+        self.passwordTextField.shake()
     }
     
 }
