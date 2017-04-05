@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF761E9535F200C29E22 /* LoginTextField.swift */; };
 		07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8381E92959400F3354A /* AppDelegate.swift */; };
 		07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* LoginViewController.swift */; };
 		07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */; };
@@ -15,11 +16,11 @@
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
-		7B8ADF241E92EFE6000A3362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF231E92EFE6000A3362 /* Extensions.swift */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0784DF761E9535F200C29E22 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		07BAD8351E92959400F3354A /* Chef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BAD8381E92959400F3354A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BAD83A1E92959400F3354A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -29,7 +30,6 @@
 		07BAD8701E92E7B000F3354A /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7B8ADF231E92EFE6000A3362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
 		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,9 +69,16 @@
 			isa = PBXGroup;
 			children = (
 				07BAD8701E92E7B000F3354A /* FirebaseManager.swift */,
-				7B8ADF231E92EFE6000A3362 /* Extensions.swift */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		0784DF751E9535E300C29E22 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		07BAD82C1E92959400F3354A = {
@@ -96,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				074EDB4A1E940BF2001F95F2 /* Models */,
+				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
 				074EDB4D1E940C1E001F95F2 /* Other */,
 				07BAD8441E92959400F3354A /* LaunchScreen.storyboard */,
@@ -249,11 +257,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
-				7B8ADF241E92EFE6000A3362 /* Extensions.swift in Sources */,
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
 				07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
+				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
