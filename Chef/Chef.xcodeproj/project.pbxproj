@@ -7,31 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF761E9535F200C29E22 /* LoginTextField.swift */; };
 		07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8381E92959400F3354A /* AppDelegate.swift */; };
-		07BAD83B1E92959400F3354A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* ViewController.swift */; };
+		07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* LoginViewController.swift */; };
 		07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
 		07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8701E92E7B000F3354A /* FirebaseManager.swift */; };
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
-		7B8ADF241E92EFE6000A3362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF231E92EFE6000A3362 /* Extensions.swift */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
 		98CFE1741E942BFB000C05A6 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1731E942BFB000C05A6 /* Secrets.swift */; };
 		98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1751E942C2C000C05A6 /* GoogleVision.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0784DF761E9535F200C29E22 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		07BAD8351E92959400F3354A /* Chef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BAD8381E92959400F3354A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		07BAD83A1E92959400F3354A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		07BAD83A1E92959400F3354A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		07BAD8401E92959400F3354A /* Chef.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chef.xcdatamodel; sourceTree = "<group>"; };
 		07BAD8451E92959400F3354A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BAD8471E92959400F3354A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BAD8701E92E7B000F3354A /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7B8ADF231E92EFE6000A3362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		98CFE1731E942BFB000C05A6 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		98CFE1751E942C2C000C05A6 /* GoogleVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVision.swift; sourceTree = "<group>"; };
@@ -64,7 +64,7 @@
 			isa = PBXGroup;
 			children = (
 				07BAD8381E92959400F3354A /* AppDelegate.swift */,
-				07BAD83A1E92959400F3354A /* ViewController.swift */,
+				07BAD83A1E92959400F3354A /* LoginViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -78,6 +78,14 @@
 				98CFE1751E942C2C000C05A6 /* GoogleVision.swift */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		0784DF751E9535E300C29E22 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		07BAD82C1E92959400F3354A = {
@@ -102,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				074EDB4A1E940BF2001F95F2 /* Models */,
+				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
 				074EDB4D1E940C1E001F95F2 /* Other */,
 				07BAD8441E92959400F3354A /* LaunchScreen.storyboard */,
@@ -165,7 +174,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 8X5723UG7D;
+						DevelopmentTeam = T2QNE7E45K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -259,9 +268,10 @@
 				98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */,
 				98CFE1741E942BFB000C05A6 /* Secrets.swift in Sources */,
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
-				07BAD83B1E92959400F3354A /* ViewController.swift in Sources */,
+				07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
+				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,7 +387,7 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8X5723UG7D;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -392,7 +402,7 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8X5723UG7D;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
