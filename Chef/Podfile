@@ -9,4 +9,5 @@ target 'Chef' do
     pod 'Firebase/Auth'
     pod 'Firebase/Storage'
     pod 'Alamofire'
+    pod 'SwiftyJSON'
 end

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 final class GoogleVision {
 
@@ -36,22 +37,14 @@ final class GoogleVision {
 
         session.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data {
+                let json = JSON(data: data)
+                let text = json["responses"][0]["textAnnotations"][0]["description"]
+                print(text)
 
-                let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any]
-                if let unwJson = json {
-//                    print("JSON", json)
-                    let textAnnotations = unwJson?["responses"] as? [[String: String]]
-                    if let unwTextAnnotations = textAnnotations {
-                    print("ANNOTATIONS:", unwTextAnnotations)
-//                    let annotations = unwResponses[0] as [String: String]
-//                    print("The annotations in getDescriptionFor are", annotations)
-                    } else {
-                        print("Can't get textAnnotations")
-                    }
-                }
             }
         }).resume()
         
     }
     
 }
+
