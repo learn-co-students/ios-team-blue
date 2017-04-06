@@ -5,19 +5,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     var usernameTextField: LoginTextField!
     var passwordTextField: LoginTextField!
-    var userIsSigningUp: Bool = true    // temporarily setting to true, should initially be false
+    var loginSignupButton: UIButton!
+    var switchButton: UIButton!
+    var userIsSigningUp: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createUI()
-    }
-
-    func buttonTapped() {
-        if userIsSigningUp {
-            self.signUp()
-        } else {
-            self.logIn()
-        }
     }
 
     func signUp() {
@@ -47,22 +41,59 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    func loginSignupButtonTapped() {
+        if userIsSigningUp {
+            self.signUp()
+        } else {
+            self.logIn()
+        }
+    }
+
+    func switchButtonTapped() {
+        self.userIsSigningUp = self.userIsSigningUp ? false : true
+
+        print(self.userIsSigningUp)
+
+        self.loginSignupButton.titleLabel?.alpha = 0.0
+        self.switchButton.titleLabel?.alpha = 0.0
+
+        if self.userIsSigningUp {
+            self.loginSignupButton.setTitle("Sign Up", for: .normal)
+            self.switchButton.setTitle("Login", for: .normal)
+        } else {
+            self.loginSignupButton.setTitle("Login", for: .normal)
+            self.switchButton.setTitle("Sign Up", for: .normal)
+        }
+
+        UIView.animate(withDuration: 0.6) {
+            self.loginSignupButton.titleLabel?.alpha = 1.0
+            self.switchButton.titleLabel?.alpha = 1.0
+        }
+    }
+
+    func shakeTextFields() {
+        self.usernameTextField.shake()
+        self.passwordTextField.shake()
+    }
+
+
+    // MARK: - Navigation
+
     func pushToTabBarController() {
         let tabBarController = TabBarController()
         self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 
-}
 
-
-extension LoginViewController {
+    // MARK: - UI
 
     func createUI() {
         self.createBackgroundImage()
         self.createHeaderText()
         self.createUsernameTextField()
         self.createPasswordField()
-        self.createButton()
+        self.createLoginSignupButton()
+        self.createSwitchButton()
     }
 
     func createBackgroundImage() {
@@ -118,30 +149,46 @@ extension LoginViewController {
         }
     }
 
-    func createButton() {
-        let loginButton: UIButton = {
+    func createLoginSignupButton() {
+        self.loginSignupButton = {
             let lb = UIButton()
             lb.backgroundColor = .white
             lb.setTitle("Login", for: .normal)
             lb.setTitleColor(.black, for: .normal)
+            lb.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 18)
             lb.layer.cornerRadius = 5
             return lb
         }()
 
-        self.view.addSubview(loginButton)
+        self.view.addSubview(self.loginSignupButton)
 
-        loginButton.snp.makeConstraints { (make) in
+        self.loginSignupButton.snp.makeConstraints { (make) in
             make.width.equalToSuperview().multipliedBy(0.3)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
 
-        loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        self.loginSignupButton.addTarget(self, action: #selector(loginSignupButtonTapped), for: .touchUpInside)
     }
-    
-    func shakeTextFields() {
-        self.usernameTextField.shake()
-        self.passwordTextField.shake()
+
+    func createSwitchButton() {
+        self.switchButton = {
+            let sb = UIButton()
+            sb.backgroundColor = .clear
+            sb.setTitle("Sign Up", for: .normal)
+            sb.titleLabel?.textColor = .white
+            sb.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            return sb
+        }()
+
+        self.view.addSubview(self.switchButton)
+
+        self.switchButton.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-12)
+        }
+
+        self.switchButton.addTarget(self, action: #selector(switchButtonTapped), for: .touchUpInside)
     }
     
 }
