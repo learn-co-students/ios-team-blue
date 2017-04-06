@@ -10,6 +10,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createUI()
+
+        GoogleVision.getDescriptionfor("https://fizzleblog.files.wordpress.com/2010/12/grocery-receipt-2.jpg?w=756") { (json) in
+            let text = GoogleVision.clean(text: json)
+            print("\n\n\n\nCLEAN RECEIPT DATA")
+            print(text)
+        }
     }
 
     func buttonTapped() {
