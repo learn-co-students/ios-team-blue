@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         FIRApp.configure()
 
+        UIApplication.shared.statusBarStyle = .lightContent
+
         let loginViewController = LoginViewController()
 
         let navViewController: UINavigationController = {
