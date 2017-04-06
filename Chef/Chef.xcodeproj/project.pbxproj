@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF761E9535F200C29E22 /* LoginTextField.swift */; };
+		0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF781E954B4F00C29E22 /* TabBarController.swift */; };
+		0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */; };
 		07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8381E92959400F3354A /* AppDelegate.swift */; };
 		07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* LoginViewController.swift */; };
 		07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83F1E92959400F3354A /* Chef.xcdatamodeld */; };
@@ -22,10 +24,13 @@
 		7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533081E95962700687363 /* SpoonacularAPIClient.swift */; };
 		7BF5330B1E95962F00687363 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF5330A1E95962F00687363 /* Recipe.swift */; };
 		7BF5330D1E959B6500687363 /* SpoonacularEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF5330C1E959B6500687363 /* SpoonacularEnums.swift */; };
+		98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1751E942C2C000C05A6 /* GoogleVision.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0784DF761E9535F200C29E22 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		0784DF781E954B4F00C29E22 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateRecipesViewController.swift; sourceTree = "<group>"; };
 		07BAD8351E92959400F3354A /* Chef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BAD8381E92959400F3354A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BAD83A1E92959400F3354A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -41,6 +46,7 @@
 		7BF533081E95962700687363 /* SpoonacularAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClient.swift; sourceTree = "<group>"; };
 		7BF5330A1E95962F00687363 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		7BF5330C1E959B6500687363 /* SpoonacularEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularEnums.swift; sourceTree = "<group>"; };
+		98CFE1751E942C2C000C05A6 /* GoogleVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVision.swift; sourceTree = "<group>"; };
 		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
 		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
 		F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +78,8 @@
 			children = (
 				07BAD8381E92959400F3354A /* AppDelegate.swift */,
 				07BAD83A1E92959400F3354A /* LoginViewController.swift */,
+				0784DF781E954B4F00C29E22 /* TabBarController.swift */,
+				0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -84,6 +92,7 @@
 				7BF533081E95962700687363 /* SpoonacularAPIClient.swift */,
 				7BF533041E95961900687363 /* Secrets.swift */,
 				7BF5330C1E959B6500687363 /* SpoonacularEnums.swift */,
+				98CFE1751E942C2C000C05A6 /* GoogleVision.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -274,10 +283,13 @@
 				7BF5330D1E959B6500687363 /* SpoonacularEnums.swift in Sources */,
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
+				98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */,
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
 				07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */,
+				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
+				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
 				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
 				7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */,
