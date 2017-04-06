@@ -39,6 +39,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
         FirebaseManager.login(email: email, password: password) { success in
             if success {
+                // create user and save to data store as current user
                 self.pushToTabBarController()
             } else {
                 self.shakeTextFields()

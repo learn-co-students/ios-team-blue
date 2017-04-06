@@ -2,11 +2,21 @@ import UIKit
 
 class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    let store = RecipeDataStore.sharedInstance
     var tableView: UITableView!
+    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createUI()
+
+        self.user = User(name: "person@gmail.com", favRecipes: [], fridge: ["bread", "cheese", "oil", "lentils", "chicken", "pasta", "ramen", "tomatoes", "pomegranate"])
+
+        self.store.getRecipes(user: user) {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
 
@@ -17,12 +27,17 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return self.store.recipes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath)
-        cell.textLabel?.text = String(indexPath.row)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as! RecipeCell
+
+        let recipe = self.store.recipes[indexPath.row]
+
+        cell.imgView.image = UIImage(named: "bird")
+        cell.nameLabel.text = recipe.title
+
         return cell
     }
 
@@ -49,7 +64,7 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
 
         self.tableView.dataSource = self
         self.tableView.delegate = self
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "recipeCell")
+        self.tableView.register(RecipeCell.self, forCellReuseIdentifier: "recipeCell")
 
         self.view.addSubview(self.tableView)
     }
