@@ -47,7 +47,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     func pushToTabBarController() {
-        print(#function)
+        let tabBarController = TabBarController()
+        self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 
 }
