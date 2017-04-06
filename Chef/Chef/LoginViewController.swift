@@ -10,7 +10,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createUI()
-        GoogleVision.getDescriptionfor("https://lh6.googleusercontent.com/-rJwzPzWYGNQ/UG2YTIC0DEI/AAAAAAAABVQ/uOvKlpxOx-Y/s640/blogger-image-72523469.jpg")
+        }
     }
 
     func buttonTapped() {

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 final class GoogleVision {
 
-    class func getDescriptionfor(_ photoURL: String) {
+    class func getDescriptionfor(_ photoURL: String, completion: @escaping (JSON) -> ()) {
         print("In getDescriptionfor")
         let parameters: [String: Any] = [
             "requests": [
@@ -19,7 +19,6 @@ final class GoogleVision {
                 "features": [["type": "DOCUMENT_TEXT_DETECTION", "maxResults": 2]]
             ]
         ]
-
         guard let url = URL(string: "https://vision.googleapis.com/v1/images:annotate?key=\(googleVisionKey)") else { fatalError("Can't get URL") }
 
         let session = URLSession.shared
@@ -31,20 +30,28 @@ final class GoogleVision {
         } catch {
             fatalError("Cannot serialize request body")
         }
-
+        
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.addValue("Application/json", forHTTPHeaderField: "Accept")
 
         session.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data {
                 let json = JSON(data: data)
-                let text = json["responses"][0]["textAnnotations"][0]["description"]
-                print(text)
-
+                let description = json["responses"][0]["textAnnotations"][0]["description"]
+                print(description)
+                completion(description)
             }
         }).resume()
         
     }
+
+
+
+
+
+
+
+
     
 }
 
