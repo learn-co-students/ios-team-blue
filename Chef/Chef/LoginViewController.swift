@@ -11,7 +11,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         self.createUI()
 
-        GoogleVision.getDescriptionfor("https://fizzleblog.files.wordpress.com/2010/12/grocery-receipt-2.jpg?w=756") { (json) in
+        GoogleVision.getDescriptionfor("http://i.imgur.com/yXFkjaV.jpg") { (json) in
             let text = GoogleVision.clean(text: json)
             print("\n\n\n\nCLEAN RECEIPT DATA")
             print(text)
