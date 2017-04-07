@@ -1,6 +1,15 @@
 import Foundation
 import Alamofire
 
+enum SpoonacularAPIClientResponse {
+    case success(Any)
+    case failure(SpoonacularAPIClientError)
+}
+
+enum SpoonacularAPIClientError: Error {
+    case nodata
+}
+
 final class SpoonacularAPIClient {
 
     private static let baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="
@@ -61,13 +70,5 @@ final class SpoonacularAPIClient {
             }
         }
     }
-    
-    
-    
+
 }
-
-
-
-
-
-
