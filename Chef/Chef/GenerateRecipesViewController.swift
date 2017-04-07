@@ -1,4 +1,5 @@
 import UIKit
+import Kingfisher
 
 class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -35,8 +36,14 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
 
         let recipe = self.store.recipes[indexPath.row]
 
-        cell.imgView.image = UIImage(named: "bird")
         cell.nameLabel.text = recipe.title
+
+        let url = URL(string: recipe.imageLink)
+        cell.imgView.kf.setImage(with: url,
+                           placeholder: nil,
+                           options: [.transition(.fade(2))],
+                           progressBlock: nil,
+                           completionHandler: nil)
 
         return cell
     }
