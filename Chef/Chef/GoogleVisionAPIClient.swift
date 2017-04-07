@@ -1,18 +1,9 @@
-//
-//  GoogleVision.swift
-//  Chef
-//
-//  Created by Kaypree Hodges on 4/4/17.
-//  Copyright © 2017 Blue Team. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 
-final class GoogleVision {
+final class GoogleVisionAPIClient {
 
     class func getDescriptionfor(_ photoURL: String, completion: @escaping (JSON) -> ()) {
-        print("In getDescriptionfor")
         let parameters: [String: Any] = [
             "requests": [
                 "image": ["source": ["imageUri": photoURL]],
@@ -42,16 +33,6 @@ final class GoogleVision {
                 completion(description)
             }
         }).resume()
-        
     }
 
-
-
-
-
-
-
-
-    
 }
-

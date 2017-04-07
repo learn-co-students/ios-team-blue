@@ -1,5 +1,4 @@
 import UIKit
-import Kingfisher
 
 struct Recipe {
     var id: String
