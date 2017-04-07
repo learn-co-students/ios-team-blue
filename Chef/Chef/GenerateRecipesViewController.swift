@@ -9,6 +9,10 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        self.navigationItem.title = "MyCookBook"
+        self.navigationController?.navigationBar.barTintColor = Colors.flatironBlue
+
         self.createUI()
         self.tabBarItem = UITabBarItem(title: "recipes", image: UIImage(named: "cookbook"), tag: 1)
 

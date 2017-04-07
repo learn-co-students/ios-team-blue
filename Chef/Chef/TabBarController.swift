@@ -10,6 +10,8 @@ class TabBarController: UITabBarController {
         let navViewController = UINavigationController(rootViewController: generateRecipesVC)
 
         self.setViewControllers([navViewController], animated: true)
+
+        self.tabBar.barTintColor = Colors.flatironBlue
     }
 
 }
