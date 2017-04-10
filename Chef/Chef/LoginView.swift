@@ -2,6 +2,7 @@ import UIKit
 
 class LoginView: UIView {
 
+    weak var delegate: LoginViewDelegate!
     var usernameTextField: LoginTextField!
     var passwordTextField: LoginTextField!
     var loginSignupButton: UIButton!
@@ -24,6 +25,7 @@ class LoginView: UIView {
         self.createPasswordField()
         self.createLoginSignupButton()
         self.createSwitchButton()
+        self.createGestureRecognizer()
     }
 
     func createBackgroundImage() {
@@ -97,6 +99,8 @@ class LoginView: UIView {
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+
+        self.loginSignupButton.addTarget(self, action: #selector(loginSignupButtonTapped), for: .touchUpInside)
     }
 
     func createSwitchButton() {
@@ -115,6 +119,34 @@ class LoginView: UIView {
             make.right.equalToSuperview().offset(-16)
             make.bottom.equalToSuperview().offset(-12)
         }
+
+        self.switchButton.addTarget(self, action: #selector(switchButtonTapped), for: .touchUpInside)
+    }
+
+    func createGestureRecognizer() {
+        let tapGesture: UITapGestureRecognizer = {
+            let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
+            tgr.numberOfTapsRequired = 1
+            return tgr
+        }()
+
+        self.addGestureRecognizer(tapGesture)
+    }
+
+
+    // MARK: - Delegate
+
+    func backgroundTapped() {
+        print(#function)
+        self.delegate.backgroundTapped()
+    }
+
+    func loginSignupButtonTapped() {
+        self.delegate.loginSignupButtonTapped()
+    }
+
+    func switchButtonTapped() {
+        self.delegate.switchButtonTapped()
     }
 
 }

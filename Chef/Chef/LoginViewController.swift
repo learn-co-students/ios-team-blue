@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDelegate {
 
     var loginView: LoginView!
     var userIsSigningUp: Bool = false
@@ -10,11 +10,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 
         self.loginView = LoginView()
+        self.loginView.delegate = self
+
         self.view.addSubview(self.loginView)
         self.loginView.snapToSuperview()
-
-        self.loginView.loginSignupButton.addTarget(self, action: #selector(loginSignupButtonTapped), for: .touchUpInside)
-        self.loginView.switchButton.addTarget(self, action: #selector(switchButtonTapped), for: .touchUpInside)
     }
 
     func signUp() {
@@ -86,6 +85,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func pushToTabBarController() {
         let tabBarController = TabBarController()
         self.navigationController?.pushViewController(tabBarController, animated: true)
+    }
+
+
+    // MARK: - Login View Delegate
+
+    func backgroundTapped() {
+        self.loginView.usernameTextField.resignFirstResponder()
+        self.loginView.passwordTextField.resignFirstResponder()
     }
     
 }
