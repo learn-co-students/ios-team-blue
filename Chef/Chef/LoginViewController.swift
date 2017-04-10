@@ -43,6 +43,25 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         }
     }
 
+    func shakeTextFields() {
+        self.loginView.usernameTextField.shake()
+        self.loginView.passwordTextField.shake()
+    }
+
+
+    // MARK: - Login View Delegate
+
+    func backgroundTapped() {
+        self.loginView.usernameTextField.resignFirstResponder()
+        self.loginView.passwordTextField.resignFirstResponder()
+    }
+
+    func backgroundDoubleTapped() {
+        self.loginView.usernameTextField.text = "me@me.com"
+        self.loginView.passwordTextField.text = "youyouyou"
+        self.logIn()
+    }
+
     func loginSignupButtonTapped() {
         if userIsSigningUp {
             self.signUp()
@@ -50,9 +69,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             self.logIn()
         }
     }
-
-
-    // MARK: - Actions
 
     func switchButtonTapped() {
         self.userIsSigningUp = self.userIsSigningUp ? false : true
@@ -74,11 +90,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         }
     }
 
-    func shakeTextFields() {
-        self.loginView.usernameTextField.shake()
-        self.loginView.passwordTextField.shake()
-    }
-
 
     // MARK: - Navigation
 
@@ -87,12 +98,4 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 
-
-    // MARK: - Login View Delegate
-
-    func backgroundTapped() {
-        self.loginView.usernameTextField.resignFirstResponder()
-        self.loginView.passwordTextField.resignFirstResponder()
-    }
-    
 }

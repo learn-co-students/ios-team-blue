@@ -125,13 +125,23 @@ class LoginView: UIView {
     }
 
     func createGestureRecognizer() {
-        let tapGesture: UITapGestureRecognizer = {
+        let tap: UITapGestureRecognizer = {
             let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
             tgr.numberOfTapsRequired = 1
             return tgr
         }()
 
-        self.addGestureRecognizer(tapGesture)
+        // MARK: - Test
+        let doubleTap: UITapGestureRecognizer = {
+            let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundDoubleTapped))
+            tgr.numberOfTapsRequired = 2
+            return tgr
+        }()
+
+        tap.require(toFail: doubleTap)
+
+        self.addGestureRecognizer(tap)
+        self.addGestureRecognizer(doubleTap)
     }
 
 
@@ -147,6 +157,11 @@ class LoginView: UIView {
 
     func switchButtonTapped() {
         self.delegate.switchButtonTapped()
+    }
+
+    // MARK: - Test
+    func backgroundDoubleTapped() {
+        self.delegate.backgroundDoubleTapped()
     }
 
 }
