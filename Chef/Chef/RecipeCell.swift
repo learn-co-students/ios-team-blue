@@ -5,6 +5,7 @@ class RecipeCell: UITableViewCell {
 
     var imgView: UIImageView!
     var nameLabel: UILabel!
+    var favoriteButton: UIButton!
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -34,6 +35,17 @@ class RecipeCell: UITableViewCell {
             make.left.equalTo(self.imgView.snp.right).offset(8)
             make.right.equalToSuperview().offset(-8)
         }
+
+        self.favoriteButton = UIButton()
+        favoriteButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        self.addSubview(favoriteButton)
+
+        self.favoriteButton.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview()
+            make.left.equalTo(self.imgView.snp.right).offset(8)
+            make.right.equalToSuperview().offset(-8)
+        }
     }
+
 
 }

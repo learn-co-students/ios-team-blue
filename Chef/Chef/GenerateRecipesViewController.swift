@@ -73,12 +73,12 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
 
     func createTableView() {
         self.tableView = UITableView(frame: self.view.frame)
-
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.register(RecipeCell.self, forCellReuseIdentifier: "recipeCell")
-
         self.view.addSubview(self.tableView)
     }
+
+
 
 }
