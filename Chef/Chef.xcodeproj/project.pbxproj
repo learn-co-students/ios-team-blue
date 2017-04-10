@@ -112,14 +112,14 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		07AC66B41E9811E60000F195 /* Utilities */ = {
+		07AC66B41E9811E60000F195 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				07BAD8701E92E7B000F3354A /* FirebaseManager.swift */,
 				7BF533081E95962700687363 /* SpoonacularAPIClient.swift */,
 				98CFE1751E942C2C000C05A6 /* GoogleVisionAPIClient.swift */,
 			);
-			name = Utilities;
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		07AC66B91E9812C20000F195 /* Enumerations */ = {
@@ -182,7 +182,7 @@
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
 				07AC66B91E9812C20000F195 /* Enumerations */,
 				074EDB4D1E940C1E001F95F2 /* DataStore */,
-				07AC66B41E9811E60000F195 /* Utilities */,
+				07AC66B41E9811E60000F195 /* Networking */,
 				07D7CE8E1E9BE38B00928E5B /* Protocols */,
 				07D7CE8B1E9BDA7900928E5B /* Extensions */,
 				07AC66BC1E981B840000F195 /* Styling */,
