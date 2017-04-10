@@ -32,10 +32,7 @@
 		98CFE1761E942C2C000C05A6 /* GoogleVisionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1751E942C2C000C05A6 /* GoogleVisionAPIClient.swift */; };
 		7BF5330D1E959B6500687363 /* SpoonacularEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF5330C1E959B6500687363 /* SpoonacularEnums.swift */; };
 		9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */; };
-<<<<<<< Updated upstream
-=======
 		98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98CFE1751E942C2C000C05A6 /* GoogleVision.swift */; };
->>>>>>> Stashed changes
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,10 +62,7 @@
 		98CFE1751E942C2C000C05A6 /* GoogleVisionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVisionAPIClient.swift; sourceTree = "<group>"; };
 		7BF5330C1E959B6500687363 /* SpoonacularEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularEnums.swift; sourceTree = "<group>"; };
 		9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
-<<<<<<< Updated upstream
-=======
 		98CFE1751E942C2C000C05A6 /* GoogleVision.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVision.swift; sourceTree = "<group>"; };
->>>>>>> Stashed changes
 		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
 		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
 		F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -368,13 +362,8 @@
 				07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */,
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
-<<<<<<< Updated upstream
 				98CFE1761E942C2C000C05A6 /* GoogleVisionAPIClient.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
-=======
-				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
-				98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */,
->>>>>>> Stashed changes
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
 				07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */,
