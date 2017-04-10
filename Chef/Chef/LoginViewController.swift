@@ -15,7 +15,13 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         self.view.addSubview(self.loginView)
         self.loginView.snapToSuperview()
         self.createUI()
+<<<<<<< Updated upstream
 
+=======
+        GoogleVision.getDescriptionfor("http://i.imgur.com/yXFkjaV.jpg") { (json) in
+
+        }
+>>>>>>> Stashed changes
     }
 
     func signUp() {

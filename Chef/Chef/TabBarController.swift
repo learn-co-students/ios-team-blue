@@ -11,11 +11,16 @@ class TabBarController: UITabBarController {
 
         let navViewController = UINavigationController(rootViewController: generateRecipesVC)
         let setViewController = UINavigationController(rootViewController: userSettingsVC)
+<<<<<<< Updated upstream
 
         self.setViewControllers([navViewController, setViewController], animated: true)
 
         self.tabBar.barTintColor = Colors.flatironBlue
 
+=======
+
+        self.setViewControllers([navViewController, setViewController], animated: true)
+>>>>>>> Stashed changes
     }
 
 }
