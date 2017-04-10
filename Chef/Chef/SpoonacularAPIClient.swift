@@ -1,5 +1,6 @@
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 final class SpoonacularAPIClient {
 
@@ -20,7 +21,6 @@ final class SpoonacularAPIClient {
 
         Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
             (response) in
-            print(response.result.value ?? "No value")
             if let json = response.result.value {
                 if let responseJSON = json as? [[String: Any]] {
                     completion(.success(responseJSON))
@@ -37,7 +37,6 @@ final class SpoonacularAPIClient {
         Alamofire.request(endpoint, method: .get,headers: spoonacularAPIHeaders).responseJSON {
             (response) in
             if let JSON = response.result.value {
-                print("JSON Result: \(JSON)")
                 joke = "\(JSON)"
             }
         }
@@ -48,12 +47,9 @@ final class SpoonacularAPIClient {
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(recipe.id)/information?includeNutrition=false"
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON {
             (response) in
-            print("NEW OBJC's response: \(response.result.value)")
             if let json = response.result.value {
                 if let responseJSON = json as? [String: Any] {
-                    guard let stringToLink = responseJSON["sourceURL"] as? String,
-                     let url = URL(string: stringToLink) else {fatalError("Not a valid link!")}
-                    completion(.success(url))
+                    completion(.success(responseJSON))
 
                 } else {
                     completion(.failure(.nodata))
@@ -61,5 +57,6 @@ final class SpoonacularAPIClient {
             }
         }
     }
+
 
 }

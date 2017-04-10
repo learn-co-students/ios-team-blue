@@ -1,9 +1,10 @@
 import UIKit
 
-struct Recipe {
+class Recipe {
     var id: String
     var title: String
     var imageLink: String
+    var instructions: [String]?
 
     init(dictionary: [String: Any]) {
         guard
@@ -17,4 +18,5 @@ struct Recipe {
         self.title = title
         self.imageLink = imageLink
     }
+
 }
