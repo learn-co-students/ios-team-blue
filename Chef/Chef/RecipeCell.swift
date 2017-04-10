@@ -45,7 +45,29 @@ class RecipeCell: UITableViewCell {
             make.left.equalTo(self.imgView.snp.right).offset(8)
             make.right.equalToSuperview().offset(-8)
         }
+
+        favoriteButton.addTarget(self, action: #selector(favorited), for: .touchUpInside)
+
     }
 
+    @IBAction func favorited(sender: UIButton) {
+        favoriteButton = sender
+
+        if sender.isSelected{
+            UIView.animate(withDuration: 1.0, animations:{
+                self.favoriteButton.setImage(#imageLiteral(resourceName: "Filled Heart"), for: .normal)
+                print("RED")
+                sender.isSelected = false
+            })
+        } else {
+            UIView.animate(withDuration: 1.0, animations:{
+                self.favoriteButton.backgroundColor = UIColor.white
+                self.favoriteButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+                print("WHITE")
+                sender.isSelected = true
+            })
+        }
+
+    }
 
 }
