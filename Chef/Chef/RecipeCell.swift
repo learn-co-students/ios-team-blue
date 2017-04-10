@@ -18,6 +18,7 @@ class RecipeCell: UITableViewCell {
 
     func commonInit() {
         self.imgView = UIImageView()
+
         self.addSubview(imgView)
 
         self.imgView.snp.makeConstraints { (make) in
@@ -26,7 +27,13 @@ class RecipeCell: UITableViewCell {
             make.width.height.equalTo(120)
         }
 
-        self.nameLabel = UILabel()
+        self.nameLabel = {
+            let lb = UILabel()
+            lb.numberOfLines = 0
+            lb.font = UIFont(name: Style.regular, size: 14)
+            return lb
+        }()
+
         self.addSubview(nameLabel)
 
         self.nameLabel.snp.makeConstraints { (make) in

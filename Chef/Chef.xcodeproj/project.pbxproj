@@ -13,7 +13,7 @@
 		0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF821E96BE5A00C29E22 /* RecipeCell.swift */; };
 		07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */; };
 		07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B71E9812980000F195 /* SpoonacularAPIClientError.swift */; };
-		07AC66BE1E981BAD0000F195 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66BD1E981BAD0000F195 /* Colors.swift */; };
+		07AC66BE1E981BAD0000F195 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66BD1E981BAD0000F195 /* Style.swift */; };
 		07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8381E92959400F3354A /* AppDelegate.swift */; };
 		07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* LoginViewController.swift */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
@@ -42,7 +42,7 @@
 		0784DF821E96BE5A00C29E22 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
 		07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientResponse.swift; sourceTree = "<group>"; };
 		07AC66B71E9812980000F195 /* SpoonacularAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientError.swift; sourceTree = "<group>"; };
-		07AC66BD1E981BAD0000F195 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		07AC66BD1E981BAD0000F195 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
 		07BAD8351E92959400F3354A /* Chef.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chef.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		07BAD8381E92959400F3354A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07BAD83A1E92959400F3354A /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		07AC66BC1E981B840000F195 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
-				07AC66BD1E981BAD0000F195 /* Colors.swift */,
+				07AC66BD1E981BAD0000F195 /* Style.swift */,
 			);
 			name = Styling;
 			sourceTree = "<group>";
@@ -369,7 +369,7 @@
 				07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
-				07AC66BE1E981BAD0000F195 /* Colors.swift in Sources */,
+				07AC66BE1E981BAD0000F195 /* Style.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
 				07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */,
