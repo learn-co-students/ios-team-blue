@@ -36,4 +36,6 @@ class FirebaseManager {
         usersRef.childByAutoId().setValue(defaults)
     }
 
+    
+
 }
