@@ -1,4 +1,5 @@
 import Foundation
+import SwiftyJSON
 
 final class RecipeDataStore {
 
@@ -26,18 +27,32 @@ final class RecipeDataStore {
         }
     }
 
-    func getRecipeLink(recipe: Recipe, _ completion: @escaping (URL) -> ()) {
+    static func getRecipeSteps(recipe: Recipe, _ completion: @escaping () -> ()) {
         SpoonacularAPIClient.generateRecipeByID(for: recipe) { (result) in
+            var stepsArray = [String]()
             switch result {
-            case .success(let url):
-                guard let url = url as? URL else {
+            case .success(let completeRecipe):
+                guard let completeRecipe = completeRecipe as? [String: Any] else {
                     return
                 }
-                completion(url)
+                guard let analyzedInstructions = completeRecipe["analyzedInstructions"] as? [[String: Any]] else {return}
+                guard let steps = analyzedInstructions[0]["steps"] as? [[String: Any]] else {return}
+                for step in steps {
+
+                    guard let singleStep = step["step"] as? String else {return}
+                    stepsArray.append(singleStep)
+                }
+
+                recipe.instructions = stepsArray
+                //print("THE STEPS ARE", recipe.instructions ?? "No instructions")
+                completion()
+
             case .failure(let error):
                 print(error)
+
             }
         }
+
     }
 
 }
