@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 class LoginView: UIView {
 
@@ -137,7 +138,6 @@ class LoginView: UIView {
     // MARK: - Delegate
 
     func backgroundTapped() {
-        print(#function)
         self.delegate.backgroundTapped()
     }
 
