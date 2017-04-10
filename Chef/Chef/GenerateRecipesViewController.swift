@@ -23,6 +23,9 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
                 self.tableView.reloadData()
             }
         }
+        GoogleVision.getDescriptionfor("http://i.imgur.com/yXFkjaV.jpg") { (json) in
+            
+        }
     }
 
 
@@ -69,6 +72,7 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
 
     func createUI() {
         self.createTableView()
+        tabBarItem = UITabBarItem(title: "recipes", image: #imageLiteral(resourceName: "cookbook"), tag: 1)
     }
 
     func createTableView() {

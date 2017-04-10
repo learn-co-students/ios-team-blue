@@ -14,6 +14,8 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
 
         self.view.addSubview(self.loginView)
         self.loginView.snapToSuperview()
+        self.createUI()
+
     }
 
     func signUp() {
