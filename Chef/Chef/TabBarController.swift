@@ -11,16 +11,13 @@ class TabBarController: UITabBarController {
 
         let navViewController = UINavigationController(rootViewController: generateRecipesVC)
         let setViewController = UINavigationController(rootViewController: userSettingsVC)
-<<<<<<< Updated upstream
 
         self.setViewControllers([navViewController, setViewController], animated: true)
 
         self.tabBar.barTintColor = Colors.flatironBlue
+        setViewController.tabBarItem = UITabBarItem(title: "settings", image: #imageLiteral(resourceName: "userIcon"), tag: 4)
+        navViewController.tabBarItem = UITabBarItem(title: "recipes", image: UIImage(named: "cookbook"), tag: 1)
 
-=======
-
-        self.setViewControllers([navViewController, setViewController], animated: true)
->>>>>>> Stashed changes
     }
 
 }

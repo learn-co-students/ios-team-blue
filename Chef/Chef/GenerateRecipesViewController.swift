@@ -23,9 +23,6 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
                 self.tableView.reloadData()
             }
         }
-        GoogleVision.getDescriptionfor("http://i.imgur.com/yXFkjaV.jpg") { (json) in
-            
-        }
     }
 
 
