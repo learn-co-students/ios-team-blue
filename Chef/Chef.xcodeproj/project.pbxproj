@@ -18,6 +18,8 @@
 		07BAD83B1E92959400F3354A /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD83A1E92959400F3354A /* LoginViewController.swift */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
 		07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8701E92E7B000F3354A /* FirebaseManager.swift */; };
+		07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE891E9BD88300928E5B /* LoginView.swift */; };
+		07D7CE8D1E9BDA8A00928E5B /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */; };
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
@@ -43,6 +45,8 @@
 		07BAD8451E92959400F3354A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BAD8471E92959400F3354A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BAD8701E92E7B000F3354A /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		07D7CE891E9BD88300928E5B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SnapKit.swift"; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -99,6 +103,7 @@
 		0784DF751E9535E300C29E22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				07D7CE891E9BD88300928E5B /* LoginView.swift */,
 				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 			);
@@ -176,13 +181,22 @@
 				07AC66B91E9812C20000F195 /* Enumerations */,
 				074EDB4D1E940C1E001F95F2 /* DataStore */,
 				07AC66B41E9811E60000F195 /* Utilities */,
-				07AC66BA1E98130B0000F195 /* Configurations */,
-				07AC66BB1E98133D0000F195 /* Hidden */,
+				07D7CE8B1E9BDA7900928E5B /* Extensions */,
 				07AC66BC1E981B840000F195 /* Styling */,
+				07AC66BB1E98133D0000F195 /* Hidden */,
+				07AC66BA1E98130B0000F195 /* Configurations */,
 				07BAD8441E92959400F3354A /* LaunchScreen.storyboard */,
 				7B97B15B1E92D5930005B23D /* Assets.xcassets */,
 			);
 			path = Chef;
+			sourceTree = "<group>";
+		};
+		07D7CE8B1E9BDA7900928E5B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		9FC8CD16B59E236A239FE2E7 /* Pods */ = {
@@ -336,8 +350,10 @@
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				07AC66BE1E981BAD0000F195 /* Colors.swift in Sources */,
+				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
 				07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */,
+				07D7CE8D1E9BDA8A00928E5B /* UIView+SnapKit.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
 				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
 				7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */,
