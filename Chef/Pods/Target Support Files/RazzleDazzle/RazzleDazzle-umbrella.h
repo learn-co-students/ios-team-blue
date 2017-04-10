@@ -10,7 +10,8 @@
 #endif
 #endif
 
+#import "RazzleDazzle.h"
 
-FOUNDATION_EXPORT double DOFavoriteButtonVersionNumber;
-FOUNDATION_EXPORT const unsigned char DOFavoriteButtonVersionString[];
+FOUNDATION_EXPORT double RazzleDazzleVersionNumber;
+FOUNDATION_EXPORT const unsigned char RazzleDazzleVersionString[];
 

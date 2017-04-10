@@ -42,6 +42,7 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMSessionFetcher/Core (1.1.8)
   - Kingfisher (3.5.1)
+  - RazzleDazzle (0.1.5)
   - SnapKit (3.2.0)
   - SwiftyJSON (3.1.4)
 
@@ -52,6 +53,7 @@ DEPENDENCIES:
   - Firebase/Database
   - Firebase/Storage
   - Kingfisher
+  - RazzleDazzle
   - SnapKit
   - SwiftyJSON
 
@@ -67,9 +69,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   Kingfisher: 12eeffeef42ea45b68c5e5acfe8ba9005b713ab4
+  RazzleDazzle: 0b1b9fc8ceed04bfdd4b3e8182e98ef7edacd1d1
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: bca7de6a3640e3c0b4b1318230c200e07720b3ee
+PODFILE CHECKSUM: 3e91be24dbaa837b0a14813972e6aa90d535d050
 
 COCOAPODS: 1.2.0
