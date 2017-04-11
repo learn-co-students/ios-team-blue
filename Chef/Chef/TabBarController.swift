@@ -11,7 +11,7 @@ class TabBarController: UITabBarController {
         let generateRecipesVC = GenerateRecipesViewController()
         let navViewController = NavigationController(rootViewController: generateRecipesVC)
 
-        self.setViewControllers([navViewController, setViewController], animated: true)
+        self.setViewControllers([navViewController], animated: true)
     }
-
+    
 }
