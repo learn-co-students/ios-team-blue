@@ -77,6 +77,4 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
         self.view.addSubview(self.tableView)
     }
 
-
-
 }
