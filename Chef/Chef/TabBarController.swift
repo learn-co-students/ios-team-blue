@@ -5,13 +5,13 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let generateRecipesVC = GenerateRecipesViewController()
+        UIApplication.shared.statusBarStyle = .default
+        self.tabBar.tintColor = Style.flatironBlue
 
-        let navViewController = UINavigationController(rootViewController: generateRecipesVC)
+        let generateRecipesVC = GenerateRecipesViewController()
+        let navViewController = NavigationController(rootViewController: generateRecipesVC)
 
         self.setViewControllers([navViewController], animated: true)
-
-        self.tabBar.barTintColor = Colors.flatironBlue
     }
 
 }

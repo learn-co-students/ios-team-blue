@@ -44,7 +44,7 @@ class LoginView: UIView {
         let headerLabel = UILabel()
         headerLabel.text = "Chef"
         headerLabel.textColor = .white
-        headerLabel.font = UIFont(name: "Avenir-Medium", size: 48)
+        headerLabel.font = UIFont(name: Style.regular, size: 48)
 
         self.addSubview(headerLabel)
 
@@ -88,7 +88,7 @@ class LoginView: UIView {
             lb.backgroundColor = .white
             lb.setTitle("Login", for: .normal)
             lb.setTitleColor(.black, for: .normal)
-            lb.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 18)
+            lb.titleLabel?.font = UIFont(name: Style.bold, size: 18)
             lb.layer.cornerRadius = 5
             return lb
         }()
@@ -110,7 +110,7 @@ class LoginView: UIView {
             sb.backgroundColor = .clear
             sb.setTitle("Sign Up", for: .normal)
             sb.titleLabel?.textColor = .white
-            sb.titleLabel?.font = UIFont(name: "Avenir-Heavy", size: 16)
+            sb.titleLabel?.font = UIFont(name: Style.bold, size: 16)
             return sb
         }()
 
@@ -125,13 +125,23 @@ class LoginView: UIView {
     }
 
     func createGestureRecognizer() {
-        let tapGesture: UITapGestureRecognizer = {
+        let tap: UITapGestureRecognizer = {
             let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundTapped))
             tgr.numberOfTapsRequired = 1
             return tgr
         }()
 
-        self.addGestureRecognizer(tapGesture)
+        // MARK: - Test
+        let doubleTap: UITapGestureRecognizer = {
+            let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundDoubleTapped))
+            tgr.numberOfTapsRequired = 2
+            return tgr
+        }()
+
+        tap.require(toFail: doubleTap)
+
+        self.addGestureRecognizer(tap)
+        self.addGestureRecognizer(doubleTap)
     }
 
 
@@ -147,6 +157,11 @@ class LoginView: UIView {
 
     func switchButtonTapped() {
         self.delegate.switchButtonTapped()
+    }
+
+    // MARK: - Test
+    func backgroundDoubleTapped() {
+        self.delegate.backgroundDoubleTapped()
     }
 
 }
