@@ -55,25 +55,25 @@ class RecipeCell: UITableViewCell {
     @IBAction func favorited(sender: UIButton) {
         favoriteButton = sender
 
-        if sender.isSelected{
-            UIView.animate(withDuration: 2.0,  delay: 0, usingSpringWithDamping: 10, initialSpringVelocity: 10,
+        if !sender.isSelected{
+            UIView.animate(withDuration: 2.0,  delay: 0, usingSpringWithDamping: 30, initialSpringVelocity: 10,
                            options: .allowUserInteraction,  animations:{
                             self.favoriteButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
                             self.favoriteButton.setImage(#imageLiteral(resourceName: "Filled Heart"), for: .normal)
                             print("RED")
                             self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                            sender.isSelected = false
+                            sender.isSelected = true
             })
 
         } else {
-            UIView.animate(withDuration: 2.0,  delay: 0, usingSpringWithDamping: 10, initialSpringVelocity: 10,
+            UIView.animate(withDuration: 2.0,  delay: 0, usingSpringWithDamping: 30, initialSpringVelocity: 10,
                            options: .allowUserInteraction, animations:{
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
                 self.favoriteButton.backgroundColor = UIColor.white
                 self.favoriteButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
                 print("WHITE")
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                sender.isSelected = true
+                sender.isSelected = false
             })
         }
 
