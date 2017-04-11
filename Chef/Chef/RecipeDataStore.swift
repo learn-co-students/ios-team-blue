@@ -3,13 +3,18 @@ import SwiftyJSON
 
 final class RecipeDataStore {
 
-    static let sharedInstance = RecipeDataStore()
+    static let shared = RecipeDataStore()
+    var user = User()
     var recipes = [Recipe]()
 
     private init() {}
 
-    func getRecipes(user: User, _ completion: @escaping () -> ()) {
-        SpoonacularAPIClient.generateRecipes(for: user) { (result) in
+    func setUser(_ user: User) {
+        self.user = user
+    }
+
+    func getRecipes(_ completion: @escaping () -> ()) {
+        SpoonacularAPIClient.generateRecipes(for: self.user) { (result) in
             switch result {
             case .success(let recipeList):
                 guard let recipeList = recipeList as? [[String: Any]] else {

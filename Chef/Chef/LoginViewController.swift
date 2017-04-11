@@ -3,6 +3,7 @@ import SnapKit
 
 class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDelegate {
 
+    let store = RecipeDataStore.shared
     var loginView: LoginView!
     var userIsSigningUp: Bool = false
 
@@ -35,7 +36,8 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         }
         FirebaseManager.login(email: email, password: password) { success in
             if success {
-                // create user and save to data store as current user
+                let user = User(email: email)
+                self.store.setUser(user)
                 self.pushToTabBarController()
             } else {
                 self.shakeTextFields()
