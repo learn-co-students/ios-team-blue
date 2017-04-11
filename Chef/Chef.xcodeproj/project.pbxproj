@@ -12,6 +12,7 @@
 		0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF781E954B4F00C29E22 /* TabBarController.swift */; };
 		0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */; };
 		0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF821E96BE5A00C29E22 /* RecipeCell.swift */; };
+		07A8E9B41E9D2E5B00CDD886 /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */; };
 		07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */; };
 		07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B71E9812980000F195 /* SpoonacularAPIClientError.swift */; };
 		07AC66BE1E981BAD0000F195 /* Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66BD1E981BAD0000F195 /* Style.swift */; };
@@ -42,6 +43,7 @@
 		0784DF781E954B4F00C29E22 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateRecipesViewController.swift; sourceTree = "<group>"; };
 		0784DF821E96BE5A00C29E22 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedRecipesViewController.swift; sourceTree = "<group>"; };
 		07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientResponse.swift; sourceTree = "<group>"; };
 		07AC66B71E9812980000F195 /* SpoonacularAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientError.swift; sourceTree = "<group>"; };
 		07AC66BD1E981BAD0000F195 /* Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Style.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */,
 				0702EB231E9C1863006754C4 /* NavigationController.swift */,
 				0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */,
+				07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -379,6 +382,7 @@
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
 				07D7CE901E9BE39B00928E5B /* LoginViewDelegate.swift in Sources */,
 				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
+				07A8E9B41E9D2E5B00CDD886 /* SavedRecipesViewController.swift in Sources */,
 				0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */,
 				7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */,
 				7BF533071E95962000687363 /* RecipeDataStore.swift in Sources */,
