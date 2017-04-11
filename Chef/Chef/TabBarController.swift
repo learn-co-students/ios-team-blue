@@ -16,7 +16,11 @@ class TabBarController: UITabBarController {
         savedRecipesVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "cookbook"), tag: 2)
         let srNavVC = NavigationController(rootViewController: savedRecipesVC)
 
-        let navViewControllers = [gNavVC, srNavVC]
+        let userSettingsVC = UserSettingsViewController()
+        userSettingsVC.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(named: "userIcon"), tag: 4)
+        let usNavVC = NavigationController(rootViewController: userSettingsVC)
+
+        let navViewControllers = [gNavVC, srNavVC, usNavVC]
 
         self.setViewControllers(navViewControllers, animated: true)
     }

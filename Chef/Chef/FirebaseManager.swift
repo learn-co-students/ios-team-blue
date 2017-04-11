@@ -14,7 +14,6 @@ class FirebaseManager {
                 completion?(false)
             } else if let user = user {
                 print("\nUser \(user.description) successfully logged in\n")
-                print("The user ID is", user.uid)
                 completion?(true)
             }
         })
