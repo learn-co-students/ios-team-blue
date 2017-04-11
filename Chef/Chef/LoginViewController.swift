@@ -39,9 +39,14 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                 let user = User(email: email)
                 self.store.setUser(user)
 
-                if user.email != "blue@flatiron.com" {  // prevent overwriting test user
-                    FirebaseManager.addUser(user)  // should check if user exists
+                FirebaseManager.checkIfUserExists(user) { (userExists) in
+                    if userExists {
+                        //self.store.pullDataForUser(user)
+                    } else {
+                        FirebaseManager.addUser(user)
+                    }
                 }
+
                 self.pushToTabBarController()
             } else {
                 self.shakeTextFields()
