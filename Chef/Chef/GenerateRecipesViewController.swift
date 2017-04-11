@@ -3,9 +3,8 @@ import Kingfisher
 
 class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let store = RecipeDataStore.sharedInstance
+    let store = RecipeDataStore.shared
     var tableView: UITableView!
-    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -13,9 +12,7 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
         self.createUI()
         self.navigationItem.title = "My Cookbook"
 
-        self.user = User(name: "person@gmail.com", favRecipes: [], fridge: ["bread", "cheese", "oil", "lentils", "chicken", "pasta", "ramen", "tomatoes", "pomegranate"])
-
-        self.store.getRecipes(user: user) {
+        self.store.getRecipes() {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }

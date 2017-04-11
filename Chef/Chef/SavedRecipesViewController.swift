@@ -2,9 +2,8 @@ import UIKit
 
 class SavedRecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    let store = RecipeDataStore.sharedInstance
+    let store = RecipeDataStore.shared
     var tableView: UITableView!
-    var user: User!
 
     override func viewDidLoad() {
         super.viewDidLoad()

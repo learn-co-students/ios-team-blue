@@ -27,15 +27,14 @@ class FirebaseManager {
                 completion?(false)
             } else if let user = user {
                 print("\nUser \(user.description) successfully signed up\n")
-                addUser()
                 completion?(true)
             }
         })
     }
 
-    private static func addUser() {
+    static func addUser(_ user: User) {
         let defaults = ["favRecipes": ["0": "default"], "fridge": ["0": "default"]]
-        usersRef.childByAutoId().setValue(defaults)
+        self.usersRef.child(user.id).setValue(defaults)
     }
 
     static func signOut() {
