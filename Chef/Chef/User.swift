@@ -6,6 +6,13 @@ struct User: CustomStringConvertible {
     var favRecipes: [Int]
     var fridge: [String]
 
+    var id: String {
+        var str = self.email
+        str = str.replacingOccurrences(of: "@", with: "")
+        str = str.replacingOccurrences(of: ".", with: "")
+        return str
+    }
+
     var description: String {
         return "email: \(self.email)\nfavRecipes: \(self.favRecipes)\nfridge: \(fridge)"
     }

@@ -38,6 +38,10 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             if success {
                 let user = User(email: email)
                 self.store.setUser(user)
+
+                if user.email != "blue@flatiron.com" {  // prevent overwriting test user
+                    FirebaseManager.addUser(user)  // should check if user exists
+                }
                 self.pushToTabBarController()
             } else {
                 self.shakeTextFields()
@@ -59,8 +63,8 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     }
 
     func backgroundDoubleTapped() {
-        self.loginView.usernameTextField.text = "me@me.com"
-        self.loginView.passwordTextField.text = "youyouyou"
+        self.loginView.usernameTextField.text = "blue@flatiron.com"
+        self.loginView.passwordTextField.text = "password"
         self.logIn()
     }
 
