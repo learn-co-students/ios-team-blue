@@ -1,6 +1,7 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class FirebaseManager {
 
@@ -13,6 +14,7 @@ class FirebaseManager {
                 completion?(false)
             } else if let user = user {
                 print("\nUser \(user.description) successfully logged in\n")
+                print("The user ID is", user.uid)
                 completion?(true)
             }
         })
@@ -36,6 +38,12 @@ class FirebaseManager {
         usersRef.childByAutoId().setValue(defaults)
     }
 
-    
+    static func signOut() {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let signOutError as NSError{
+            print("Error signing out: %@", signOutError)
+        }
+    }
 
 }

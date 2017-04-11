@@ -83,7 +83,8 @@ class UserSettingsViewController: UIViewController {
 
     func tapLogOut() {
         print("Tap logout pressed")
-        //TODO: - Log out in Firebase
+        FirebaseManager.signOut()
+        self.dismiss(animated: true, completion: nil)
     }
 
     func tapResetData() {
