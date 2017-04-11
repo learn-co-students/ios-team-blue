@@ -1,7 +1,6 @@
 import UIKit
-import Kingfisher
 
-class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class SavedRecipesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let store = RecipeDataStore.sharedInstance
     var tableView: UITableView!
@@ -11,15 +10,7 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
         super.viewDidLoad()
 
         self.createUI()
-        self.navigationItem.title = "My Cookbook"
-
-        self.user = User(name: "person@gmail.com", favRecipes: [], fridge: ["bread", "cheese", "oil", "lentils", "chicken", "pasta", "ramen", "tomatoes", "pomegranate"])
-
-        self.store.getRecipes(user: user) {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        self.navigationItem.title = "Saved Recipes"
     }
 
 
@@ -30,22 +21,11 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.store.recipes.count
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as! RecipeCell
-
-        let recipe = self.store.recipes[indexPath.row]
-
-        cell.nameLabel.text = recipe.title
-
-        let url = URL(string: recipe.imageLink)
-        cell.imgView.kf.setImage(with: url,
-                           placeholder: nil,
-                           options: [.transition(.fade(2))],
-                           progressBlock: nil,
-                           completionHandler: nil)
 
         return cell
     }
@@ -75,5 +55,5 @@ class GenerateRecipesViewController: UIViewController, UITableViewDataSource, UI
         self.tableView.register(RecipeCell.self, forCellReuseIdentifier: "recipeCell")
         self.view.addSubview(self.tableView)
     }
-
+    
 }

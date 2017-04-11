@@ -9,9 +9,16 @@ class TabBarController: UITabBarController {
         self.tabBar.tintColor = Style.flatironBlue
 
         let generateRecipesVC = GenerateRecipesViewController()
-        let navViewController = NavigationController(rootViewController: generateRecipesVC)
+        generateRecipesVC.tabBarItem = UITabBarItem(title: "Generate", image: UIImage(named: "cookbook"), tag: 1)
+        let gNavVC = NavigationController(rootViewController: generateRecipesVC)
 
-        self.setViewControllers([navViewController], animated: true)
+        let savedRecipesVC = SavedRecipesViewController()
+        savedRecipesVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "cookbook"), tag: 2)
+        let srNavVC = NavigationController(rootViewController: savedRecipesVC)
+
+        let navViewControllers = [gNavVC, srNavVC]
+
+        self.setViewControllers(navViewControllers, animated: true)
     }
 
 }
