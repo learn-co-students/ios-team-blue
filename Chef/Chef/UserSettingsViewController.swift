@@ -82,6 +82,8 @@ class UserSettingsViewController: UIViewController {
     func tapDiet() {
         print("Tap diet pressed")
         //TODO: - Add VC to set Dietary Restrictions
+        let dietVC = AddDietViewController()
+        self.present(dietVC, animated: true, completion: nil)
         //Diet possible choices -  pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
         //intolerances - dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat
     }

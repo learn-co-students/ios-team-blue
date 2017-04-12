@@ -58,4 +58,28 @@ class FirebaseManager {
         self.usersRef.child(user.id).removeValue()
     }
 
+    static func checkIfUserExists(_ user: User, completion: @escaping (Bool) -> ()) {
+        self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snap = snapshot.value as? [String: Any] else { return }
+            let userExists = snap[user.id] == nil ? false : true
+            completion(userExists)
+        })
+    }
+
+    static func getUserData(_ user: User, completion: @escaping (([String], [String])) -> ()) {
+        let ref = usersRef.child(user.id)
+
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snap = snapshot.value as? [String: Any],
+                let favRecipesIDs = snap["favRecipes"] as? [String],
+                let fridge = snap["fridge"] as? [String] else {
+                    print(#function + " failed")
+                    return
+            }
+
+            completion(favRecipesIDs, fridge)
+        })
+        
+        
+    }
 }
