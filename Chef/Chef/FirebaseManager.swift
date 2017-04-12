@@ -25,15 +25,22 @@ class FirebaseManager {
                 completion?(false)
             } else if let user = user {
                 print("\nUser \(user.description) successfully signed up\n")
-                addUser()
                 completion?(true)
             }
         })
     }
 
-    private static func addUser() {
+    static func addUser(_ user: User) {
         let defaults = ["favRecipes": ["0": "default"], "fridge": ["0": "default"]]
-        usersRef.childByAutoId().setValue(defaults)
+        self.usersRef.child(user.id).setValue(defaults)
+    }
+
+    static func checkIfUserExists(_ user: User, completion: @escaping (Bool) -> ()) {
+        self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snap = snapshot.value as? [String: Any] else { return }
+            let userExists = snap[user.id] == nil ? false : true
+            completion(userExists)
+        })
     }
 
 }

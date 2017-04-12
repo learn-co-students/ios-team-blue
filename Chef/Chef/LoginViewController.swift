@@ -1,33 +1,24 @@
 import UIKit
 import SnapKit
 
-class LoginViewController: UIViewController, UITextFieldDelegate {
+class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDelegate {
 
-    var usernameTextField: LoginTextField!
-    var passwordTextField: LoginTextField!
-    var userIsSigningUp: Bool = true    // temporarily setting to true, should initially be false
+    let store = RecipeDataStore.shared
+    var loginView: LoginView!
+    var userIsSigningUp: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.createUI()
 
-        GoogleVision.getDescriptionfor("http://i.imgur.com/yXFkjaV.jpg") { (json) in
-            let text = GoogleVision.clean(text: json)
-            print("\n\n\n\nCLEAN RECEIPT DATA")
-            print(text)
-        }
-    }
+        self.loginView = LoginView()
+        self.loginView.delegate = self
 
-    func buttonTapped() {
-        if userIsSigningUp {
-            self.signUp()
-        } else {
-            self.logIn()
-        }
+        self.view.addSubview(self.loginView)
+        self.loginView.snapToSuperview()
     }
 
     func signUp() {
-        guard let email = self.usernameTextField.text, let password = self.passwordTextField.text else {
+        guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
         }
         FirebaseManager.signUp(email: email, password: password) { success in
@@ -40,11 +31,22 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     func logIn() {
-        guard let email = self.usernameTextField.text, let password = self.passwordTextField.text else {
+        guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
         }
         FirebaseManager.login(email: email, password: password) { success in
             if success {
+                let user = User(email: email)
+                self.store.setUser(user)
+
+                FirebaseManager.checkIfUserExists(user) { (userExists) in
+                    if userExists {
+                        //self.store.pullDataForUser(user)
+                    } else {
+                        FirebaseManager.addUser(user)
+                    }
+                }
+
                 self.pushToTabBarController()
             } else {
                 self.shakeTextFields()
@@ -52,100 +54,59 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    func pushToTabBarController() {
-        print(#function)
-    }
-
-}
-
-
-extension LoginViewController {
-
-    func createUI() {
-        self.createBackgroundImage()
-        self.createHeaderText()
-        self.createUsernameTextField()
-        self.createPasswordField()
-        self.createButton()
-    }
-
-    func createBackgroundImage() {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "food-background")
-
-        self.view.addSubview(imageView)
-
-        imageView.snp.makeConstraints { (make) in
-            make.top.left.height.width.equalToSuperview()
-        }
-    }
-
-    func createHeaderText() {
-        let headerLabel = UILabel()
-        headerLabel.text = "Chef"
-        headerLabel.textColor = .white
-        headerLabel.font = UIFont(name: "Avenir-Medium", size: 48)
-
-        self.view.addSubview(headerLabel)
-
-        headerLabel.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(75)
-        }
-    }
-
-    func createUsernameTextField() {
-        self.usernameTextField = LoginTextField()
-        self.usernameTextField.keyboardType = .emailAddress
-
-        self.view.addSubview(self.usernameTextField)
-
-        self.usernameTextField.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.66)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(28)
-        }
-    }
-
-    func createPasswordField() {
-        self.passwordTextField = LoginTextField()
-        self.passwordTextField.isSecureTextEntry = true
-
-        self.view.addSubview(self.passwordTextField)
-
-        self.passwordTextField.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.usernameTextField.snp.bottom).offset(20)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(28)
-        }
-    }
-
-    func createButton() {
-        let loginButton: UIButton = {
-            let lb = UIButton()
-            lb.backgroundColor = .white
-            lb.setTitle("Login", for: .normal)
-            lb.setTitleColor(.black, for: .normal)
-            lb.layer.cornerRadius = 5
-            return lb
-        }()
-
-        self.view.addSubview(loginButton)
-
-        loginButton.snp.makeConstraints { (make) in
-            make.width.equalToSuperview().multipliedBy(0.3)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-        }
-
-        loginButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
-    }
-    
     func shakeTextFields() {
-        self.usernameTextField.shake()
-        self.passwordTextField.shake()
+        self.loginView.usernameTextField.shake()
+        self.loginView.passwordTextField.shake()
     }
-    
+
+
+    // MARK: - Login View Delegate
+
+    func backgroundTapped() {
+        self.loginView.usernameTextField.resignFirstResponder()
+        self.loginView.passwordTextField.resignFirstResponder()
+    }
+
+    func backgroundDoubleTapped() {
+        self.loginView.usernameTextField.text = "blue@flatiron.com"
+        self.loginView.passwordTextField.text = "password"
+        self.logIn()
+    }
+
+    func loginSignupButtonTapped() {
+        if userIsSigningUp {
+            self.signUp()
+        } else {
+            self.logIn()
+        }
+    }
+
+    func switchButtonTapped() {
+        self.userIsSigningUp = self.userIsSigningUp ? false : true
+
+        self.loginView.loginSignupButton.titleLabel?.alpha = 0.0
+        self.loginView.switchButton.titleLabel?.alpha = 0.0
+
+        if self.userIsSigningUp {
+            self.loginView.loginSignupButton.setTitle("Sign Up", for: .normal)
+            self.loginView.switchButton.setTitle("Login", for: .normal)
+        } else {
+            self.loginView.loginSignupButton.setTitle("Login", for: .normal)
+            self.loginView.switchButton.setTitle("Sign Up", for: .normal)
+        }
+
+        UIView.animate(withDuration: 0.6) {
+            self.loginView.loginSignupButton.titleLabel?.alpha = 1.0
+            self.loginView.switchButton.titleLabel?.alpha = 1.0
+        }
+    }
+
+
+    // MARK: - Navigation
+
+    func pushToTabBarController() {
+        let tabBarController = TabBarController()
+        self.navigationController?.pushViewController(tabBarController, animated: true)
+    }
+
 }

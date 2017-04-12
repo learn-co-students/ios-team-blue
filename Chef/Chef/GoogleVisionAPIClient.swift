@@ -1,17 +1,10 @@
-//
-//  GoogleVision.swift
-//  Chef
-//
-//  Created by Kaypree Hodges on 4/4/17.
-//  Copyright © 2017 Blue Team. All rights reserved.
-//
-
 import Foundation
 import SwiftyJSON
 
-final class GoogleVision {
+final class GoogleVisionAPIClient {
 
-    class func getDescriptionfor(_ photoURL: String, completion: @escaping (String) -> ()) {
+
+    class func getDescriptionfor(_ photoURL: String, completion: @escaping (JSON) -> ()) {
         let parameters: [String: Any] = [
             "requests": [
                 "image": ["source": ["imageUri": photoURL]],
@@ -40,32 +33,15 @@ final class GoogleVision {
                     print(description)
                     completion(description)
                 }
-
-
-                
             }
         }).resume()
-        
     }
-
 
     class func clean(text: String) -> [String] {
         let nonLetters = ["1", "2", "3", "4", "5","6", "7", "8", "9", "0", ".", ";", ",", "*", "%", "@"]
         let alphabet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
         let textByLine = text.components(separatedBy: "\n")
         var substanceText: [String] = []
-
-        /*
-         Get an array of lines form the OCR output
-         For each line, remove any instance of:
-            " tax "
-            "lb"
-            "total tax"
-         For each line determine if:
-            is it empty?
-            does it contain characters?
-            does it contain more than 2 characters?
-        */
 
         for line in textByLine {
             var newLine: String = ""
@@ -86,8 +62,6 @@ final class GoogleVision {
         return substanceText
 
     }
-
-
 
 //        var lineArray: [String] = []
 //        for line in textToClean {
@@ -114,37 +88,8 @@ final class GoogleVision {
 //
 //        return finalArray
 
-
-
-
-
-
     func modify(line: String) {
         
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     
 }
-
-extension String {
-    var lines: [String] {
-        var result: [String] = []
-        enumerateLines { line, _ in result.append(line) }
-        return result
-    }
-}
-
