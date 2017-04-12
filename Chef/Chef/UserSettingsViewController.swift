@@ -82,9 +82,10 @@ class UserSettingsViewController: UIViewController {
     func tapDiet() {
         print("Tap diet pressed")
         //TODO: - Add VC to set Dietary Restrictions
-        //Diet possible choice -  pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
+        //Diet possible choices -  pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
         //intolerances - dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat
     }
+
 
     func tapLogOut() {
         print("Tap logout pressed")
@@ -96,6 +97,7 @@ class UserSettingsViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+
 
     func tapResetData() {
         print("Tap reset data pressed")
@@ -122,17 +124,6 @@ class UserSettingsViewController: UIViewController {
         alertController.addAction(cancel)
         self.present(alertController, animated: true, completion: nil)
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 
 }
