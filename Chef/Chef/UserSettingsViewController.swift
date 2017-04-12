@@ -3,6 +3,9 @@ import SnapKit
 
 class UserSettingsViewController: UIViewController {
 
+    let store = RecipeDataStore.shared
+
+
     var diet: UILabel!
     var logOut: UILabel!
     var resetData: UILabel!
@@ -14,7 +17,7 @@ class UserSettingsViewController: UIViewController {
 
         stackView = UIStackView()
         self.view.addSubview(self.stackView)
-
+        //TODO: - Make settings page prettier
         diet = UILabel()
         diet.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
         diet.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
@@ -79,19 +82,27 @@ class UserSettingsViewController: UIViewController {
     func tapDiet() {
         print("Tap diet pressed")
         //TODO: - Add VC to set Dietary Restrictions
+        //Diet possible choice -  pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
+        //intolerances - dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat
     }
 
     func tapLogOut() {
         print("Tap logout pressed")
         FirebaseManager.signOut()
-        self.dismiss(animated: true, completion: nil)
+//        self.show(loginViewController, sender: self)
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 
     func tapResetData() {
         print("Tap reset data pressed")
         let alertController = UIAlertController(title: "Reset Data", message: "Please confirm that you wish to reset your data. You will not be able to retrive your data after confirming.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .destructive) { (action) in
-            //TODO: - Delete data in Firebase
+            //TODO: - Possibly rename function since it is being used to reset data here
+            FirebaseManager.addUser(self.store.user)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirm)
@@ -101,9 +112,10 @@ class UserSettingsViewController: UIViewController {
 
     func tapDeleteAcct() {
         print("Tap delete account pressed")
-        let alertController = UIAlertController(title: "Delete Account", message: "Please confirm that you wish to delete your account. You will not be able to retrive your account information after confirming.", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Delete Account", message: "Please confirm that you wish to delete your account. You will not be able to retrive your account after confirming.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .destructive) { (action) in
-            //TODO: - Delete account in Firebase
+            FirebaseManager.deleteUser()
+            FirebaseManager.deleteUserData(self.store.user)
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirm)

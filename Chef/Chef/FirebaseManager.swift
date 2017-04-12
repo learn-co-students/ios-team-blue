@@ -44,4 +44,18 @@ class FirebaseManager {
         }
     }
 
+    static func deleteUser() {
+        FIRAuth.auth()?.currentUser?.delete(completion: { (error) in
+            if error != nil {
+                print("Error occurred", error?.localizedDescription as Any)
+            } else {
+                print("User was deleted")
+            }
+        })
+    }
+
+    static func deleteUserData(_ user: User) {
+        self.usersRef.child(user.id).removeValue()
+    }
+
 }
