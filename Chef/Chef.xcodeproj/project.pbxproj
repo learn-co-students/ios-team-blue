@@ -363,7 +363,6 @@
 				0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */,
 				07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */,
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
-				98CFE1761E942C2C000C05A6 /* GoogleVision.swift in Sources */,
 				98CFE1741E942BFB000C05A6 /* Secrets.swift in Sources */,
 				07BAD8411E92959400F3354A /* Chef.xcdatamodeld in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,

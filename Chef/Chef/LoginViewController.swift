@@ -15,6 +15,11 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
 
         self.view.addSubview(self.loginView)
         self.loginView.snapToSuperview()
+
+        GoogleVisionAPIClient.getDescriptionfor("https://www.jellyvision.com/wp-content/uploads/2014/04/receipt-1.jpg") { (text) in
+            let result = GoogleVisionAPIClient.clean(text: text)
+            print(result)
+        }
     }
 
     func signUp() {

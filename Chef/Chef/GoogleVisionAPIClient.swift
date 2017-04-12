@@ -39,7 +39,6 @@ final class GoogleVisionAPIClient {
 
     class func clean(text: String) -> [String] {
         let nonLetters = ["1", "2", "3", "4", "5","6", "7", "8", "9", "0", ".", ";", ",", "*", "%", "@"]
-        let alphabet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
         let textByLine = text.components(separatedBy: "\n")
         var substanceText: [String] = []
 
@@ -88,8 +87,5 @@ final class GoogleVisionAPIClient {
 //
 //        return finalArray
 
-    func modify(line: String) {
-        
-    }
     
 }
