@@ -3,8 +3,7 @@ import SwiftyJSON
 
 final class GoogleVisionAPIClient {
 
-
-    class func getDescriptionfor(_ photoURL: String, completion: @escaping (JSON) -> ()) {
+    class func getDescriptionfor(_ photoURL: String, completion: @escaping (String) -> ()) {
         let parameters: [String: Any] = [
             "requests": [
                 "image": ["source": ["imageUri": photoURL]],
@@ -22,10 +21,8 @@ final class GoogleVisionAPIClient {
         } catch {
             fatalError("Cannot serialize request body")
         }
-        
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.addValue("Application/json", forHTTPHeaderField: "Accept")
-
         session.dataTask(with: request, completionHandler: { (data, response, error) in
             if let data = data {
                 let json = JSON(data: data)
@@ -50,42 +47,23 @@ final class GoogleVisionAPIClient {
                     newLine += String(char)
                 }
             }
-
             if !newLine.isEmpty && newLine.characters.count > 2 {
                 substanceText.append(newLine)
             }
-
-
         }
 
-        return substanceText
-
+        var finalArray: [String] = []
+//This is ugly but works. This is WIP as we review and collect more receipt data.
+        for line in substanceText {
+            let simpleLine = line.lowercased()
+            if simpleLine.range(of: "refund") != nil ||
+                simpleLine.range(of: " tax ") != nil ||
+                simpleLine.range(of: "cashier") != nil {
+                continue
+            } else {
+                finalArray.append(line)
+            }
+        }
+        return finalArray
     }
-
-//        var lineArray: [String] = []
-//        for line in textToClean {
-//            var cleanLine = ""
-//            let lineChar = line.characters
-//            for letter in lineChar {
-//                if !nonLetters.contains(String(letter)) {
-//                    cleanLine += String(letter)
-//                }
-//            }
-//            lineArray.append(cleanLine)
-//        }
-//
-//        var finalArray: [String] = []
-//
-//        for line in lineArray {
-//            if !line.isEmpty {
-//                finalArray.append(line)
-//            }
-//        }
-//
-//        print("\n\n\n")
-//        print("Clean Array", finalArray)
-//
-//        return finalArray
-
-    
 }
