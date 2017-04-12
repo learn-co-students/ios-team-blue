@@ -43,4 +43,19 @@ class FirebaseManager {
         })
     }
 
+    static func getUserData(_ user: User, completion: @escaping (([String], [String])) -> ()) {
+        let ref = usersRef.child(user.id)
+
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snap = snapshot.value as? [String: Any],
+                  let favRecipesIDs = snap["favRecipes"] as? [String],
+                  let fridge = snap["fridge"] as? [String] else {
+                print(#function + " failed")
+                return
+            }
+
+            completion(favRecipesIDs, fridge)
+        })
+    }
+
 }

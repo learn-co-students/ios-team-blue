@@ -41,13 +41,14 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
 
                 FirebaseManager.checkIfUserExists(user) { (userExists) in
                     if userExists {
-                        //self.store.pullDataForUser(user)
+                        self.store.pullDataForUser(user) {
+                            self.pushToTabBarController()
+                        }
                     } else {
                         FirebaseManager.addUser(user)
+                        self.pushToTabBarController()
                     }
                 }
-
-                self.pushToTabBarController()
             } else {
                 self.shakeTextFields()
             }
