@@ -1,10 +1,10 @@
 // !$*UTF8*$!
 {
-archiveVersion = 1;
-classes = {
-};
-objectVersion = 46;
-objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
 
 /* Begin PBXBuildFile section */
 		0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702EB231E9C1863006754C4 /* NavigationController.swift */; };
@@ -31,6 +31,7 @@ objects = {
 		7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533081E95962700687363 /* SpoonacularAPIClient.swift */; };
 		7BF5330B1E95962F00687363 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF5330A1E95962F00687363 /* Recipe.swift */; };
 		9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */; };
+		989FDC1D1E9FB7C3005A6ECB /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */; };
 		98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D3D1E9D4E100089416D /* GoogleVisionAPIClient.swift */; };
 		98D03D421E9D50360089416D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D411E9D4F320089416D /* LoginViewController.swift */; };
 		98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D641E9E7AAE0089416D /* AddDietViewController.swift */; };
@@ -62,6 +63,7 @@ objects = {
 		7BF533081E95962700687363 /* SpoonacularAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClient.swift; sourceTree = "<group>"; };
 		7BF5330A1E95962F00687363 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
+		989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
 		98D03D3D1E9D4E100089416D /* GoogleVisionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVisionAPIClient.swift; sourceTree = "<group>"; };
 		98D03D411E9D4F320089416D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		98D03D641E9E7AAE0089416D /* AddDietViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDietViewController.swift; sourceTree = "<group>"; };
@@ -71,14 +73,14 @@ objects = {
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-07BAD8321E92959400F3354A /* Frameworks */ = {
-isa = PBXFrameworksBuildPhase;
-buildActionMask = 2147483647;
-files = (
-569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */,
-);
-runOnlyForDeploymentPostprocessing = 0;
-};
+		07BAD8321E92959400F3354A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -118,6 +120,7 @@ runOnlyForDeploymentPostprocessing = 0;
 			isa = PBXGroup;
 			children = (
 				07D7CE891E9BD88300928E5B /* LoginView.swift */,
+				989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */,
 				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 			);
@@ -242,26 +245,26 @@ runOnlyForDeploymentPostprocessing = 0;
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-07BAD8341E92959400F3354A /* Chef */ = {
-isa = PBXNativeTarget;
-buildConfigurationList = 07BAD84A1E92959400F3354A /* Build configuration list for PBXNativeTarget "Chef" */;
-buildPhases = (
-E142DF22390154F3DB9A4676 /* [CP] Check Pods Manifest.lock */,
-07BAD8311E92959400F3354A /* Sources */,
-07BAD8321E92959400F3354A /* Frameworks */,
-07BAD8331E92959400F3354A /* Resources */,
-8D12AC146838FC75C29B3907 /* [CP] Embed Pods Frameworks */,
-66A8D12698146CB43E26D4A7 /* [CP] Copy Pods Resources */,
-);
-buildRules = (
-);
-dependencies = (
-);
-name = Chef;
-productName = Chef;
-productReference = 07BAD8351E92959400F3354A /* Chef.app */;
-productType = "com.apple.product-type.application";
-};
+		07BAD8341E92959400F3354A /* Chef */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 07BAD84A1E92959400F3354A /* Build configuration list for PBXNativeTarget "Chef" */;
+			buildPhases = (
+				E142DF22390154F3DB9A4676 /* [CP] Check Pods Manifest.lock */,
+				07BAD8311E92959400F3354A /* Sources */,
+				07BAD8321E92959400F3354A /* Frameworks */,
+				07BAD8331E92959400F3354A /* Resources */,
+				8D12AC146838FC75C29B3907 /* [CP] Embed Pods Frameworks */,
+				66A8D12698146CB43E26D4A7 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Chef;
+			productName = Chef;
+			productReference = 07BAD8351E92959400F3354A /* Chef.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -298,64 +301,64 @@ productType = "com.apple.product-type.application";
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-07BAD8331E92959400F3354A /* Resources */ = {
-isa = PBXResourcesBuildPhase;
-buildActionMask = 2147483647;
-files = (
-7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */,
-07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */,
-7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */,
-);
-runOnlyForDeploymentPostprocessing = 0;
-};
+		07BAD8331E92959400F3354A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */,
+				07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */,
+				7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-66A8D12698146CB43E26D4A7 /* [CP] Copy Pods Resources */ = {
-isa = PBXShellScriptBuildPhase;
-buildActionMask = 2147483647;
-files = (
-);
-inputPaths = (
-);
-name = "[CP] Copy Pods Resources";
-outputPaths = (
-);
-runOnlyForDeploymentPostprocessing = 0;
-shellPath = /bin/sh;
-shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chef/Pods-Chef-resources.sh\"\n";
-showEnvVarsInLog = 0;
-};
-8D12AC146838FC75C29B3907 /* [CP] Embed Pods Frameworks */ = {
-isa = PBXShellScriptBuildPhase;
-buildActionMask = 2147483647;
-files = (
-);
-inputPaths = (
-);
-name = "[CP] Embed Pods Frameworks";
-outputPaths = (
-);
-runOnlyForDeploymentPostprocessing = 0;
-shellPath = /bin/sh;
-shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chef/Pods-Chef-frameworks.sh\"\n";
-showEnvVarsInLog = 0;
-};
-E142DF22390154F3DB9A4676 /* [CP] Check Pods Manifest.lock */ = {
-isa = PBXShellScriptBuildPhase;
-buildActionMask = 2147483647;
-files = (
-);
-inputPaths = (
-);
-name = "[CP] Check Pods Manifest.lock";
-outputPaths = (
-);
-runOnlyForDeploymentPostprocessing = 0;
-shellPath = /bin/sh;
-shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-showEnvVarsInLog = 0;
-};
+		66A8D12698146CB43E26D4A7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chef/Pods-Chef-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8D12AC146838FC75C29B3907 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Chef/Pods-Chef-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E142DF22390154F3DB9A4676 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -367,6 +370,7 @@ showEnvVarsInLog = 0;
 				0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */,
 				07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */,
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
+				989FDC1D1E9FB7C3005A6ECB /* UserSettingsView.swift in Sources */,
 				98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
@@ -392,14 +396,14 @@ showEnvVarsInLog = 0;
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-07BAD8441E92959400F3354A /* LaunchScreen.storyboard */ = {
-isa = PBXVariantGroup;
-children = (
-07BAD8451E92959400F3354A /* Base */,
-);
-name = LaunchScreen.storyboard;
-sourceTree = "<group>";
-};
+		07BAD8441E92959400F3354A /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				07BAD8451E92959400F3354A /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -529,25 +533,25 @@ sourceTree = "<group>";
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-07BAD8301E92959400F3354A /* Build configuration list for PBXProject "Chef" */ = {
-isa = XCConfigurationList;
-buildConfigurations = (
-07BAD8481E92959400F3354A /* Debug */,
-07BAD8491E92959400F3354A /* Release */,
-);
-defaultConfigurationIsVisible = 0;
-defaultConfigurationName = Release;
-};
-07BAD84A1E92959400F3354A /* Build configuration list for PBXNativeTarget "Chef" */ = {
-isa = XCConfigurationList;
-buildConfigurations = (
-07BAD84B1E92959400F3354A /* Debug */,
-07BAD84C1E92959400F3354A /* Release */,
-);
-defaultConfigurationIsVisible = 0;
-defaultConfigurationName = Release;
-};
+		07BAD8301E92959400F3354A /* Build configuration list for PBXProject "Chef" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BAD8481E92959400F3354A /* Debug */,
+				07BAD8491E92959400F3354A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		07BAD84A1E92959400F3354A /* Build configuration list for PBXNativeTarget "Chef" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07BAD84B1E92959400F3354A /* Debug */,
+				07BAD84C1E92959400F3354A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-};
-rootObject = 07BAD82D1E92959400F3354A /* Project object */;
+	};
+	rootObject = 07BAD82D1E92959400F3354A /* Project object */;
 }

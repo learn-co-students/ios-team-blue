@@ -6,6 +6,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     var store = RecipeDataStore.shared
+    var rootNavController: UINavigationController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
@@ -15,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         let loginViewController = LoginViewController()
 
-        let navViewController: UINavigationController = {
+        self.rootNavController = {
             let nvc = UINavigationController()
             nvc.setNavigationBarHidden(true, animated: true)
             nvc.setViewControllers([loginViewController], animated: true)
@@ -23,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }()
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = navViewController
+        window?.rootViewController = self.rootNavController
         window?.makeKeyAndVisible()
 
         return true

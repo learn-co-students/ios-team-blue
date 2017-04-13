@@ -15,7 +15,13 @@ class AddDietViewController: UIViewController {
     }
 
     func createSettings() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor()
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+
         let diet = UILabel()
         diet.text = "Dietary Restrictions"
         diet.font = UIFont(name: "ArialMT", size: 20.0)
@@ -58,11 +64,23 @@ class AddDietViewController: UIViewController {
         view.addSubview(sulfite)
         view.addSubview(treeNut)
         view.addSubview(wheat)
+        dairy.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        egg.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        gluten.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        peanut.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        sesame.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        seafood.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        shellfish.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        soy.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        sulfite.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        treeNut.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        wheat.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+
 
         //Allergies Button setup
         dairy.backgroundColor = Style.flatironBlue
         dairy.setTitle(" Dairy + ", for: .normal)
-        dairy.setTitle(" Dairy", for: .selected)
+        dairy.setTitle(" Dairy ", for: .selected)
         dairy.layer.cornerRadius = 8
         dairy.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
@@ -70,7 +88,7 @@ class AddDietViewController: UIViewController {
         }
         egg.backgroundColor = Style.flatironBlue
         egg.setTitle(" Egg + ", for: .normal)
-        egg.setTitle(" Egg", for: .selected)
+        egg.setTitle(" Egg ", for: .selected)
         egg.layer.cornerRadius = 8
         egg.snp.makeConstraints { (make) in
             make.left.equalTo(dairy.snp.right).offset(3)
@@ -78,7 +96,7 @@ class AddDietViewController: UIViewController {
         }
         gluten.backgroundColor = Style.flatironBlue
         gluten.setTitle(" Gluten + ", for: .normal)
-        gluten.setTitle(" Gluten", for: .selected)
+        gluten.setTitle(" Gluten ", for: .selected)
         gluten.layer.cornerRadius = 8
         gluten.snp.makeConstraints { (make) in
             make.left.equalTo(egg.snp.right).offset(3)
@@ -86,7 +104,7 @@ class AddDietViewController: UIViewController {
         }
         peanut.backgroundColor = Style.flatironBlue
         peanut.setTitle(" Peanut + ", for: .normal)
-        peanut.setTitle(" Peanut", for: .selected)
+        peanut.setTitle(" Peanut ", for: .selected)
         peanut.layer.cornerRadius = 8
         peanut.snp.makeConstraints { (make) in
             make.left.equalTo(gluten.snp.right).offset(3)
@@ -95,7 +113,7 @@ class AddDietViewController: UIViewController {
 
         sesame.backgroundColor = Style.flatironBlue
         sesame.setTitle(" Sesame + ", for: .normal)
-        sesame.setTitle(" sesame", for: .selected)
+        sesame.setTitle(" sesame ", for: .selected)
         sesame.layer.cornerRadius = 8
         sesame.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
@@ -103,7 +121,7 @@ class AddDietViewController: UIViewController {
         }
         seafood.backgroundColor = Style.flatironBlue
         seafood.setTitle(" Seafood + ", for: .normal)
-        seafood.setTitle(" Seafood", for: .selected)
+        seafood.setTitle(" Seafood ", for: .selected)
         seafood.layer.cornerRadius = 8
         seafood.snp.makeConstraints { (make) in
             make.left.equalTo(sesame.snp.right).offset(3)
@@ -111,7 +129,7 @@ class AddDietViewController: UIViewController {
         }
         soy.backgroundColor = Style.flatironBlue
         soy.setTitle(" Soy + ", for: .normal)
-        soy.setTitle(" Soy", for: .selected)
+        soy.setTitle(" Soy ", for: .selected)
         soy.layer.cornerRadius = 8
         soy.snp.makeConstraints { (make) in
             make.left.equalTo(seafood.snp.right).offset(3)
@@ -119,7 +137,7 @@ class AddDietViewController: UIViewController {
         }
         wheat.backgroundColor = Style.flatironBlue
         wheat.setTitle(" Wheat + ", for: .normal)
-        wheat.setTitle(" Wheat", for: .selected)
+        wheat.setTitle(" Wheat ", for: .selected)
         wheat.layer.cornerRadius = 8
         wheat.snp.makeConstraints { (make) in
             make.left.equalTo(soy.snp.right).offset(3)
@@ -128,7 +146,7 @@ class AddDietViewController: UIViewController {
 
         shellfish.backgroundColor = Style.flatironBlue
         shellfish.setTitle(" Shellfish + ", for: .normal)
-        shellfish.setTitle(" Shellfish", for: .selected)
+        shellfish.setTitle(" Shellfish ", for: .selected)
         shellfish.layer.cornerRadius = 8
         shellfish.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
@@ -136,7 +154,7 @@ class AddDietViewController: UIViewController {
         }
         sulfite.backgroundColor = Style.flatironBlue
         sulfite.setTitle(" Sulfite + ", for: .normal)
-        sulfite.setTitle(" Sulfite", for: .selected)
+        sulfite.setTitle(" Sulfite ", for: .selected)
         sulfite.layer.cornerRadius = 8
         sulfite.snp.makeConstraints { (make) in
             make.left.equalTo(shellfish.snp.right).offset(3)
@@ -144,7 +162,7 @@ class AddDietViewController: UIViewController {
         }
         treeNut.backgroundColor = Style.flatironBlue
         treeNut.setTitle(" Tree Nut + ", for: .normal)
-        treeNut.setTitle(" Tree Nut", for: .selected)
+        treeNut.setTitle(" Tree Nut ", for: .selected)
         treeNut.layer.cornerRadius = 8
         treeNut.snp.makeConstraints { (make) in
             make.left.equalTo(shellfish.snp.right).offset(3)
@@ -171,7 +189,7 @@ class AddDietViewController: UIViewController {
 
         pescetarian.backgroundColor = Style.flatironBlue
         pescetarian.setTitle(" Pescetarian + ", for: .normal)
-        pescetarian.setTitle(" Pescetarian", for: .selected)
+        pescetarian.setTitle(" Pescetarian ", for: .selected)
         pescetarian.layer.cornerRadius = 8
         pescetarian.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(15)
@@ -180,7 +198,7 @@ class AddDietViewController: UIViewController {
 
         veg.backgroundColor = Style.flatironBlue
         veg.setTitle(" Vegetarian + ", for: .normal)
-        veg.setTitle(" Vegetarian", for: .selected)
+        veg.setTitle(" Vegetarian ", for: .selected)
         view.addSubview(veg)
         veg.layer.cornerRadius = 8
         veg.snp.makeConstraints { (make) in
@@ -190,7 +208,7 @@ class AddDietViewController: UIViewController {
 
         vegan.backgroundColor = Style.flatironBlue
         vegan.setTitle(" Vegan + ", for: .normal)
-        vegan.setTitle(" Vegan", for: .selected)
+        vegan.setTitle(" Vegan ", for: .selected)
         view.addSubview(vegan)
         vegan.layer.cornerRadius = 8
         vegan.snp.makeConstraints { (make) in
@@ -200,7 +218,7 @@ class AddDietViewController: UIViewController {
 
         lveg.backgroundColor = Style.flatironBlue
         lveg.setTitle(" Lacto Vegetarian + ", for: .normal)
-        lveg.setTitle(" Lacto Vegetarian", for: .selected)
+        lveg.setTitle(" Lacto Vegetarian ", for: .selected)
         view.addSubview(lveg)
         lveg.layer.cornerRadius = 8
         lveg.snp.makeConstraints { (make) in
@@ -209,8 +227,8 @@ class AddDietViewController: UIViewController {
         }
 
         oveg.backgroundColor = Style.flatironBlue
-        oveg.setTitle(" Lacto Vegetarian + ", for: .normal)
-        oveg.setTitle(" Lacto Vegetarian", for: .selected)
+        oveg.setTitle(" Ovo Vegetarian + ", for: .normal)
+        oveg.setTitle(" Ovo Vegetarian ", for: .selected)
         view.addSubview(oveg)
         oveg.layer.cornerRadius = 8
         oveg.snp.makeConstraints { (make) in
@@ -223,21 +241,36 @@ class AddDietViewController: UIViewController {
 
     func dietButtonTapped(_ button: UIButton) {
 
-        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: .curveEaseIn, animations: {
-            button.transform = CGAffineTransform(scaleX: 0.8, y: 0.9)
-        }) { (_) in
-            UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: .curveLinear, animations: {
-                button.transform = CGAffineTransform.identity
-            })
+        if button.isSelected {
+            button.isSelected = false
+            animate(button)
+        } else {
+            button.isSelected = true
+            animate(button)
         }
 
-        if button.isEnabled {
-            button.isEnabled = false
-        } else {
-            button.isEnabled = true
-        }
+//        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: .curveEaseIn, animations: {
+//            button.transform = CGAffineTransform(scaleX: 0.8, y: 0.9)
+//        }) { (_) in
+//            UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: .curveLinear, animations: {
+//                button.transform = CGAffineTransform.identity
+//            })
+//        }
+
+
 
     }
+
+    func animate(_ button: UIButton) {
+        UIView.animate(withDuration: 0.1, animations: {
+            button.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+        }) { (finished) in
+            UIView.animate(withDuration: 0.1, animations: {
+                button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            })
+        }
+    }
+
 
     func saveButtonTapped() {
 

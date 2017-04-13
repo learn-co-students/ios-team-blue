@@ -1,85 +1,107 @@
+import Foundation
 import UIKit
 import SnapKit
 
-class UserSettingsViewController: UIViewController {
+class UserSettingsView: UIView {
 
-    let store = RecipeDataStore.shared
-    var settingsView: UserSettingsView!
-
+    var heading: UILabel!
     var diet: UILabel!
     var logOut: UILabel!
     var resetData: UILabel!
     var deleteAcct: UILabel!
-    var stackView: UIStackView!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        commonInit()
+    }
 
-        self.settingsView = UserSettingsView()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
 
-        stackView = UIStackView()
-        self.view.addSubview(self.stackView)
-        //TODO: - Make settings page prettier and separate into different class
-        diet = UILabel()
-        diet.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        diet.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-        diet.text = "Set Dietary Restrictions"
+    
+    func commonInit() {
+        createHeading()
+        createDiet()
+        createLogOut()
+        createResetData()
+        createDltAcct()
+    }
 
-        logOut = UILabel()
-        logOut.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        logOut.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-        logOut.text = "Log out"
-
-        resetData = UILabel()
-        resetData.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        resetData.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-        resetData.text = "Reset Data"
-
-        deleteAcct = UILabel()
-        deleteAcct.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
-        deleteAcct.heightAnchor.constraint(equalToConstant: 20.0).isActive = true
-        deleteAcct.text = "Delete account"
-
-
-        stackView.axis = UILayoutConstraintAxis.vertical
-        stackView.distribution = UIStackViewDistribution.equalSpacing
-        stackView.alignment = UIStackViewAlignment.center
-        stackView.spacing = 16.0
-
-        stackView.addArrangedSubview(diet)
-        stackView.addArrangedSubview(logOut)
-        stackView.addArrangedSubview(resetData)
-        stackView.addArrangedSubview(deleteAcct)
-
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.snp.makeConstraints { (make) in
-
-            //May be a better way the menu underneath the nav bar
-            make.top.equalTo(self.view).offset(75.0)
-            make.left.equalTo(self.view).offset(15.0)
-
+    func createHeading() {
+        heading = UILabel()
+        self.addSubview(heading)
+        heading.text = "User Settings"
+        heading.textColor = .white
+        heading.font = UIFont(name: Style.regular, size: 48)
+        heading.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(50)
         }
+    }
 
-        self.view.backgroundColor = .white
-
+    func createDiet() {
+        diet = UILabel()
+        self.addSubview(diet)
+        diet.font = UIFont(name: Style.regular, size: 20)
+        diet.textColor = .white
+        diet.text = "Set Dietary Restrictions"
         let dietGest = UITapGestureRecognizer(target: self, action: #selector(tapDiet))
         self.diet.isUserInteractionEnabled = true
         self.diet.addGestureRecognizer(dietGest)
+        diet.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(heading.snp.bottom).offset(5)
+        }
+    }
 
+    func createLogOut() {
+        logOut = UILabel()
+        self.addSubview(logOut)
+        logOut.text = "Log out"
+        logOut.font = UIFont(name: Style.regular, size: 20)
+        logOut.textColor = .white
+        logOut.snp.makeConstraints { (make) in
+            make.top.equalTo(diet.snp.bottom).offset(3)
+            make.centerX.equalToSuperview()
+        }
         let logoutGest = UITapGestureRecognizer(target: self, action: #selector(tapLogOut))
         self.logOut.isUserInteractionEnabled = true
         self.logOut.addGestureRecognizer(logoutGest)
+    }
+
+    func createResetData() {
+        resetData = UILabel()
+        self.addSubview(resetData)
+        resetData.font = UIFont(name: Style.regular, size: 20)
+        resetData.textColor = .red
+        resetData.text = "Reset Data"
+        resetData.snp.makeConstraints { (make) in
+            make.top.equalTo(logOut.snp.bottom).offset(3)
+            make.centerX.equalToSuperview()
+        }
 
         let resetDataGest = UITapGestureRecognizer(target: self, action: #selector(tapResetData))
         self.resetData.isUserInteractionEnabled = true
         self.resetData.addGestureRecognizer(resetDataGest)
+    }
 
+    func createDltAcct() {
+        deleteAcct = UILabel()
+        self.addSubview(deleteAcct)
+        deleteAcct.font = UIFont(name: Style.regular, size: 20)
+        deleteAcct.textColor = .red
+        deleteAcct.text = "Delete account"
+        deleteAcct.snp.makeConstraints { (make) in
+            make.top.equalTo(resetData.snp.bottom).offset(3)
+            make.centerX.equalToSuperview()
+        }
         let deleteAcctGest = UITapGestureRecognizer(target: self, action: #selector(tapDeleteAcct))
         self.deleteAcct.isUserInteractionEnabled = true
         self.deleteAcct.addGestureRecognizer(deleteAcctGest)
-
     }
-
+    
 
     func tapDiet() {
         print("Tap diet pressed")
@@ -138,9 +160,6 @@ class UserSettingsViewController: UIViewController {
         self.present(alertController, animated: true, completion: nil)
     }
 
+
+
 }
-
-
-
-
-
