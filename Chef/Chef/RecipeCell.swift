@@ -1,7 +1,6 @@
 import UIKit
 import SnapKit
 
-
 class RecipeCell: UITableViewCell {
 
     var imgView: UIImageView!
@@ -18,7 +17,7 @@ class RecipeCell: UITableViewCell {
         self.commonInit()
     }
 
-    func commonInit() {
+    private func commonInit() {
         self.imgView = UIImageView()
 
         self.addSubview(imgView)
@@ -58,7 +57,7 @@ class RecipeCell: UITableViewCell {
         favoriteButton.addTarget(self, action: #selector(favorited), for: .touchUpInside)
     }
 
-    @IBAction func favorited(sender: UIButton) {
+    func favorited(sender: UIButton) {
         favoriteButton = sender
 
         if !sender.isSelected {
@@ -70,7 +69,6 @@ class RecipeCell: UITableViewCell {
                            animations: {
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
                 self.favoriteButton.setImage(#imageLiteral(resourceName: "Filled Heart"), for: .normal)
-                print("RED")
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 sender.isSelected = true
             })
@@ -84,7 +82,6 @@ class RecipeCell: UITableViewCell {
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
                 self.favoriteButton.backgroundColor = UIColor.white
                 self.favoriteButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
-                print("WHITE")
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                 sender.isSelected = false
             })
