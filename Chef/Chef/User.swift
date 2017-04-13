@@ -3,7 +3,7 @@ import Foundation
 struct User: CustomStringConvertible {
    
     var email: String
-    var favRecipes: [Int]
+    var favRecipes: [String]
     var fridge: [String]
 
     var id: String {
