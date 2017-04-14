@@ -10,6 +10,12 @@ class SavedRecipesViewController: UIViewController, UITableViewDataSource, UITab
 
         self.createUI()
         self.navigationItem.title = "Saved Recipes"
+
+        self.store.updateSavedRecipes() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
 
 
@@ -20,11 +26,22 @@ class SavedRecipesViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return self.store.savedRecipes.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipeCell", for: indexPath) as! RecipeCell
+
+        let recipe = self.store.savedRecipes[indexPath.row]
+
+        cell.nameLabel.text = recipe.title
+
+        let url = URL(string: recipe.imageLink)
+        cell.imgView.kf.setImage(with: url,
+                                 placeholder: nil,
+                                 options: [.transition(.fade(2))],
+                                 progressBlock: nil,
+                                 completionHandler: nil)
 
         return cell
     }

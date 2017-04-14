@@ -34,6 +34,22 @@ final class RecipeDataStore {
         }
     }
 
+    func updateSavedRecipes(completion: @escaping () -> ()) {
+        SpoonacularAPIClient.fetchSavedRecipes(for: self.user) { result in
+            switch result {
+            case .success(let recipes):
+                guard let recipes = recipes as? [Recipe] else {
+                    print(#function + " casting failed")
+                    return
+                }
+                self.savedRecipes = recipes
+                completion()
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
     static func getRecipeSteps(recipe: Recipe, _ completion: @escaping () -> ()) {
         SpoonacularAPIClient.generateRecipeByID(for: recipe) { (result) in
             var stepsArray = [String]()
@@ -62,7 +78,7 @@ final class RecipeDataStore {
     func pullDataForUser(_ user: User, completion: @escaping () ->()) {
         FirebaseManager.getUserData(user) { (recipeIDs, food) in
             for id in recipeIDs {
-                self.user.favRecipes.append(Int(id)!)
+                self.user.favRecipes.append(id)
             }
             self.user.fridge = food
             completion()
