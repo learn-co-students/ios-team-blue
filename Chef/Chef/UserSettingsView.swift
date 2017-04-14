@@ -33,11 +33,11 @@ class UserSettingsView: UIView {
 
 
     func createBackground() {
-//        let imageView = UIImageView(image: UIImage(named: "food-background"))
-//        self.addSubview(imageView)
-//        imageView.snp.makeConstraints { (make) in
-//            make.height.width.equalToSuperview()
-//        }
+        let imageView = UIImageView(image: UIImage(named: "food-background"))
+        self.addSubview(imageView)
+        imageView.snp.makeConstraints { (make) in
+            make.height.width.equalToSuperview()
+        }
         //Edit blur effect here
         if !UIAccessibilityIsReduceTransparencyEnabled() {
             self.backgroundColor = UIColor.white
