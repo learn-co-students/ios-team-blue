@@ -1,6 +1,7 @@
 import Foundation
 import Firebase
 import FirebaseDatabase
+import FirebaseAuth
 
 class FirebaseManager {
 
@@ -35,6 +36,28 @@ class FirebaseManager {
         self.usersRef.child(user.id).setValue(defaults)
     }
 
+    static func signOut() {
+        do {
+            try FIRAuth.auth()?.signOut()
+        } catch let signOutError as NSError{
+            print("Error signing out: %@", signOutError)
+        }
+    }
+
+    static func deleteUser() {
+        FIRAuth.auth()?.currentUser?.delete(completion: { (error) in
+            if error != nil {
+                print("Error occurred", error?.localizedDescription as Any)
+            } else {
+                print("User was deleted")
+            }
+        })
+    }
+
+    static func deleteUserData(_ user: User) {
+        self.usersRef.child(user.id).removeValue()
+    }
+
     static func checkIfUserExists(_ user: User, completion: @escaping (Bool) -> ()) {
         self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any] else { return }
@@ -48,14 +71,15 @@ class FirebaseManager {
 
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any],
-                  let favRecipesIDs = snap["favRecipes"] as? [String],
-                  let fridge = snap["fridge"] as? [String] else {
-                print(#function + " failed")
-                return
+                let favRecipesIDs = snap["favRecipes"] as? [String],
+                let fridge = snap["fridge"] as? [String] else {
+                    print(#function + " failed")
+                    return
             }
 
             completion(favRecipesIDs, fridge)
         })
+        
+        
     }
-
 }

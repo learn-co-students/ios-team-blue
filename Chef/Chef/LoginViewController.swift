@@ -29,7 +29,7 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             }
         }
     }
-
+    
     func logIn() {
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
