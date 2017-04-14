@@ -82,17 +82,17 @@ class AddDietView: UIView {
         self.addSubview(sulfite)
         self.addSubview(treeNut)
         self.addSubview(wheat)
-        dairy.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        egg.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        gluten.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        peanut.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        sesame.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        seafood.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        shellfish.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        soy.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        sulfite.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        treeNut.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        wheat.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        dairy.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        egg.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        gluten.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        peanut.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        sesame.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        seafood.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        shellfish.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        soy.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        sulfite.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        treeNut.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        wheat.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
 
 
         //Allergies Button setup
@@ -259,5 +259,8 @@ class AddDietView: UIView {
     }
     func saveButtonTapped() {
         self.delegate.saveButtonTapped()
+    }
+    func allergyButtonTapped(_ button: UIButton) {
+        self.delegate.allergyButtonTapped(button)
     }
 }

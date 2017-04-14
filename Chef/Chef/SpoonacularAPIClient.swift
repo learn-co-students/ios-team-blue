@@ -10,27 +10,31 @@ final class SpoonacularAPIClient {
     private static let otherInfoURL = "&limitLicense=false&number=20&ranking=1"
 
     class func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        var container = ""
-        for ingredient in user.fridge {
-            if ingredient == user.fridge.first {
-                container += ingredient
-            } else {
-                container += "%2C\(ingredient)"
-            }
-        }
-
-        let url = baseURL + container + otherInfoURL
-
-        Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
-            (response) in
-            if let json = response.result.value {
-                if let responseJSON = json as? [[String: Any]] {
-                    completion(.success(responseJSON))
-                } else {
-                    completion(.failure(.nodata))
+        //If the user has no dietary restriction/intolerances
+        if user.allergyList?.isEmpty == false && user.dietList?.isEmpty == false {
+            let ingredients = Helper.spoonacularEncode(items: user.fridge)
+            let url = baseURL + ingedients + otherInfoURL
+            Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
+                (response) in
+                if let json = response.result.value {
+                    if let responseJSON = json as? [[String: Any]] {
+                        completion(.success(responseJSON))
+                    } else {
+                        completion(.failure(.nodata))
+                    }
                 }
             }
+        } else {
+            //If the user does have diet/intolerances
+            let allergies = Helper.spoonacularEncode(items: user.allergyList)
+            let diets = Helper.spoonacularEncode(items: user.dietList)
+            let ingredients = Helper.spoonacularEncode(items: user.fridge)
+            let exampleURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=\(diets)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true&intolerances=\(allergies)&limitLicense=false&number=100&offset=0&ranking=2"
+            
+
         }
+
+
     }
 
     class func randomJoke() -> String {
@@ -90,4 +94,19 @@ final class SpoonacularAPIClient {
         }
     }
 
+}
+
+class Helper {
+
+    static func spoonacularEncode(items: [String]) -> String {
+        var container  = ""
+        for item in items {
+            if item == items.first {
+                container += item
+            } else {
+                container += "%2C\(item)"
+            }
+        }
+        return container
+    }
 }

@@ -22,7 +22,6 @@ class UserSettingsView: UIView {
 
     
     func commonInit() {
-        
         createBackground()
         createDiet()
         createLogOut()
@@ -30,10 +29,8 @@ class UserSettingsView: UIView {
         createDltAcct()
     }
 
-
     func createBackground() {
         self.backgroundColor = .white
-
         //Edit blur effect here
 //        if !UIAccessibilityIsReduceTransparencyEnabled() {
 //            self.backgroundColor = Style.flatironBlue
@@ -46,7 +43,6 @@ class UserSettingsView: UIView {
 //            self.backgroundColor = Style.flatironBlue
 //        }
     }
-
 
     func createDiet() {
         diet = UIButton()
@@ -82,7 +78,6 @@ class UserSettingsView: UIView {
             make.centerX.equalToSuperview()
             make.width.equalTo(diet.snp.width)
         }
-
     }
 
     func createResetData() {
@@ -96,12 +91,10 @@ class UserSettingsView: UIView {
         resetData.setTitleColor(UIColor(red:0.81, green:0.19, blue:0.19, alpha:1.0), for: .normal)
         resetData.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
         resetData.addTarget(self, action: #selector(tapResetData), for: .touchUpInside)
-
         resetData.snp.makeConstraints { (make) in
             make.top.equalTo(logOut.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
             make.width.equalTo(diet.snp.width)
-
         }
     }
 

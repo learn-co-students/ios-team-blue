@@ -63,7 +63,6 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
             })
             confirmationController.addAction(confirm)
             self.present(confirmationController, animated: true, completion: nil)
-
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirm)
