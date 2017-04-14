@@ -21,28 +21,13 @@ class AddDietView: UIView {
     }
 
     func createBackground() {
-        let imageView = UIImageView(image: UIImage(named: "food-background"))
-        self.addSubview(imageView)
-        imageView.snp.makeConstraints { (make) in
-            make.height.width.equalToSuperview()
-        }
-        //Edit blur effect here
-        if !UIAccessibilityIsReduceTransparencyEnabled() {
-            //            self.backgroundColor = UIColor.clear
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.addSubview(blurEffectView)
-        } else {
-            self.backgroundColor = .darkGray
-        }
+        self.backgroundColor = .white
     }
 
     func createButtons() {
         let diet = UILabel()
         diet.text = "Dietary Restrictions"
-        diet.font = UIFont(name: "ArialMT", size: 30)
+        diet.font = UIFont(name: "ArialMT", size: 20)
 
         self.addSubview(diet)
         diet.snp.makeConstraints { (make) in
@@ -52,7 +37,7 @@ class AddDietView: UIView {
 
         let allergies = UILabel()
         allergies.text = "Allergies"
-        allergies.font = UIFont(name: "ArialMT", size: 30)
+        allergies.font = UIFont(name: "ArialMT", size: 20)
         self.addSubview(allergies)
         allergies.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(200)
@@ -61,9 +46,13 @@ class AddDietView: UIView {
 
         let save = UIButton()
         self.addSubview(save)
+        save.backgroundColor = .white
         save.layer.cornerRadius = 8
-        save.backgroundColor = Style.flatironBlue
-        save.setTitle("Save", for: .normal)
+        save.layer.borderColor = Style.flatironBlue.cgColor
+        save.layer.borderWidth = CGFloat(3)
+        save.setTitle(" Save and Close ", for: .normal)
+        save.setTitleColor(Style.flatironBlue, for: .normal)
+        save.titleLabel?.font = UIFont(name: "ArialMT", size: 25)
         save.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         save.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
@@ -112,7 +101,7 @@ class AddDietView: UIView {
         dairy.setTitle(" Dairy ", for: .selected)
         dairy.layer.cornerRadius = 8
         dairy.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(15)
+            make.left.equalToSuperview().offset(50)
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
         egg.backgroundColor = Style.flatironBlue
@@ -145,7 +134,7 @@ class AddDietView: UIView {
         sesame.setTitle(" sesame ", for: .selected)
         sesame.layer.cornerRadius = 8
         sesame.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(15)
+            make.left.equalToSuperview().offset(35)
             make.top.equalTo(dairy.snp.bottom).offset(3)
         }
         seafood.backgroundColor = Style.flatironBlue
@@ -178,7 +167,7 @@ class AddDietView: UIView {
         shellfish.setTitle(" Shellfish ", for: .selected)
         shellfish.layer.cornerRadius = 8
         shellfish.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(15)
+            make.left.equalToSuperview().offset(100)
             make.top.equalTo(wheat.snp.bottom).offset(3)
         }
         sulfite.backgroundColor = Style.flatironBlue
@@ -215,15 +204,15 @@ class AddDietView: UIView {
         lveg.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
         oveg.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
 
+
         pescetarian.backgroundColor = Style.flatironBlue
         pescetarian.setTitle(" Pescetarian + ", for: .normal)
         pescetarian.setTitle(" Pescetarian ", for: .selected)
         pescetarian.layer.cornerRadius = 8
         pescetarian.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(15)
+            make.left.equalToSuperview().offset(50)
             make.top.equalTo(diet.snp.bottom).offset(10)
         }
-
         veg.backgroundColor = Style.flatironBlue
         veg.setTitle(" Vegetarian + ", for: .normal)
         veg.setTitle(" Vegetarian ", for: .selected)
@@ -231,9 +220,8 @@ class AddDietView: UIView {
         veg.layer.cornerRadius = 8
         veg.snp.makeConstraints { (make) in
             make.left.equalTo(pescetarian.snp.right).offset(3)
-            make.top.equalTo(pescetarian.snp.top)
+            make.top.equalTo(diet.snp.bottom).offset(10)
         }
-
         vegan.backgroundColor = Style.flatironBlue
         vegan.setTitle(" Vegan + ", for: .normal)
         vegan.setTitle(" Vegan ", for: .selected)
@@ -250,7 +238,7 @@ class AddDietView: UIView {
         self.addSubview(lveg)
         lveg.layer.cornerRadius = 8
         lveg.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(13)
+            make.left.equalTo(pescetarian.snp.left)
             make.top.equalTo(pescetarian.snp.bottom).offset(3)
         }
 

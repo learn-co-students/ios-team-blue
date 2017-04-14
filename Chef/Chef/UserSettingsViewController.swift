@@ -13,6 +13,7 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
 
         self.view.addSubview(settingsView)
         settingsView.snapToSuperview()
+        self.navigationItem.title = "User Settings"
     }
 
 
@@ -20,8 +21,6 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
         print("Tap diet pressed")
         let dietVC = AddDietViewController()
         self.present(dietVC, animated: true, completion: nil)
-        //Diet possible choices -  pescetarian, lacto vegetarian, ovo vegetarian, vegan, and vegetarian
-        //intolerances - dairy, egg, gluten, peanut, sesame, seafood, shellfish, soy, sulfite, tree nut, and wheat
     }
 
     func returnToLogin() {

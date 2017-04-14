@@ -5,11 +5,10 @@ import SnapKit
 class UserSettingsView: UIView {
 
     var delegate: UserSettingsDelegate!
-    var heading: UILabel!
-    var diet: UILabel!
-    var logOut: UILabel!
-    var resetData: UILabel!
-    var deleteAcct: UILabel!
+    var diet: UIButton!
+    var logOut: UIButton!
+    var resetData: UIButton!
+    var deleteAcct: UIButton!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -23,8 +22,8 @@ class UserSettingsView: UIView {
 
     
     func commonInit() {
+        
         createBackground()
-        createHeading()
         createDiet()
         createLogOut()
         createResetData()
@@ -33,95 +32,95 @@ class UserSettingsView: UIView {
 
 
     func createBackground() {
-        let imageView = UIImageView(image: UIImage(named: "food-background"))
-        self.addSubview(imageView)
-        imageView.snp.makeConstraints { (make) in
-            make.height.width.equalToSuperview()
-        }
+        self.backgroundColor = .white
+
         //Edit blur effect here
-        if !UIAccessibilityIsReduceTransparencyEnabled() {
-            self.backgroundColor = UIColor.white
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
-            let blurEffectView = UIVisualEffectView(effect: blurEffect)
-            blurEffectView.frame = self.bounds
-            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            self.addSubview(blurEffectView)
-        } else {
-            self.backgroundColor = .darkGray
-        }
+//        if !UIAccessibilityIsReduceTransparencyEnabled() {
+//            self.backgroundColor = Style.flatironBlue
+//            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            blurEffectView.frame = self.bounds
+//            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//            self.addSubview(blurEffectView)
+//        } else {
+//            self.backgroundColor = Style.flatironBlue
+//        }
     }
 
-    func createHeading() {
-        heading = UILabel()
-        self.addSubview(heading)
-        heading.text = "User Settings"
-        heading.textColor = .white
-        heading.font = UIFont(name: "HelveticaNeue-CondensedBold", size: 40)
-        heading.snp.makeConstraints { (make) in
-            make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(70)
-        }
-    }
 
     func createDiet() {
-        diet = UILabel()
+        diet = UIButton()
         self.addSubview(diet)
-        diet.font = UIFont(name: "HelveticaNeue", size: 30)
-        diet.textColor = .white
-        diet.text = "Set Dietary Restrictions"
-        let dietGest = UITapGestureRecognizer(target: self, action: #selector(tapDiet))
-        self.diet.isUserInteractionEnabled = true
-        self.diet.addGestureRecognizer(dietGest)
+        diet.backgroundColor = .white
+        diet.layer.cornerRadius = 8
+        diet.layer.borderColor = Style.flatironBlue.cgColor
+        diet.layer.borderWidth = CGFloat(3)
+        diet.setTitle(" Set Dietary Restrictions ", for: .normal)
+        diet.setTitleColor(Style.flatironBlue, for: .normal)
+        diet.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        diet.addTarget(self, action: #selector(tapDiet), for: .touchUpInside)
         diet.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalTo(heading.snp.bottom).offset(10)
+            make.top.equalToSuperview().offset(150)
+            make.width.equalToSuperview().offset(-150)
         }
     }
 
     func createLogOut() {
-        logOut = UILabel()
+        logOut = UIButton()
         self.addSubview(logOut)
-        logOut.text = "Log out"
-        logOut.font = UIFont(name: "HelveticaNeue", size: 30)
-        logOut.textColor = .white
+        logOut.backgroundColor = .white
+        logOut.layer.cornerRadius = 8
+        logOut.layer.borderColor = Style.flatironBlue.cgColor
+        logOut.layer.borderWidth = CGFloat(3)
+        logOut.setTitle(" Log Out ", for: .normal)
+        logOut.setTitleColor(Style.flatironBlue, for: .normal)
+        logOut.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        logOut.addTarget(self, action: #selector(tapLogOut), for: .touchUpInside)
         logOut.snp.makeConstraints { (make) in
             make.top.equalTo(diet.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
+            make.width.equalTo(diet.snp.width)
         }
-        let logoutGest = UITapGestureRecognizer(target: self, action: #selector(tapLogOut))
-        self.logOut.isUserInteractionEnabled = true
-        self.logOut.addGestureRecognizer(logoutGest)
+
     }
 
     func createResetData() {
-        resetData = UILabel()
+        resetData = UIButton()
         self.addSubview(resetData)
-        resetData.font = UIFont(name: "HelveticaNeue", size: 30)
-        resetData.textColor = .red
-        resetData.text = "Reset Data"
+        resetData.backgroundColor = .white
+        resetData.layer.cornerRadius = 8
+        resetData.layer.borderColor = Style.flatironBlue.cgColor
+        resetData.layer.borderWidth = CGFloat(3)
+        resetData.setTitle(" Reset Data ", for: .normal)
+        resetData.setTitleColor(UIColor(red:0.81, green:0.19, blue:0.19, alpha:1.0), for: .normal)
+        resetData.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        resetData.addTarget(self, action: #selector(tapResetData), for: .touchUpInside)
+
         resetData.snp.makeConstraints { (make) in
             make.top.equalTo(logOut.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
-        }
+            make.width.equalTo(diet.snp.width)
 
-        let resetDataGest = UITapGestureRecognizer(target: self, action: #selector(tapResetData))
-        self.resetData.isUserInteractionEnabled = true
-        self.resetData.addGestureRecognizer(resetDataGest)
+        }
     }
 
     func createDltAcct() {
-        deleteAcct = UILabel()
+        deleteAcct = UIButton()
         self.addSubview(deleteAcct)
-        deleteAcct.font = UIFont(name: "HelveticaNeue", size: 30)
-        deleteAcct.textColor = .red
-        deleteAcct.text = "Delete account"
+        deleteAcct.backgroundColor = .white
+        deleteAcct.layer.cornerRadius = 8
+        deleteAcct.layer.borderColor = Style.flatironBlue.cgColor
+        deleteAcct.layer.borderWidth = CGFloat(3)
+        deleteAcct.setTitle(" Delete Account ", for: .normal)
+        deleteAcct.setTitleColor(UIColor(red:0.81, green:0.19, blue:0.19, alpha:1.0), for: .normal)
+        deleteAcct.titleLabel?.font = UIFont(name: "HelveticaNeue", size: 20)
+        deleteAcct.addTarget(self, action: #selector(tapDeleteAcct), for: .touchUpInside)
         deleteAcct.snp.makeConstraints { (make) in
             make.top.equalTo(resetData.snp.bottom).offset(5)
             make.centerX.equalToSuperview()
+            make.width.equalTo(diet.snp.width)
         }
-        let deleteAcctGest = UITapGestureRecognizer(target: self, action: #selector(tapDeleteAcct))
-        self.deleteAcct.isUserInteractionEnabled = true
-        self.deleteAcct.addGestureRecognizer(deleteAcctGest)
     }
     
 
