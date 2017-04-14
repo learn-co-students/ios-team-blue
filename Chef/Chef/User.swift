@@ -5,7 +5,7 @@ struct User: CustomStringConvertible {
     var email: String
     var favRecipes: [Int]
     var fridge: [String]
-    var dieataryRestrictions: [String]?
+    var dietaryRestrictions: [String]?
     var allergies: [String]?
 
     var id: String {

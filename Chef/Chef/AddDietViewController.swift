@@ -3,28 +3,46 @@ import SnapKit
 
 class AddDietViewController: UIViewController {
 
+    var dietaryRestrictions = [String]()
+    let store = RecipeDataStore.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        createBackground()
         createSettings()
-        // Do any additional setup after loading the view.
+//        constructButtons()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+
+
+    func createBackground() {
+        let imageView = UIImageView(image: UIImage(named: "food-background"))
+        self.view.addSubview(imageView)
+        imageView.snp.makeConstraints { (make) in
+            make.height.width.equalToSuperview()
+        }
+        //Edit blur effect here
+        if !UIAccessibilityIsReduceTransparencyEnabled() {
+            //            self.backgroundColor = UIColor.clear
+            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
+            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+            blurEffectView.frame = self.view.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            self.view.addSubview(blurEffectView)
+        } else {
+            self.view.backgroundColor = .darkGray
+        }
     }
 
     func createSettings() {
-        view.backgroundColor = UIColor()
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurEffectView = UIVisualEffectView(effect: blurEffect)
-        blurEffectView.frame = view.bounds
-        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blurEffectView)
+
 
         let diet = UILabel()
         diet.text = "Dietary Restrictions"
-        diet.font = UIFont(name: "ArialMT", size: 20.0)
+        diet.font = UIFont(name: "ArialMT", size: 30)
 
         view.addSubview(diet)
         diet.snp.makeConstraints { (make) in
@@ -34,11 +52,22 @@ class AddDietViewController: UIViewController {
 
         let allergies = UILabel()
         allergies.text = "Allergies"
-        allergies.font = UIFont(name: "ArialMT", size: 20.0)
+        allergies.font = UIFont(name: "ArialMT", size: 30)
         view.addSubview(allergies)
         allergies.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(200)
             make.centerX.equalToSuperview()
+        }
+
+        let save = UIButton()
+        self.view.addSubview(save)
+        save.layer.cornerRadius = 8
+        save.backgroundColor = Style.flatironBlue
+        save.setTitle("Save", for: .normal)
+        save.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+        save.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(50)
         }
 
         //Allergies
@@ -169,7 +198,6 @@ class AddDietViewController: UIViewController {
             make.top.equalTo(wheat.snp.bottom).offset(3)
         }
 
-
         //Dietary Retrictions
         let pescetarian = UIButton()
         let veg = UIButton()
@@ -235,45 +263,128 @@ class AddDietViewController: UIViewController {
             make.left.equalTo(lveg.snp.right).offset(3)
             make.top.equalTo(lveg.snp.top)
         }
-        
 
     }
 
-    func dietButtonTapped(_ button: UIButton) {
+        func dietButtonTapped(_ button: UIButton) {
+            var btnTitle = button.title(for: .selected)
+            _ = btnTitle?.characters.popLast()
+            _ = btnTitle?.characters.popFirst()
+            if button.isSelected {
+                button.isSelected = false
+                animate(button)
+                if let indexToDelete = self.dietaryRestrictions.index(of: btnTitle!) {
+                    self.dietaryRestrictions.remove(at: indexToDelete)
+                }
+            } else {
+                button.isSelected = true
+                animate(button)
+                self.dietaryRestrictions.append(btnTitle!)
+            }
 
-        if button.isSelected {
-            button.isSelected = false
-            animate(button)
-        } else {
-            button.isSelected = true
-            animate(button)
+//            let btnSender = sender as? CustomButton
+//            if let btnSender = btnSender {
+//                if !(btnSender.wasChecked) {
+//                    self.dietaryRestrictions.append(btnSender.title)
+//                } else {
+//                    if let indexToDelete = self.dietaryRestrictions.index(of: btnSender.title) {
+//                        self.dietaryRestrictions.remove(at: indexToDelete)
+//                    }
+//                }
+//            }
+
+
+
+            print(self.dietaryRestrictions)
+
         }
 
-//        UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: .curveEaseIn, animations: {
-//            button.transform = CGAffineTransform(scaleX: 0.8, y: 0.9)
-//        }) { (_) in
-//            UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.4, options: .curveLinear, animations: {
-//                button.transform = CGAffineTransform.identity
-//            })
+//        func constructButtons() {
+//
+//            view.backgroundColor = .clear
+//            let blurEffect = UIBlurEffect(style: .regular)
+//            let blurEffectView = UIVisualEffectView(effect: blurEffect)
+//            blurEffectView.frame = view.bounds
+//            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//            view.addSubview(blurEffectView)
+//
+//            let diet = UILabel()
+//            diet.text = "Dietary Restrictions"
+//            diet.font = UIFont(name: "ArialMT", size: 30)
+//
+//            view.addSubview(diet)
+//            diet.snp.makeConstraints { (make) in
+//                make.top.equalToSuperview().offset(50)
+//                make.centerX.equalToSuperview()
+//            }
+//
+//            let allergies = UILabel()
+//            allergies.text = "Allergies"
+//            allergies.font = UIFont(name: "ArialMT", size: 30)
+//            view.addSubview(allergies)
+//            allergies.snp.makeConstraints { (make) in
+//                make.top.equalToSuperview().offset(200)
+//                make.centerX.equalToSuperview()
+//            }
+//
+//            let save = UIButton()
+//            save.layer.cornerRadius = 8
+//            save.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
+//
+//            let restrictionsList = ["pescetarian", "vegan", "vegetarian", "lacto vegetarian", "ovo vegetarian"]
+////            let allergiesList = ["dairy", "egg", "gluten", "peanut", "sesame", "seafood", "shellfish", "soy", "sulfite", "tree nut", "wheat"]
+//            var offset = CGFloat(10)
+//            restrictionsList.forEach { (title) in
+//                offset = offset + 3
+//                let btn = CustomButton(with: title)
+//                btn.layer.cornerRadius = 8
+//                btn.addTarget(self, action: #selector(btnPress), for: .touchUpInside)
+//                self.view.addSubview(btn)
+//                btn.snp.makeConstraints({ (make) in
+//                    make.top.equalTo(diet.snp.bottom).offset(15)
+//                    make.left.equalTo(btn).offset(offset)
+//                })
+//
+//            }
+////            allergiesList.forEach { (title) in
+////                let btn = CustomButton(with: title)
+////                btn.addTarget(self, action: #selector(btnPress), for: .touchUpInside)
+////                self.view.addSubview(btn)
+////                btn.snp.makeConstraints({ (make) in
+////                    make.top.greaterThanOrEqualTo(allergies.snp.bottom).offset(15)
+////                    make.left.greaterThanOrEqualTo(btn).offset(3)
+////                })
+////            }
 //        }
 
 
-
-    }
-
-    func animate(_ button: UIButton) {
-        UIView.animate(withDuration: 0.1, animations: {
-            button.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-        }) { (finished) in
-            UIView.animate(withDuration: 0.1, animations: {
-                button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            })
+        func btnPress(sender: Any) {
+            let btnSender = sender as? CustomButton
+            if let btnSender = btnSender {
+                if !(btnSender.wasChecked) {
+                    self.dietaryRestrictions.append(btnSender.title)
+                } else {
+                    if let indexToDelete = self.dietaryRestrictions.index(of: btnSender.title) {
+                        self.dietaryRestrictions.remove(at: indexToDelete)
+                    }
+                }
+            }
         }
-    }
-
-
-    func saveButtonTapped() {
-
-    }
+        
+        func animate(_ button: UIButton) {
+            UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
+                button.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
+            }) { (finished) in
+                UIView.animate(withDuration: 0.1, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
+                    button.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                })
+            }
+        }
+        
+        func saveButtonTapped() {
+            var user = store.user
+            user.dietaryRestrictions = self.dietaryRestrictions
+            self.dismiss(animated: true, completion: nil)
+        }
 
 }

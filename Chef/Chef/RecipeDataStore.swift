@@ -15,6 +15,7 @@ final class RecipeDataStore {
     }
 
     func getRecipes(_ completion: @escaping () -> ()) {
+
         SpoonacularAPIClient.generateRecipes(for: self.user) { (result) in
             switch result {
             case .success(let recipeList):

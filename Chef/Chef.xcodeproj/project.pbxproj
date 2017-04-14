@@ -32,6 +32,9 @@
 		7BF5330B1E95962F00687363 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF5330A1E95962F00687363 /* Recipe.swift */; };
 		9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */; };
 		989FDC1D1E9FB7C3005A6ECB /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */; };
+		989FDC1F1EA00D75005A6ECB /* UserSettingsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */; };
+		989FDC221EA01E24005A6ECB /* JohannButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FDC211EA01E24005A6ECB /* JohannButton.swift */; };
+		98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5FC281EA0846D00217180 /* AddDietView.swift */; };
 		98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D3D1E9D4E100089416D /* GoogleVisionAPIClient.swift */; };
 		98D03D421E9D50360089416D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D411E9D4F320089416D /* LoginViewController.swift */; };
 		98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D641E9E7AAE0089416D /* AddDietViewController.swift */; };
@@ -64,6 +67,9 @@
 		7BF5330A1E95962F00687363 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
 		989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
+		989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewDelegate.swift; sourceTree = "<group>"; };
+		989FDC211EA01E24005A6ECB /* JohannButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JohannButton.swift; sourceTree = "<group>"; };
+		98B5FC281EA0846D00217180 /* AddDietView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDietView.swift; sourceTree = "<group>"; };
 		98D03D3D1E9D4E100089416D /* GoogleVisionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVisionAPIClient.swift; sourceTree = "<group>"; };
 		98D03D411E9D4F320089416D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		98D03D641E9E7AAE0089416D /* AddDietViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDietViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +127,7 @@
 			children = (
 				07D7CE891E9BD88300928E5B /* LoginView.swift */,
 				989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */,
+				98B5FC281EA0846D00217180 /* AddDietView.swift */,
 				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 			);
@@ -192,6 +199,7 @@
 		07BAD8371E92959400F3354A /* Chef */ = {
 			isa = PBXGroup;
 			children = (
+				989FDC201EA01E15005A6ECB /* Johann */,
 				074EDB4A1E940BF2001F95F2 /* Models */,
 				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
@@ -221,8 +229,17 @@
 			isa = PBXGroup;
 			children = (
 				07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */,
+				989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */,
 			);
 			name = Protocols;
+			sourceTree = "<group>";
+		};
+		989FDC201EA01E15005A6ECB /* Johann */ = {
+			isa = PBXGroup;
+			children = (
+				989FDC211EA01E24005A6ECB /* JohannButton.swift */,
+			);
+			name = Johann;
 			sourceTree = "<group>";
 		};
 		9FC8CD16B59E236A239FE2E7 /* Pods */ = {
@@ -371,14 +388,17 @@
 				07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */,
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
 				989FDC1D1E9FB7C3005A6ECB /* UserSettingsView.swift in Sources */,
+				989FDC221EA01E24005A6ECB /* JohannButton.swift in Sources */,
 				98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
+				989FDC1F1EA00D75005A6ECB /* UserSettingsViewDelegate.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */,
 				07AC66BE1E981BAD0000F195 /* Style.swift in Sources */,
+				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
 				07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */,
