@@ -58,7 +58,7 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
             FirebaseManager.deleteUser()
             FirebaseManager.deleteUserData(self.store.user)
             let confirmationController = UIAlertController(title: "Account Deleted", message: "Your account has been deleted", preferredStyle: .alert)
-            let confirm = UIAlertAction(title: "Conirm", style: .default, handler: { _ in
+            let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
                 self.returnToLogin()
             })
             confirmationController.addAction(confirm)

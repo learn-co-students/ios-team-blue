@@ -20,6 +20,7 @@ class DropDownView: UIView {
     private func commonInit() {
         self.createManualEntryButton()
         self.createScanReceiptButton()
+        self.backgroundColor = UIColor.white
     }
 
     func createManualEntryButton() {

@@ -17,18 +17,16 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
        self.dropDownView = DropDownView(frame: .zero)
        self.dropDownView.delegate = self
+       self.dropDownView.backgroundColor =  UIColor.white
 
-        self.view.addSubview(self.dropDownView)
+       self.view.addSubview(self.dropDownView)
 
         self.dropDownView.snp.makeConstraints { (make) in
             make.left.width.equalToSuperview()
             make.top.equalToSuperview().offset(50)
             make.height.equalToSuperview().multipliedBy(0.3)
         }
-
         self.dropDownView.alpha = 0
-
-
     }
 
     // MARK: - Data Source
@@ -82,8 +80,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func createUI() {
         self.createTableView()
         self.createAddButton()
-        //self.addIngredient()
-
     }
 
     func createAddButton() {
@@ -104,7 +100,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
 
     func addIngredient() {
-
         addButtonTapped = !addButtonTapped
         dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
     }
@@ -113,8 +108,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func manualEntryButtonTapped() {
         let manualEntryViewController = ManualEntryViewController()
         self.present(manualEntryViewController, animated: true, completion: nil)
-
-
         print(#function)
 
     }

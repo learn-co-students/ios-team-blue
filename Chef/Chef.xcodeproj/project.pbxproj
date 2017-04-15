@@ -31,6 +31,7 @@
 		7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */; };
 		7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */; };
 		7B8280461EA15374000914F8 /* SecretFoodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280451EA15374000914F8 /* SecretFoodDataStore.swift */; };
+		7B8280481EA28D43000914F8 /* ScanReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280471EA28D43000914F8 /* ScanReceiptViewController.swift */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
@@ -74,6 +75,7 @@
 		7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewController.swift; sourceTree = "<group>"; };
 		7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewDelegate.swift; sourceTree = "<group>"; };
 		7B8280451EA15374000914F8 /* SecretFoodDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretFoodDataStore.swift; sourceTree = "<group>"; };
+		7B8280471EA28D43000914F8 /* ScanReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReceiptViewController.swift; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				7B82803D1EA15352000914F8 /* FridgeViewController.swift */,
 				0702EB231E9C1863006754C4 /* NavigationController.swift */,
 				7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */,
+				7B8280471EA28D43000914F8 /* ScanReceiptViewController.swift */,
 				0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */,
 				07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */,
 				98D03D411E9D4F320089416D /* LoginViewController.swift */,
@@ -433,6 +436,7 @@
 				7B82803A1EA15344000914F8 /* DropDownView.swift in Sources */,
 				0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */,
 				7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */,
+				7B8280481EA28D43000914F8 /* ScanReceiptViewController.swift in Sources */,
 				7BF533071E95962000687363 /* RecipeDataStore.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
