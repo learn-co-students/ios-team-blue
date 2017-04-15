@@ -1,14 +1,15 @@
 import UIKit
 import SnapKit
 
-class RecipeCell: UITableViewCell {
+class RecipeCell: UICollectionViewCell {
 
     var imgView: UIImageView!
     var nameLabel: UILabel!
     var favoriteButton: UIButton!
+    var isFavorited: Bool = false
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         self.commonInit()
     }
 
@@ -18,72 +19,77 @@ class RecipeCell: UITableViewCell {
     }
 
     private func commonInit() {
+        self.backgroundColor = .white
+
         self.imgView = UIImageView()
 
         self.addSubview(imgView)
 
         self.imgView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview()
-            make.top.equalToSuperview()
-            make.width.height.equalTo(120)
+            make.top.left.equalToSuperview().offset(5)
+            make.width.equalToSuperview().offset(-10)
+            make.height.equalTo(self.imgView.snp.width)
         }
 
         self.nameLabel = {
             let lb = UILabel()
             lb.numberOfLines = 0
             lb.font = UIFont(name: Style.regular, size: 14)
+            lb.textColor = Style.flatironBlue
             return lb
         }()
 
         self.addSubview(nameLabel)
 
         self.nameLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().offset(8)
-            make.left.equalTo(self.imgView.snp.right).offset(8)
+            make.top.equalTo(self.imgView.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
         }
 
-        self.favoriteButton = UIButton()
-        favoriteButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+        self.favoriteButton = {
+            let heartImage = UIImage(named: "heart")!.withRenderingMode(.alwaysTemplate)
+            let fb = UIButton()
+            fb.setImage(heartImage, for: .normal)
+            fb.imageView?.tintColor = .lightGray
+            fb.backgroundColor = .white
+            return fb
+        }()
 
         self.addSubview(favoriteButton)
 
         self.favoriteButton.snp.makeConstraints { (make) in
-            make.bottom.equalToSuperview()
-            make.left.equalTo(self.imgView.snp.right).offset(8)
-            make.right.equalToSuperview().offset(-8)
+            make.bottom.equalToSuperview().offset(-8)
+            make.centerX.equalToSuperview()
         }
 
-        favoriteButton.addTarget(self, action: #selector(favorited), for: .touchUpInside)
+        self.favoriteButton.addTarget(self, action: #selector(favorited), for: .touchUpInside)
     }
 
     func favorited(sender: UIButton) {
-        favoriteButton = sender
+        self.isFavorited = self.isFavorited ? false : true
 
-        if !sender.isSelected {
-            UIView.animate(withDuration: 2.0,
+        if self.isFavorited {
+            UIView.animate(withDuration: 1.5,
                            delay: 0,
                            usingSpringWithDamping: 30,
                            initialSpringVelocity: 10,
-                           options: .allowUserInteraction,
+                           options: [.allowUserInteraction],
                            animations: {
+                self.favoriteButton.imageView?.tintColor = Style.flatironBlue
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                self.favoriteButton.setImage(#imageLiteral(resourceName: "Filled Heart"), for: .normal)
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                sender.isSelected = true
             })
         } else {
-            UIView.animate(withDuration: 2.0,
+            UIView.animate(withDuration: 1.5,
                            delay: 0,
                            usingSpringWithDamping: 30,
                            initialSpringVelocity: 10,
-                           options: .allowUserInteraction,
+                           options: [.allowUserInteraction],
                            animations: {
-                self.favoriteButton.transform = CGAffineTransform(scaleX: 0.8, y: 0.8)
-                self.favoriteButton.backgroundColor = UIColor.white
-                self.favoriteButton.setImage(#imageLiteral(resourceName: "heart"), for: .normal)
+                self.favoriteButton.imageView?.tintColor = .lightGray
+                self.favoriteButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
                 self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                sender.isSelected = false
             })
         }
     }
