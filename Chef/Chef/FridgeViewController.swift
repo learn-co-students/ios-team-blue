@@ -113,6 +113,9 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func scanReceiptButtonTapped() {
+
+        let scanReceiptViewController = ScanReceiptViewController()
+        self.present(scanReceiptViewController, animated: true, completion: nil)
         print(#function)
 
     }
