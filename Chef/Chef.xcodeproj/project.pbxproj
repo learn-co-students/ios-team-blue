@@ -32,6 +32,8 @@
 		7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */; };
 		7B8280461EA15374000914F8 /* SecretFoodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280451EA15374000914F8 /* SecretFoodDataStore.swift */; };
 		7B8280481EA28D43000914F8 /* ScanReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280471EA28D43000914F8 /* ScanReceiptViewController.swift */; };
+		7B82804A1EA28D95000914F8 /* ScanReceiptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280491EA28D95000914F8 /* ScanReceiptView.swift */; };
+		7B82804C1EA28EB9000914F8 /* ScanReceiptViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804B1EA28EB9000914F8 /* ScanReceiptViewDelegate.swift */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
@@ -76,6 +78,8 @@
 		7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewDelegate.swift; sourceTree = "<group>"; };
 		7B8280451EA15374000914F8 /* SecretFoodDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretFoodDataStore.swift; sourceTree = "<group>"; };
 		7B8280471EA28D43000914F8 /* ScanReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReceiptViewController.swift; sourceTree = "<group>"; };
+		7B8280491EA28D95000914F8 /* ScanReceiptView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReceiptView.swift; sourceTree = "<group>"; };
+		7B82804B1EA28EB9000914F8 /* ScanReceiptViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanReceiptViewDelegate.swift; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -152,6 +156,7 @@
 				98B5FC281EA0846D00217180 /* AddDietView.swift */,
 				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
 				7B82803F1EA15358000914F8 /* ManualEntryView.swift */,
+				7B8280491EA28D95000914F8 /* ScanReceiptView.swift */,
 				7B8280391EA15344000914F8 /* DropDownView.swift */,
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 				7B8280371EA1533B000914F8 /* FridgeCell.swift */,
@@ -254,6 +259,7 @@
 			children = (
 				07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */,
 				7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */,
+				7B82804B1EA28EB9000914F8 /* ScanReceiptViewDelegate.swift */,
 				989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */,
 				7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */,
 				98B5FC2A1EA092C600217180 /* AddDietDelegate.swift */,
@@ -421,9 +427,11 @@
 				98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */,
 				07AC66BE1E981BAD0000F195 /* Style.swift in Sources */,
 				7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */,
+				7B82804C1EA28EB9000914F8 /* ScanReceiptViewDelegate.swift in Sources */,
 				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
 				7B8280461EA15374000914F8 /* SecretFoodDataStore.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
+				7B82804A1EA28D95000914F8 /* ScanReceiptView.swift in Sources */,
 				7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
 				07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */,
