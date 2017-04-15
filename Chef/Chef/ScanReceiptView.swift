@@ -5,6 +5,7 @@ class ScanReceiptView: UIView {
 
     var saveReceiptButton: UIButton!
     var rescanReceiptButton: UIButton!
+    var imageView: UIImageView!
     weak var delegate: ScanReceiptViewDelegate!
 
     override init(frame: CGRect) {
@@ -73,8 +74,23 @@ class ScanReceiptView: UIView {
             make.height.equalTo(100)
         }
 
-        self.rescanReceiptButton.addTarget(self, action: #selector(saveReceiptButtonTapped), for: .touchUpInside)
+        self.rescanReceiptButton.addTarget(self, action: #selector(rescanReceiptButtonTapped), for: .touchUpInside)
 
+    }
+
+    func createImageView(){
+        self.imageView = {
+            let iv = UIImageView()
+            return iv
+        }()
+
+        self.addSubview(self.imageView)
+
+        self.imageView.snp.makeConstraints { (make) in
+            make.top.width.left.equalToSuperview()
+            make.bottom.equalTo(self.rescanReceiptButton.snp.top)
+
+        }
     }
 
     func saveReceiptButtonTapped(){
