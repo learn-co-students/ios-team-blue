@@ -18,7 +18,9 @@ class ScanReceiptView: UIView {
     }
 
     func commonInit() {
-
+        self.createSaveReceiptButton()
+        self.createRescanReceiptButton()
+        self.createBackground()
     }
 
     func createBackground() {
@@ -43,6 +45,7 @@ class ScanReceiptView: UIView {
             make.left.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
             make.bottom.equalToSuperview()
+            make.height.equalTo(100)
         }
 
         self.saveReceiptButton.addTarget(self, action: #selector(saveReceiptButtonTapped), for: .touchUpInside)
@@ -51,14 +54,14 @@ class ScanReceiptView: UIView {
 
     func createRescanReceiptButton() {
         self.rescanReceiptButton = {
-            let sr = UIButton()
-            sr.backgroundColor = Style.flatironBlue
-            sr.titleLabel?.textColor = UIColor.white
-            sr.titleLabel?.font = UIFont(name: Style.bold, size: 18)
-            sr.layer.borderWidth = 1
-            sr.layer.cornerRadius = 5
-            sr.setTitle("Rescan Receipt", for: .normal)
-            return sr
+            let rr = UIButton()
+            rr.backgroundColor = Style.flatironBlue
+            rr.titleLabel?.textColor = UIColor.white
+            rr.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            rr.layer.borderWidth = 1
+            rr.layer.cornerRadius = 5
+            rr.setTitle("Rescan Receipt", for: .normal)
+            return rr
         }()
 
         self.addSubview(self.rescanReceiptButton)
@@ -67,6 +70,7 @@ class ScanReceiptView: UIView {
             make.right.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
             make.bottom.equalToSuperview()
+            make.height.equalTo(100)
         }
 
         self.rescanReceiptButton.addTarget(self, action: #selector(saveReceiptButtonTapped), for: .touchUpInside)
