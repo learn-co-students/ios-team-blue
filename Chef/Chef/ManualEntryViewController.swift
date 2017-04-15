@@ -2,6 +2,7 @@ import UIKit
 
 class ManualEntryViewController: UIViewController, ManualEntryViewDelegate{
     var manualEntryView: ManualEntryView!
+    let store = RecipeDataStore.shared
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,10 @@ class ManualEntryViewController: UIViewController, ManualEntryViewDelegate{
 
     func saveFoodButtonTapped() {
         print(#function)
+        if let text = manualEntryView.foodEntryTextField.text {
+        store.user.fridge.append(text)
+        self.dismiss(animated: true, completion: nil)
+        }
     }
     
 

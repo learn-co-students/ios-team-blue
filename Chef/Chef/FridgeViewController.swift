@@ -9,6 +9,10 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var dropDownView: DropDownView!
     var addButtonTapped = false
 
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,11 +117,8 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func scanReceiptButtonTapped() {
-
         let scanReceiptViewController = ScanReceiptViewController()
         self.present(scanReceiptViewController, animated: true, completion: nil)
-        print(#function)
-
     }
 
     
