@@ -15,6 +15,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         self.store.getRecipes() {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                print("The recipes are ", self.store.recipes)
             }
         }
     }

@@ -54,6 +54,10 @@ class FirebaseManager {
         })
     }
 
+    static func deleteUserData(_ user: User) {
+        self.usersRef.child(user.id).removeValue()
+    }
+
     static func checkIfUserExists(_ user: User, completion: @escaping (Bool) -> ()) {
         self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any] else { return }
@@ -62,18 +66,32 @@ class FirebaseManager {
         })
     }
 
-    //TODO: - Update to pull any diet information if it exists.
-    static func getUserData(_ user: User, completion: @escaping (([String], [String])) -> ()) {
+    //TODO: - Update to include user diet/allergies
+    static func getUserData(_ user: User, completion: @escaping (([String], [String], [String]?, [String]?)) -> ()) {
         let ref = usersRef.child(user.id)
-
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
+
             guard let snap = snapshot.value as? [String: Any],
                 let favRecipesIDs = snap["favRecipes"] as? [String],
                 let fridge = snap["fridge"] as? [String] else {
                     print(#function + " failed")
                     return
             }
-            completion(favRecipesIDs, fridge)
+
+            if let restrictions = snap["dietaryRestrictions"] as? [String: Any],
+                let diet = restrictions["diet"] as? [String]?,
+                let allergy = restrictions["allergies"] as? [String]? {
+                completion((favRecipesIDs, fridge, diet, allergy))
+            } else if let restrictions = snap["dietaryRestrictions"] as? [String: Any],
+                let diet = restrictions["diet"] as? [String]?{
+                completion((favRecipesIDs, fridge, diet, nil))
+            } else if let restrictions = snap["dietaryRestrictions"] as? [String: Any],
+                let allergy = restrictions["allergies"] as? [String]? {
+            completion((favRecipesIDs, fridge, nil, allergy))
+            } else {
+                completion((favRecipesIDs, fridge, nil, nil))
+            }
+
         })
     }
 

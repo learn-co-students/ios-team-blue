@@ -12,7 +12,7 @@ final class SpoonacularAPIClient {
 
     class func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
         //If the user has no dietary restriction/intolerances
-        if user.allergyList?.isEmpty == false && user.dietList?.isEmpty == false {
+        if user.allergyList == nil && user.dietList == nil {
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
             let url = baseURL + ingredients + otherInfoURL
             Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
@@ -25,8 +25,8 @@ final class SpoonacularAPIClient {
                     }
                 }
             }
-        }
-        else {
+        } 
+            else {
             //If the user does have diet/intolerances
             let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?"
 
@@ -36,7 +36,7 @@ final class SpoonacularAPIClient {
                 "limitLicense": false,
                 "number": 100,
                 "offset": 0,
-                "ranking":2
+                "ranking": 2
             ]
             
             if let allergyList = user.allergyList {
