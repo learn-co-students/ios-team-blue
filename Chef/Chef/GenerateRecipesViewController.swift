@@ -8,14 +8,12 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        store.user.fridge = ["lentil", "rice", "beans", "chicken", "tomato"]
 
         self.createUI()
         self.navigationItem.title = "My Cookbook"
 
         self.store.getRecipes() {
             DispatchQueue.main.async {
-        
                 self.collectionView.reloadData()
             }
         }
