@@ -22,6 +22,7 @@
 		07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8701E92E7B000F3354A /* FirebaseManager.swift */; };
 		07D183471EA4FDFF000B8F91 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D183461EA4FDFF000B8F91 /* RecipeView.swift */; };
 		07D183491EA4FE2B000B8F91 /* FullRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D183481EA4FE2B000B8F91 /* FullRecipe.swift */; };
+		07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1834C1EA54158000B8F91 /* SettingsCell.swift */; };
 		07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE891E9BD88300928E5B /* LoginView.swift */; };
 		07D7CE8D1E9BDA8A00928E5B /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */; };
 		07D7CE901E9BE39B00928E5B /* LoginViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */; };
@@ -42,8 +43,6 @@
 		7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533081E95962700687363 /* SpoonacularAPIClient.swift */; };
 		7BF5330B1E95962F00687363 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF5330A1E95962F00687363 /* Recipe.swift */; };
 		9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */; };
-		989FDC1D1E9FB7C3005A6ECB /* UserSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */; };
-		989FDC1F1EA00D75005A6ECB /* UserSettingsViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */; };
 		98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5FC281EA0846D00217180 /* AddDietView.swift */; };
 		98B5FC2B1EA092C600217180 /* AddDietDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98B5FC2A1EA092C600217180 /* AddDietDelegate.swift */; };
 		98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D3D1E9D4E100089416D /* GoogleVisionAPIClient.swift */; };
@@ -69,6 +68,7 @@
 		07BAD8701E92E7B000F3354A /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		07D183461EA4FDFF000B8F91 /* RecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		07D183481EA4FE2B000B8F91 /* FullRecipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullRecipe.swift; sourceTree = "<group>"; };
+		07D1834C1EA54158000B8F91 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		07D7CE891E9BD88300928E5B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SnapKit.swift"; sourceTree = "<group>"; };
 		07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewDelegate.swift; sourceTree = "<group>"; };
@@ -88,8 +88,6 @@
 		7BF533081E95962700687363 /* SpoonacularAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClient.swift; sourceTree = "<group>"; };
 		7BF5330A1E95962F00687363 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		9884D6B91E97DD1300F26859 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewController.swift; sourceTree = "<group>"; };
-		989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsView.swift; sourceTree = "<group>"; };
-		989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingsViewDelegate.swift; sourceTree = "<group>"; };
 		98B5FC281EA0846D00217180 /* AddDietView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDietView.swift; sourceTree = "<group>"; };
 		98B5FC2A1EA092C600217180 /* AddDietDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDietDelegate.swift; sourceTree = "<group>"; };
 		98D03D3D1E9D4E100089416D /* GoogleVisionAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleVisionAPIClient.swift; sourceTree = "<group>"; };
@@ -153,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				07D7CE891E9BD88300928E5B /* LoginView.swift */,
-				989FDC1C1E9FB7C2005A6ECB /* UserSettingsView.swift */,
 				98B5FC281EA0846D00217180 /* AddDietView.swift */,
 				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
 				7B82803F1EA15358000914F8 /* ManualEntryView.swift */,
@@ -161,6 +158,7 @@
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 				7B8280371EA1533B000914F8 /* FridgeCell.swift */,
 				07D183461EA4FDFF000B8F91 /* RecipeView.swift */,
+				07D1834C1EA54158000B8F91 /* SettingsCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -260,7 +258,6 @@
 			children = (
 				07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */,
 				7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */,
-				989FDC1E1EA00D74005A6ECB /* UserSettingsViewDelegate.swift */,
 				7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */,
 				98B5FC2A1EA092C600217180 /* AddDietDelegate.swift */,
 			);
@@ -414,16 +411,15 @@
 				07752C741EA146840090F76E /* RecipeDetailViewController.swift in Sources */,
 				07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */,
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
-				989FDC1D1E9FB7C3005A6ECB /* UserSettingsView.swift in Sources */,
 				98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
 				07D183471EA4FDFF000B8F91 /* RecipeView.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
 				7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
+				07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */,
 				98B5FC2B1EA092C600217180 /* AddDietDelegate.swift in Sources */,
 				07D183491EA4FE2B000B8F91 /* FullRecipe.swift in Sources */,
-				989FDC1F1EA00D75005A6ECB /* UserSettingsViewDelegate.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
