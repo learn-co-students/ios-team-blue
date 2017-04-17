@@ -131,6 +131,20 @@ final class SpoonacularAPIClient {
         }
     }
 
+    static func testCall(completion: @escaping (JSONDictionary) -> ()) {
+        print("Testing has begun")
+        let ingredients = ["red onion", "baby carrots", "green apple", "kale", "eggplant", "potatoes", "chicken broth", "butter", "garlic", "bread"]
+        let encodedIng = Helper.spoonacularEncode(items: ingredients)
+        let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=paleo%2Cvegetarian&fillIngredients=false&includeIngredients=\(encodedIng)&instructionsRequired=true&intolerances=peanut%2Cshellfish&limitLicense=false&number=100&offset=0&ranking=2"
+        Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { (response) in
+            if let jsonResponse = response.result.value as? JSONDictionary {
+                completion(jsonResponse)
+            } else {
+                print("The error is ", response.error?.localizedDescription)
+            }
+        }
+    }
+
 }
 
 class Helper {
@@ -138,10 +152,11 @@ class Helper {
     static func spoonacularEncode(items: [String]) -> String {
         var container  = ""
         for item in items {
-            if item == items.first {
-                container += item
+            let newItem = item.replacingOccurrences(of: " ", with: "%20")
+            if newItem == items.first {
+                container += newItem
             } else {
-                container += "%2C\(item)"
+                container += "%2C\(newItem)"
             }
         }
         return container

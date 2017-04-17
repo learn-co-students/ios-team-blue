@@ -8,7 +8,6 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        store.user.fridge = ["lentil", "rice", "beans", "chicken", "tomato"]
 
         self.createUI()
         self.navigationItem.title = "My Cookbook"

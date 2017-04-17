@@ -15,6 +15,13 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
 
         self.view.addSubview(self.loginView)
         self.loginView.snapToSuperview()
+
+        SpoonacularAPIClient.testCall { (dict) in
+            print("Test function has been called")
+            DispatchQueue.main.async {
+                print("The first item is", dict.first!)
+            }
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
