@@ -70,7 +70,13 @@ class AddDietViewController: UIViewController, AddDietDelegate {
     func saveButtonTapped() {
         var user = store.user
         user.dietList = self.dietList
+        if !dietList.isEmpty{
+            FirebaseManager.addDiet(dietList, to: store.user)
+        }
         user.allergyList = self.allergyList
+        if !allergyList.isEmpty{
+            FirebaseManager.addAllergy(allergyList, to: store.user)
+        }
         self.dismiss(animated: true, completion: nil)
     }
 

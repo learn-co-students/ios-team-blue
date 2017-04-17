@@ -253,7 +253,7 @@ class AddDietView: UIView {
         }
         
     }
-
+    //TODO: - persist button selections so that user sees thier preferences upon re opening page
     func dietButtonTapped(_ button: UIButton) {
         self.delegate.dietButtonTapped(button)
     }

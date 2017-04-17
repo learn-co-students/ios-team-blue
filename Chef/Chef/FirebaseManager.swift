@@ -54,10 +54,6 @@ class FirebaseManager {
         })
     }
 
-    static func deleteUserData(_ user: User) {
-        self.usersRef.child(user.id).removeValue()
-    }
-
     static func checkIfUserExists(_ user: User, completion: @escaping (Bool) -> ()) {
         self.usersRef.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any] else { return }
@@ -66,6 +62,7 @@ class FirebaseManager {
         })
     }
 
+    //TODO: - Update to pull any diet information if it exists.
     static func getUserData(_ user: User, completion: @escaping (([String], [String])) -> ()) {
         let ref = usersRef.child(user.id)
 
@@ -76,10 +73,15 @@ class FirebaseManager {
                     print(#function + " failed")
                     return
             }
-
             completion(favRecipesIDs, fridge)
         })
-        
-        
+    }
+
+    static func addDiet(_ diet: [String], to user: User) {
+        self.usersRef.child(user.id).child("dietaryRestrictions").child("diet").setValue(diet)
+    }
+
+    static func addAllergy(_ allergy: [String], to user: User) {
+        self.usersRef.child(user.id).child("dietaryRestrictions").child("allergies").setValue(allergy)
     }
 }

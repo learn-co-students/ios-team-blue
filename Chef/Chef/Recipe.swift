@@ -5,7 +5,7 @@ class Recipe {
     var title: String
     var imageLink: String
     var instructions: [String]?
-
+    //TODO: - Breaks if user has no saved recipes in firebase.
     init(dictionary: [String: Any]) {
         guard
         let id =  dictionary["id"] as? Int,

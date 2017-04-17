@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import Alamofire
 import SwiftyJSON
 
@@ -24,25 +25,41 @@ final class SpoonacularAPIClient {
                     }
                 }
             }
-        } else {
+        }
+        else {
             //If the user does have diet/intolerances
-            let allergies = Helper.spoonacularEncode(items: user.allergyList!)
-            let diets = Helper.spoonacularEncode(items: user.dietList!)
+            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?"
+
+            var parameters: [String: Any] = [
+                "addRecipeInformation": true,
+                "instructionsRequired": true,
+                "limitLicense": false,
+                "number": 100,
+                "offset": 0,
+                "ranking":2
+            ]
+            
+            if let allergyList = user.allergyList {
+                let allergies = Helper.spoonacularEncode(items: allergyList)
+                parameters["intolerances"] = allergies
+            }
+            if let dietList = user.dietList {
+                let diets = Helper.spoonacularEncode(items: dietList)
+                parameters["diet"] = diets
+            }
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
-            let exampleURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=\(diets)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true&intolerances=\(allergies)&limitLicense=false&number=100&offset=0&ranking=2"
-            Alamofire.request(exampleURL, method: .get, headers: spoonacularAPIHeaders).responseJSON(completionHandler: { (response) in
+            parameters["includeIngredients"] = ingredients
+
+            Alamofire.request(complexURL, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: spoonacularAPIHeaders).responseJSON(completionHandler: { (response) in
                 if let json = response.result.value {
-                    if let responseJson = json  as? [JSONDictionary] {
-                        completion(.success(responseJson))
+                    if let responseJSON = json  as? [JSONDictionary] {
+                        completion(.success(responseJSON))
                     } else {
                         completion(.failure(.nodata))
                     }
                 }
             })
-
         }
-
-
     }
 
     class func randomJoke() -> String {
