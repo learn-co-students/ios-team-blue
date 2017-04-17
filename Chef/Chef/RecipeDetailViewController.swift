@@ -9,7 +9,7 @@ class RecipeDetailViewController: UIViewController {
 
     var recipe: Recipe! {
         didSet {
-            retrieveRecipeInfo()
+            self.retrieveRecipeInfo()
         }
     }
 
@@ -28,7 +28,6 @@ class RecipeDetailViewController: UIViewController {
             switch result {
             case .success(let fullRecipe):
                 self.fullRecipe = fullRecipe as! FullRecipe
-                self.recipeView.textView.text = self.fullRecipe.instructions
             case .failure(let error):
                 print(error)
             }
