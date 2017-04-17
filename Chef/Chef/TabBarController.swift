@@ -17,7 +17,7 @@ class TabBarController: UITabBarController {
         let srNavVC = NavigationController(rootViewController: savedRecipesVC)
 
         let fridgeVC = FridgeViewController()
-        fridgeVC.tabBarItem = UITabBarItem(title: "Fridge", image: UIImage(named: "heart"), tag: 3)
+        fridgeVC.tabBarItem = UITabBarItem(title: "Fridge", image: UIImage(named: "fridge"), tag: 3)
         let frNavVC = NavigationController(rootViewController: fridgeVC)
 
         let userSettingsVC = UserSettingsViewController()

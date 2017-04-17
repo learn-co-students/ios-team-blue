@@ -53,7 +53,9 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     // MARK: - Delegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        let recipeVC = RecipeDetailViewController()
+        recipeVC.recipe = self.store.recipes[indexPath.row]
+        self.navigationController?.pushViewController(recipeVC, animated: true)
     }
 
 

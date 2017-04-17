@@ -90,4 +90,16 @@ final class SpoonacularAPIClient {
         }
     }
 
+    static func fetchFullRecipe(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+        let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(id)/information?includeNutrition=false"
+        Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
+            guard let json = response.result.value as? JSONDictionary else {
+                completion(.failure(SpoonacularAPIClientError.nodata))
+                return
+            }
+            let fullRecipe = FullRecipe(dictionary: json)
+            completion(.success(fullRecipe))
+        }
+    }
+
 }

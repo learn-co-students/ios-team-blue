@@ -17,7 +17,25 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         self.loginView.snapToSuperview()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        if self.loginView.isLoading {
+            self.loginView.toggleLoading()
+            self.loginView.usernameTextField.text = ""
+            self.loginView.passwordTextField.text = ""
+        }
+    }
+
     func signUp() {
+        self.loginView.toggleLoading()
+
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
         }
@@ -25,12 +43,21 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             if success {
                 self.logIn()
             } else {
-                self.shakeTextFields()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.loginView.toggleLoading()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self.loginView.shakeTextFields()
+                    }
+                }
             }
         }
     }
     
     func logIn() {
+        if !self.loginView.isLoading {
+            self.loginView.toggleLoading()
+        }
+
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
         }
@@ -39,7 +66,7 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                 let user = User(email: email)
                 self.store.setUser(user)
 
-                FirebaseManager.checkIfUserExists(user) { (userExists) in
+                FirebaseManager.checkIfUserExists(user) { userExists in
                     if userExists {
                         self.store.pullDataForUser(user) {
                             self.pushToTabBarController()
@@ -50,22 +77,21 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                     }
                 }
             } else {
-                self.shakeTextFields()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.loginView.toggleLoading()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self.loginView.shakeTextFields()
+                    }
+                }
             }
         }
-    }
-
-    func shakeTextFields() {
-        self.loginView.usernameTextField.shake()
-        self.loginView.passwordTextField.shake()
     }
 
 
     // MARK: - Login View Delegate
 
     func backgroundTapped() {
-        self.loginView.usernameTextField.resignFirstResponder()
-        self.loginView.passwordTextField.resignFirstResponder()
+        self.loginView.hideKeyboard()
     }
 
     func backgroundDoubleTapped() {
