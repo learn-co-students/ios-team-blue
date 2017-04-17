@@ -76,5 +76,4 @@ class ManualEntryView: UIView {
         self.delegate.saveFoodButtonTapped()
     }
     
-    
 }
