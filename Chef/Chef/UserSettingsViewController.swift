@@ -1,24 +1,67 @@
 import UIKit
-import SnapKit
 
-class UserSettingsViewController: UIViewController, UserSettingsDelegate {
+class UserSettingsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
     let store = RecipeDataStore.shared
-    var settingsView: UserSettingsView!
+    var collectionView: UICollectionView!
+    private let settings = ["Set Dietary Restrictions", "Log Out", "Reset Data", "Delete Account"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.settingsView = UserSettingsView()
-        self.settingsView.delegate = self
 
-        self.view.addSubview(settingsView)
-        settingsView.snapToSuperview()
+        self.createUI()
         self.navigationItem.title = "User Settings"
 
         
 
     }
 
+
+    // MARK: - Data Source
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "settingsCell", for: indexPath) as! SettingsCell
+
+        cell.label.text = self.settings[indexPath.row]
+
+        switch indexPath.row {
+        case 2, 3:
+            cell.label.textColor = .red
+        default:
+            cell.label.textColor = Style.flatironBlue
+        }
+
+        return cell
+    }
+
+
+    // MARK: - Delegate
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            self.tapDiet()
+        case 1:
+            self.tapLogOut()
+        case 2:
+            self.tapResetData()
+        case 3:
+            self.tapDeleteAcct()
+        default:
+            break
+        }
+    }
+
+
+    // MARK: - Actions
 
     func tapDiet() {
         print("Tap diet pressed")
@@ -61,7 +104,7 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
             FirebaseManager.deleteUser()
             FirebaseManager.deleteUserData(self.store.user)
             let confirmationController = UIAlertController(title: "Account Deleted", message: "Your account has been deleted", preferredStyle: .alert)
-            let confirm = UIAlertAction(title: "Conirm", style: .default, handler: { _ in
+            let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
                 self.returnToLogin()
             })
             confirmationController.addAction(confirm)
@@ -73,9 +116,34 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
         self.present(alertController, animated: true, completion: nil)
     }
 
+
+    // MARK: - UI
+
+    func createUI() {
+        let spacing = CGFloat(8)
+        let cellWidth = self.view.bounds.width - CGFloat(2 * spacing)
+        let cellHeight = CGFloat(55)
+        let cellSize = CGSize(width: cellWidth, height: cellHeight)
+
+        let layout: UICollectionViewFlowLayout = {
+            let cvfl = UICollectionViewFlowLayout()
+            cvfl.sectionInset = UIEdgeInsets(top: spacing, left: spacing, bottom: spacing, right: spacing)
+            cvfl.itemSize = cellSize
+            cvfl.minimumLineSpacing = spacing
+            return cvfl
+        }()
+
+        self.collectionView = {
+            let cv = UICollectionView(frame: self.view.frame, collectionViewLayout: layout)
+            cv.dataSource = self
+            cv.delegate = self
+            cv.register(SettingsCell.self, forCellWithReuseIdentifier: "settingsCell")
+            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+            return cv
+        }()
+        
+        self.view.addSubview(self.collectionView)
+        self.collectionView.snapToSuperview()
+    }
+    
 }
-
-
-
-
-

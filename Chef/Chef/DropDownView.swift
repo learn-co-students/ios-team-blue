@@ -1,6 +1,7 @@
 import UIKit
 import SnapKit
 
+
 class DropDownView: UIView {
 
     weak var delegate: DropDrownViewDelegate!
@@ -20,6 +21,7 @@ class DropDownView: UIView {
     private func commonInit() {
         self.createManualEntryButton()
         self.createScanReceiptButton()
+        self.backgroundColor = UIColor.white
     }
 
     func createManualEntryButton() {
@@ -30,20 +32,17 @@ class DropDownView: UIView {
             me.setTitle("Manual Entry", for: .normal)
             me.titleLabel?.font = UIFont(name: Style.bold, size: 18)
             me.layer.cornerRadius = 8
+            me.addTarget(self, action: #selector(manualEntryButtonTapped), for: .touchUpInside)
             return me
         }()
 
         self.addSubview(self.manualEntryButton)
-
-        self.manualEntryButton.snp.makeConstraints { (make) in
+        self.manualEntryButton.snp.makeConstraints { make in
             make.left.equalToSuperview
             make.top.equalToSuperview().offset(18)
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.5)
-
         }
-
-        self.manualEntryButton.addTarget(self, action: #selector(manualEntryButtonTapped), for: .touchUpInside)
     }
 
     func createScanReceiptButton() {
@@ -54,38 +53,28 @@ class DropDownView: UIView {
             sr.setTitle("Scan Receipt", for: .normal)
             sr.titleLabel?.font = UIFont(name: Style.bold, size: 18)
             sr.layer.cornerRadius = 8
+            sr.addTarget(self, action: #selector(scanReceiptButtonTapped), for: .touchUpInside)
             return sr
         }()
 
         self.addSubview(self.scanReceiptButton)
-
-        self.scanReceiptButton.snp.makeConstraints { (make) in
+        self.scanReceiptButton.snp.makeConstraints { make in
             make.top.equalTo(self.manualEntryButton.snp.bottom).offset(1)
             make.left.equalToSuperview
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.5)
-
         }
-
-        self.scanReceiptButton.addTarget(self, action: #selector(scanReceiptButtonTapped), for: .touchUpInside)
     }
+
 
     // MARK: - Delegate
 
-
     func manualEntryButtonTapped() {
         self.delegate.manualEntryButtonTapped()
-
-
     }
 
     func scanReceiptButtonTapped() {
         self.delegate.scanReceiptButtonTapped()
     }
-    
-    
-    
-    
-    
-    
+
 }

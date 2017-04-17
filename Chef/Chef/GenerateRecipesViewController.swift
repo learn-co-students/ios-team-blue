@@ -8,12 +8,14 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        store.user.fridge = ["lentil", "rice", "beans", "chicken", "tomato"]
 
         self.createUI()
         self.navigationItem.title = "My Cookbook"
 
         self.store.getRecipes() {
             DispatchQueue.main.async {
+        
                 self.collectionView.reloadData()
                 print("The recipes are ", self.store.recipes)
             }
@@ -52,7 +54,9 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     // MARK: - Delegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        let recipeVC = RecipeDetailViewController()
+        recipeVC.recipe = self.store.recipes[indexPath.row]
+        self.navigationController?.pushViewController(recipeVC, animated: true)
     }
 
 

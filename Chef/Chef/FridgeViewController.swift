@@ -1,35 +1,25 @@
 import UIKit
 import SnapKit
 
-class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DropDrownViewDelegate {
+class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
-    var tableView: UITableView!
     let store = RecipeDataStore.shared
-    var addButton = UIBarButtonItem()
-    var dropDownView: DropDownView!
+    var tableView: UITableView!
+    var addButton: UIBarButtonItem!
     var addButtonTapped = false
-
+    var dropDownViewController: DropDownViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         self.navigationItem.title = "Fridge"
         self.createUI()
-
-       self.dropDownView = DropDownView(frame: .zero)
-       self.dropDownView.delegate = self
-
-        self.view.addSubview(self.dropDownView)
-
-        self.dropDownView.snp.makeConstraints { (make) in
-            make.left.width.equalToSuperview()
-            make.top.equalToSuperview().offset(50)
-            make.height.equalToSuperview().multipliedBy(0.3)
-        }
-
-        self.dropDownView.alpha = 0
-
-
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+
 
     // MARK: - Data Source
 
@@ -41,26 +31,21 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         return store.user.fridge.count
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath) as! FridgeCell
         cell.textLabel?.text = self.store.user.fridge[indexPath.row]
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         if (editingStyle == UITableViewCellEditingStyle.delete){
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-
             }
         }
-
     }
-
 
 
     // MARK: - Delegate
@@ -77,22 +62,14 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         return true
     }
 
+
     // MARK: - UI
 
     func createUI() {
         self.createTableView()
         self.createAddButton()
-        //self.addIngredient()
-
+        self.createDropDownViewController()
     }
-
-    func createAddButton() {
-        self.addButton = UIBarButtonItem(title: "+", style: .done, target: self, action: #selector(addIngredient))
-        self.navigationItem.rightBarButtonItem = addButton
-        addButton.tintColor = Style.flatironBlue
-    }
-
-
 
     func createTableView() {
         self.tableView = UITableView(frame: self.view.frame)
@@ -102,35 +79,32 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.view.addSubview(self.tableView)
     }
 
+    func createAddButton() {
+        self.addButton = UIBarButtonItem(title: "+", style: .done, target: self, action: #selector(addIngredient))
+        self.navigationItem.rightBarButtonItem = addButton
+        addButton.tintColor = Style.flatironBlue
+    }
+
+    func createDropDownViewController() {
+        self.dropDownViewController = DropDownViewController()
+        self.addChildViewController(dropDownViewController)
+        self.dropDownViewController.didMove(toParentViewController: self)
+
+        self.view.addSubview(dropDownViewController.view)
+        self.dropDownViewController.view.snp.makeConstraints { make in
+            make.left.width.equalToSuperview()
+            make.top.equalToSuperview().offset(50)
+            make.height.equalToSuperview().multipliedBy(0.3)
+        }
+    }
+
+
+    // MARK: - Actions
 
     func addIngredient() {
-
+        print(#function)
         addButtonTapped = !addButtonTapped
-        dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
+        self.dropDownViewController.dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
     }
 
-
-    func manualEntryButtonTapped() {
-        let manualEntryViewController = ManualEntryViewController()
-        self.present(manualEntryViewController, animated: true, completion: nil)
-
-
-        print(#function)
-
-    }
-
-    func scanReceiptButtonTapped() {
-        print(#function)
-
-    }
-
-    
-    
-    
 }
-
-
-
-
-
-
