@@ -11,8 +11,6 @@ class ScanReceiptView: UIView {
     var captureImageView: UIImageView!
     weak var delegate: ScanReceiptViewDelegate!
 
-
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
@@ -23,7 +21,7 @@ class ScanReceiptView: UIView {
         self.commonInit()
     }
 
-    func commonInit() {
+    private func commonInit() {
         self.createSaveReceiptButton()
         self.createOpenLibraryButton()
         self.createBackground()
@@ -81,11 +79,14 @@ class ScanReceiptView: UIView {
         }
 
         self.openLibraryButton.addTarget(self, action: #selector(openLibraryButtonTapped), for: .touchUpInside)
-
     }
 
     func createImageView(){
-        self.captureImageView = UIImageView()
+        self.captureImageView = {
+            let ci = UIImageView()
+            ci.layer.borderColor =  Style.flatironBlue.cgColor
+            return ci
+        }()
 
         self.addSubview(self.captureImageView)
 
@@ -93,9 +94,11 @@ class ScanReceiptView: UIView {
             make.top.equalToSuperview().offset(10)
             make.width.left.equalToSuperview()
             make.bottom.equalTo(self.openLibraryButton.snp.top)
-
         }
     }
+
+    // MARK: - Delegate
+
 
     func saveReceiptButtonTapped(){
         self.delegate.saveReceiptButtonTapped()
@@ -103,39 +106,6 @@ class ScanReceiptView: UIView {
 
     func openLibraryButtonTapped(){
         self.delegate.openLibraryButtonTapped()
-    }
-
-    func handleCameraImage(){
-        let picker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            picker.sourceType = .camera
-            picker.present(picker, animated: true, completion: nil)
-        } else {
-            print("No camera")
-        }
-
-        picker.allowsEditing = true
-    }
-
-    func handleLibraryImage(){
-        let picker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
-            picker.sourceType = .photoLibrary
-            picker.present(picker, animated: true, completion: nil)
-            //present(picker, animated: true, completion: nil)
-
-        } else {
-            print("No photo library")
-        }
-
-        picker.allowsEditing = true
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage
-        picker.dismiss(animated: true, completion: nil)
     }
 
 

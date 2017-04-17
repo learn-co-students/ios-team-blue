@@ -2,55 +2,49 @@ import UIKit
 import MobileCoreServices
 import Photos
 
+class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
-class ScanReceiptViewController: UIViewController, ScanReceiptViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
-    var scanReceiptView: ScanReceiptView!
     var dropDownView: DropDownView!
     var newMedia: Bool?
-
+    var scanReceiptView: ScanReceiptView!
 
 
     override func viewDidLoad() {
+        print(#function)
         super.viewDidLoad()
-        self.scanReceiptView = ScanReceiptView()
-        self.scanReceiptView.delegate = self
-        self.view.addSubview(self.scanReceiptView)
-        self.scanReceiptView.snapToSuperview()
+        self.dropDownView = DropDownView()
+        self.dropDownView.delegate = self
+        self.view.addSubview(self.dropDownView)
+        self.dropDownView.snapToSuperview()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-
     }
 
-    func saveReceiptButtonTapped() {
+    func manualEntryButtonTapped() {
         print(#function)
-        //firebase image saving code goes here
     }
 
-    func openLibraryButtonTapped() {
-        useCameraRoll(scanReceiptView.openLibraryButton)
+    func scanReceiptButtonTapped() {
+     openCameraButton(dropDownView.scanReceiptButton)
+     print(#function)
     }
 
-    func useCameraRoll(_ sender: UIButton) {
-        scanReceiptView.openLibraryButton = sender
-        if UIImagePickerController.isSourceTypeAvailable(
-            UIImagePickerControllerSourceType.savedPhotosAlbum) {
-            let imagePicker = UIImagePickerController()
-            imagePicker.delegate = self
-            imagePicker.sourceType =
-                UIImagePickerControllerSourceType.photoLibrary
-            imagePicker.mediaTypes = [kUTTypeImage as String]
-            imagePicker.allowsEditing = false
-            self.present(imagePicker, animated: true,
-                         completion: nil)
-            newMedia = false
-        }
+    func openCameraButton(_ sender: UIButton) {
+        dropDownView.scanReceiptButton = sender
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+        imagePicker.mediaTypes = [kUTTypeImage as String]
+        imagePicker.allowsEditing = false
+        self.present(imagePicker, animated: true, completion: nil)
+        newMedia = true
     }
 
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+
         let mediaType = info[UIImagePickerControllerMediaType] as! NSString
         if mediaType.isEqual(to: kUTTypeImage as String) {
             guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { print("NOPE!") ; return }
@@ -97,21 +91,10 @@ class ScanReceiptViewController: UIViewController, ScanReceiptViewDelegate, UINa
             picker.sourceType = .photoLibrary
             picker.present(picker, animated: true, completion: nil)
             //present(picker, animated: true, completion: nil)
-
         } else {
             print("No photo library")
         }
-
         picker.allowsEditing = true
-    }
-
-   /* func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage
-        picker.dismiss(animated: true, completion: nil)
-    }*/
-
-
-    
-
+}
 
 }

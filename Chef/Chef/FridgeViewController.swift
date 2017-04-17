@@ -10,6 +10,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var dropDownView: DropDownView!
     var addButtonTapped = false
     var newMedia: Bool?
+    var dropDownViewController: DropDownViewController!
 
 
     override func viewWillAppear(_ animated: Bool) {
@@ -22,11 +23,19 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.title = "Fridge"
         self.createUI()
 
-       self.dropDownView = DropDownView(frame: .zero)
+        self.dropDownView = DropDownView(frame: .zero)
+        //self.dropDownView.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(self.dropDownView)
+
        self.dropDownView.delegate = self
        self.dropDownView.backgroundColor =  UIColor.white
 
-       self.view.addSubview(self.dropDownView)
+        self.dropDownViewController = DropDownViewController()
+        addChildViewController(self.dropDownViewController)
+        dropDownViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        dropDownView.addSubview(dropDownViewController.view)
+
+
 
         self.dropDownView.snp.makeConstraints { (make) in
             make.left.width.equalToSuperview()
@@ -115,14 +124,13 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func manualEntryButtonTapped() {
         let manualEntryViewController = ManualEntryViewController()
         self.present(manualEntryViewController, animated: true, completion: nil)
-        print(#function)
 
     }
 
     func scanReceiptButtonTapped() {
         let scanReceiptViewController = ScanReceiptViewController()
         self.present(scanReceiptViewController, animated: true, completion: nil)
-
+        print(#function)
     }
 
        

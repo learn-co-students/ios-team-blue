@@ -1,9 +1,8 @@
 import UIKit
 import SnapKit
-import Photos
-import MobileCoreServices
 
-class DropDownView: UIView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+class DropDownView: UIView {
 
     weak var delegate: DropDrownViewDelegate!
     var manualEntryButton: UIButton!
