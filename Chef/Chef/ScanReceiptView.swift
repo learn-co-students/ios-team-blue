@@ -1,12 +1,17 @@
 import UIKit
 import SnapKit
+import Photos
+import MobileCoreServices
+
 
 class ScanReceiptView: UIView {
 
     var saveReceiptButton: UIButton!
-    var rescanReceiptButton: UIButton!
-    var imageView: UIImageView!
+    var openLibraryButton: UIButton!
+    var captureImageView: UIImageView!
     weak var delegate: ScanReceiptViewDelegate!
+
+
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,8 +25,9 @@ class ScanReceiptView: UIView {
 
     func commonInit() {
         self.createSaveReceiptButton()
-        self.createRescanReceiptButton()
+        self.createOpenLibraryButton()
         self.createBackground()
+        self.createImageView()
     }
 
     func createBackground() {
@@ -53,42 +59,40 @@ class ScanReceiptView: UIView {
 
     }
 
-    func createRescanReceiptButton() {
-        self.rescanReceiptButton = {
-            let rr = UIButton()
-            rr.backgroundColor = Style.flatironBlue
-            rr.titleLabel?.textColor = UIColor.white
-            rr.titleLabel?.font = UIFont(name: Style.bold, size: 18)
-            rr.layer.borderWidth = 1
-            rr.layer.cornerRadius = 5
-            rr.setTitle("Rescan Receipt", for: .normal)
-            return rr
+    func createOpenLibraryButton() {
+        self.openLibraryButton = {
+            let ol = UIButton()
+            ol.backgroundColor = Style.flatironBlue
+            ol.titleLabel?.textColor = UIColor.white
+            ol.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            ol.layer.borderWidth = 1
+            ol.layer.cornerRadius = 5
+            ol.setTitle("Open Library", for: .normal)
+            return ol
         }()
 
-        self.addSubview(self.rescanReceiptButton)
+        self.addSubview(self.openLibraryButton)
 
-        self.rescanReceiptButton.snp.makeConstraints { (make) in
+        self.openLibraryButton.snp.makeConstraints { (make) in
             make.right.equalToSuperview()
             make.width.equalToSuperview().multipliedBy(0.5)
             make.bottom.equalToSuperview()
             make.height.equalTo(100)
         }
 
-        self.rescanReceiptButton.addTarget(self, action: #selector(rescanReceiptButtonTapped), for: .touchUpInside)
+        self.openLibraryButton.addTarget(self, action: #selector(openLibraryButtonTapped), for: .touchUpInside)
 
     }
 
     func createImageView(){
-        self.imageView = {
-            let iv = UIImageView()
-            return iv
-        }()
+        self.captureImageView = UIImageView()
 
-        self.addSubview(self.imageView)
+        self.addSubview(self.captureImageView)
 
-        self.imageView.snp.makeConstraints { (make) in
-            make.top.width.left.equalToSuperview()
-            make.bottom.equalTo(self.rescanReceiptButton.snp.top)
+        self.captureImageView.snp.makeConstraints { (make) in
+            make.top.equalToSuperview().offset(10)
+            make.width.left.equalToSuperview()
+            make.bottom.equalTo(self.openLibraryButton.snp.top)
 
         }
     }
@@ -97,8 +101,50 @@ class ScanReceiptView: UIView {
         self.delegate.saveReceiptButtonTapped()
     }
 
-    func rescanReceiptButtonTapped(){
-        self.delegate.rescanReceiptButtonTapped()
+    func openLibraryButtonTapped(){
+        self.delegate.openLibraryButtonTapped()
     }
+
+    func handleCameraImage(){
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            picker.sourceType = .camera
+            picker.present(picker, animated: true, completion: nil)
+        } else {
+            print("No camera")
+        }
+
+        picker.allowsEditing = true
+    }
+
+    func handleLibraryImage(){
+        let picker = UIImagePickerController()
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            picker.delegate = self as? UIImagePickerControllerDelegate & UINavigationControllerDelegate
+            picker.sourceType = .photoLibrary
+            picker.present(picker, animated: true, completion: nil)
+            //present(picker, animated: true, completion: nil)
+
+        } else {
+            print("No photo library")
+        }
+
+        picker.allowsEditing = true
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let selectedPhoto = info[UIImagePickerControllerEditedImage] as? UIImage
+        picker.dismiss(animated: true, completion: nil)
+    }
+
+
+
+
+    
+
+    
+
+
 
 }

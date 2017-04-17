@@ -1,7 +1,9 @@
 import UIKit
 import SnapKit
+import Photos
+import MobileCoreServices
 
-class DropDownView: UIView {
+class DropDownView: UIView, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     weak var delegate: DropDrownViewDelegate!
     var manualEntryButton: UIButton!
@@ -70,6 +72,7 @@ class DropDownView: UIView {
 
         self.scanReceiptButton.addTarget(self, action: #selector(scanReceiptButtonTapped), for: .touchUpInside)
     }
+
 
     // MARK: - Delegate
 

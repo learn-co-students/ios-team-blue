@@ -1,13 +1,16 @@
 import UIKit
 import SnapKit
 
-class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DropDrownViewDelegate {
+
+class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, DropDrownViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
     var tableView: UITableView!
     let store = RecipeDataStore.shared
     var addButton = UIBarButtonItem()
     var dropDownView: DropDownView!
     var addButtonTapped = false
+    var newMedia: Bool?
+
 
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
@@ -119,9 +122,10 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func scanReceiptButtonTapped() {
         let scanReceiptViewController = ScanReceiptViewController()
         self.present(scanReceiptViewController, animated: true, completion: nil)
+
     }
 
-    
+       
     
     
 }
