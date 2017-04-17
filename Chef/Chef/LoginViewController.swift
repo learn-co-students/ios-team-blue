@@ -18,6 +18,8 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     }
 
     func signUp() {
+        self.loginView.toggleLoading()
+
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
         }
@@ -25,12 +27,16 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             if success {
                 self.logIn()
             } else {
-                self.shakeTextFields()
+                self.loginView.shakeTextFields()
             }
         }
     }
     
     func logIn() {
+        if !self.loginView.isLoading {
+            self.loginView.toggleLoading()
+        }
+
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
             return
         }
@@ -39,7 +45,7 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                 let user = User(email: email)
                 self.store.setUser(user)
 
-                FirebaseManager.checkIfUserExists(user) { (userExists) in
+                FirebaseManager.checkIfUserExists(user) { userExists in
                     if userExists {
                         self.store.pullDataForUser(user) {
                             self.pushToTabBarController()
@@ -48,24 +54,20 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                         FirebaseManager.addUser(user)
                         self.pushToTabBarController()
                     }
+
+                    self.loginView.toggleLoading()
                 }
             } else {
-                self.shakeTextFields()
+                self.loginView.shakeTextFields()
             }
         }
-    }
-
-    func shakeTextFields() {
-        self.loginView.usernameTextField.shake()
-        self.loginView.passwordTextField.shake()
     }
 
 
     // MARK: - Login View Delegate
 
     func backgroundTapped() {
-        self.loginView.usernameTextField.resignFirstResponder()
-        self.loginView.passwordTextField.resignFirstResponder()
+        self.loginView.hideKeyboard()
     }
 
     func backgroundDoubleTapped() {
