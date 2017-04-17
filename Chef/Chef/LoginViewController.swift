@@ -17,7 +17,15 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         self.loginView.snapToSuperview()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
         if self.loginView.isLoading {
             self.loginView.toggleLoading()
             self.loginView.usernameTextField.text = ""

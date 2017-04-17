@@ -9,10 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var rootNavController: UINavigationController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
         FIRApp.configure()
-
-        UIApplication.shared.statusBarStyle = .lightContent
 
         let loginViewController = LoginViewController()
 
