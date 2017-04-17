@@ -17,6 +17,14 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         self.loginView.snapToSuperview()
     }
 
+    override func viewDidDisappear(_ animated: Bool) {
+        if self.loginView.isLoading {
+            self.loginView.toggleLoading()
+            self.loginView.usernameTextField.text = ""
+            self.loginView.passwordTextField.text = ""
+        }
+    }
+
     func signUp() {
         self.loginView.toggleLoading()
 
@@ -27,7 +35,12 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             if success {
                 self.logIn()
             } else {
-                self.loginView.shakeTextFields()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.loginView.toggleLoading()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self.loginView.shakeTextFields()
+                    }
+                }
             }
         }
     }
@@ -54,11 +67,14 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                         FirebaseManager.addUser(user)
                         self.pushToTabBarController()
                     }
-
-                    self.loginView.toggleLoading()
                 }
             } else {
-                self.loginView.shakeTextFields()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    self.loginView.toggleLoading()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                        self.loginView.shakeTextFields()
+                    }
+                }
             }
         }
     }
