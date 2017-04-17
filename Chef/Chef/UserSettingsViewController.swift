@@ -14,6 +14,9 @@ class UserSettingsViewController: UIViewController, UserSettingsDelegate {
         self.view.addSubview(settingsView)
         settingsView.snapToSuperview()
         self.navigationItem.title = "User Settings"
+
+        
+
     }
 
 

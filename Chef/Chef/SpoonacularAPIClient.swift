@@ -13,7 +13,7 @@ final class SpoonacularAPIClient {
         //If the user has no dietary restriction/intolerances
         if user.allergyList?.isEmpty == false && user.dietList?.isEmpty == false {
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
-            let url = baseURL + ingedients + otherInfoURL
+            let url = baseURL + ingredients + otherInfoURL
             Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
                 (response) in
                 if let json = response.result.value {
@@ -26,11 +26,19 @@ final class SpoonacularAPIClient {
             }
         } else {
             //If the user does have diet/intolerances
-            let allergies = Helper.spoonacularEncode(items: user.allergyList)
-            let diets = Helper.spoonacularEncode(items: user.dietList)
+            let allergies = Helper.spoonacularEncode(items: user.allergyList!)
+            let diets = Helper.spoonacularEncode(items: user.dietList!)
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
             let exampleURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=\(diets)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true&intolerances=\(allergies)&limitLicense=false&number=100&offset=0&ranking=2"
-            
+            Alamofire.request(exampleURL, method: .get, headers: spoonacularAPIHeaders).responseJSON(completionHandler: { (response) in
+                if let json = response.result.value {
+                    if let responseJson = json  as? [JSONDictionary] {
+                        completion(.success(responseJson))
+                    } else {
+                        completion(.failure(.nodata))
+                    }
+                }
+            })
 
         }
 
