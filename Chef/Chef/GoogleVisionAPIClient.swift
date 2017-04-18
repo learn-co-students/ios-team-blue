@@ -3,7 +3,7 @@ import SwiftyJSON
 
 final class GoogleVisionAPIClient {
 
-    class func getDescriptionfor(_ photoURL: String, completion: @escaping (String) -> ()) {
+    class func getDescriptionfor(_ photoURL: String, completion: @escaping ([String]) -> ()) {
         let parameters: [String: Any] = [
             "requests": [
                 "image": ["source": ["imageUri": photoURL]],
@@ -28,13 +28,14 @@ final class GoogleVisionAPIClient {
                 let json = JSON(data: data)
                 if let description = json["responses"][0]["textAnnotations"][0]["description"].string {
                     print(description)
-                    completion(description)
+                    let prettyDescription = self.clean(text: description)
+                    completion(prettyDescription)
                 }
             }
         }).resume()
     }
 
-    class func clean(text: String) -> [String] {
+    private static func clean(text: String) -> [String] {
         let nonLetters = ["1", "2", "3", "4", "5","6", "7", "8", "9", "0", ".", ";", ",", "*", "%", "@"]
         let textByLine = text.components(separatedBy: "\n")
         var substanceText: [String] = []
@@ -53,7 +54,7 @@ final class GoogleVisionAPIClient {
         }
 
         var finalArray: [String] = []
-//This is ugly but works. This is WIP as we review and collect more receipt data.
+    //This is WIP as we review and collect more receipt data.
         for line in substanceText {
             let simpleLine = line.lowercased()
             if simpleLine.range(of: "refund") != nil ||

@@ -46,6 +46,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
             try? jpegData.write(to: imagePath)
         }
         dismiss(animated: true)
+        presentScannedReceiptViewController() //correct place to call?
     }
 
     static func getDocumentsDirectory() -> URL {
@@ -64,6 +65,11 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
             ac.addAction(UIAlertAction(title: "OK", style: .default))
             present(ac, animated: true)
         }
+    }
+
+    func presentScannedReceiptViewController() {
+    let scannedReceiptViewController = ScannedReceiptViewController()
+    self.present(scannedReceiptViewController, animated: true, completion: nil)
     }
     
     

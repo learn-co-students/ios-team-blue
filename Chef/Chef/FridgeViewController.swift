@@ -41,9 +41,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         if (editingStyle == UITableViewCellEditingStyle.delete){
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
-            DispatchQueue.main.async {
                 self.tableView.reloadData()
-            }
         }
     }
 

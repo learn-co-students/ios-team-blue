@@ -1,22 +1,24 @@
 import UIKit
-import SnapKit
 
 class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
-    var urlToLastPhoto: URL! = {
-        return DropDownViewController.getDocumentsDirectory()
-    }()
     var tableView: UITableView!
-
+    var urlToLastPhoto: String! = {
+        return "\(DropDownViewController.getDocumentsDirectory())"
+    }()
+    var parsedIngredients: [String]!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        setParsedIngredients()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+
+    func setParsedIngredients() {
+        GoogleVisionAPIClient.getDescriptionfor(urlToLastPhoto, completion: { (ingredientsList) in
+            self.parsedIngredients = ingredientsList
+        })
     }
 
     // MARK: - Data Source
@@ -26,10 +28,20 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100
+        return parsedIngredients.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptDataCell", for: indexPath) as! ReceiptDataCell
+        cell.ingredientTextField.text = parsedIngredients[indexPath.row]
+        return cell
+
     }
 
     // MARK: - Delegate
+
+
+
 
     // MARK: - UI
 
@@ -40,7 +52,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
             tv.dataSource = self
             tv.delegate = self
             tv.layer.borderColor = Style.flatironBlue.cgColor
-            return cv
+            return tv
         }()
 
         self.view.addSubview(self.tableView)

@@ -1,24 +1,34 @@
-//
-//  ReceiptDataCell.swift
-//  Chef
-//
-//  Created by Sejan Miah on 4/18/17.
-//  Copyright © 2017 Blue Team. All rights reserved.
-//
-
 import UIKit
+import SnapKit
 
 class ReceiptDataCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    var ingredientTextField: UITextField!
+
+    init(frame: CGRect) {
+        //      init(frame: frame)
+        super.init(style: .default, reuseIdentifier: "ReceiptDataCell")
+        self.commonInit()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.commonInit()
     }
 
+    private func commonInit() {
+        self.backgroundColor = .white
+
+        self.ingredientTextField = UITextField()
+        self.addSubview(ingredientTextField)
+        self.ingredientTextField.snp.makeConstraints { make in
+            make.top.left.equalToSuperview().offset(2)
+            make.width.equalToSuperview().multipliedBy(0.6)
+            make.height.equalToSuperview().multipliedBy(0.8)
+        }
+        
+        
+        
+    }
+    
 }
