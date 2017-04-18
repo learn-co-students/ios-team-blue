@@ -85,12 +85,12 @@ final class RecipeDataStore {
 
             if let allergyList = allergies {
                 for item in allergyList {
-                    self.user.allergyList?.append(item)
+                    self.user.allergyList.append(item)
                 }
             }
             if let dietList = diet {
                 for item in dietList {
-                    self.user.dietList?.append(item)
+                    self.user.dietList.append(item)
                 }
             }
 

@@ -11,8 +11,10 @@ final class SpoonacularAPIClient {
     private static let otherInfoURL = "&limitLicense=false&number=20&ranking=1"
 
     class func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+
         //If the user has no dietary restriction/intolerances
-        if user.allergyList == nil && user.dietList == nil {
+        if user.allergyList.isEmpty && user.dietList.isEmpty {
+             print("Doin the standard call")
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
             let url = baseURL + ingredients + otherInfoURL
             Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
@@ -25,32 +27,43 @@ final class SpoonacularAPIClient {
                     }
                 }
             }
-        } 
-            else {
+        } else {
             //If the user does have diet/intolerances
-            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?"
-
-            var parameters: [String: Any] = [
-                "addRecipeInformation": true,
-                "instructionsRequired": true,
-                "limitLicense": false,
-                "number": 100,
-                "offset": 0,
-                "ranking": 2
-            ]
-            
-            if let allergyList = user.allergyList {
-                let allergies = Helper.spoonacularEncode(items: allergyList)
-                parameters["intolerances"] = allergies
-            }
-            if let dietList = user.dietList {
-                let diets = Helper.spoonacularEncode(items: dietList)
-                parameters["diet"] = diets
-            }
+//            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?"
+//            var parameters: [String: Any] = [
+//                "addRecipeInformation": true,
+//                "instructionsRequired": true,
+//                "limitLicense": false,
+//                "number": 100,
+//                "offset": 0,
+//                "ranking": 2
+//            ]
+//            if let allergyList = user.allergyList {
+//                let allergies = Helper.spoonacularEncode(items: allergyList)
+//                parameters["intolerances"] = allergies
+//            }
+//            if let dietList = user.dietList {
+//                let diets = Helper.spoonacularEncode(items: dietList)
+//                parameters["diet"] = diets
+//            }
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
-            parameters["includeIngredients"] = ingredients
+//            parameters["includeIngredients"] = ingredients
+            var allergyList = String()
+            var dietList = String()
+            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true\(dietList)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true\(allergyList)&limitLicense=false&number=100&offset=0&ranking=2"
 
-            Alamofire.request(complexURL, method: .get, parameters: parameters, encoding: JSONEncoding.default, headers: spoonacularAPIHeaders).responseJSON(completionHandler: { (response) in
+            if !user.dietList.isEmpty{
+                let diets = Helper.spoonacularEncode(items: user.dietList)
+                dietList = "&diet=\(diets)"
+            }
+            if !user.allergyList.isEmpty {
+                let allergies = Helper.spoonacularEncode(items: user.allergyList)
+                allergyList = "&intolerances=\(allergies)"
+            }
+            print("Doin the complex call!!!")
+//            let useURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=Vegetarian&fillIngredients=false&includeIngredients=spinach%2C+eggs%2C+pomegranate%2C+kale%2C+bread%2C+sugar%2C+potatoes%2C+garlic&instructionsRequired=true&intolerances=gluten%2C+seafood&limitLicense=false&number=100&offset=0&ranking=2"
+
+            Alamofire.request(complexURL, method: .get, headers: spoonacularAPIHeaders).responseJSON(completionHandler: { (response) in
                 if let json = response.result.value {
                     if let responseJSON = json  as? [JSONDictionary] {
                         completion(.success(responseJSON))
@@ -130,21 +143,6 @@ final class SpoonacularAPIClient {
             completion(.success(fullRecipe))
         }
     }
-
-    static func testCall(completion: @escaping (JSONDictionary) -> ()) {
-        print("Testing has begun")
-        let ingredients = ["red onion", "baby carrots", "green apple", "kale", "eggplant", "potatoes", "chicken broth", "butter", "garlic", "bread"]
-        let encodedIng = Helper.spoonacularEncode(items: ingredients)
-        let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=paleo%2Cvegetarian&fillIngredients=false&includeIngredients=\(encodedIng)&instructionsRequired=true&intolerances=peanut%2Cshellfish&limitLicense=false&number=100&offset=0&ranking=2"
-        Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { (response) in
-            if let jsonResponse = response.result.value as? JSONDictionary {
-                completion(jsonResponse)
-            } else {
-                print("The error is ", response.error?.localizedDescription)
-            }
-        }
-    }
-
 }
 
 class Helper {

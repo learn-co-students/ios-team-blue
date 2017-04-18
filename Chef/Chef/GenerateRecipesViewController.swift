@@ -16,11 +16,13 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
             DispatchQueue.main.async {
         
                 self.collectionView.reloadData()
-                print("The recipes are ", self.store.recipes)
+                print("The recipes are ")
+                for recipe in self.store.recipes {
+                    print(recipe.title)
+                }
             }
         }
     }
-
 
     // MARK: - Data Source
 

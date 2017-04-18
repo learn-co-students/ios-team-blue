@@ -5,8 +5,8 @@ struct User: CustomStringConvertible {
     var email: String
     var favRecipes: [String]
     var fridge: [String]
-    var dietList: [String]?
-    var allergyList: [String]?
+    var dietList = [String]()
+    var allergyList = [String]()
     var id: String {
         var str = self.email
         str = str.replacingOccurrences(of: "@", with: "")
