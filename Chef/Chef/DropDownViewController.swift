@@ -5,7 +5,6 @@ import Photos
 class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     var dropDownView: DropDownView!
-    //var image: UIImage!
 
     override func viewDidLoad() {
         print(#function)
@@ -49,8 +48,6 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         }
         dismiss(animated: true)
     }
-
-//    the first parameter of FileManager.default.urls asks for the documents directory, and its second parameter adds that we want the path to be relative to the user's home directory. This returns an array that nearly always contains only one thing: the user's documents directory. So, we pull out the first element and return it.
 
      static func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
