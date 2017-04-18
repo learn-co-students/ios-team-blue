@@ -6,6 +6,7 @@ class ManualEntryView: UIView {
     var foodEntryTextField: UITextField!
     var saveFoodButton: UIButton!
     weak var delegate: ManualEntryViewDelegate!
+    var tableView: UITableView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +22,7 @@ class ManualEntryView: UIView {
         self.createFoodEntryTextField()
         self.createSaveFoodButton()
         self.createBackground()
+        self.createAutoCpmpleteTable()
     }
 
     func createBackground() {
@@ -44,7 +46,7 @@ class ManualEntryView: UIView {
             make.width.equalToSuperview().offset(0.8)
         }
     }
-
+    //TODO: - Add cancel button to return to previous view without making any changes.
     func createSaveFoodButton() {
 
         self.saveFoodButton = {
@@ -70,6 +72,17 @@ class ManualEntryView: UIView {
         }
 
         self.saveFoodButton.addTarget(self, action: #selector(saveFoodButtonTapped), for: .touchUpInside)
+    }
+
+    func createAutoCpmpleteTable() {
+        tableView = UITableView()
+        self.addSubview(tableView)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.snp.makeConstraints { (make) in
+            make.top.equalTo(foodEntryTextField.snp.bottom).offset(3)
+            make.width.height.equalToSuperview().multipliedBy(0.5)
+            make.centerX.equalToSuperview()
+        }
     }
 
     func saveFoodButtonTapped() {
