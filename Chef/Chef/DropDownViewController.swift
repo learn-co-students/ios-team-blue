@@ -7,7 +7,6 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     var dropDownView: DropDownView!
 
     override func viewDidLoad() {
-        print(#function)
         super.viewDidLoad()
 
         self.dropDownView = DropDownView()
@@ -20,13 +19,11 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     }
 
     func manualEntryButtonTapped() {
-        print("DropDownViewController -- " + #function)
         let manualEntryViewController = ManualEntryViewController()
         self.present(manualEntryViewController, animated: true, completion: nil)
     }
 
     func scanReceiptButtonTapped() {
-        print(#function)
         self.openCameraButton(self.dropDownView.scanReceiptButton)
     }
 
