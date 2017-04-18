@@ -79,7 +79,13 @@ class FirebaseManager {
 
             completion(favRecipesIDs, fridge)
         })
-        
-        
+    }
+
+    static func addDiet(_ diet: [String], to user: User) {
+        self.usersRef.child(user.id).child("dietaryRestrictions").child("diet").setValue(diet)
+    }
+
+    static func addAllergy(_ allergy: [String], to user: User) {
+        self.usersRef.child(user.id).child("dietaryRestrictions").child("allergies").setValue(allergy)
     }
 }
