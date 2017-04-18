@@ -145,17 +145,17 @@ class AddDietView: UIView {
         self.addSubview(sulfite)
         self.addSubview(treeNut)
         self.addSubview(wheat)
-        dairy.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        egg.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        gluten.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        peanut.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        sesame.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        seafood.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        shellfish.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        soy.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        sulfite.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        treeNut.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
-        wheat.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
+        dairy.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        egg.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        gluten.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        peanut.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        sesame.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        seafood.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        shellfish.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        soy.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        sulfite.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        treeNut.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
+        wheat.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
 
         egg.backgroundColor = Style.flatironBlue
         egg.setTitle(" Egg + ", for: .normal)
@@ -170,7 +170,7 @@ class AddDietView: UIView {
         wheat.setTitle(" Wheat ", for: .selected)
         wheat.layer.cornerRadius = 8
         wheat.snp.makeConstraints { (make) in
-            make.right.equalTo(self.snp.centerX).offset(-1.5)
+            make.right.equalTo(self.snp.centerX).offset(8.5)
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
         soy.backgroundColor = Style.flatironBlue
@@ -178,7 +178,7 @@ class AddDietView: UIView {
         soy.setTitle(" Soy ", for: .selected)
         soy.layer.cornerRadius = 8
         soy.snp.makeConstraints { (make) in
-            make.left.equalTo(self.snp.centerX).offset(1.5)
+            make.left.equalTo(self.snp.centerX).offset(10.5)
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
         dairy.backgroundColor = Style.flatironBlue
@@ -272,5 +272,9 @@ class AddDietView: UIView {
     }
     func saveButtonTapped() {
         self.delegate.saveButtonTapped()
+    }
+
+    func allergyButtonTapped(_ button: UIButton) {
+        self.delegate.allergyButtonTapped(button)
     }
 }

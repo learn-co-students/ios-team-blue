@@ -27,18 +27,34 @@ class AddDietViewController: UIViewController, AddDietDelegate {
         _ = btnTitle?.characters.popFirst()
         if button.isSelected {
             button.isSelected = false
-            saveBtnSelection(button, btnTitle: btnTitle)
             animate(button)
-            if let indexToDelete = self.dietaryRestrictions.index(of: btnTitle!) {
-                self.dietaryRestrictions.remove(at: indexToDelete)
+            if let indexToDelete = self.dietList.index(of: btnTitle!) {
+                self.dietList.remove(at: indexToDelete)
             }
         } else {
             button.isSelected = true
-            saveBtnSelection(button, btnTitle: btnTitle)
             animate(button)
-            self.dietaryRestrictions.append(btnTitle!)
+            self.dietList.append(btnTitle!)
         }
-        print(self.dietaryRestrictions)
+        print(self.dietList)
+    }
+
+    func allergyButtonTapped(_ button: UIButton) {
+        var btnTitle = button.title(for: .selected)
+        _ = btnTitle?.characters.popLast()
+        _ = btnTitle?.characters.popFirst()
+        if button.isSelected {
+            button.isSelected = false
+            animate(button)
+            if let indexToDelete = self.allergyList.index(of: btnTitle!) {
+                self.allergyList.remove(at: indexToDelete)
+            }
+        } else {
+            button.isSelected = true
+            animate(button)
+            self.allergyList.append(btnTitle!)
+        }
+        print(self.allergyList)
     }
 
     func animate(_ button: UIButton) {
