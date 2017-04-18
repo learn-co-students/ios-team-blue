@@ -31,18 +31,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as! RecipeCell
-
-        let recipe = self.store.savedRecipes[indexPath.row]
-
-        cell.nameLabel.text = recipe.title
-
-        let url = URL(string: recipe.imageLink)
-        cell.imgView.kf.setImage(with: url,
-                                 placeholder: nil,
-                                 options: [.transition(.fade(2))],
-                                 progressBlock: nil,
-                                 completionHandler: nil)
-
+        cell.recipe = self.store.savedRecipes[indexPath.row]
         return cell
     }
 

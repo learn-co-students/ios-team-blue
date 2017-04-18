@@ -1,5 +1,4 @@
 import UIKit
-import Kingfisher
 
 class GenerateRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
@@ -32,18 +31,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as! RecipeCell
-
-        let recipe = self.store.recipes[indexPath.row]
-
-        cell.nameLabel.text = recipe.title
-
-        let url = URL(string: recipe.imageLink)
-        cell.imgView.kf.setImage(with: url,
-                           placeholder: nil,
-                           options: [.transition(.fade(2))],
-                           progressBlock: nil,
-                           completionHandler: nil)
-
+        cell.recipe = self.store.recipes[indexPath.row]
         return cell
     }
 
