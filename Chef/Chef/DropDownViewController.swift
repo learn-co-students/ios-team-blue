@@ -6,6 +6,8 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
 
     var dropDownView: DropDownView!
 
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,7 +40,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
         let imageName = UUID().uuidString
-        let imagePath = getDocumentsDirectory().appendingPathComponent(imageName)
+        let imagePath = DropDownViewController.getDocumentsDirectory().appendingPathComponent(imageName)
 
         if let jpegData = UIImageJPEGRepresentation(image, 80) {
             try? jpegData.write(to: imagePath)
@@ -46,7 +48,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         dismiss(animated: true)
     }
 
-     static func getDocumentsDirectory() -> URL {
+    static func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
         return documentsDirectory
@@ -63,7 +65,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
             present(ac, animated: true)
         }
     }
-
-
+    
+    
     
 }

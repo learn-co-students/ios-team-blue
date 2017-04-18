@@ -1,9 +1,12 @@
 import UIKit
-import Snapkit
+import SnapKit
 
 class ScannedReceiptViewController: UIViewController {
 
-    var urlToLastPhoto: URL!
+    var urlToLastPhoto: URL! = {
+        return DropDownViewController.getDocumentsDirectory()
+    }()
+
 
 
     override func viewDidLoad() {
@@ -15,6 +18,6 @@ class ScannedReceiptViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
-
-
+    
+    
 }
