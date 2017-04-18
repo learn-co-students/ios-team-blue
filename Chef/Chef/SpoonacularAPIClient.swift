@@ -52,26 +52,26 @@ final class SpoonacularAPIClient {
             var dietList = String()
             let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true\(dietList)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true\(allergyList)&limitLicense=false&number=100&offset=0&ranking=2"
 
-            if !user.dietList.isEmpty{
-                let diets = Helper.spoonacularEncode(items: user.dietList)
-                dietList = "&diet=\(diets)"
-            }
-            if !user.allergyList.isEmpty {
-                let allergies = Helper.spoonacularEncode(items: user.allergyList)
-                allergyList = "&intolerances=\(allergies)"
-            }
+//            if !user.dietList.isEmpty{
+//                let diets = Helper.spoonacularEncode(items: user.dietList)
+//                dietList = "&diet=\(diets)"
+//            }
+//            if !user.allergyList.isEmpty {
+//                let allergies = Helper.spoonacularEncode(items: user.allergyList)
+//                allergyList = "&intolerances=\(allergies)"
+//            }
             print("Doin the complex call!!!")
-//            let useURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true&diet=Vegetarian&fillIngredients=false&includeIngredients=spinach%2C+eggs%2C+pomegranate%2C+kale%2C+bread%2C+sugar%2C+potatoes%2C+garlic&instructionsRequired=true&intolerances=gluten%2C+seafood&limitLicense=false&number=100&offset=0&ranking=2"
 
-            Alamofire.request(complexURL, method: .get, headers: spoonacularAPIHeaders).responseJSON(completionHandler: { (response) in
+            Alamofire.request(complexURL, method: .get, headers: spoonacularAPIHeaders).responseJSON {
+                (response) in
                 if let json = response.result.value {
-                    if let responseJSON = json  as? [JSONDictionary] {
+                    if let responseJSON = json as? [[String: Any]] {
                         completion(.success(responseJSON))
                     } else {
                         completion(.failure(.nodata))
                     }
                 }
-            })
+            }
         }
     }
 
