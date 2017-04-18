@@ -12,6 +12,9 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
         setParsedIngredients()
+
+        self.navigationItem.title = "Scanned Receipt Contents"
+        self.createUI()
     }
 
 
