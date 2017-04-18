@@ -1,12 +1,18 @@
 import UIKit
 import SnapKit
+import Kingfisher
 
 class RecipeCell: UICollectionViewCell {
 
-    var imgView: UIImageView!
+    var imageView: UIImageView!
     var nameLabel: UILabel!
-    var favoriteButton: UIButton!
-    var isFavorited: Bool = false
+    var heartButton: UIButton!
+
+    var recipe: Recipe! {
+        didSet {
+            self.didSetRecipe()
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,14 +27,12 @@ class RecipeCell: UICollectionViewCell {
     private func commonInit() {
         self.backgroundColor = .white
 
-        self.imgView = UIImageView()
-
-        self.addSubview(imgView)
-
-        self.imgView.snp.makeConstraints { (make) in
+        self.imageView = UIImageView()
+        self.addSubview(imageView)
+        self.imageView.snp.makeConstraints { make in
             make.top.left.equalToSuperview().offset(5)
             make.width.equalToSuperview().offset(-10)
-            make.height.equalTo(self.imgView.snp.width)
+            make.height.equalTo(self.imageView.snp.width)
         }
 
         self.nameLabel = {
@@ -38,47 +42,60 @@ class RecipeCell: UICollectionViewCell {
             lb.textColor = Style.flatironBlue
             return lb
         }()
-
         self.addSubview(nameLabel)
-
-        self.nameLabel.snp.makeConstraints { (make) in
-            make.top.equalTo(self.imgView.snp.bottom).offset(8)
+        self.nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.imageView.snp.bottom).offset(8)
             make.left.equalToSuperview().offset(8)
             make.right.equalToSuperview().offset(-8)
         }
 
-        self.favoriteButton = {
+        self.heartButton = {
             let heartImage = UIImage(named: "heart")!.withRenderingMode(.alwaysTemplate)
             let fb = UIButton()
             fb.setImage(heartImage, for: .normal)
-            fb.imageView?.tintColor = .lightGray
             fb.backgroundColor = .white
+            fb.addTarget(self, action: #selector(tapHeart), for: .touchUpInside)
             return fb
         }()
-
-        self.addSubview(favoriteButton)
-
-        self.favoriteButton.snp.makeConstraints { (make) in
+        self.addSubview(self.heartButton)
+        self.heartButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-8)
             make.centerX.equalToSuperview()
         }
-
-        self.favoriteButton.addTarget(self, action: #selector(favorited), for: .touchUpInside)
     }
 
-    func favorited(sender: UIButton) {
-        self.isFavorited = self.isFavorited ? false : true
+    private func didSetRecipe() {
+        let url = URL(string: recipe.imageLink)
+        self.imageView.kf.setImage(with: url,
+                                   placeholder: nil,
+                                   options: [],
+                                   progressBlock: nil,
+                                   completionHandler: nil)
 
-        if self.isFavorited {
+        self.nameLabel.text = self.recipe.title
+        
+        self.heartButton.imageView?.tintColor = self.recipe.isFavorite ? Style.flatironBlue : .lightGray
+    }
+
+
+    // MARK: - Actions
+
+    func tapHeart() {
+        self.recipe.isFavorite = !self.recipe.isFavorite
+        self.animateHeart()
+    }
+
+    private func animateHeart() {
+        if self.recipe.isFavorite {
             UIView.animate(withDuration: 1.5,
                            delay: 0,
                            usingSpringWithDamping: 30,
                            initialSpringVelocity: 10,
                            options: [.allowUserInteraction],
                            animations: {
-                self.favoriteButton.imageView?.tintColor = Style.flatironBlue
-                self.favoriteButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-                self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                self.heartButton.imageView?.tintColor = Style.flatironBlue
+                self.heartButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+                self.heartButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             })
         } else {
             UIView.animate(withDuration: 1.5,
@@ -87,9 +104,9 @@ class RecipeCell: UICollectionViewCell {
                            initialSpringVelocity: 10,
                            options: [.allowUserInteraction],
                            animations: {
-                self.favoriteButton.imageView?.tintColor = .lightGray
-                self.favoriteButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-                self.favoriteButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                self.heartButton.imageView?.tintColor = .lightGray
+                self.heartButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                self.heartButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             })
         }
     }
