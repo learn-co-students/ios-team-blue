@@ -36,6 +36,7 @@
 		7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */; };
 		7B8280461EA15374000914F8 /* SecretFoodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280451EA15374000914F8 /* SecretFoodDataStore.swift */; };
 		7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804D1EA51905000914F8 /* DropDownViewController.swift */; };
+		7B8280501EA66B90000914F8 /* ScannedReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
 		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
@@ -82,6 +83,7 @@
 		7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewDelegate.swift; sourceTree = "<group>"; };
 		7B8280451EA15374000914F8 /* SecretFoodDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecretFoodDataStore.swift; sourceTree = "<group>"; };
 		7B82804D1EA51905000914F8 /* DropDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
+		7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedReceiptViewController.swift; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */,
 				98D03D411E9D4F320089416D /* LoginViewController.swift */,
 				07752C731EA146840090F76E /* RecipeDetailViewController.swift */,
+				7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */,
+				7B8280501EA66B90000914F8 /* ScannedReceiptViewController.swift in Sources */,
 				07AC66BE1E981BAD0000F195 /* Style.swift in Sources */,
 				7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */,
 				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
