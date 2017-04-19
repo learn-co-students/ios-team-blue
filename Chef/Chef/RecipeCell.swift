@@ -38,7 +38,7 @@ class RecipeCell: UICollectionViewCell {
         self.nameLabel = {
             let lb = UILabel()
             lb.numberOfLines = 0
-            lb.font = UIFont(name: Style.regular, size: 14)
+            lb.font = Fonts.regular16
             lb.textColor = Style.flatironBlue
             return lb
         }()
