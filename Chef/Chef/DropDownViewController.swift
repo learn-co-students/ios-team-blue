@@ -6,8 +6,9 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
 
     var dropDownView: DropDownView!
 
+
+
     override func viewDidLoad() {
-        print(#function)
         super.viewDidLoad()
 
         self.dropDownView = DropDownView()
@@ -20,13 +21,11 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     }
 
     func manualEntryButtonTapped() {
-        print("DropDownViewController -- " + #function)
         let manualEntryViewController = ManualEntryViewController()
         self.present(manualEntryViewController, animated: true, completion: nil)
     }
 
     func scanReceiptButtonTapped() {
-        print(#function)
         self.openCameraButton(self.dropDownView.scanReceiptButton)
     }
 
@@ -37,4 +36,36 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         self.present(imagePicker, animated: true, completion: nil)
     }
 
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
+        let imageName = UUID().uuidString
+        let imagePath = DropDownViewController.getDocumentsDirectory().appendingPathComponent(imageName)
+
+        if let jpegData = UIImageJPEGRepresentation(image, 80) {
+            try? jpegData.write(to: imagePath)
+        }
+        dismiss(animated: true)
+    }
+
+    static func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+
+    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "Saved!", message: "Your image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+    
+    
+    
 }

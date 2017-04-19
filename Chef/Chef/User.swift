@@ -5,8 +5,8 @@ struct User: CustomStringConvertible {
     var email: String
     var favRecipes: [String]
     var fridge: [String]
-    var dietaryRestrictions: [String]?
-    var allergies: [String]?
+    var dietList = [String]()
+    var allergyList = [String]()
 
     var id: String {
         var str = self.email
