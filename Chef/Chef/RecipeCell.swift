@@ -38,8 +38,8 @@ class RecipeCell: UICollectionViewCell {
         self.nameLabel = {
             let lb = UILabel()
             lb.numberOfLines = 0
-            lb.font = Fonts.regular16
-            lb.textColor = Style.flatironBlue
+            lb.font = Fonts.medium16
+            lb.textColor = Colors.flatironBlue
             return lb
         }()
         self.addSubview(nameLabel)
@@ -74,7 +74,7 @@ class RecipeCell: UICollectionViewCell {
 
         self.nameLabel.text = self.recipe.title
         
-        self.heartButton.imageView?.tintColor = self.recipe.isFavorite ? Style.flatironBlue : .lightGray
+        self.heartButton.imageView?.tintColor = self.recipe.isFavorite ? Colors.flatironBlue : .lightGray
     }
 
 
@@ -93,7 +93,7 @@ class RecipeCell: UICollectionViewCell {
                            initialSpringVelocity: 10,
                            options: [.allowUserInteraction],
                            animations: {
-                self.heartButton.imageView?.tintColor = Style.flatironBlue
+                self.heartButton.imageView?.tintColor = Colors.flatironBlue
                 self.heartButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
                 self.heartButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             })
