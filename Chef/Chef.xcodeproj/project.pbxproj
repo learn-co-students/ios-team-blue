@@ -20,12 +20,11 @@
 		07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8381E92959400F3354A /* AppDelegate.swift */; };
 		07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 07BAD8441E92959400F3354A /* LaunchScreen.storyboard */; };
 		07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07BAD8701E92E7B000F3354A /* FirebaseManager.swift */; };
-		07D183471EA4FDFF000B8F91 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D183461EA4FDFF000B8F91 /* RecipeView.swift */; };
-		07D183491EA4FE2B000B8F91 /* FullRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D183481EA4FE2B000B8F91 /* FullRecipe.swift */; };
 		07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D1834C1EA54158000B8F91 /* SettingsCell.swift */; };
 		07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE891E9BD88300928E5B /* LoginView.swift */; };
 		07D7CE8D1E9BDA8A00928E5B /* UIView+SnapKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */; };
 		07D7CE901E9BE39B00928E5B /* LoginViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */; };
+		07E2865B1EA713AD00E6C90A /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2865A1EA713AD00E6C90A /* SectionHeaderView.swift */; };
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
 		7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280371EA1533B000914F8 /* FridgeCell.swift */; };
 		7B82803A1EA15344000914F8 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280391EA15344000914F8 /* DropDownView.swift */; };
@@ -67,12 +66,11 @@
 		07BAD8451E92959400F3354A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		07BAD8471E92959400F3354A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		07BAD8701E92E7B000F3354A /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
-		07D183461EA4FDFF000B8F91 /* RecipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
-		07D183481EA4FE2B000B8F91 /* FullRecipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FullRecipe.swift; sourceTree = "<group>"; };
 		07D1834C1EA54158000B8F91 /* SettingsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		07D7CE891E9BD88300928E5B /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		07D7CE8C1E9BDA8A00928E5B /* UIView+SnapKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SnapKit.swift"; sourceTree = "<group>"; };
 		07D7CE8F1E9BE39B00928E5B /* LoginViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewDelegate.swift; sourceTree = "<group>"; };
+		07E2865A1EA713AD00E6C90A /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7B8280371EA1533B000914F8 /* FridgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeCell.swift; sourceTree = "<group>"; };
 		7B8280391EA15344000914F8 /* DropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewDelegate.swift; sourceTree = "<group>"; };
@@ -117,7 +115,6 @@
 			children = (
 				7B8ADF1E1E92E77C000A3362 /* User.swift */,
 				7BF5330A1E95962F00687363 /* Recipe.swift */,
-				07D183481EA4FE2B000B8F91 /* FullRecipe.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -160,8 +157,8 @@
 				7B8280391EA15344000914F8 /* DropDownView.swift */,
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 				7B8280371EA1533B000914F8 /* FridgeCell.swift */,
-				07D183461EA4FDFF000B8F91 /* RecipeView.swift */,
 				07D1834C1EA54158000B8F91 /* SettingsCell.swift */,
+				07E2865A1EA713AD00E6C90A /* SectionHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -417,13 +414,12 @@
 				7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */,
 				98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
-				07D183471EA4FDFF000B8F91 /* RecipeView.swift in Sources */,
+				07E2865B1EA713AD00E6C90A /* SectionHeaderView.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
 				7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
 				07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */,
 				98B5FC2B1EA092C600217180 /* AddDietDelegate.swift in Sources */,
-				07D183491EA4FE2B000B8F91 /* FullRecipe.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
@@ -565,7 +561,7 @@
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sejan-blue-team.Chef";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blue-team.Chef";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -580,7 +576,7 @@
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sejan-blue-team.Chef";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.blue-team.Chef";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

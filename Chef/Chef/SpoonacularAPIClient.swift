@@ -65,8 +65,11 @@ final class SpoonacularAPIClient {
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
             if let json = response.result.value {
                 if let responseJSON = json as? JSONDictionary {
-                    let recipe = Recipe(dictionary: responseJSON)
-                    completion(.success(recipe))
+                    if let recipe = Recipe(dictionary: responseJSON) {
+                        completion(.success(recipe))
+                    } else {
+                        print(#function + " -- skipped recipe")
+                    }
                 } else {
                     completion(.failure(.nodata))
                 }
@@ -90,16 +93,47 @@ final class SpoonacularAPIClient {
         }
     }
 
-    static func fetchFullRecipe(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+    static func fetchRecipeDetail(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(id)/information?includeNutrition=false"
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
-            guard let json = response.result.value as? JSONDictionary else {
+            guard let recipeDetail = response.result.value as? JSONDictionary else {
                 completion(.failure(SpoonacularAPIClientError.nodata))
                 return
             }
-            let fullRecipe = FullRecipe(dictionary: json)
-            completion(.success(fullRecipe))
+            completion(.success(recipeDetail))
         }
+    }
+
+    static func parseIngredients(_ json: [JSONDictionary]) -> [String] {
+        var ingredients = [String]()
+        for entry in json {
+            guard let ingredient = entry["originalString"] as? String else {
+//                print(#function + " -- failed")
+                fatalError(#function + " -- failed")
+            }
+            ingredients.append(ingredient)
+        }
+
+        return ingredients
+    }
+
+    static func parseInstructions(_ json: [JSONDictionary]) -> [String] {
+        var instructions = [String]()
+
+        let instructionsArray = json[0]
+
+        guard let steps = instructionsArray["steps"] as? [JSONDictionary] else {
+            fatalError(#function + " -- failed")
+        }
+
+        for step in steps {
+            guard let instruction = step["step"] as? String else {
+                fatalError()
+            }
+            instructions.append(instruction)
+        }
+
+        return instructions
     }
 
 }
