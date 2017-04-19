@@ -6,7 +6,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     var urlToLastPhoto: String! = {
         return "\(DropDownViewController.getDocumentsDirectory())"
     }()
-    var parsedIngredients: [String]!
+    var parsedIngredients = [String]()
 
 
     override func viewDidLoad() {
@@ -17,10 +17,13 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
         self.createUI()
     }
 
-
     func setParsedIngredients() {
         GoogleVisionAPIClient.getDescriptionfor(urlToLastPhoto, completion: { (ingredientsList) in
-            self.parsedIngredients = ingredientsList
+            DispatchQueue.main.async {
+                self.parsedIngredients = ingredientsList
+                print(ingredientsList)
+                self.tableView.reloadData()
+            }
         })
     }
 

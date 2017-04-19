@@ -62,13 +62,10 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
                 try? jpegData.write(to: imagePath)
             }
 
-            picker.dismiss(animated: true) {
+            dismiss(animated: true) {
                 print(#function)
                 self.presentScannedReceiptViewController()
             }
-
-
-            
         }
     }
 
@@ -83,12 +80,13 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
 //            try? jpegData.write(to: imagePath)
 //        }
 //
-//        picker.dismiss(animated: true) {
+//        dismiss(animated: true) {
 //            print(#function)
+//            self.presentScannedReceiptViewController()
 //        }
 //    }
 
-    static func getDocumentsDirectory() -> URL {
+     static func getDocumentsDirectory() -> URL {
         print(#function)
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentsDirectory = paths[0]
