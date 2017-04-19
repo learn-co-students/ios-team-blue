@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702EB231E9C1863006754C4 /* NavigationController.swift */; };
+		075EE0401EA7CA70008DEA21 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */; };
 		07752C741EA146840090F76E /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07752C731EA146840090F76E /* RecipeDetailViewController.swift */; };
 		0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF761E9535F200C29E22 /* LoginTextField.swift */; };
 		0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF781E954B4F00C29E22 /* TabBarController.swift */; };
@@ -55,6 +56,7 @@
 
 /* Begin PBXFileReference section */
 		0702EB231E9C1863006754C4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		07752C731EA146840090F76E /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		0784DF761E9535F200C29E22 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		0784DF781E954B4F00C29E22 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,14 @@
 			name = DataStore;
 			sourceTree = "<group>";
 		};
+		075EE0411EA7EBA9008DEA21 /* TypeAliases */ = {
+			isa = PBXGroup;
+			children = (
+				075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */,
+			);
+			name = TypeAliases;
+			sourceTree = "<group>";
+		};
 		0784DF751E9535E300C29E22 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +255,7 @@
 				07AC66B41E9811E60000F195 /* Networking */,
 				07D7CE8E1E9BE38B00928E5B /* Protocols */,
 				07D7CE8B1E9BDA7900928E5B /* Extensions */,
+				075EE0411EA7EBA9008DEA21 /* TypeAliases */,
 				07AC66BC1E981B840000F195 /* Styling */,
 				07AC66BB1E98133D0000F195 /* Hidden */,
 				07AC66BA1E98130B0000F195 /* Configurations */,
@@ -427,6 +438,7 @@
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
 				7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
+				075EE0401EA7CA70008DEA21 /* TypeAliases.swift in Sources */,
 				07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */,
 				98B5FC2B1EA092C600217180 /* AddDietDelegate.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
