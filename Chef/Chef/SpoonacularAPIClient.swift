@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 import Alamofire
 import SwiftyJSON
 
@@ -8,24 +9,49 @@ final class SpoonacularAPIClient {
     private static let otherInfoURL = "&limitLicense=false&number=20&ranking=1"
 
     class func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        var container = ""
-        for ingredient in user.fridge {
-            if ingredient == user.fridge.first {
-                container += ingredient
-            } else {
-                container += "%2C\(ingredient)"
+
+        //If the user has no dietary restriction/intolerances
+        if user.allergyList.isEmpty && user.dietList.isEmpty {
+             print("Doin the standard call")
+            let ingredients = Helper.spoonacularEncode(items: user.fridge)
+            let url = baseURL + ingredients + otherInfoURL
+            print("The full URL is ", url)
+            Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
+                (response) in
+                if let json = response.result.value {
+                    if let responseJSON = json as? [[String: Any]] {
+                        completion(.success(responseJSON))
+                    } else {
+                        completion(.failure(.nodata))
+                    }
+                }
             }
-        }
+        } else {
+            //If the user does have diet/intolerances
+            let ingredients = Helper.spoonacularEncode(items: user.fridge)
+            var allergyList = ""
+            var dietList = ""
 
-        let url = baseURL + container + otherInfoURL
+            if !user.dietList.isEmpty{
+                let diets = Helper.spoonacularEncode(items: user.dietList)
+                dietList = "&diet=\(diets)"
+            }
+            if !user.allergyList.isEmpty {
+                let allergies = Helper.spoonacularEncode(items: user.allergyList)
+                allergyList = "&intolerances=\(allergies)"
+            }
 
-        Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
-            (response) in
-            if let json = response.result.value {
-                if let responseJSON = json as? [[String: Any]] {
-                    completion(.success(responseJSON))
-                } else {
-                    completion(.failure(.nodata))
+            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true\(dietList)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true\(allergyList)&limitLicense=false&number=100&offset=0&ranking=2"
+
+            Alamofire.request(complexURL, method: .get, headers: spoonacularAPIHeaders).responseJSON {
+                (response) in
+                if let json = response.result.value as? [String: Any] {
+                    if let responseJSON = json["results"] as? [[String: Any]] {
+                        print("We got the json and its", responseJSON)
+                        completion(.success(responseJSON))
+                    } else {
+                        completion(.failure(.nodata))
+                    }
                 }
             }
         }
@@ -102,6 +128,7 @@ final class SpoonacularAPIClient {
         }
     }
 
+
     static func parseIngredients(_ json: [JSONDictionary]) -> [String] {
         var ingredients = [String]()
         for entry in json {
@@ -135,3 +162,20 @@ final class SpoonacularAPIClient {
     }
 
 }
+
+class Helper {
+
+    static func spoonacularEncode(items: [String]) -> String {
+        var container  = ""
+        for item in items {
+            let newItem = item.replacingOccurrences(of: " ", with: "%20")
+            if newItem == items.first {
+                container += newItem
+            } else {
+                container += "%2C\(newItem)"
+            }
+        }
+        return container
+    }
+}
+

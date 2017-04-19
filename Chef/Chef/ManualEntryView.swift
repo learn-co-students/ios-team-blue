@@ -36,10 +36,10 @@ class ManualEntryView: UIView {
         self.foodEntryTextField = UITextField()
         self.foodEntryTextField.keyboardType = .default
         self.foodEntryTextField.layer.cornerRadius = 10
-        self.foodEntryTextField.textColor = Style.flatironBlue
+        self.foodEntryTextField.textColor = Colors.flatironBlue
         self.foodEntryTextField.borderStyle = .roundedRect
         self.foodEntryTextField.layer.borderWidth = 2
-        self.foodEntryTextField.layer.borderColor = Style.flatironBlue.cgColor
+        self.foodEntryTextField.layer.borderColor = Colors.flatironBlue.cgColor
 
         self.addSubview(self.foodEntryTextField)
 
@@ -54,12 +54,12 @@ class ManualEntryView: UIView {
 
         self.saveFoodButton = {
             let sf = UIButton()
-            sf.backgroundColor = Style.flatironBlue
+            sf.backgroundColor = Colors.flatironBlue
             sf.titleLabel?.textColor = UIColor.white
-            sf.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            sf.titleLabel?.font = Fonts.heavy18
             sf.layer.cornerRadius = 10
             sf.layer.borderWidth = 1
-            sf.layer.borderColor = Style.flatironBlue.cgColor
+            sf.layer.borderColor = Colors.flatironBlue.cgColor
             sf.setTitle("Save", for: .normal)
             return sf
         }()
@@ -78,12 +78,12 @@ class ManualEntryView: UIView {
     func createCancelButon() {
         self.cancelButton = {
             let cancel = UIButton()
-            cancel.backgroundColor = Style.flatironBlue
+            cancel.backgroundColor = Colors.flatironBlue
             cancel.titleLabel?.textColor = UIColor.white
-            cancel.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            cancel.titleLabel?.font = Fonts.heavy18
             cancel.layer.cornerRadius = 10
             cancel.layer.borderWidth = 1
-            cancel.layer.borderColor = Style.flatironBlue.cgColor
+            cancel.layer.borderColor = Colors.flatironBlue.cgColor
             cancel.setTitle("Cancel", for: .normal)
             return cancel
         }()

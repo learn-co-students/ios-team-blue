@@ -11,6 +11,9 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
 
         self.createUI()
         self.navigationItem.title = "User Settings"
+
+        
+
     }
 
 
@@ -33,7 +36,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
         case 2, 3:
             cell.label.textColor = .red
         default:
-            cell.label.textColor = Style.flatironBlue
+            cell.label.textColor = Colors.flatironBlue
         }
 
         return cell
