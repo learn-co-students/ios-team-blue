@@ -3,8 +3,6 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-typealias JSONDictionary = [String: Any]
-
 final class SpoonacularAPIClient {
 
     private static let baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="

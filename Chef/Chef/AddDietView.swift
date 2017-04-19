@@ -82,7 +82,7 @@ class AddDietView: UIView {
         vegan.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
         paleo.addTarget(self, action: #selector(dietButtonTapped), for: .touchUpInside)
 
-        pescetarian.backgroundColor = Style.flatironBlue
+        pescetarian.backgroundColor = Colors.flatironBlue
         pescetarian.setTitle(" Pescetarian + ", for: .normal)
         pescetarian.setTitle(" Pescetarian ", for: .selected)
         pescetarian.layer.cornerRadius = 8
@@ -90,7 +90,7 @@ class AddDietView: UIView {
             make.left.equalTo(self.snp.centerX).offset(1.5)
             make.top.equalTo(diet.snp.bottom).offset(10)
         }
-        veg.backgroundColor = Style.flatironBlue
+        veg.backgroundColor = Colors.flatironBlue
         veg.setTitle(" Vegetarian + ", for: .normal)
         veg.setTitle(" Vegetarian ", for: .selected)
         self.addSubview(veg)
@@ -99,7 +99,7 @@ class AddDietView: UIView {
             make.right.equalTo(self.snp.centerX).offset(-1.5)
             make.top.equalTo(diet.snp.bottom).offset(10)
         }
-        vegan.backgroundColor = Style.flatironBlue
+        vegan.backgroundColor = Colors.flatironBlue
         vegan.setTitle(" Vegan + ", for: .normal)
         vegan.setTitle(" Vegan ", for: .selected)
         self.addSubview(vegan)
@@ -109,7 +109,7 @@ class AddDietView: UIView {
             make.top.equalTo(pescetarian.snp.bottom).offset(3)
         }
 
-        paleo.backgroundColor = Style.flatironBlue
+        paleo.backgroundColor = Colors.flatironBlue
         paleo.setTitle(" Paleo + ", for: .normal)
         paleo.setTitle(" Paleo ", for: .selected)
         self.addSubview(paleo)
@@ -157,7 +157,7 @@ class AddDietView: UIView {
         treeNut.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
         wheat.addTarget(self, action: #selector(allergyButtonTapped), for: .touchUpInside)
 
-        egg.backgroundColor = Style.flatironBlue
+        egg.backgroundColor = Colors.flatironBlue
         egg.setTitle(" Egg + ", for: .normal)
         egg.setTitle(" Egg ", for: .selected)
         egg.layer.cornerRadius = 8
@@ -165,7 +165,7 @@ class AddDietView: UIView {
             make.right.equalTo(wheat.snp.left).offset(-1.5)
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
-        wheat.backgroundColor = Style.flatironBlue
+        wheat.backgroundColor = Colors.flatironBlue
         wheat.setTitle(" Wheat + ", for: .normal)
         wheat.setTitle(" Wheat ", for: .selected)
         wheat.layer.cornerRadius = 8
@@ -173,7 +173,7 @@ class AddDietView: UIView {
             make.right.equalTo(self.snp.centerX).offset(8.5)
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
-        soy.backgroundColor = Style.flatironBlue
+        soy.backgroundColor = Colors.flatironBlue
         soy.setTitle(" Soy + ", for: .normal)
         soy.setTitle(" Soy ", for: .selected)
         soy.layer.cornerRadius = 8
@@ -181,7 +181,7 @@ class AddDietView: UIView {
             make.left.equalTo(self.snp.centerX).offset(10.5)
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
-        dairy.backgroundColor = Style.flatironBlue
+        dairy.backgroundColor = Colors.flatironBlue
         dairy.setTitle(" Dairy + ", for: .normal)
         dairy.setTitle(" Dairy ", for: .selected)
         dairy.layer.cornerRadius = 8
@@ -190,7 +190,7 @@ class AddDietView: UIView {
             make.top.equalTo(allergies.snp.bottom).offset(10)
         }
 
-        peanut.backgroundColor = Style.flatironBlue
+        peanut.backgroundColor = Colors.flatironBlue
         peanut.setTitle(" Peanut + ", for: .normal)
         peanut.setTitle(" Peanut ", for: .selected)
         peanut.layer.cornerRadius = 8
@@ -198,7 +198,7 @@ class AddDietView: UIView {
             make.right.equalTo(sesame.snp.left).offset(-3)
             make.top.equalTo(dairy.snp.bottom).offset(3)
         }
-        sesame.backgroundColor = Style.flatironBlue
+        sesame.backgroundColor = Colors.flatironBlue
         sesame.setTitle(" Sesame + ", for: .normal)
         sesame.setTitle(" sesame ", for: .selected)
         sesame.layer.cornerRadius = 8
@@ -206,7 +206,7 @@ class AddDietView: UIView {
             make.right.equalTo(self.snp.centerX).offset(-1.5)
             make.top.equalTo(dairy.snp.bottom).offset(3)
         }
-        gluten.backgroundColor = Style.flatironBlue
+        gluten.backgroundColor = Colors.flatironBlue
         gluten.setTitle(" Gluten + ", for: .normal)
         gluten.setTitle(" Gluten ", for: .selected)
         gluten.layer.cornerRadius = 8
@@ -214,7 +214,7 @@ class AddDietView: UIView {
             make.left.equalTo(self.snp.centerX).offset(1.5)
             make.top.equalTo(dairy.snp.bottom).offset(3)
         }
-        seafood.backgroundColor = Style.flatironBlue
+        seafood.backgroundColor = Colors.flatironBlue
         seafood.setTitle(" Seafood + ", for: .normal)
         seafood.setTitle(" Seafood ", for: .selected)
         seafood.layer.cornerRadius = 8
@@ -223,7 +223,7 @@ class AddDietView: UIView {
             make.top.equalTo(dairy.snp.bottom).offset(3)
         }
 
-        shellfish.backgroundColor = Style.flatironBlue
+        shellfish.backgroundColor = Colors.flatironBlue
         shellfish.setTitle(" Shellfish + ", for: .normal)
         shellfish.setTitle(" Shellfish ", for: .selected)
         shellfish.layer.cornerRadius = 8
@@ -231,7 +231,7 @@ class AddDietView: UIView {
             make.right.equalTo(sulfite.snp.left).offset(-3)
             make.top.equalTo(seafood.snp.bottom).offset(3)
         }
-        sulfite.backgroundColor = Style.flatironBlue
+        sulfite.backgroundColor = Colors.flatironBlue
         sulfite.setTitle(" Sulfite + ", for: .normal)
         sulfite.setTitle(" Sulfite ", for: .selected)
         sulfite.layer.cornerRadius = 8
@@ -239,7 +239,7 @@ class AddDietView: UIView {
             make.centerX.equalToSuperview()
             make.top.equalTo(seafood.snp.bottom).offset(3)
         }
-        treeNut.backgroundColor = Style.flatironBlue
+        treeNut.backgroundColor = Colors.flatironBlue
         treeNut.setTitle(" Tree Nut + ", for: .normal)
         treeNut.setTitle(" Tree Nut ", for: .selected)
         treeNut.layer.cornerRadius = 8
@@ -255,10 +255,10 @@ class AddDietView: UIView {
         self.addSubview(save)
         save.backgroundColor = .white
         save.layer.cornerRadius = 8
-        save.layer.borderColor = Style.flatironBlue.cgColor
+        save.layer.borderColor = Colors.flatironBlue.cgColor
         save.layer.borderWidth = CGFloat(1)
         save.setTitle(" Save and Close ", for: .normal)
-        save.setTitleColor(Style.flatironBlue, for: .normal)
+        save.setTitleColor(Colors.flatironBlue, for: .normal)
         save.titleLabel?.font = UIFont(name: "ArialMT", size: 20)
         save.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         save.snp.makeConstraints { (make) in
