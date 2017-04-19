@@ -28,15 +28,11 @@ final class SpoonacularAPIClient {
                 }
             }
         } else {
-            print("The user diet is ", user.dietList)
-            print("The user's allergies are ", user.allergyList)
             //If the user does have diet/intolerances
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
             var allergyList = ""
             var dietList = ""
-            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true\(dietList)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true\(allergyList)&limitLicense=false&number=100&offset=0&ranking=2"
 
-            let testURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true\(dietList)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true\(allergyList)&limitLicense=false&number=100&offset=0&ranking=2"
             if !user.dietList.isEmpty{
                 let diets = Helper.spoonacularEncode(items: user.dietList)
                 dietList = "&diet=\(diets)"
@@ -45,7 +41,10 @@ final class SpoonacularAPIClient {
                 let allergies = Helper.spoonacularEncode(items: user.allergyList)
                 allergyList = "&intolerances=\(allergies)"
             }
-            Alamofire.request(testURL, method: .get, headers: spoonacularAPIHeaders).responseJSON {
+
+            let complexURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/searchComplex?addRecipeInformation=true\(dietList)&fillIngredients=false&includeIngredients=\(ingredients)&instructionsRequired=true\(allergyList)&limitLicense=false&number=100&offset=0&ranking=2"
+
+            Alamofire.request(complexURL, method: .get, headers: spoonacularAPIHeaders).responseJSON {
                 (response) in
                 if let json = response.result.value as? [String: Any] {
                     if let responseJSON = json["results"] as? [[String: Any]] {
