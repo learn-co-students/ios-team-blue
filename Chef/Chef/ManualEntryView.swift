@@ -5,7 +5,10 @@ class ManualEntryView: UIView {
 
     var foodEntryTextField: UITextField!
     var saveFoodButton: UIButton!
+    var cancelButton: UIButton!
     weak var delegate: ManualEntryViewDelegate!
+    var tableView: UITableView!
+    var autoCompleteTableView: UITableView!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -20,7 +23,9 @@ class ManualEntryView: UIView {
     func commonInit() {
         self.createFoodEntryTextField()
         self.createSaveFoodButton()
+        self.createCancelButon()
         self.createBackground()
+        self.createAutoCpmpleteTable()
     }
 
     func createBackground() {
@@ -39,12 +44,12 @@ class ManualEntryView: UIView {
         self.addSubview(self.foodEntryTextField)
 
         self.foodEntryTextField.snp.makeConstraints { (make) in
-            make.top.equalToSuperview().inset(270)
-            make.left.equalToSuperview()
-            make.width.equalToSuperview().offset(0.8)
+            make.top.equalToSuperview().offset(150)
+            make.width.equalToSuperview().multipliedBy(0.5)
+            make.left.equalToSuperview().offset(20)
         }
     }
-
+    //TODO: - Add cancel button to return to previous view without making any changes.
     func createSaveFoodButton() {
 
         self.saveFoodButton = {
@@ -55,25 +60,63 @@ class ManualEntryView: UIView {
             sf.layer.cornerRadius = 10
             sf.layer.borderWidth = 1
             sf.layer.borderColor = Style.flatironBlue.cgColor
-            sf.setTitle("Save Ingredient", for: .normal)
+            sf.setTitle("Save", for: .normal)
             return sf
         }()
 
         self.addSubview(self.saveFoodButton)
 
         self.saveFoodButton.snp.makeConstraints { (make) in
-            make.top.equalTo(self.foodEntryTextField.snp.bottom).offset(2)
-            make.left.equalToSuperview
-            make.width.equalToSuperview()
-            make.height.equalToSuperview().multipliedBy(0.05)
-
+            make.top.equalTo(self.foodEntryTextField.snp.top)
+            make.left.equalTo(foodEntryTextField.snp.right).offset(3)
+            make.width.equalToSuperview().multipliedBy(0.2)
+            make.height.equalTo(foodEntryTextField.snp.height)
         }
-
         self.saveFoodButton.addTarget(self, action: #selector(saveFoodButtonTapped), for: .touchUpInside)
+    }
+
+    func createCancelButon() {
+        self.cancelButton = {
+            let cancel = UIButton()
+            cancel.backgroundColor = Style.flatironBlue
+            cancel.titleLabel?.textColor = UIColor.white
+            cancel.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            cancel.layer.cornerRadius = 10
+            cancel.layer.borderWidth = 1
+            cancel.layer.borderColor = Style.flatironBlue.cgColor
+            cancel.setTitle("Cancel", for: .normal)
+            return cancel
+        }()
+
+        self.addSubview(self.cancelButton)
+
+        self.cancelButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.foodEntryTextField.snp.top)
+            make.left.equalTo(saveFoodButton.snp.right).offset(3)
+            make.width.equalToSuperview().multipliedBy(0.2)
+            make.height.equalTo(foodEntryTextField.snp.height)
+        }
+        self.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+    }
+
+    func createAutoCpmpleteTable() {
+        autoCompleteTableView = UITableView()
+        autoCompleteTableView.isHidden = true
+        self.addSubview(autoCompleteTableView)
+        autoCompleteTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        autoCompleteTableView.snp.makeConstraints { (make) in
+            make.top.equalTo(foodEntryTextField.snp.bottom).offset(3)
+            make.width.height.equalTo(foodEntryTextField.snp.width)
+            make.left.equalTo(foodEntryTextField.snp.left)
+        }
     }
 
     func saveFoodButtonTapped() {
         self.delegate.saveFoodButtonTapped()
+    }
+    func cancelButtonTapped() {
+        print("Cancel button tapped")
+        self.delegate.cancelButtonTapped()
     }
     
 }

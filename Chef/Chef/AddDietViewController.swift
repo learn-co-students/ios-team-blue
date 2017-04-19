@@ -3,9 +3,8 @@ import SnapKit
 
 class AddDietViewController: UIViewController, AddDietDelegate {
 
-    var dietaryRestrictions = [String]()
-    var allergyList = [String]()
     var dietList = [String]()
+    var allergyList = [String]()
     let store = RecipeDataStore.shared
     var addDietView: AddDietView!
 
@@ -15,6 +14,7 @@ class AddDietViewController: UIViewController, AddDietDelegate {
         self.addDietView.delegate = self
         self.view.addSubview(addDietView)
         addDietView.snapToSuperview()
+        selectButtons()
     }
 
     override func didReceiveMemoryWarning() {
@@ -78,6 +78,42 @@ class AddDietViewController: UIViewController, AddDietDelegate {
             FirebaseManager.addAllergy(allergyList, to: store.user)
         }
         self.dismiss(animated: true, completion: nil)
+    }
+
+    
+    func saveBtnSelection(_ button: UIButton, btnTitle: String?) {
+        let defaults = UserDefaults.standard
+        if button.isSelected{
+            if let btnTitle = btnTitle {
+                defaults.set(true, forKey: btnTitle)
+            }
+        } else {
+            if let btnTitle = btnTitle {
+                defaults.set(false, forKey: btnTitle)
+            }
+        }
+
+    }
+
+    func selectButtons() {
+        let allFoodButtons = [addDietView.pescetarian, addDietView.veg, addDietView.vegan, addDietView.paleo, addDietView.dairy, addDietView.egg, addDietView.gluten, addDietView.peanut, addDietView.sesame, addDietView.seafood, addDietView.shellfish, addDietView.soy, addDietView.sulfite, addDietView.treeNut, addDietView.wheat]
+        let defaults = UserDefaults.standard
+
+        for button in allFoodButtons {
+            var btnSelected = false
+            var btnTitle = button?.title(for: .selected)
+            _ = btnTitle?.characters.popLast()
+            _ = btnTitle?.characters.popFirst()
+            if let btnTitle = btnTitle {
+                btnSelected = defaults.bool(forKey: btnTitle)
+            } else {
+                btnSelected = false
+            }
+
+            if btnSelected {
+                button?.isSelected = true
+            }
+        }
     }
 
 }
