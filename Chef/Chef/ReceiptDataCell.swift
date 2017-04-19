@@ -21,10 +21,13 @@ class ReceiptDataCell: UITableViewCell {
         self.ingredientTextField = UITextField()
         self.addSubview(ingredientTextField)
 
+        self.ingredientTextField.layer.borderWidth = 2
+        self.ingredientTextField.layer.borderColor = Colors.flatironBlue.cgColor
+
         self.ingredientTextField.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(2)
-            make.width.equalToSuperview().multipliedBy(0.6)
-            make.height.equalToSuperview().multipliedBy(0.8)
+            make.top.left.equalToSuperview().offset(1)
+            make.width.equalToSuperview().multipliedBy(0.90)
+            make.height.equalToSuperview().multipliedBy(0.95)
         }
     }
     
