@@ -34,7 +34,7 @@ final class RecipeDataStore {
                 completion()
             case .failure(let error):
                 print("We did not get the recipes :(")
-                print("The error is ", error)
+                print("The error is ", error.localizedDescription)
             }
         }
     }
@@ -56,7 +56,7 @@ final class RecipeDataStore {
     }
 
     func pullDataForUser(_ user: User, completion: @escaping () ->()) {
-        FirebaseManager.getUserData(user) { (recipeIDs, food, allergies, diet) in
+        FirebaseManager.getUserData(user) { (recipeIDs, food, diet, allergies) in
             for id in recipeIDs {
                 self.user.favRecipes.append(id)
             }
