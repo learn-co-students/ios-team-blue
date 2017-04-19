@@ -15,10 +15,11 @@ final class SpoonacularAPIClient {
              print("Doin the standard call")
             let ingredients = Helper.spoonacularEncode(items: user.fridge)
             let url = baseURL + ingredients + otherInfoURL
+            print("The full URL is ", url)
             Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
                 (response) in
                 if let json = response.result.value {
-                    if let responseJSON = json as? [String: Any] {
+                    if let responseJSON = json as? [[String: Any]] {
                         completion(.success(responseJSON))
                     } else {
                         completion(.failure(.nodata))

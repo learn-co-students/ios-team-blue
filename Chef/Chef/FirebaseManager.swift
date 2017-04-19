@@ -80,7 +80,7 @@ class FirebaseManager {
         })
     }
 
-    static func getUserData(_ user: User, completion: @escaping (([String], [String], [String]?, [String]?)) -> ()) {
+    static func getUserData(_ user: User, completion: @escaping ((favRecipeIDs: [String], fridge: [String], diet: [String]?, allergy: [String]?)) -> ()) {
         let ref = usersRef.child(user.id)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any],
