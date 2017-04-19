@@ -71,7 +71,7 @@ class AddDietViewController: UIViewController, AddDietDelegate {
         var user = store.user
         user.dietList = self.dietList
         if !dietList.isEmpty{
-            FirebaseManager.addDiet(dietList, to: store.user)
+            FirebaseManager.addDietaryRestrictions(dietList, to: store.user)
         }
         user.allergyList = self.allergyList
         if !allergyList.isEmpty{
