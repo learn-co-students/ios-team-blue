@@ -5,6 +5,7 @@ class ManualEntryView: UIView {
 
     var foodEntryTextField: UITextField!
     var saveFoodButton: UIButton!
+    var cancelButton: UIButton!
     weak var delegate: ManualEntryViewDelegate!
     var tableView: UITableView!
     var autoCompleteTableView: UITableView!
@@ -22,6 +23,7 @@ class ManualEntryView: UIView {
     func commonInit() {
         self.createFoodEntryTextField()
         self.createSaveFoodButton()
+        self.createCancelButon()
         self.createBackground()
         self.createAutoCpmpleteTable()
     }
@@ -43,7 +45,7 @@ class ManualEntryView: UIView {
 
         self.foodEntryTextField.snp.makeConstraints { (make) in
             make.top.equalToSuperview().offset(150)
-            make.width.equalToSuperview().multipliedBy(0.6)
+            make.width.equalToSuperview().multipliedBy(0.5)
             make.left.equalToSuperview().offset(20)
         }
     }
@@ -73,6 +75,30 @@ class ManualEntryView: UIView {
         self.saveFoodButton.addTarget(self, action: #selector(saveFoodButtonTapped), for: .touchUpInside)
     }
 
+    func createCancelButon() {
+        self.cancelButton = {
+            let cancel = UIButton()
+            cancel.backgroundColor = Style.flatironBlue
+            cancel.titleLabel?.textColor = UIColor.white
+            cancel.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            cancel.layer.cornerRadius = 10
+            cancel.layer.borderWidth = 1
+            cancel.layer.borderColor = Style.flatironBlue.cgColor
+            cancel.setTitle("Cancel", for: .normal)
+            return cancel
+        }()
+
+        self.addSubview(self.cancelButton)
+
+        self.cancelButton.snp.makeConstraints { (make) in
+            make.top.equalTo(self.foodEntryTextField.snp.top)
+            make.left.equalTo(saveFoodButton.snp.right).offset(3)
+            make.width.equalToSuperview().multipliedBy(0.2)
+            make.height.equalTo(foodEntryTextField.snp.height)
+        }
+        self.cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
+    }
+
     func createAutoCpmpleteTable() {
         autoCompleteTableView = UITableView()
         autoCompleteTableView.isHidden = true
@@ -80,13 +106,17 @@ class ManualEntryView: UIView {
         autoCompleteTableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         autoCompleteTableView.snp.makeConstraints { (make) in
             make.top.equalTo(foodEntryTextField.snp.bottom).offset(3)
-            make.width.height.equalToSuperview().multipliedBy(0.5)
+            make.width.height.equalTo(foodEntryTextField.snp.width)
             make.left.equalTo(foodEntryTextField.snp.left)
         }
     }
 
     func saveFoodButtonTapped() {
         self.delegate.saveFoodButtonTapped()
+    }
+    func cancelButtonTapped() {
+        print("Cancel button tapped")
+        self.delegate.cancelButtonTapped()
     }
     
 }

@@ -33,6 +33,10 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
             self.dismiss(animated: true, completion: nil)
         }
     }
+    func cancelButtonTapped() {
+        self.dismiss(animated: true, completion: nil)
+    }
+
 //MARK: - TableView and TextFieldDelegate Configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
@@ -46,6 +50,7 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         manualEntryView.foodEntryTextField.text = autoComplete[indexPath.row]
+        autoCompleteTableView.isHidden = true
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
