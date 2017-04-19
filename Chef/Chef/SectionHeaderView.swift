@@ -7,7 +7,7 @@ class SectionHeaderView: UIView {
     lazy var label: UILabel = {
         let l = UILabel()
         l.textColor = Colors.flatironBlue
-        l.font = Fonts.regular
+        l.font = Fonts.regular16
         return l
     }()
 
