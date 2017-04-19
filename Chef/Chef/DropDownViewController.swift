@@ -6,6 +6,11 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
 
     var dropDownView: DropDownView!
     var imagePicker: UIImagePickerController!
+    var imageData = Data()
+    var base64img = String()
+    var scannedReceiptVC: ScannedReceiptViewController!
+    var parsedIngredients = [String]()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,72 +34,76 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     }
 
     func openCameraButton(_ sender: UIButton) {
-        print(#function)
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         self.present(imagePicker, animated: true, completion: nil)
     }
 
-
-//        func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//            let mediaType = info[UIImagePickerControllerMediaType] as! NSString
-//            if mediaType.isEqual(to: kUTTypeImage as String) {
-//                guard let image = info[UIImagePickerControllerOriginalImage] as? UIImage else { print("NOPE!") ; return }
-//                scanReceiptView.captureImageView.image =  image
-//                //imageView.image = image
-//                if (newMedia == true) { UIImageWriteToSavedPhotosAlbum(image, self,  #selector(ScanReceiptViewController.image(image:didFinishSavingWithError:contextInfo:)), nil)
-//                }
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//        }
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let mediaType = info[UIImagePickerControllerMediaType] as! NSString
         if mediaType.isEqual(to: kUTTypeImage as String) {
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
-            //imageView.image = image
-
             let imageName = UUID().uuidString
             let imagePath = DropDownViewController.getDocumentsDirectory().appendingPathComponent(imageName)
 
             if let jpegData = UIImageJPEGRepresentation(image, 80) {
                 try? jpegData.write(to: imagePath)
+                self.imageData = jpegData
+                print("THE DATA IS: \(imageData)")
+
+                base64img = base64EncodeImage(image)
+                setParsedIngredients()
             }
 
-            dismiss(animated: true) {
-                print(#function)
-                self.presentScannedReceiptViewController()
+        }
+    }
+
+    static func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let documentsDirectory = paths[0]
+        return documentsDirectory
+    }
+    //From S.O.
+    private func base64EncodeImage(_ image: UIImage) -> String {
+        var imagedata  = UIImagePNGRepresentation(image)
+
+        // Resize the image if it exceeds the 2MB API limit
+        if ((imagedata?.count)! > 2097152) {
+            let oldSize: CGSize = image.size
+            let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
+            imagedata = resizeImage(newSize, image: image)
+        }
+
+        return imagedata!.base64EncodedString(options: .endLineWithCarriageReturn)
+    }
+
+    private func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
+        UIGraphicsBeginImageContext(imageSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let resizedImage = UIImagePNGRepresentation(newImage!)
+        UIGraphicsEndImageContext()
+        return resizedImage!
+    }
+
+    func setParsedIngredients() {
+        GoogleVisionAPIClient.getDescriptionfor(base64img) { (ingredientsList) in
+            DispatchQueue.main.async {
+                print("HERE WE ARE!!!", #function)
+                self.parsedIngredients = ingredientsList
+                print(ingredientsList)
+                self.scannedReceiptVC.parsedIngredients = self.parsedIngredients
+                self.scannedReceiptVC.tableView.reloadData()
+                self.dismiss(animated: true) {
+                    self.presentScannedReceiptViewController()
+                }
             }
         }
     }
 
 
-
-//    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-//        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
-//        let imageName = UUID().uuidString
-//        let imagePath = DropDownViewController.getDocumentsDirectory().appendingPathComponent(imageName)
-//
-//        if let jpegData = UIImageJPEGRepresentation(image, 80) {
-//            try? jpegData.write(to: imagePath)
-//        }
-//
-//        dismiss(animated: true) {
-//            print(#function)
-//            self.presentScannedReceiptViewController()
-//        }
-//    }
-
-     static func getDocumentsDirectory() -> URL {
-        print(#function)
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let documentsDirectory = paths[0]
-        return documentsDirectory
-    }
-
     func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        print(#function)
         if let error = error {
             let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
             ac.addAction(UIAlertAction(title: "OK", style: .default))
@@ -107,8 +116,8 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     }
 
     func presentScannedReceiptViewController() {
-    let scannedReceiptViewController = ScannedReceiptViewController()
-    self.present(scannedReceiptViewController, animated: true, completion: nil)
+        let scannedReceiptViewController = ScannedReceiptViewController()
+        self.present(scannedReceiptViewController, animated: true, completion: nil)
     }
     
     

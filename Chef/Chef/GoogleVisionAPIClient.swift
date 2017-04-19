@@ -3,10 +3,11 @@ import SwiftyJSON
 
 final class GoogleVisionAPIClient {
 
-    class func getDescriptionfor(_ photoURL: String, completion: @escaping ([String]) -> ()) {
+    class func getDescriptionfor(_ content: String, completion: @escaping ([String]) -> ()) {
+        print("In googleVision")
         let parameters: [String: Any] = [
             "requests": [
-                "image": ["source": ["imageUri": photoURL]],
+                "image": ["content": content],
                 "features": [["type": "DOCUMENT_TEXT_DETECTION", "maxResults": 2]]
             ]
         ]
@@ -18,19 +19,28 @@ final class GoogleVisionAPIClient {
 
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+            print("Made GV Request!")
         } catch {
             fatalError("Cannot serialize request body")
         }
         request.addValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         request.addValue("Application/json", forHTTPHeaderField: "Accept")
         session.dataTask(with: request, completionHandler: { (data, response, error) in
+            print("Running GV dataTask")
             if let data = data {
                 let json = JSON(data: data)
+                print("THE JSON IS: \(json)")
                 if let description = json["responses"][0]["textAnnotations"][0]["description"].string {
                     print(description)
                     let prettyDescription = self.clean(text: description)
+                    print("\n\n")
+                    print("----- About to call complection -----")
                     completion(prettyDescription)
+                } else {
+                    print("Could not read RECEIPT!")
                 }
+            } else {
+                print("Couldn't get data and the error is ", error?.localizedDescription)
             }
         }).resume()
     }

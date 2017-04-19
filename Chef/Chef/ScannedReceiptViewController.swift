@@ -3,29 +3,53 @@ import UIKit
 class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
 
     var tableView: UITableView!
-    var urlToLastPhoto: String! = {
-        return "\(DropDownViewController.getDocumentsDirectory())"
-    }()
+//    var urlToLastPhoto: String! = {
+//
+//        return "\(DropDownViewController.getDocumentsDirectory())"
+//    }()
+
+    let test = DropDownViewController.getDocumentsDirectory()
+    var dropDownViewController: DropDownViewController!
     var parsedIngredients = [String]()
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setParsedIngredients()
+
+        self.createUI()
+
+//        setParsedIngredients()
+//        testParsedIngredients()
+        print("THE URL IS: \(test)")
 
         self.navigationItem.title = "Scanned Receipt Contents"
-        self.createUI()
     }
 
-    func setParsedIngredients() {
-        GoogleVisionAPIClient.getDescriptionfor(urlToLastPhoto, completion: { (ingredientsList) in
-            DispatchQueue.main.async {
-                self.parsedIngredients = ingredientsList
-                print(ingredientsList)
-                self.tableView.reloadData()
-            }
-        })
-    }
+
+
+
+//
+//     func setParsedIngredients() {
+//
+//        GoogleVisionAPIClient.getDescriptionfor(dropDownViewController.imageData) { (ingredientsList) in
+//            DispatchQueue.main.async {
+//                print("HERE WE ARE!!!", #function)
+//                self.parsedIngredients = ingredientsList
+//                print(ingredientsList)
+//                self.tableView.reloadData()
+//            }
+//        }
+//    }
+
+//        GoogleVisionAPIClient.getDescriptionfor(urlToLastPhoto, completion: { (ingredientsList) in
+//            DispatchQueue.main.async {
+//                print("HERE WE ARE!!!", #function)
+//                self.parsedIngredients = ingredientsList
+//                print(ingredientsList)
+//                self.tableView.reloadData()
+//            }
+//        })
+//    }
 
     // MARK: - Data Source
 
@@ -34,6 +58,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("The INGREDIENTS ARE \(parsedIngredients)")
         return parsedIngredients.count
     }
 
@@ -41,7 +66,6 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReceiptDataCell", for: indexPath) as! ReceiptDataCell
         cell.ingredientTextField.text = parsedIngredients[indexPath.row]
         return cell
-
     }
 
     // MARK: - Delegate
