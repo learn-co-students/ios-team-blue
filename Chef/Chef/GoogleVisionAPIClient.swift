@@ -29,12 +29,9 @@ final class GoogleVisionAPIClient {
             print("Running GV dataTask")
             if let data = data {
                 let json = JSON(data: data)
-                print("THE JSON IS: \(json)")
                 if let description = json["responses"][0]["textAnnotations"][0]["description"].string {
                     print(description)
                     let prettyDescription = self.clean(text: description)
-                    print("\n\n")
-                    print("----- About to call complection -----")
                     completion(prettyDescription)
                 } else {
                     print("Could not read RECEIPT!")

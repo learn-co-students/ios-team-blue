@@ -5,9 +5,8 @@ class ReceiptDataCell: UITableViewCell {
 
     var ingredientTextField: UITextField!
 
-    init(frame: CGRect) {
-        //      init(frame: frame)
-        super.init(style: .default, reuseIdentifier: "ReceiptDataCell")
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.commonInit()
     }
 
@@ -18,7 +17,6 @@ class ReceiptDataCell: UITableViewCell {
 
     private func commonInit() {
         self.backgroundColor = .white
-        self.textLabel?.textColor = Style.flatironBlue
 
         self.ingredientTextField = UITextField()
         self.addSubview(ingredientTextField)
