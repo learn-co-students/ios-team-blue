@@ -1,25 +1,26 @@
 import UIKit
 import SnapKit
 
-class ManualEntryViewController: UIViewController, ManualEntryViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
-    var manualEntryView: ManualEntryView!
-    let store = RecipeDataStore.shared
-    var tableView: UITableView!
-    var autoCompleteData = [pastaAndNoodles, otherGrains, vegetables, fruits,  meatsSeafoodsAndEggs, beansPeasAndTofu,nutsAndSeeds, dairy, beverages, alcoholicBeverages, condimentsAndSauce]
-    var autoComplete: [String] = []
+class ManualEntryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ManualEntryViewDelegate {
 
+    var manualEntryView: ManualEntryView!
+    var foodEntryTextField: UITextField!
+    var saveFoodButton: UIButton!
+    let store = RecipeDataStore.shared
+    var autoCompleteTableView: UITableView!
+    var autoCompleteData = [pastaAndNoodles, otherGrains, vegetables, fruits,  meatsSeafoodsAndEggs, beansPeasAndTofu,nutsAndSeeds, dairy, beverages, alcoholicBeverages, condimentsAndSauce]
+    var autoComplete = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.manualEntryView = ManualEntryView()
         self.manualEntryView.delegate = self
         self.view.addSubview(self.manualEntryView)
         self.manualEntryView.snapToSuperview()
-        self.tableView = manualEntryView.tableView
-        tableView.dataSource = self
-        tableView.delegate = self
-
+        self.autoCompleteTableView = manualEntryView.autoCompleteTableView
+        autoCompleteTableView.dataSource = self
+        autoCompleteTableView.delegate = self
+        self.manualEntryView.foodEntryTextField.delegate = self
 
     }
 
@@ -28,14 +29,15 @@ class ManualEntryViewController: UIViewController, ManualEntryViewDelegate, UITa
     }
 
     func saveFoodButtonTapped() {
-        if let text = manualEntryView.foodEntryTextField.text {
+        if let text = foodEntryTextField.text {
             store.user.fridge.append(text)
             self.dismiss(animated: true, completion: nil)
         }
     }
-
+//MARK: - TableView and TextFieldDelegate COnfiguration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
+        cell.textLabel?.text = autoComplete[indexPath.row] as String
         return cell
     }
 
@@ -43,8 +45,13 @@ class ManualEntryViewController: UIViewController, ManualEntryViewDelegate, UITa
         return autoComplete.count
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        foodEntryTextField.text = autoComplete[indexPath.row]
+    }
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let substring = (manualEntryView.foodEntryTextField.text! as NSString).replacingCharacters(in: range, with: string)
+        autoCompleteTableView.isHidden = false
+        let substring = (foodEntryTextField.text! as NSString).replacingCharacters(in: range, with: string)
         searchAutocompleteEntriesWith(substring)
         return true
     }
@@ -60,13 +67,12 @@ class ManualEntryViewController: UIViewController, ManualEntryViewDelegate, UITa
                 }
             }
         }
-        tableView.reloadData()
+        autoCompleteTableView.reloadData()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }
-
-
-
-
-
-
