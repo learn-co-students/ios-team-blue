@@ -4,7 +4,6 @@ import SnapKit
 class ManualEntryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, ManualEntryViewDelegate {
 
     var manualEntryView: ManualEntryView!
-    var foodEntryTextField: UITextField!
     var saveFoodButton: UIButton!
     let store = RecipeDataStore.shared
     var autoCompleteTableView: UITableView!
@@ -29,12 +28,12 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func saveFoodButtonTapped() {
-        if let text = foodEntryTextField.text {
+        if let text = manualEntryView.foodEntryTextField.text {
             store.user.fridge.append(text)
             self.dismiss(animated: true, completion: nil)
         }
     }
-//MARK: - TableView and TextFieldDelegate COnfiguration
+//MARK: - TableView and TextFieldDelegate Configuration
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as UITableViewCell
         cell.textLabel?.text = autoComplete[indexPath.row] as String
@@ -46,12 +45,12 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        foodEntryTextField.text = autoComplete[indexPath.row]
+        manualEntryView.foodEntryTextField.text = autoComplete[indexPath.row]
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         autoCompleteTableView.isHidden = false
-        let substring = (foodEntryTextField.text! as NSString).replacingCharacters(in: range, with: string)
+        let substring = (manualEntryView.foodEntryTextField.text! as NSString).replacingCharacters(in: range, with: string)
         searchAutocompleteEntriesWith(substring)
         return true
     }
