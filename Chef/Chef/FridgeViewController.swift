@@ -1,4 +1,5 @@
 import UIKit
+import Foundation
 import SnapKit
 
 class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -41,9 +42,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         if (editingStyle == UITableViewCellEditingStyle.delete){
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.tableView.reloadData()
         }
     }
 
@@ -107,4 +106,19 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.dropDownViewController.dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
     }
 
+    func createIngredients() {
+        var ingredients = [Ingredient]()
+        for item in store.user.fridge {
+
+        }
+    }
+
+    func sortByCategory(_ item) {
+
+
+
+    }
+
 }
+
+//var foodGroups = [grains, vegetable, fruit, proteins, dairies, other]

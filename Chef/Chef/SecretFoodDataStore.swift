@@ -1,29 +1,29 @@
 import Foundation
 
-var grains: [String:Set<String>] = [
+var grains: [String: [String]] = [
     "Pastas And Noodles" : pastaAndNoodles,
     "Other Grains" : otherGrains,
 ]
 
-var vegetable: [String : Set<String>] = [
+var vegetable: [String : [String]] = [
     "Vegetables": vegetables
 ]
 
-var fruit: [String:Set<String>] = [
+var fruit: [String: [String]] = [
     "Fruits": fruits
 ]
 
-var proteins: [String:Set<String>] = [
+var proteins: [String: [String]] = [
     "Meats, Seafoods And Eggs": meatsSeafoodsAndEggs,
     "Beans, Peas And Tofu": beansPeasAndTofu,
     "Nuts And Seeds" : nutsAndSeeds
 ]
 
-var dairies: [String:Set<String>] = [
+var dairies: [String: [String]] = [
     "Dairy": dairy
 ]
 
-var other: [String:Set<String>] = [
+var other: [String: [String]] = [
     "Beverages" : beverages,
     "Alcoholic Beverages" : alcoholicBeverages,
     "Condiments and Sauce" : condimentsAndSauce,
@@ -31,8 +31,7 @@ var other: [String:Set<String>] = [
 
 var foodGroups = [grains, vegetable, fruit, proteins, dairies, other]
 
-
-var pastaAndNoodles: Set<String>  = [
+var pastaAndNoodles: [String]  = [
 
     "Spaghettoni",
     "Spaghetti",
@@ -204,7 +203,7 @@ var pastaAndNoodles: Set<String>  = [
     "Whole Wheat Pasta",
 ]
 
-var otherGrains: Set<String> = [
+var otherGrains: [String] = [
 
     "Amaranth",
     "Barley",
@@ -276,7 +275,7 @@ var otherGrains: Set<String> = [
 ]
 
 
-var vegetables: Set<String> = [
+var vegetables: [String] = [
 
     "Artichoke",
     "Arugula",
@@ -410,7 +409,7 @@ var vegetables: Set<String> = [
 ]
 
 
-var fruits: Set<String> = [
+var fruits: [String] = [
 
     "Apple",
     "Apricot",
@@ -505,7 +504,7 @@ var fruits: Set<String> = [
     "Udara"
 ]
 
-var dairy: Set<String> = [
+var dairy: [String] = [
 
     "America Cheese",
     "Bleu Cheese",
@@ -590,7 +589,7 @@ var dairy: Set<String> = [
 ]
 
 
-var meatsSeafoodsAndEggs: Set<String> = [
+var meatsSeafoodsAndEggs: [String] = [
 
     "Sausage",
     "Beef",
@@ -661,7 +660,7 @@ var meatsSeafoodsAndEggs: Set<String> = [
     "Prepped Shellfish"
 ]
 
-var beansPeasAndTofu: Set<String> = [
+var beansPeasAndTofu: [String] = [
     "Azuki Beans",
     "Black Beans",
     "Baked Beans",
@@ -686,7 +685,7 @@ var beansPeasAndTofu: Set<String> = [
 
 ]
 
-var nutsAndSeeds: Set<String> = [
+var nutsAndSeeds: [String] = [
     "Almond",
     "Australian Nut",
     "Beech",
@@ -771,7 +770,7 @@ var nutsAndSeeds: Set<String> = [
 ]
 
 
-var beverages: Set<String> = [
+var beverages: [String] = [
     "Water",
     "Sprite",
     "Club Soda",
@@ -870,7 +869,7 @@ var beverages: Set<String> = [
     "Chamomile Tea"
 ]
 
-var alcoholicBeverages: Set<String> = [
+var alcoholicBeverages: [String] = [
 
     "Beer",
     "Light Beer",
@@ -906,7 +905,7 @@ var alcoholicBeverages: Set<String> = [
 ]
 
 
-var condimentsAndSauce: Set<String> = [
+var condimentsAndSauce: [String] = [
 
     "A-1 Steak Sauce",
     "Agar",
