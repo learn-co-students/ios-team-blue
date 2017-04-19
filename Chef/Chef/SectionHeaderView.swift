@@ -1,14 +1,26 @@
 import UIKit
 
-class SettingsCell: UICollectionViewCell {
+class SectionHeaderView: UIView {
 
-    var label: UILabel!
+    static let height: Int = 20
+
+    lazy var label: UILabel = {
+        let l = UILabel()
+        l.textColor = Colors.flatironBlue
+        l.font = Fonts.regular16
+        return l
+    }()
+
+    convenience init() {
+        self.init(frame: CGRect.zero)
+        self.commonInit()
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.commonInit()
@@ -17,15 +29,9 @@ class SettingsCell: UICollectionViewCell {
     private func commonInit() {
         self.backgroundColor = .white
 
-        self.label = {
-            let lb = UILabel()
-            lb.font = Fonts.regular16
-            return lb
-        }()
-
         self.addSubview(self.label)
         self.label.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.left.bottom.equalToSuperview()
         }
     }
 
