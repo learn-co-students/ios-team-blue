@@ -73,8 +73,11 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
 
     func tapLogOut() {
         print("Tap logout pressed")
-        FirebaseManager.signOut()
-        returnToLogin()
+        FirebaseManager.signOut { success in
+            if success {
+                returnToLogin()
+            }
+        }
     }
 
     func tapResetData() {
@@ -98,14 +101,17 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
         print("Tap delete account pressed")
         let alertController = UIAlertController(title: "Delete Account", message: "Please confirm that you wish to delete your account. You will not be able to retrive your account after confirming.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .destructive) { (action) in
-            FirebaseManager.deleteUser()
-            FirebaseManager.deleteUserData(self.store.user)
-            let confirmationController = UIAlertController(title: "Account Deleted", message: "Your account has been deleted", preferredStyle: .alert)
-            let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
-                self.returnToLogin()
-            })
-            confirmationController.addAction(confirm)
-            self.present(confirmationController, animated: true, completion: nil)
+            FirebaseManager.deleteUser { success in
+                if success {
+                    FirebaseManager.deleteUserData(self.store.user)
+                    let confirmationController = UIAlertController(title: "Account Deleted", message: "Your account has been deleted", preferredStyle: .alert)
+                    let confirm = UIAlertAction(title: "Confirm", style: .default, handler: { _ in
+                        self.returnToLogin()
+                    })
+                    confirmationController.addAction(confirm)
+                    self.present(confirmationController, animated: true, completion: nil)
+                }
+            }
         }
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(confirm)
