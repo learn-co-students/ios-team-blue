@@ -43,26 +43,26 @@ final class GoogleVisionAPIClient {
     }
 
     private static func clean(text: String) -> [String] {
-        let nonLetters = ["1", "2", "3", "4", "5","6", "7", "8", "9", "0", ".", ";", ",", "*", "%", "@"]
+//        let nonLetters = ["1", "2", "3", "4", "5","6", "7", "8", "9", "0", ".", ";", ",", "*", "%", "@"]
         let textByLine = text.components(separatedBy: "\n")
-        var substanceText: [String] = []
-
-        for line in textByLine {
-            var newLine: String = ""
-
-            for char in line.characters {
-                if !nonLetters.contains(String(char)) {
-                    newLine += String(char)
-                }
-            }
-            if !newLine.isEmpty && newLine.characters.count > 2 {
-                substanceText.append(newLine)
-            }
-        }
-
+//        var substanceText: [String] = []
+//
+//        for line in textByLine {
+//            var newLine: String = ""
+//
+//            for char in line.characters {
+//                if !nonLetters.contains(String(char)) {
+//                    newLine += String(char)
+//                }
+//            }
+//            if !newLine.isEmpty && newLine.characters.count > 2 {
+//                substanceText.append(newLine)
+//            }
+//        }
+//
         var finalArray: [String] = []
     //This is WIP as we review and collect more receipt data.
-        for line in substanceText {
+        for line in textByLine {
             let simpleLine = line.lowercased()
             if simpleLine.range(of: "refund") != nil ||
                 simpleLine.range(of: " tax ") != nil ||

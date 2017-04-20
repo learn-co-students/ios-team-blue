@@ -33,6 +33,7 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
             self.dismiss(animated: true, completion: nil)
         }
     }
+
     func cancelButtonTapped() {
         self.dismiss(animated: true, completion: nil)
     }

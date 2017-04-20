@@ -47,7 +47,6 @@ final class SpoonacularAPIClient {
                 (response) in
                 if let json = response.result.value as? [String: Any] {
                     if let responseJSON = json["results"] as? [[String: Any]] {
-                        print("We got the json and its", responseJSON)
                         completion(.success(responseJSON))
                     } else {
                         completion(.failure(.nodata))
