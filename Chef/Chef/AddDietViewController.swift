@@ -68,7 +68,7 @@ class AddDietViewController: UIViewController, AddDietDelegate {
     }
 
     func saveButtonTapped() {
-        var user = store.user
+        let user = store.user
         user.dietList = self.dietList
         if !dietList.isEmpty{
             FirebaseManager.addDietaryRestrictions(dietList, to: store.user)
