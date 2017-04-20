@@ -10,43 +10,43 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var addButtonTapped = false
     var dropDownViewController: DropDownViewController!
     var groupedItems = [String: [String]]()
-    var ingredients = [Ingredient]()
+    var groupedFoods = [FoodGroups]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationItem.title = "Fridge"
         self.createUI()
         self.groupedItems = self.sortByCategory()
-        createIngredients()
+        createFoodGroups()
         self.tableView.reloadData()
         print("The groupedItems are ", groupedItems)
-        print("The ingredients are ", ingredients)
+        print("The groupedFoods are ", groupedFoods)
         print("The user's fridge is ", store.user.fridge)
 
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.groupedItems = self.sortByCategory()
-        createIngredients()
         self.tableView.reloadData()
     }
-
 
     // MARK: - Data Source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return ingredients.count
+        return groupedFoods.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ingredients[section].sectionItems.count
+        return groupedFoods[section].groupItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath) as! FridgeCell
-        cell.textLabel?.text = ingredients[indexPath.section].sectionItems[indexPath.row]
+        cell.textLabel?.text = groupedFoods[indexPath.section].groupItems[indexPath.row]
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return groupedFoods[section].groupName
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -56,11 +56,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             self.tableView.reloadData()
         }
     }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ingredients[section].sectionName
-    }
-
 
     // MARK: - Delegate
 
@@ -75,7 +70,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
 
     // MARK: - UI
 
@@ -111,7 +105,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             make.height.equalToSuperview().multipliedBy(0.3)
         }
     }
-
 
     // MARK: - Actions
 
@@ -217,9 +210,9 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
-    func createIngredients() {
+    func createFoodGroups() {
         for (key, value) in groupedItems {
-            ingredients.append(Ingredient(sectionName: key, sectionItems: value))
+            groupedFoods.append(FoodGroups(groupName: key, groupItems: value))
         }
     }
 
