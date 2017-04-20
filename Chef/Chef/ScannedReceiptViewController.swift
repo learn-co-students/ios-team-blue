@@ -48,7 +48,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
             tv.dataSource = self
             tv.delegate = self
             tv.register(ReceiptDataCell.self, forCellReuseIdentifier: "receiptDataCell")
-            tv.layer.borderColor = Style.flatironBlue.cgColor
+            tv.layer.borderColor = Colors.flatironBlue.cgColor
             tv.backgroundColor = UIColor.white
             return tv
         }()
