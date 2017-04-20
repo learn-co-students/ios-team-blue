@@ -4,6 +4,7 @@ import Kingfisher
 
 class RecipeCell: UICollectionViewCell {
 
+    weak var delegate: RecipeCellDelegate?
     var imageView: UIImageView!
     var nameLabel: UILabel!
     var heartButton: UIButton!
@@ -81,8 +82,10 @@ class RecipeCell: UICollectionViewCell {
     // MARK: - Actions
 
     func tapHeart() {
+        print("\nRecipeCell -- \(#function)\n")
         self.recipe.isFavorite = !self.recipe.isFavorite
         self.animateHeart()
+        self.delegate?.heartButtonTapped(self)
     }
 
     private func animateHeart() {

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702EB231E9C1863006754C4 /* NavigationController.swift */; };
+		0745CD921EA9253E0071D7DF /* RecipeCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */; };
 		075EE0401EA7CA70008DEA21 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */; };
 		07752C741EA146840090F76E /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07752C731EA146840090F76E /* RecipeDetailViewController.swift */; };
 		0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF761E9535F200C29E22 /* LoginTextField.swift */; };
@@ -57,6 +58,7 @@
 
 /* Begin PBXFileReference section */
 		0702EB231E9C1863006754C4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellDelegate.swift; sourceTree = "<group>"; };
 		075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		07752C731EA146840090F76E /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		0784DF761E9535F200C29E22 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
@@ -283,6 +285,7 @@
 				7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */,
 				7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */,
 				98B5FC2A1EA092C600217180 /* AddDietDelegate.swift */,
+				0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -339,7 +342,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 8X5723UG7D;
+						DevelopmentTeam = T2QNE7E45K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -430,6 +433,7 @@
 			files = (
 				7B82803E1EA15352000914F8 /* FridgeViewController.swift in Sources */,
 				98D03D421E9D50360089416D /* LoginViewController.swift in Sources */,
+				0745CD921EA9253E0071D7DF /* RecipeCellDelegate.swift in Sources */,
 				98EA432E1EA80DBE002F317A /* FoodGroups.swift in Sources */,
 				0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */,
 				07752C741EA146840090F76E /* RecipeDetailViewController.swift in Sources */,
@@ -585,7 +589,7 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8X5723UG7D;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -600,7 +604,7 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 8X5723UG7D;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
