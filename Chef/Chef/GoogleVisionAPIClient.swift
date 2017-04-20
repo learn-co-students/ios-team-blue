@@ -37,7 +37,7 @@ final class GoogleVisionAPIClient {
                     print("Could not read RECEIPT!")
                 }
             } else {
-                print("Couldn't get data and the error is ", error?.localizedDescription)
+                print(error?.localizedDescription ?? "no error")
             }
         }).resume()
     }

@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 class GenerateRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 

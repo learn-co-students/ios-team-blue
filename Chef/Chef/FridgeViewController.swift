@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import RealmSwift
 
 class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
@@ -100,7 +101,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Actions
 
     func addIngredient() {
-        print(#function)
         addButtonTapped = !addButtonTapped
         self.dropDownViewController.dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
     }

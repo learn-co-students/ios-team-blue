@@ -74,7 +74,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         return resizedImage!
     }
 
-    func setParsedIngredients() {
+    private func setParsedIngredients() {
         GoogleVisionAPIClient.getDescriptionfor(base64img) { (ingredientsList) in
             DispatchQueue.main.async {
                 self.parsedIngredients = ingredientsList
