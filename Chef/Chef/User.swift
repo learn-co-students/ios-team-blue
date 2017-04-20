@@ -1,6 +1,6 @@
 import Foundation
 
-class User: Object, CustomStringConvertible {
+class User: CustomStringConvertible {
    
     dynamic var email: String = ""
     dynamic var favRecipes = [String]()

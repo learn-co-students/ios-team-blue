@@ -1,6 +1,5 @@
 import UIKit
 import SnapKit
-import RealmSwift
 
 class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
