@@ -16,16 +16,12 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         self.navigationItem.title = "Fridge"
         self.createUI()
-        self.groupedItems = self.sortByCategory()
-        createFoodGroups()
         self.tableView.reloadData()
-        print("The groupedItems are ", groupedItems)
-        print("The groupedFoods are ", groupedFoods)
-        print("The user's fridge is ", store.user.fridge)
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.groupedItems = self.sortByCategory()
+        createFoodGroups()
         self.tableView.reloadData()
     }
 
@@ -211,6 +207,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createFoodGroups() {
+        groupedFoods.removeAll()
         for (key, value) in groupedItems {
             groupedFoods.append(FoodGroups(groupName: key, groupItems: value))
         }
