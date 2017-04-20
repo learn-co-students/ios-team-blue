@@ -19,7 +19,7 @@ class SettingsCell: UICollectionViewCell {
 
         self.label = {
             let lb = UILabel()
-            lb.font = Fonts.regular16
+            lb.font = Fonts.medium16
             return lb
         }()
 
