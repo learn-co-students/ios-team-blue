@@ -6,6 +6,7 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     let store = RecipeDataStore.shared
     var loginView: LoginView!
     var userIsSigningUp: Bool = false
+    var isfirstTimeLoggingIn: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         }
         FirebaseManager.signUp(email: email, password: password) { success in
             if success {
+                self.isfirstTimeLoggingIn = true
                 self.logIn()
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
@@ -133,6 +135,9 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
 
     func pushToTabBarController() {
         let tabBarController = TabBarController()
+        if self.isfirstTimeLoggingIn {
+            tabBarController.generateRecipesVC.isFirstTimeLoggingIn = true
+        }
         self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 

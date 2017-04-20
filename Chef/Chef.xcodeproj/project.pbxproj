@@ -28,6 +28,8 @@
 		07E2865F1EA733CF00E6C90A /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E2865E1EA733CF00E6C90A /* Colors.swift */; };
 		07E286611EA733D900E6C90A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E286601EA733D900E6C90A /* Fonts.swift */; };
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
+		7B59FFB11EA92AEA0000B5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B59FFB01EA92AEA0000B5F5 /* Assets.xcassets */; };
+		7B59FFCB1EA94AD70000B5F5 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFCA1EA94AD70000B5F5 /* OnboardingViewController.swift */; };
 		7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280371EA1533B000914F8 /* FridgeCell.swift */; };
 		7B82803A1EA15344000914F8 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280391EA15344000914F8 /* DropDownView.swift */; };
 		7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */; };
@@ -41,7 +43,6 @@
 		7B8280541EA6B991000914F8 /* ReceiptDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */; };
 		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
-		7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B97B15B1E92D5930005B23D /* Assets.xcassets */; };
 		7BF533051E95961900687363 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533041E95961900687363 /* Secrets.swift */; };
 		7BF533071E95962000687363 /* RecipeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533061E95962000687363 /* RecipeDataStore.swift */; };
 		7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533081E95962700687363 /* SpoonacularAPIClient.swift */; };
@@ -77,6 +78,8 @@
 		07E2865A1EA713AD00E6C90A /* SectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		07E2865E1EA733CF00E6C90A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		07E286601EA733D900E6C90A /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
+		7B59FFB01EA92AEA0000B5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7B59FFCA1EA94AD70000B5F5 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		7B8280371EA1533B000914F8 /* FridgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeCell.swift; sourceTree = "<group>"; };
 		7B8280391EA15344000914F8 /* DropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewDelegate.swift; sourceTree = "<group>"; };
@@ -90,7 +93,6 @@
 		7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDataCell.swift; sourceTree = "<group>"; };
 		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		7B97B15B1E92D5930005B23D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7BF533041E95961900687363 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		7BF533061E95962000687363 /* RecipeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDataStore.swift; sourceTree = "<group>"; };
 		7BF533081E95962700687363 /* SpoonacularAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClient.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				98D03D411E9D4F320089416D /* LoginViewController.swift */,
 				07752C731EA146840090F76E /* RecipeDetailViewController.swift */,
 				7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */,
+				7B59FFCA1EA94AD70000B5F5 /* OnboardingViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -260,7 +263,7 @@
 				07AC66BB1E98133D0000F195 /* Hidden */,
 				07AC66BA1E98130B0000F195 /* Configurations */,
 				07BAD8441E92959400F3354A /* LaunchScreen.storyboard */,
-				7B97B15B1E92D5930005B23D /* Assets.xcassets */,
+				7B59FFB01EA92AEA0000B5F5 /* Assets.xcassets */,
 			);
 			path = Chef;
 			sourceTree = "<group>";
@@ -364,8 +367,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B97B15C1E92D5930005B23D /* Assets.xcassets in Resources */,
 				07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */,
+				7B59FFB11EA92AEA0000B5F5 /* Assets.xcassets in Resources */,
 				7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -450,6 +453,7 @@
 				7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */,
 				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
 				7B8280461EA15374000914F8 /* SecretFoodDataStore.swift in Sources */,
+				7B59FFCB1EA94AD70000B5F5 /* OnboardingViewController.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,

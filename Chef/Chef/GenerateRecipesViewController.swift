@@ -4,6 +4,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
+    var isFirstTimeLoggingIn: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +20,11 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
                     print(recipe.title)
                 }
             }
+        }
+
+        if self.isFirstTimeLoggingIn {
+            let onboardingVC = OnboardingPager()
+            self.present(onboardingVC, animated: true, completion: nil)
         }
     }
 
