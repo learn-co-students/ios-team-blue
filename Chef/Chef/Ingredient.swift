@@ -9,6 +9,6 @@
 import Foundation
 
 struct Ingredient {
-    var name: String
-    var category: String
+    var sectionName: String
+    var sectionItems: [String]
 }
