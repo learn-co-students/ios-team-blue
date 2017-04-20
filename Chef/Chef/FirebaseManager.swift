@@ -80,13 +80,39 @@ class FirebaseManager {
         })
     }
 
+    static func getUserData(_ user: User, completion: @escaping ((favRecipeIDs: [String], fridge: [String], diet: [String]?, allergy: [String]?)) -> ()) {
+        let ref = usersRef.child(user.id)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            guard let snap = snapshot.value as? [String: Any],
+                let favRecipesIDs = snap["favRecipes"] as? [String],
+                let fridge = snap["fridge"] as? [String] else {
+                    print(#function + " failed")
+                    return
+            }
+            if let restrictions = snap["dietaryRestrictions"] as? [String: Any],
+                let diet = restrictions["diet"] as? [String]?,
+                let allergy = restrictions["allergies"] as? [String]? {
+                completion((favRecipesIDs, fridge, diet, allergy))
+            } else if let restrictions = snap["dietaryRestrictions"] as? [String: Any],
+                let diet = restrictions["diet"] as? [String]?{
+                completion((favRecipesIDs, fridge, diet, nil))
+            } else if let restrictions = snap["dietaryRestrictions"] as? [String: Any],
+                let allergy = restrictions["allergies"] as? [String]? {
+                completion((favRecipesIDs, fridge, nil, allergy))
+            } else {
+                completion((favRecipesIDs, fridge, nil, nil))
+            }
+            
+        })
+    }
+
     static func getUserData(_ user: User, completion: @escaping (([String], [String])) -> ()) {
         usersRef.child(user.id).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any],
-                  let favRecipesIDs = snap["favRecipes"] as? [String],
-                  let fridge = snap["fridge"] as? [String] else {
-                print("\nFirebaseManager -- \(#function) -- Could not get user data\n")
-                return
+                let favRecipesIDs = snap["favRecipes"] as? [String],
+                let fridge = snap["fridge"] as? [String] else {
+                    print("\nFirebaseManager -- \(#function) -- Could not get user data\n")
+                    return
             }
             completion(favRecipesIDs, fridge)
         })

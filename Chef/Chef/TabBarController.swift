@@ -6,7 +6,7 @@ class TabBarController: UITabBarController {
         super.viewDidLoad()
 
         UIApplication.shared.statusBarStyle = .default
-        self.tabBar.tintColor = Style.flatironBlue
+        self.tabBar.tintColor = Colors.flatironBlue
 
         let generateRecipesVC = GenerateRecipesViewController()
         generateRecipesVC.tabBarItem = UITabBarItem(title: "Generate", image: UIImage(named: "cookbook"), tag: 1)

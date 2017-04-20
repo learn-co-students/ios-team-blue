@@ -124,7 +124,7 @@ class LoginView: UIView {
             let hl = UILabel()
             hl.text = "Chef"
             hl.textColor = .white
-            hl.font = UIFont(name: Style.regular, size: 48)
+            hl.font = Fonts.medium48
             return hl
         }()
 
@@ -167,7 +167,7 @@ class LoginView: UIView {
             lb.backgroundColor = .white
             lb.setTitle("Login", for: .normal)
             lb.setTitleColor(.black, for: .normal)
-            lb.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            lb.titleLabel?.font = Fonts.heavy18
             lb.layer.cornerRadius = 5
             lb.addTarget(self, action: #selector(loginSignupButtonTapped), for: .touchUpInside)
             return lb
@@ -187,7 +187,7 @@ class LoginView: UIView {
             sb.backgroundColor = .clear
             sb.setTitle("Sign Up", for: .normal)
             sb.titleLabel?.textColor = .white
-            sb.titleLabel?.font = UIFont(name: Style.bold, size: 16)
+            sb.titleLabel?.font = Fonts.heavy16
             sb.addTarget(self, action: #selector(switchButtonTapped), for: .touchUpInside)
             return sb
         }()

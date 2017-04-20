@@ -27,10 +27,10 @@ class DropDownView: UIView {
     func createManualEntryButton() {
         self.manualEntryButton = {
             let me = UIButton()
-            me.backgroundColor = Style.flatironBlue
+            me.backgroundColor = Colors.flatironBlue
             me.titleLabel?.textColor = UIColor.white
             me.setTitle("Manual Entry", for: .normal)
-            me.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            me.titleLabel?.font = Fonts.heavy16
             me.layer.cornerRadius = 8
             me.addTarget(self, action: #selector(manualEntryButtonTapped), for: .touchUpInside)
             return me
@@ -48,10 +48,10 @@ class DropDownView: UIView {
     func createScanReceiptButton() {
         self.scanReceiptButton = {
             let sr = UIButton()
-            sr.backgroundColor = Style.flatironBlue
+            sr.backgroundColor = Colors.flatironBlue
             sr.titleLabel?.textColor = UIColor.white
             sr.setTitle("Scan Receipt", for: .normal)
-            sr.titleLabel?.font = UIFont(name: Style.bold, size: 18)
+            sr.titleLabel?.font = Fonts.heavy16
             sr.layer.cornerRadius = 8
             sr.addTarget(self, action: #selector(scanReceiptButtonTapped), for: .touchUpInside)
             return sr

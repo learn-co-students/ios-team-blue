@@ -15,10 +15,11 @@ final class RecipeDataStore {
     }
 
     func getRecipes(_ completion: @escaping () -> ()) {
-
+        print("We are getting recipes!")
         SpoonacularAPIClient.generateRecipes(for: self.user) { (result) in
             switch result {
             case .success(let recipeList):
+                print("We succesfully got the recipes!")
                 guard let recipeList = recipeList as? [[String: Any]] else {
                     return
                 }
@@ -32,7 +33,8 @@ final class RecipeDataStore {
                 }
                 completion()
             case .failure(let error):
-                print(error)
+                print("We did not get the recipes :(")
+                print("The error is ", error.localizedDescription)
             }
         }
     }
@@ -54,10 +56,22 @@ final class RecipeDataStore {
     }
 
     func pullDataForUser(_ user: User, completion: @escaping () ->()) {
-        FirebaseManager.getUserData(user) { (recipeIDs, food) in
+        FirebaseManager.getUserData(user) { (recipeIDs, food, diet, allergies) in
             for id in recipeIDs {
                 self.user.favRecipes.append(id)
             }
+
+            if let allergyList = allergies {
+                for item in allergyList {
+                    self.user.allergyList.append(item)
+                }
+            }
+            if let dietList = diet {
+                for item in dietList {
+                    self.user.dietList.append(item)
+                }
+            }
+
             self.user.fridge = food
             completion()
         }
