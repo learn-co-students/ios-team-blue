@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
@@ -8,12 +7,13 @@ final class SpoonacularAPIClient {
     private static let baseURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients="
     private static let otherInfoURL = "&limitLicense=false&number=20&ranking=1"
 
-    class func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+    static func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+        print("SpoonacularAPIClient -- \(#function)")
 
         //If the user has no dietary restriction/intolerances
         if user.allergyList.isEmpty && user.dietList.isEmpty {
-             print("Doin the standard call")
-            let ingredients = Helper.spoonacularEncode(items: user.fridge)
+            print("Doin the standard call")
+            let ingredients = self.spoonacularEncode(items: user.fridge)
             let url = baseURL + ingredients + otherInfoURL
             print("The full URL is ", url)
             Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
@@ -28,16 +28,16 @@ final class SpoonacularAPIClient {
             }
         } else {
             //If the user does have diet/intolerances
-            let ingredients = Helper.spoonacularEncode(items: user.fridge)
+            let ingredients = self.spoonacularEncode(items: user.fridge)
             var allergyList = ""
             var dietList = ""
 
             if !user.dietList.isEmpty{
-                let diets = Helper.spoonacularEncode(items: user.dietList)
+                let diets = self.spoonacularEncode(items: user.dietList)
                 dietList = "&diet=\(diets)"
             }
             if !user.allergyList.isEmpty {
-                let allergies = Helper.spoonacularEncode(items: user.allergyList)
+                let allergies = self.spoonacularEncode(items: user.allergyList)
                 allergyList = "&intolerances=\(allergies)"
             }
 
@@ -57,34 +57,9 @@ final class SpoonacularAPIClient {
         }
     }
 
-    class func randomJoke() -> String {
-        let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
-        var joke = ""
-        Alamofire.request(endpoint, method: .get,headers: spoonacularAPIHeaders).responseJSON {
-            (response) in
-            if let JSON = response.result.value {
-                joke = "\(JSON)"
-            }
-        }
-        return joke
-    }
+    static func fetchRecipe(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+        print("SpoonacularAPIClient -- \(#function)")
 
-    class func generateRecipeByID(for recipe: Recipe, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(recipe.id)/information?includeNutrition=false"
-        Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON {
-            (response) in
-            if let json = response.result.value {
-                if let responseJSON = json as? [String: Any] {
-                    completion(.success(responseJSON))
-
-                } else {
-                    completion(.failure(.nodata))
-                }
-            }
-        }
-    }
-
-    class func fetchRecipe(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(id)/information?includeNutrition=false"
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
             if let json = response.result.value {
@@ -102,6 +77,8 @@ final class SpoonacularAPIClient {
     }
 
     static func fetchSavedRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+        print("SpoonacularAPIClient -- \(#function)")
+
         var recipes = [Recipe]()
         for id in user.favRecipes {
             self.fetchRecipe(id: id) { result in
@@ -118,6 +95,8 @@ final class SpoonacularAPIClient {
     }
 
     static func fetchRecipeDetail(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
+        print("SpoonacularAPIClient -- \(#function)")
+
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(id)/information?includeNutrition=false"
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
             guard let recipeDetail = response.result.value as? JSONDictionary else {
@@ -128,12 +107,24 @@ final class SpoonacularAPIClient {
         }
     }
 
+    static func randomJoke() -> String {
+        print("SpoonacularAPIClient -- \(#function)")
+
+        let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
+        var joke = ""
+        Alamofire.request(endpoint, method: .get,headers: spoonacularAPIHeaders).responseJSON {
+            (response) in
+            if let JSON = response.result.value {
+                joke = "\(JSON)"
+            }
+        }
+        return joke
+    }
 
     static func parseIngredients(_ json: [JSONDictionary]) -> [String] {
         var ingredients = [String]()
         for entry in json {
             guard let ingredient = entry["originalString"] as? String else {
-//                print(#function + " -- failed")
                 fatalError(#function + " -- failed")
             }
             ingredients.append(ingredient)
@@ -161,11 +152,10 @@ final class SpoonacularAPIClient {
         return instructions
     }
 
-}
 
-class Helper {
+    // MARK: - Helper
 
-    static func spoonacularEncode(items: [String]) -> String {
+    private static func spoonacularEncode(items: [String]) -> String {
         var container  = ""
         for item in items {
             let newItem = item.replacingOccurrences(of: " ", with: "%20")
@@ -177,5 +167,5 @@ class Helper {
         }
         return container
     }
-}
 
+}
