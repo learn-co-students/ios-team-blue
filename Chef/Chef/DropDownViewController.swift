@@ -5,7 +5,10 @@ import Photos
 class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     var dropDownView: DropDownView!
-
+    var imagePicker: UIImagePickerController!
+    var base64img = String()
+    var scannedReceiptVC: ScannedReceiptViewController!
+    var parsedIngredients = [String]()
 
 
     override func viewDidLoad() {
@@ -30,22 +33,20 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     }
 
     func openCameraButton(_ sender: UIButton) {
-        let imagePicker = UIImagePickerController()
+        self.imagePicker = UIImagePickerController()
         imagePicker.delegate = self
         imagePicker.sourceType = UIImagePickerControllerSourceType.camera
         self.present(imagePicker, animated: true, completion: nil)
     }
 
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        guard let image = info[UIImagePickerControllerEditedImage] as? UIImage else { return }
-        let imageName = UUID().uuidString
-        let imagePath = DropDownViewController.getDocumentsDirectory().appendingPathComponent(imageName)
+        let mediaType = info[UIImagePickerControllerMediaType] as! NSString
+        if mediaType.isEqual(to: kUTTypeImage as String) {
+            let image = info[UIImagePickerControllerOriginalImage] as! UIImage
+            base64img = base64EncodeImage(image)
+            setParsedIngredients()
 
-        if let jpegData = UIImageJPEGRepresentation(image, 80) {
-            try? jpegData.write(to: imagePath)
         }
-        dismiss(animated: true)
     }
 
     static func getDocumentsDirectory() -> URL {
@@ -54,18 +55,36 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         return documentsDirectory
     }
 
-    func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
-        } else {
-            let ac = UIAlertController(title: "Saved!", message: "Your image has been saved to your photos.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
+    private func base64EncodeImage(_ image: UIImage) -> String {
+        var imagedata  = UIImagePNGRepresentation(image)
+        if ((imagedata?.count)! > 2097152) {
+            let oldSize: CGSize = image.size
+            let newSize: CGSize = CGSize(width: 800, height: oldSize.height / oldSize.width * 800)
+            imagedata = resizeImage(newSize, image: image)
+        }
+        return imagedata!.base64EncodedString(options: .endLineWithCarriageReturn)
+    }
+
+    private func resizeImage(_ imageSize: CGSize, image: UIImage) -> Data {
+        UIGraphicsBeginImageContext(imageSize)
+        image.draw(in: CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        let resizedImage = UIImagePNGRepresentation(newImage!)
+        UIGraphicsEndImageContext()
+        return resizedImage!
+    }
+
+    private func setParsedIngredients() {
+        GoogleVisionAPIClient.getDescriptionfor(base64img) { (ingredientsList) in
+            DispatchQueue.main.async {
+                self.parsedIngredients = ingredientsList
+                self.scannedReceiptVC = ScannedReceiptViewController()
+                self.scannedReceiptVC.parsedIngredients = self.parsedIngredients
+                self.imagePicker.dismiss(animated: true) {
+                    self.present(self.scannedReceiptVC, animated: true, completion: nil)
+                }
+            }
         }
     }
-    
-    
     
 }

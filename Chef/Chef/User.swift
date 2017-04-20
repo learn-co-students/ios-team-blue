@@ -1,21 +1,21 @@
 import Foundation
 
-struct User: CustomStringConvertible {
+class User: CustomStringConvertible {
    
-    var email: String
-    var favRecipes: [String]
-    var fridge: [String]
-    var dietList = [String]()
-    var allergyList = [String]()
+    dynamic var email: String = ""
+    dynamic var favRecipes = [String]()
+    dynamic var fridge = [String]()
+    dynamic var dietList = [String]()
+    dynamic var allergyList = [String]()
 
-    var id: String {
+    dynamic var id: String {
         var str = self.email
         str = str.replacingOccurrences(of: "@", with: "")
         str = str.replacingOccurrences(of: ".", with: "")
         return str
     }
 
-    var description: String {
+    dynamic var description: String {
         return "email: \(self.email)\nfavRecipes: \(self.favRecipes)\nfridge: \(fridge)"
     }
 

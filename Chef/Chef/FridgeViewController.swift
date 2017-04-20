@@ -50,6 +50,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
             self.tableView.reloadData()
+
         }
     }
 
@@ -105,7 +106,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Actions
 
     func addIngredient() {
-        print(#function)
         addButtonTapped = !addButtonTapped
         self.dropDownViewController.dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
     }
