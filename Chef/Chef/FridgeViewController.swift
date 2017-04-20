@@ -9,15 +9,26 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var addButton: UIBarButtonItem!
     var addButtonTapped = false
     var dropDownViewController: DropDownViewController!
+    var groupedItems = [String: [String]]()
+    var ingredients = [Ingredient]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.title = "Fridge"
         self.createUI()
+        self.groupedItems = self.sortByCategory()
+        createIngredients()
+        self.tableView.reloadData()
+        print("The groupedItems are ", groupedItems)
+        print("The ingredients are ", ingredients)
+        print("The user's fridge is ", store.user.fridge)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        self.groupedItems = self.sortByCategory()
+        createIngredients()
         self.tableView.reloadData()
     }
 
@@ -25,16 +36,16 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Data Source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return ingredients.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.user.fridge.count
+        return ingredients[section].sectionItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath) as! FridgeCell
-        cell.textLabel?.text = self.store.user.fridge[indexPath.row]
+        cell.textLabel?.text = ingredients[indexPath.section].sectionItems[indexPath.row]
         return cell
     }
 
@@ -44,6 +55,10 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
             self.tableView.reloadData()
         }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ingredients[section].sectionName
     }
 
 
@@ -106,19 +121,117 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.dropDownViewController.dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
     }
 
-    func createIngredients() {
-        var ingredients = [Ingredient]()
-        for item in store.user.fridge {
+    //MARK: - Food Sorting
 
+    func sortByCategory() -> [String: [String]] {
+        var groupedByType = [String: [String]]()
+        let items = store.user.fridge
+        for item in items {
+            if isGrain(item) {
+                if groupedByType.keys.contains("Grains") {
+                    groupedByType["Grains"]?.append(item)
+                } else {
+                    groupedByType.updateValue([item], forKey: "Grains")
+                }
+            } else if isVeggie(item) {
+                if groupedByType.keys.contains("Vegetables") {
+                    groupedByType["Vegetables"]?.append(item)
+                } else {
+                    groupedByType.updateValue([item], forKey: "Vegetables")
+                }
+            } else if isFruit(item) {
+                if groupedByType.keys.contains("Fruits") {
+                    groupedByType["Fruits"]?.append(item)
+                } else {
+                    groupedByType.updateValue([item], forKey: "Fruits")
+                }
+            } else if isProtein(item) {
+                if groupedByType.keys.contains("Proteins") {
+                    groupedByType["Proteins"]?.append(item)
+                } else {
+                    groupedByType.updateValue([item], forKey: "Proteins")
+                }
+            } else if isDairy(item) {
+                if groupedByType.keys.contains("Dairy") {
+                    groupedByType["Dairy"]?.append(item)
+                } else {
+                    groupedByType.updateValue([item], forKey: "Dairy")
+                }
+            } else {
+                if groupedByType.keys.contains("Other") {
+                    groupedByType["Other"]?.append(item)
+                } else {
+                    groupedByType.updateValue([item], forKey: "Other")
+                }
+            }
+        }
+        print("groupedByType is ",groupedByType)
+        return groupedByType
+    }
+
+    func isGrain(_ food: String) -> Bool {
+        if pastaAndNoodles.contains(food) ||
+            otherGrains.contains(food) {
+            return true
+        } else {
+            return false
+        }
+    }
+    func isVeggie(_ food: String) -> Bool {
+        if vegetables.contains(food) {
+            return true
+        } else {
+            return false
+        }
+    }
+    func isFruit(_ food: String) -> Bool {
+        if fruits.contains(food) {
+            return true
+        } else {
+            return false
+        }
+    }
+    func isProtein(_ food: String) -> Bool {
+        if meatsSeafoodsAndEggs.contains(food) ||
+            beansPeasAndTofu.contains(food) ||
+            nutsAndSeeds.contains(food) {
+            return true
+        } else {
+            return false
+        }
+    }
+    func isDairy(_ food: String) -> Bool {
+        if dairy.contains(food) {
+            return true
+        } else {
+            return false
+        }
+    }
+    func isOther(_ food: String) -> Bool {
+        if beverages.contains(food) ||
+            alcoholicBeverages.contains(food) ||
+            condimentsAndSauce.contains(food) {
+            return true
+        } else {
+            return false
         }
     }
 
-    func sortByCategory(_ item) {
-
-
-
+    func createIngredients() {
+        for (key, value) in groupedItems {
+            ingredients.append(Ingredient(sectionName: key, sectionItems: value))
+        }
     }
 
 }
 
-//var foodGroups = [grains, vegetable, fruit, proteins, dairies, other]
+
+
+
+
+
+
+
+
+
+

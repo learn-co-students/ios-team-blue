@@ -227,6 +227,7 @@ var otherGrains: [String] = [
     "Muesli",
     "Rolled Oats",
     "Quinoa",
+    "Rice",
     "Rye",
     "Sorghum",
     "Spelt",
