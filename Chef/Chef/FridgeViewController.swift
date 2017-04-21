@@ -88,15 +88,9 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createAddButton() {
-        addButton = UIButton(type: .custom)
-        addButton.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
-        addButton.addTarget(self, action: #selector(addIngredient), for: .touchUpInside)
-        addButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        addButton.tintColor = Colors.flatironBlue
-        addBarButton = UIBarButtonItem(customView: addButton)
-        self.navigationItem.rightBarButtonItem = addBarButton
-        addButton.tintColor = Colors.flatironBlue
-
+        self.addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addIngredient))
+        self.addBarButton.tintColor = Colors.flatironBlue
+        self.navigationItem.rightBarButtonItem = self.addBarButton
     }
 
     func createDropDownViewController() {
