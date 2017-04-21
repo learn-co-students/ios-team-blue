@@ -10,7 +10,7 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let firstVC = UIViewController()
     let secondVC = UIViewController()
     let thirdVC = UIViewController()
-    let foruthVC = UIViewController()
+    let fourthVC = UIViewController()
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
     override func viewDidLoad() {
@@ -105,8 +105,28 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     func setUpFirstViewController() {
         firstVC.view.frame(forAlignmentRect: screenSize)
         firstVC.view.addSubview(imageView)
-        imageView.image = #imageLiteral(resourceName: "myCookBook2")
+        imageView.image = #imageLiteral(resourceName: "MyCookBook")
     }
+
+    func setUpSecondViewController() {
+        secondVC.view.frame(forAlignmentRect: screenSize)
+        secondVC.view.addSubview(imageView)
+        imageView.image = #imageLiteral(resourceName: "SavedRecipes")
+    }
+
+    func setUpThirdViewController() {
+        thirdVC.view.frame(forAlignmentRect: screenSize)
+        thirdVC.view.addSubview(imageView)
+        imageView.image = #imageLiteral(resourceName: "FridgeVC")
+    }
+
+    func setUpFourthViewController() {
+        fourthVC.view.frame(forAlignmentRect: screenSize)
+        thirdVC.view.addSubview(imageView)
+        imageView.image = #imageLiteral(resourceName: "UserSettings")
+    }
+
+
 
 
 }
