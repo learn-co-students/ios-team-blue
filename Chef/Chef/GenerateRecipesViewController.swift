@@ -11,8 +11,10 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         self.createUI()
         self.navigationItem.title = "My Cookbook"
 
+        print("\nGenerateRecipesViewController.\(#function) -- Generating recipes for first time")
         self.store.fetchGeneratedRecipesFromSpoonacular {
             DispatchQueue.main.async {
+                print("GenerateRecipesViewController.\(#function) -- Reloading collection view")
                 self.collectionView.reloadData()
             }
         }

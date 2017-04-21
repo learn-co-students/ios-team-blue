@@ -17,10 +17,6 @@ class AddDietViewController: UIViewController, AddDietDelegate {
         selectButtons()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func dietButtonTapped(_ button: UIButton) {
         var btnTitle = button.title(for: .selected)
         _ = btnTitle?.characters.popLast()

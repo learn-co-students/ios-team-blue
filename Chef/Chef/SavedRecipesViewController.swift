@@ -11,8 +11,10 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         self.createUI()
         self.navigationItem.title = "Saved Recipes"
 
+        print("\nSavedRecipesViewController.\(#function) -- Fetching saved recipes for first time")
         self.store.fetchSavedRecipes {
             DispatchQueue.main.async {
+                print("SavedRecipesViewController.\(#function) -- Reloading collection view")
                 self.collectionView.reloadData()
             }
         }
@@ -22,10 +24,11 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: - Recipe Cell Delegate
 
     func heartButtonTapped(_ sender: RecipeCell) {
-        print("\nSavedRecipesViewController -- \(#function)")
+        print("\nSavedRecipesViewController.\(#function)")
         let recipe = sender.recipe!
         self.store.removeSavedRecipe(recipe) {
             DispatchQueue.main.async {
+                print("SavedRecipesViewController.\(#function) -- Reloading data")
                 self.collectionView.reloadData()
             }
         }
