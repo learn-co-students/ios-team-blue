@@ -2,22 +2,23 @@ import UIKit
 
 class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
 
+    var store = RecipeDataStore.shared
     var receiptTableView: UITableView!
     var parsedIngredients: [String]!
-    var addButton: UIBarButtonItem!
-
+    var editedIngredients = [String]()
+    var editedText = ""
+    var saveButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        editedIngredients = parsedIngredients
         self.createUI()
         self.navigationItem.title = "Receipt Content"
+        saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveItems))
+        navigationItem.rightBarButtonItem = saveButton
     }
 
     // MARK: - Data Source
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             if parsedIngredients != nil {
@@ -34,15 +35,44 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
             return cell
     }
 
-    //MARK: - TextField Configuration
+    // MARK: - Delegate
 
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete){
+            let selectedIngredient = parsedIngredients[indexPath.row]
+            parsedIngredients = parsedIngredients.filter {$0 != selectedIngredient}
+            editedIngredients = parsedIngredients
+            self.receiptTableView.reloadData()
+        }
+    }
+
+    //after getting the data from the edited cell, remove the original value from the array and push the new value into the array
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let text = textField.text {
+            self.editedText = text
+            print("begin editing", text)
+
+        }
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let index = editedIngredients.index(of: editedText)
+        if let index = index {
+            editedIngredients.remove(at: index)
+        }
+        if let text = textField.text {
+            editedIngredients.append(text)
+            print("end editing", text)
+        }
+    }
+
+    //MARK: - TextField Configuration
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
-    }
-    func textFieldShouldClear(_ textField: UITextField) -> Bool {
-        textField.clearButtonMode = .whileEditing
         return true
     }
 
@@ -60,12 +90,15 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
         self.view.addSubview(self.receiptTableView)
         receiptTableView.snapToSuperview()
         receiptTableView.backgroundColor = .white
-        receiptTableView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     // MARK: - Actions
 
-    func back() {
-        self.dismiss(animated: true, completion: nil)
+    func saveItems() {
+        dismiss(animated: true, completion: nil)
+        print(editedIngredients)
+        store.user.fridge.append(editedIngredients)
+
     }
+
 }

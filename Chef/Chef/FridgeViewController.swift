@@ -94,7 +94,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         addBarButton = UIBarButtonItem(customView: addButton)
         self.navigationItem.rightBarButtonItem = addBarButton
         addButton.tintColor = Colors.flatironBlue
-//        navigationController?.navigationBar.barTintColor = UIColor.white
 
     }
 
@@ -138,7 +137,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
                 self.dropDownViewController.dropDownView.center.y -= 160
             })
         }
-
     }
 
     //MARK: - Food Sorting
