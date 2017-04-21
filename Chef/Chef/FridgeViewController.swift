@@ -242,14 +242,3 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

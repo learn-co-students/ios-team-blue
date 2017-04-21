@@ -1,6 +1,6 @@
 import UIKit
 
-class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, RecipeCellDelegate {
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
@@ -11,7 +11,20 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         self.createUI()
         self.navigationItem.title = "Saved Recipes"
 
-        self.store.updateSavedRecipes() {
+        self.store.fetchSavedRecipes {
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
+    }
+
+
+    // MARK: - Recipe Cell Delegate
+
+    func heartButtonTapped(_ sender: RecipeCell) {
+        print("\nSavedRecipesViewController -- \(#function)")
+        let recipe = sender.recipe!
+        self.store.removeSavedRecipe(recipe) {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
@@ -32,6 +45,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as! RecipeCell
         cell.recipe = self.store.savedRecipes[indexPath.row]
+        cell.delegate = self
         return cell
     }
 
@@ -39,7 +53,9 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: - Delegate
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        let recipeVC = RecipeDetailViewController()
+        recipeVC.recipe = self.store.savedRecipes[indexPath.row]
+        self.navigationController?.pushViewController(recipeVC, animated: true)
     }
 
 
