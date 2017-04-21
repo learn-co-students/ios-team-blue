@@ -29,7 +29,7 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
 
     func saveFoodButtonTapped() {
         if let text = manualEntryView.foodEntryTextField.text {
-            store.user.fridge.append(text)
+            store.user.fridge.append(text.capitalized)
             self.dismiss(animated: true, completion: nil)
         }
     }

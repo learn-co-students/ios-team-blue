@@ -13,7 +13,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var groupedItems = [String: [String]]()
     var groupedFoods = [FoodGroups]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = "Fridge"
@@ -48,7 +47,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete){
+        if (editingStyle == .delete) {
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
             self.tableView.reloadData()
@@ -60,10 +59,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(#function)
     }
-
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 60
-//    }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -143,7 +138,14 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     func sortByCategory() -> [String: [String]] {
         var groupedByType = [String: [String]]()
-        let items = store.user.fridge
+        var items: [String] {
+            var correctCase = [String]()
+            for item in store.user.fridge {
+                correctCase.append(item.capitalized)
+            }
+            return correctCase
+        }
+
         for item in items {
             if isGrain(item) {
                 if groupedByType.keys.contains("Grains") {

@@ -10,9 +10,6 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     var scannedReceiptVC: ScannedReceiptViewController!
     var parsedIngredients = [String]()
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         let xcoordinate = view.bounds.width - 150
@@ -37,7 +34,6 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
 
     func scanReceiptButtonTapped() {
         self.openCameraButton(self.dropDownView.scanReceiptButton)
-        print("scanReceiptButtonTapped tapped")
     }
 
     func openCameraButton(_ sender: UIButton) {

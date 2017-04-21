@@ -4,7 +4,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
 
     var store = RecipeDataStore.shared
     var receiptTableView: UITableView!
-    var parsedIngredients: [String]!
+    var parsedIngredients = [String]()
     var editedIngredients = [String]()
     var editedText = ""
     var saveButton: UIBarButtonItem!
@@ -21,11 +21,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - Data Source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            if parsedIngredients != nil {
                 return self.parsedIngredients.count
-            } else {
-                return 0
-            }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,6 +41,7 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
         if (editingStyle == .delete){
             let selectedIngredient = parsedIngredients[indexPath.row]
             parsedIngredients = parsedIngredients.filter {$0 != selectedIngredient}
+            print("Filetered parsedIngredients is", parsedIngredients)
             editedIngredients = parsedIngredients
             self.receiptTableView.reloadData()
         }
@@ -94,12 +91,11 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
 
     // MARK: - Actions
 
+    //TODO: - Does not work, need to update dataStore to not overwirte existing firebase
     func saveItems() {
-        
         print(editedIngredients)
-        for item in editedIngredients {
-            store.user.fridge.append(item)
-        }
+        let newIngredients = editedIngredients.filter { $0 != "" }
+        store.updateFridge(with: newIngredients)
         self.navigationController?.popToRootViewController(animated: true)
     }
 
