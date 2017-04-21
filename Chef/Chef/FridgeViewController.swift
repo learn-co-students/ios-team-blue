@@ -1,5 +1,4 @@
 import UIKit
-import Foundation
 import SnapKit
 
 class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
