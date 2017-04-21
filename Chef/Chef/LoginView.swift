@@ -115,7 +115,7 @@ class LoginView: UIView {
 
     func createBlurredView() {
         self.blurredView = {
-            let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.regular)
+            let blurEffect = UIBlurEffect(style: .dark)
             let bv = UIVisualEffectView(effect: blurEffect)
             bv.alpha = 0.0
             return bv

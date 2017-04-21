@@ -8,14 +8,14 @@ final class SpoonacularAPIClient {
     private static let otherInfoURL = "&limitLicense=false&number=20&ranking=1"
 
     static func generateRecipes(for user: User, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        print("SpoonacularAPIClient -- \(#function)")
+        print("SpoonacularAPIClient.\(#function)")
 
         //If the user has no dietary restriction/intolerances
         if user.allergyList.isEmpty && user.dietList.isEmpty {
 //            print("Doin the standard call")
             let ingredients = self.spoonacularEncode(items: user.fridge)
             let url = baseURL + ingredients + otherInfoURL
-//            print("The full URL is ", url)
+            //print("SpoonacularAPIClient.\(#function) -- \(url)")
             Alamofire.request(url, method: .get, headers: spoonacularAPIHeaders).responseJSON {
                 (response) in
                 if let json = response.result.value {
@@ -32,7 +32,7 @@ final class SpoonacularAPIClient {
             var allergyList = ""
             var dietList = ""
 
-            if !user.dietList.isEmpty{
+            if !user.dietList.isEmpty {
                 let diets = self.spoonacularEncode(items: user.dietList)
                 dietList = "&diet=\(diets)"
             }
@@ -58,7 +58,7 @@ final class SpoonacularAPIClient {
     }
 
     static func fetchRecipe(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        print("SpoonacularAPIClient -- \(#function)")
+        print("SpoonacularAPIClient.\(#function)")
 
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(id)/information?includeNutrition=false"
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
@@ -75,7 +75,7 @@ final class SpoonacularAPIClient {
     }
 
     static func fetchRecipes(ids: [String], completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        print("SpoonacularAPIClient -- \(#function)")
+        print("SpoonacularAPIClient.\(#function)")
 
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/informationBulk?ids=\(spoonacularEncode(items: ids))&includeNutrition=false"
 
@@ -86,18 +86,18 @@ final class SpoonacularAPIClient {
                     if let recipe = Recipe(dictionary: entry) {
                         recipes.append(recipe)
                     } else {
-                        print("SpoonacularAPIClient -- \(#function) -- Recipe could not be initialized")
+                        print("SpoonacularAPIClient.\(#function) -- Recipe could not be initialized")
                     }
                 }
                 completion(.success(recipes))
             } else {
-                print("SpoonacularAPIClient -- \(#function) -- Failed")
+                print("SpoonacularAPIClient.\(#function) -- Failed")
             }
         }
     }
 
     static func fetchSavedRecipes(ids: [String], completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        print("SpoonacularAPIClient -- \(#function)")
+        print("SpoonacularAPIClient.\(#function)")
 
         self.fetchRecipes(ids: ids) { result in
             switch result {
@@ -118,7 +118,7 @@ final class SpoonacularAPIClient {
     }
 
     static func fetchRecipeDetail(id: String, completion: @escaping (SpoonacularAPIClientResponse) -> ()) {
-        print("SpoonacularAPIClient -- \(#function)")
+        print("SpoonacularAPIClient.\(#function)")
 
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/\(id)/information?includeNutrition=false"
         Alamofire.request(endpoint, method: .get, headers: spoonacularAPIHeaders).responseJSON { response in
@@ -131,7 +131,7 @@ final class SpoonacularAPIClient {
     }
 
     static func randomJoke() -> String {
-        print("SpoonacularAPIClient -- \(#function)")
+        print("SpoonacularAPIClient.\(#function)")
 
         let endpoint = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/jokes/random"
         var joke = ""
@@ -148,7 +148,7 @@ final class SpoonacularAPIClient {
         var ingredients = [String]()
         for entry in json {
             guard let ingredient = entry["originalString"] as? String else {
-                fatalError(#function + " -- failed")
+                fatalError("SpoonacularAPIClient.\(#function) -- failed")
             }
             ingredients.append(ingredient)
         }
@@ -162,7 +162,7 @@ final class SpoonacularAPIClient {
         let instructionsArray = json[0]
 
         guard let steps = instructionsArray["steps"] as? [JSONDictionary] else {
-            fatalError(#function + " -- failed")
+            fatalError("SpoonacularAPIClient.\(#function) -- failed")
         }
 
         for step in steps {
