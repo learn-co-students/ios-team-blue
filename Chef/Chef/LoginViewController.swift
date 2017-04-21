@@ -6,7 +6,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     let store = RecipeDataStore.shared
     var loginView: LoginView!
     var userIsSigningUp: Bool = false
-    var isfirstTimeLoggingIn: Bool = false
 
 
     // MARK: View Controller Life-Cycle
@@ -65,7 +64,18 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                 FirebaseManager.signUp(email: email, password: password) { success in
                     if success {
                         FirebaseManager.login(email: email, password: password) { success in
-                            self.handleLogin(success, newUser: newUser)
+                            //self.handleLogin(success, newUser: newUser)
+                            if success {
+                                self.store.setUser(newUser) {
+                                    //self.pushToTabBarController()
+                                    let tabBarController = TabBarController()
+                                    tabBarController.generateRecipesVC.isFirstTimeLoggingIn = true
+                                    self.navigationController?.pushViewController(tabBarController, animated: true)
+                                }
+                            } else {
+                                print("LoginViewController.\(#function) -- login failed")
+                                self.animateUIOnAuthFail()
+                            }
                         }
                     } else {
                         print("LoginViewController.\(#function) -- signup failed")

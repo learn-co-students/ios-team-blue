@@ -17,11 +17,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         setUpThirdViewController()
         setUpFourthViewController()
 
-//        firstVC.view.backgroundColor = Colors.flatironBlue
-//        secondVC.view.backgroundColor = Colors.flatironBlue
-//        secondVC.view.backgroundColor = Colors.flatironBlue
-//        thirdVC.view.backgroundColor = Colors.flatironBlue
-
         dataSource = self
 
         if let firstVC = orderedViewControllers.first {

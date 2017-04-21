@@ -345,7 +345,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = T2QNE7E45K;
+						DevelopmentTeam = 8X5723UG7D;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -593,11 +593,11 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T2QNE7E45K;
+				DEVELOPMENT_TEAM = 8X5723UG7D;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blue-team.Chef";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sejan-blue-team.Chef";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -608,11 +608,11 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T2QNE7E45K;
+				DEVELOPMENT_TEAM = 8X5723UG7D;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.blue-team.Chef";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sejan-blue-team.Chef";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

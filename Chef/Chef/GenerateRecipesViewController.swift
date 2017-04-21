@@ -19,6 +19,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         }
 
         if self.isFirstTimeLoggingIn {
+            print("The view is loading")
             let onboardingVC = OnboardingViewController()
             self.present(onboardingVC, animated: true, completion: nil)
         }
