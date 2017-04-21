@@ -22,6 +22,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         super.viewWillAppear(animated)
 
         // should probably be doing a check to see if anything changed
+        // TODO: - RefreshView shouldn't be getting called twice when view loads
         self.refreshView()
     }
 
