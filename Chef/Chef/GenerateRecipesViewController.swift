@@ -1,9 +1,12 @@
 import UIKit
 
-class GenerateRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class GenerateRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, RecipeCellDelegate {
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
+
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,30 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         }
     }
 
+
+    // MARK: - Recipe Cell Delegate
+
+    func heartButtonTapped(_ sender: RecipeCell) {
+        print("\nGenerateRecipesViewController.\(#function)")
+        let recipe = sender.recipe!
+        if recipe.isFavorite {
+            self.store.addSavedRecipe(recipe) {
+                DispatchQueue.main.async {
+                    print("GenerateRecipesViewController.\(#function) -- Reloading data")
+                    self.collectionView.reloadData()
+                }
+            }
+        } else {
+            self.store.removeSavedRecipe(recipe) {
+                DispatchQueue.main.async {
+                    print("GenerateRecipesViewController.\(#function) -- Reloading data")
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+
+
     // MARK: - Data Source
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -33,6 +60,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as! RecipeCell
         cell.recipe = self.store.generatedRecipes[indexPath.row]
+        cell.delegate = self
         return cell
     }
 

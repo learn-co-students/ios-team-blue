@@ -5,6 +5,9 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
 
+
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -12,6 +15,17 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         self.navigationItem.title = "Saved Recipes"
 
         print("\nSavedRecipesViewController.\(#function) -- Fetching saved recipes for first time")
+        self.refreshView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        // should probably be doing a check to see if anything changed
+        self.refreshView()
+    }
+
+    func refreshView() {
         self.store.fetchSavedRecipes {
             DispatchQueue.main.async {
                 print("SavedRecipesViewController.\(#function) -- Reloading collection view")

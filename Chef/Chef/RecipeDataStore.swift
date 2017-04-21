@@ -91,6 +91,32 @@ final class RecipeDataStore {
         }
     }
 
+    /// Adds recipe to firebase and refreshes
+    func addSavedRecipe(_ recipe: Recipe, completion: @escaping () -> ()) {
+        print("RecipeDataStore.\(#function) -- Adding saved recipe to firebase")
+
+        // make new array for saved recipes that includes the new recipe
+        var newSavedRecipes = [Recipe]()
+        for savedRecipe in self.savedRecipes {
+            newSavedRecipes.append(savedRecipe)
+        }
+        newSavedRecipes.append(recipe)
+
+        // make dictionary from newSavedRecipes array
+        var savedRecipeDict = JSONDictionary()
+        for (index, recipe) in newSavedRecipes.enumerated() {
+            savedRecipeDict["\(index)"] = recipe.id
+        }
+
+        FirebaseManager.setFavoriteRecipes(savedRecipeDict, for: self.user)
+
+        self.refreshUser() {
+            self.fetchSavedRecipes() {
+                completion()
+            }
+        }
+    }
+
     /// Removes recipe from firebase and refreshes
     func removeSavedRecipe(_ recipe: Recipe, completion: @escaping () -> ()) {
         print("RecipeDataStore.\(#function) -- Removing saved recipe from firebase")
