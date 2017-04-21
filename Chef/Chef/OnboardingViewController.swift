@@ -16,9 +16,14 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     override func viewDidLoad() {
         setUpImageView()
         setUpFirstViewController()
+        setUpSecondViewController()
+        setUpThirdViewController()
+        setUpFourthViewController()
 
-        secondVC.view.backgroundColor = UIColor.blue
-        thirdVC.view.backgroundColor = UIColor.yellow
+        firstVC.view.backgroundColor = Colors.flatironBlue
+        secondVC.view.backgroundColor = Colors.flatironBlue
+        secondVC.view.backgroundColor = Colors.flatironBlue
+        thirdVC.view.backgroundColor = Colors.flatironBlue
 
         dataSource = self
 
@@ -110,6 +115,8 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
 
     func setUpSecondViewController() {
         secondVC.view.frame(forAlignmentRect: screenSize)
+//        let imageView = UIImageView()
+//        imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         secondVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "SavedRecipes")
     }
