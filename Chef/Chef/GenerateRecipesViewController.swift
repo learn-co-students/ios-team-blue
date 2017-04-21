@@ -11,13 +11,9 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         self.createUI()
         self.navigationItem.title = "My Cookbook"
 
-        self.store.getRecipes() {
+        self.store.fetchGeneratedRecipesFromSpoonacular {
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
-                print("The recipes are ")
-                for recipe in self.store.recipes {
-                    print(recipe.title)
-                }
             }
         }
     }
@@ -29,12 +25,12 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.store.recipes.count
+        return self.store.generatedRecipes.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as! RecipeCell
-        cell.recipe = self.store.recipes[indexPath.row]
+        cell.recipe = self.store.generatedRecipes[indexPath.row]
         return cell
     }
 
@@ -43,7 +39,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let recipeVC = RecipeDetailViewController()
-        recipeVC.recipe = self.store.recipes[indexPath.row]
+        recipeVC.recipe = self.store.generatedRecipes[indexPath.row]
         self.navigationController?.pushViewController(recipeVC, animated: true)
     }
 

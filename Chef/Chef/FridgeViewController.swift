@@ -154,7 +154,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
                 }
             }
         }
-        print("groupedByType is ",groupedByType)
+//        print("groupedByType is ",groupedByType)
         return groupedByType
     }
 
@@ -214,14 +214,3 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-

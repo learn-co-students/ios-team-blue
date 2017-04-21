@@ -11,7 +11,7 @@ class LoginView: UIView {
     var loginSignupButton: UIButton!
     var switchButton: UIButton!
     var activityIndicator: UIActivityIndicatorView!
-    var isLoading: Bool = false
+    private(set) var isLoading: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,8 +48,14 @@ class LoginView: UIView {
         self.passwordTextField.resignFirstResponder()
     }
 
-    func toggleLoading() {
-        self.isLoading = self.isLoading ? false : true
+    func animateLoading(_ isLoading: Bool) {
+
+        // If values are same then do nothing. Otherwise, toggle property.
+        if self.isLoading == isLoading {
+            return
+        } else {
+            self.isLoading = isLoading
+        }
 
         if self.isLoading {
             self.activityIndicator.startAnimating()
