@@ -10,7 +10,7 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let secondVC = UIViewController()
     let thirdVC = UIViewController()
     let fourthVC = UIViewController()
-    let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    let pageViewController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
 
 
 
@@ -143,16 +143,15 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
 //            make.center.equalTo(self.view.snp.center)
 //        }
         pageControllerDots.numberOfPages = 4
-        pageControllerDots.radius = 4
-        pageControllerDots.tintColor = .black
-        pageControllerDots.currentPageTintColor = .green
+        pageControllerDots.radius = 7
+        pageControllerDots.tintColor = .red
+        pageControllerDots.currentPageTintColor = .red
         pageControllerDots.padding = 6
-        pageControllerDots.progress = 0.5
-        pageControllerDots.set(progress: 2, animated: true)
+//        pageControllerDots.progress = 0.5
+        pageControllerDots.set(progress: 5, animated: true)
         self.view.addSubview(pageControllerDots)
-        print("PAGE CONTROLLERS ARE BEING CREATED")
-        pageControllerDots.layer.position.y = self.view.frame.height - 200;
-
+        pageControllerDots.layer.position.y = self.view.frame.height-50
+        pageControllerDots.layer.position.x = self.view.frame.width-183
     }
 
 
