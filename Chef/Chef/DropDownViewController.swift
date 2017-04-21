@@ -81,7 +81,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
                 self.scannedReceiptVC = ScannedReceiptViewController()
                 self.scannedReceiptVC.parsedIngredients = self.parsedIngredients
                 self.imagePicker.dismiss(animated: true) {
-                    self.present(self.scannedReceiptVC, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(self.scannedReceiptVC, animated: true)
                 }
             }
         }
