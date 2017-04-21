@@ -1,7 +1,8 @@
 import UIKit
 import SnapKit
+import CHIPageControl
 
-class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UIScrollViewDelegate {
 
 
     let screenSize = UIScreen.main.bounds
@@ -11,13 +12,17 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let fourthVC = UIViewController()
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
+
+
     override func viewDidLoad() {
         setUpFirstViewController()
         setUpSecondViewController()
         setUpThirdViewController()
         setUpFourthViewController()
+        //setUpPageControllerProgress()
 
         dataSource = self
+        delegate = self
 
         if let firstVC = orderedViewControllers.first {
             setViewControllers([firstVC],
@@ -25,6 +30,12 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
                                animated: true,
                                completion: nil)
         }
+
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        setUpPageControllerProgress()
+
     }
 
     private(set) lazy var orderedViewControllers: [UIViewController] = {
@@ -124,6 +135,24 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         fourthVC.view.frame(forAlignmentRect: screenSize)
         fourthVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "UserSettings")
+    }
+
+    func setUpPageControllerProgress() {
+        let pageControllerDots = CHIPageControlPaprika(frame: CGRect(x: 0, y:0, width: 100, height: 20))
+//        pageControllerDots.snp.makeConstraints { (make) in
+//            make.center.equalTo(self.view.snp.center)
+//        }
+        pageControllerDots.numberOfPages = 4
+        pageControllerDots.radius = 4
+        pageControllerDots.tintColor = .black
+        pageControllerDots.currentPageTintColor = .green
+        pageControllerDots.padding = 6
+        pageControllerDots.progress = 0.5
+        pageControllerDots.set(progress: 2, animated: true)
+        self.view.addSubview(pageControllerDots)
+        print("PAGE CONTROLLERS ARE BEING CREATED")
+        pageControllerDots.layer.position.y = self.view.frame.height - 200;
+
     }
 
 
