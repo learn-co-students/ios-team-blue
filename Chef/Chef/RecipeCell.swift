@@ -27,14 +27,13 @@ class RecipeCell: UICollectionViewCell {
 
     private func commonInit() {
         self.backgroundColor = .white
+        self.createUI()
+        self.constrainUI()
+    }
 
+    private func createUI() {
         self.imageView = UIImageView()
         self.addSubview(imageView)
-        self.imageView.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(5)
-            make.width.equalToSuperview().offset(-10)
-            make.height.equalTo(self.imageView.snp.width)
-        }
 
         self.nameLabel = {
             let lb = UILabel()
@@ -44,11 +43,6 @@ class RecipeCell: UICollectionViewCell {
             return lb
         }()
         self.addSubview(nameLabel)
-        self.nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(self.imageView.snp.bottom).offset(8)
-            make.left.equalToSuperview().offset(8)
-            make.right.equalToSuperview().offset(-8)
-        }
 
         self.heartButton = {
             let heartImage = UIImage(named: "heart")!.withRenderingMode(.alwaysTemplate)
@@ -59,9 +53,26 @@ class RecipeCell: UICollectionViewCell {
             return fb
         }()
         self.addSubview(self.heartButton)
+    }
+
+    private func constrainUI() {
+        self.imageView.snp.makeConstraints { make in
+            make.top.left.equalToSuperview().offset(5)
+            make.width.equalToSuperview().offset(-10)
+            make.height.equalTo(self.imageView.snp.width)
+        }
+
+        self.nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.imageView.snp.bottom).offset(8)
+            make.left.equalToSuperview().offset(8)
+            make.right.equalToSuperview().offset(-8)
+            make.bottom.equalTo(self.heartButton.snp.top).offset(-8)
+        }
+
         self.heartButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-8)
             make.centerX.equalToSuperview()
+            make.height.equalTo(self.heartButton.snp.width)
         }
     }
 
