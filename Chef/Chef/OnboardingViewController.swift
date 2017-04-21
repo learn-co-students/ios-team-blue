@@ -10,6 +10,7 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let firstVC = UIViewController()
     let secondVC = UIViewController()
     let thirdVC = UIViewController()
+    let foruthVC = UIViewController()
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
     override func viewDidLoad() {
@@ -30,7 +31,7 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     }
 
     private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [self.firstVC, self.secondVC, self.thirdVC]
+        return [self.firstVC, self.secondVC, self.thirdVC, self.fourthVC]
     }()
 
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
