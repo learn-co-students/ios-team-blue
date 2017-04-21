@@ -10,7 +10,9 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let secondVC = UIViewController()
     let thirdVC = UIViewController()
     let fourthVC = UIViewController()
-    let pageViewController = UIPageViewController(transitionStyle: .pageCurl, navigationOrientation: .horizontal, options: nil)
+    let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    var page = 0
+
 
 
 
@@ -33,10 +35,10 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
 
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        setUpPageControllerProgress()
-
-    }
+//    override func viewDidAppear(_ animated: Bool) {
+//        setUpPageControllerProgress()
+//
+//    }
 
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [self.firstVC, self.secondVC, self.thirdVC, self.fourthVC]
@@ -139,16 +141,21 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
 
     func setUpPageControllerProgress() {
         let pageControllerDots = CHIPageControlPaprika(frame: CGRect(x: 0, y:0, width: 100, height: 20))
+//        pageControllerDots.snp.makeConstraints { (make) in
+//            make.center.equalTo(self.view.snp.center)
+//        }
         pageControllerDots.numberOfPages = 4
         pageControllerDots.radius = 7
         pageControllerDots.tintColor = Colors.flatironBlue
-        pageControllerDots.currentPageTintColor = Colors.flatironBlue
+        pageControllerDots.currentPageTintColor = .red
         pageControllerDots.padding = 6
+//        pageControllerDots.progress = 0.5
         pageControllerDots.set(progress: 5, animated: true)
         self.view.addSubview(pageControllerDots)
         pageControllerDots.layer.position.y = self.view.frame.height-50
         pageControllerDots.layer.position.x = self.view.frame.width-183
     }
+
 
 
 
