@@ -3,9 +3,7 @@ import SnapKit
 
 class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-    let coloring = Colors.flatironBlue.cgColor
 
-    let imageView = UIImageView()
     let screenSize = UIScreen.main.bounds
     let firstVC = UIViewController()
     let secondVC = UIViewController()
@@ -14,16 +12,15 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
     override func viewDidLoad() {
-        setUpImageView()
         setUpFirstViewController()
         setUpSecondViewController()
         setUpThirdViewController()
         setUpFourthViewController()
 
-        firstVC.view.backgroundColor = Colors.flatironBlue
-        secondVC.view.backgroundColor = Colors.flatironBlue
-        secondVC.view.backgroundColor = Colors.flatironBlue
-        thirdVC.view.backgroundColor = Colors.flatironBlue
+//        firstVC.view.backgroundColor = Colors.flatironBlue
+//        secondVC.view.backgroundColor = Colors.flatironBlue
+//        secondVC.view.backgroundColor = Colors.flatironBlue
+//        thirdVC.view.backgroundColor = Colors.flatironBlue
 
         dataSource = self
 
@@ -60,8 +57,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         let nextIndex = viewControllerIndex + 1
         let orderedViewControllersCount = orderedViewControllers.count
 
-        // User is on the last view controller and swiped right to loop to
-        // the first view controller.
         guard orderedViewControllersCount != nextIndex else {
             return orderedViewControllers.first
         }
@@ -103,31 +98,34 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         return orderedViewControllers[previousIndex]
     }
 
-    func setUpImageView() {
-         imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
-    }
 
     func setUpFirstViewController() {
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         firstVC.view.frame(forAlignmentRect: screenSize)
         firstVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "MyCookBook")
     }
 
     func setUpSecondViewController() {
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         secondVC.view.frame(forAlignmentRect: screenSize)
-//        let imageView = UIImageView()
-//        imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         secondVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "SavedRecipes")
     }
 
     func setUpThirdViewController() {
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         thirdVC.view.frame(forAlignmentRect: screenSize)
         thirdVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "FridgeVC")
     }
 
     func setUpFourthViewController() {
+        let imageView = UIImageView()
+        imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         fourthVC.view.frame(forAlignmentRect: screenSize)
         thirdVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "UserSettings")
