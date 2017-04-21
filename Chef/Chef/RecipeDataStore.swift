@@ -65,7 +65,7 @@ final class RecipeDataStore {
                 }
                 completion()
             case .failure(let error):
-                print("RecipeDataStore.\(#function) -- Error: \(error)")
+                print("RecipeDataStore.\(#function) -- Failure: \(error)")
             }
         }
     }
@@ -78,6 +78,7 @@ final class RecipeDataStore {
         SpoonacularAPIClient.fetchSavedRecipes(ids: self.user.favRecipes) { result in
             switch result {
             case .success(let recipes):
+                print("RecipeDataStore.\(#function) -- Success")
                 guard let recipes = recipes as? [Recipe] else {
                     print("RecipeDataStore.\(#function) -- Casting failed")
                     return
@@ -85,7 +86,7 @@ final class RecipeDataStore {
                 self.savedRecipes = recipes
                 completion()
             case .failure(let error):
-                print("RecipeDataStore.\(#function) -- Error: \(error)")
+                print("RecipeDataStore.\(#function) -- Failure: \(error)")
             }
         }
     }
