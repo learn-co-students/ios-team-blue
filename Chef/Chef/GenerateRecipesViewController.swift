@@ -23,7 +23,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         }
 
         if self.isFirstTimeLoggingIn {
-            let onboardingVC = OnboardingPager()
+            let onboardingVC = OnboardingViewController()
             self.present(onboardingVC, animated: true, completion: nil)
         }
     }

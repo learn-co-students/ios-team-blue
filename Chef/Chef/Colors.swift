@@ -6,3 +6,6 @@ struct Colors {
     static let veryLightGray = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
 
 }
+
+
+

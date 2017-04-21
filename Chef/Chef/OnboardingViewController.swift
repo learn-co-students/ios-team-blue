@@ -1,14 +1,21 @@
 import UIKit
+import SnapKit
 
-class OnboardingPager : UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
+    let coloring = Colors.flatironBlue.cgColor
+
+    let imageView = UIImageView()
+    let screenSize = UIScreen.main.bounds
     let firstVC = UIViewController()
     let secondVC = UIViewController()
     let thirdVC = UIViewController()
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
 
     override func viewDidLoad() {
-        firstVC.view.backgroundColor = UIColor.red
+        setUpImageView()
+        setUpFirstViewController()
+
         secondVC.view.backgroundColor = UIColor.blue
         thirdVC.view.backgroundColor = UIColor.yellow
 
@@ -64,7 +71,6 @@ class OnboardingPager : UIPageViewController, UIPageViewControllerDataSource, UI
             guard let viewControllerIndex = orderedViewControllers.index(of: viewController) else {
                 return nil
             }
-
             let nextIndex = viewControllerIndex + 1
             let orderedViewControllersCount = orderedViewControllers.count
 
@@ -75,7 +81,6 @@ class OnboardingPager : UIPageViewController, UIPageViewControllerDataSource, UI
             guard orderedViewControllersCount > nextIndex else {
                 return nil
             }
-
             return orderedViewControllers[nextIndex]
         }
 
@@ -90,6 +95,16 @@ class OnboardingPager : UIPageViewController, UIPageViewControllerDataSource, UI
         }
 
         return orderedViewControllers[previousIndex]
+    }
+
+    func setUpImageView() {
+         imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
+    }
+
+    func setUpFirstViewController() {
+        firstVC.view.frame(forAlignmentRect: screenSize)
+        firstVC.view.addSubview(imageView)
+        imageView.image = #imageLiteral(resourceName: "myCookBook2")
     }
 
 
