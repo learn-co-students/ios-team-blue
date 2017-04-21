@@ -122,7 +122,7 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
         let imageView = UIImageView()
         imageView.frame = CGRect(x: 0, y: 0, width: screenSize.width, height: screenSize.height)
         fourthVC.view.frame(forAlignmentRect: screenSize)
-        thirdVC.view.addSubview(imageView)
+        fourthVC.view.addSubview(imageView)
         imageView.image = #imageLiteral(resourceName: "UserSettings")
     }
 

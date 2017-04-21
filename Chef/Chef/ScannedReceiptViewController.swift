@@ -12,7 +12,6 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
         self.createUI()
         self.navigationItem.title = "Scanned Receipt Content"
 
-
     }
 
     // MARK: - Data Source
