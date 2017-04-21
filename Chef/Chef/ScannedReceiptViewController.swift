@@ -95,10 +95,12 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - Actions
 
     func saveItems() {
-        dismiss(animated: true, completion: nil)
+        
         print(editedIngredients)
-        store.user.fridge.append(editedIngredients)
-
+        for item in editedIngredients {
+            store.user.fridge.append(item)
+        }
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }
