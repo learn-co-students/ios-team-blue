@@ -13,7 +13,7 @@ final class RecipeDataStore {
     /// Posts to firebase and refreshes
     /// If the user has just signed up, add user to database. Otherwise
     func setUser(_ user: User, completion: @escaping () -> ()) {
-        print("\nRecipeDataStore.\(#function) -- Setting user")
+        print("RecipeDataStore.\(#function) -- Setting user")
         self.user = user
         FirebaseManager.checkIfUserExists(user) { userAlreadyExists in
             if userAlreadyExists {
@@ -29,7 +29,7 @@ final class RecipeDataStore {
 
     /// Goes to firebase and fetches the data for the current user
     private func refreshUser(completion: (() -> ())?) {
-        print("\nRecipeDataStore.\(#function) -- Refreshing user data from Firebase")
+        print("RecipeDataStore.\(#function) -- Refreshing user data from Firebase")
         FirebaseManager.getUserData(user) { recipes, foods, dietaryRestrictions, allergies in
             self.user.favRecipes = recipes
             self.user.fridge = foods
@@ -45,7 +45,7 @@ final class RecipeDataStore {
 
     /// Goes to spoonacular and sets the proper current generated recipes
     func fetchGeneratedRecipesFromSpoonacular(_ completion: @escaping () -> ()) {
-        print("\nRecipeDataStore.\(#function) -- Fetching generated recipes from Spoonacular")
+        print("RecipeDataStore.\(#function) -- Fetching generated recipes from Spoonacular")
         // MARK: - Should be generateRecipes(ids: ) and should return me recipes
         SpoonacularAPIClient.generateRecipes(for: self.user) { result in
             switch result {
@@ -64,7 +64,7 @@ final class RecipeDataStore {
                 }
                 completion()
             case .failure(let error):
-                print("RecipeDataStore.\(#function) -- Error: \(error)")
+                print("RecipeDataStore.\(#function) -- Failure: \(error)")
             }
         }
     }
@@ -72,11 +72,12 @@ final class RecipeDataStore {
     /// Goes to spoonacular and sets the proper current generated recipes
     /// Occurs after hearting or unhearting an object, I think?
     func fetchSavedRecipes(completion: @escaping () -> ()) {
-        print("\nRecipeDataStore.\(#function) -- fetching saved recipes from Spoonacular")
+        print("RecipeDataStore.\(#function) -- fetching saved recipes from Spoonacular")
         // MARK: - THIS IS WHERE THE PROBLEM WAS BEFORE
         SpoonacularAPIClient.fetchSavedRecipes(ids: self.user.favRecipes) { result in
             switch result {
             case .success(let recipes):
+                print("RecipeDataStore.\(#function) -- Success")
                 guard let recipes = recipes as? [Recipe] else {
                     print("RecipeDataStore.\(#function) -- Casting failed")
                     return
@@ -84,14 +85,40 @@ final class RecipeDataStore {
                 self.savedRecipes = recipes
                 completion()
             case .failure(let error):
-                print("RecipeDataStore.\(#function) -- Error: \(error)")
+                print("RecipeDataStore.\(#function) -- Failure: \(error)")
+            }
+        }
+    }
+
+    /// Adds recipe to firebase and refreshes
+    func addSavedRecipe(_ recipe: Recipe, completion: @escaping () -> ()) {
+        print("RecipeDataStore.\(#function) -- Adding saved recipe to firebase")
+
+        // make new array for saved recipes that includes the new recipe
+        var newSavedRecipes = [Recipe]()
+        for savedRecipe in self.savedRecipes {
+            newSavedRecipes.append(savedRecipe)
+        }
+        newSavedRecipes.append(recipe)
+
+        // make dictionary from newSavedRecipes array
+        var savedRecipeDict = JSONDictionary()
+        for (index, recipe) in newSavedRecipes.enumerated() {
+            savedRecipeDict["\(index)"] = recipe.id
+        }
+
+        FirebaseManager.setFavoriteRecipes(savedRecipeDict, for: self.user)
+
+        self.refreshUser() {
+            self.fetchSavedRecipes() {
+                completion()
             }
         }
     }
 
     /// Removes recipe from firebase and refreshes
     func removeSavedRecipe(_ recipe: Recipe, completion: @escaping () -> ()) {
-        print("\nRecipeDataStore.\(#function) -- Removing saved recipe from firebase")
+        print("RecipeDataStore.\(#function) -- Removing saved recipe from firebase")
 
         // make new array for saved recipes that doesn't include the removed recipe
         var newSavedRecipes = [Recipe]()

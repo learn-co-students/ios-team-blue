@@ -82,7 +82,6 @@ class RecipeCell: UICollectionViewCell {
     // MARK: - Actions
 
     func tapHeart() {
-        print("RecipeCell -- \(#function)")
         self.recipe.isFavorite = !self.recipe.isFavorite
         self.animateHeart()
         self.delegate?.heartButtonTapped(self)
