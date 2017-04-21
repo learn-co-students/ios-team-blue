@@ -143,14 +143,19 @@ final class RecipeDataStore {
         }
     }
 
-    //TODO: - Does not work, need to update to not overwirte existing firebase
     func updateFridge(with newItems: [String]) {
-        var dictUpdate = JSONDictionary()
-        for (index, item) in newItems.enumerated() {
-            if !self.user.fridge.contains(item) {
-                dictUpdate["\(index)"] = item
+        var existingIngredients = self.user.fridge
+        for item in newItems {
+            if !existingIngredients.contains(item) {
+                existingIngredients.append(item)
             }
         }
+        print("The existingIngredients are ", existingIngredients)
+        var dictUpdate = JSONDictionary()
+        for (index, item) in existingIngredients.enumerated() {
+                dictUpdate["\(index)"] = item
+        }
+        print("The updated dictionary is", dictUpdate)
         FirebaseManager.setIngredients(dictUpdate, for: self.user)
     }
 
