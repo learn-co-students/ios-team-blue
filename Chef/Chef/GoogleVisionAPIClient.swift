@@ -59,7 +59,7 @@ final class GoogleVisionAPIClient {
 //                substanceText.append(newLine)
 //            }
 //        }
-//
+
         var finalArray: [String] = []
     //This is WIP as we review and collect more receipt data.
         for line in textByLine {

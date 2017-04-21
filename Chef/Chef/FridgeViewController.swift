@@ -6,11 +6,13 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     let store = RecipeDataStore.shared
     var tableView: UITableView!
-    var addButton: UIBarButtonItem!
-    var addButtonTapped = false
+    var addButton: UIButton!
+    var addBarButton: UIBarButtonItem!
+    var addButtonSelected = false
     var dropDownViewController: DropDownViewController!
     var groupedItems = [String: [String]]()
     var groupedFoods = [FoodGroups]()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,11 +48,10 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete){
+        if (editingStyle == .delete){
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
             self.tableView.reloadData()
-
         }
     }
 
@@ -60,9 +61,9 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         print(#function)
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 60
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 60
+//    }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
@@ -85,9 +86,16 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createAddButton() {
-        self.addButton = UIBarButtonItem(title: "+", style: .done, target: self, action: #selector(addIngredient))
-        self.navigationItem.rightBarButtonItem = addButton
+        addButton = UIButton(type: .custom)
+        addButton.setImage(#imageLiteral(resourceName: "plus"), for: .normal)
+        addButton.addTarget(self, action: #selector(addIngredient), for: .touchUpInside)
+        addButton.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         addButton.tintColor = Colors.flatironBlue
+        addBarButton = UIBarButtonItem(customView: addButton)
+        self.navigationItem.rightBarButtonItem = addBarButton
+        addButton.tintColor = Colors.flatironBlue
+//        navigationController?.navigationBar.barTintColor = UIColor.white
+
     }
 
     func createDropDownViewController() {
@@ -106,8 +114,31 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Actions
 
     func addIngredient() {
-        addButtonTapped = !addButtonTapped
-        self.dropDownViewController.dropDownView.alpha = addButtonTapped ? 1.0 : 0.0
+        addButtonSelected = !addButtonSelected
+//        addBarButton.customView!.transform = CGAffineTransform(scaleX: 0, y: 0)
+//        if addButtonSelected {
+//            UIView.animate(withDuration: 0.5, animations:{
+//                self.addBarButton.customView!.transform = CGAffineTransform(rotationAngle: .pi / 4)
+//            })
+//        } else {
+//            UIView.animate(withDuration: 0.5, animations:{
+//                self.addBarButton.customView!.transform = CGAffineTransform(rotationAngle: .pi)
+//            })
+//        }
+        toggleMenu()
+    }
+
+    func toggleMenu() {
+        if addButtonSelected {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.dropDownViewController.dropDownView.center.y += 160
+            })
+        } else {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.dropDownViewController.dropDownView.center.y -= 160
+            })
+        }
+
     }
 
     //MARK: - Food Sorting
