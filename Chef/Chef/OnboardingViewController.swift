@@ -139,15 +139,11 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
 
     func setUpPageControllerProgress() {
         let pageControllerDots = CHIPageControlPaprika(frame: CGRect(x: 0, y:0, width: 100, height: 20))
-//        pageControllerDots.snp.makeConstraints { (make) in
-//            make.center.equalTo(self.view.snp.center)
-//        }
         pageControllerDots.numberOfPages = 4
         pageControllerDots.radius = 7
-        pageControllerDots.tintColor = .red
-        pageControllerDots.currentPageTintColor = .red
+        pageControllerDots.tintColor = Colors.flatironBlue
+        pageControllerDots.currentPageTintColor = Colors.flatironBlue
         pageControllerDots.padding = 6
-//        pageControllerDots.progress = 0.5
         pageControllerDots.set(progress: 5, animated: true)
         self.view.addSubview(pageControllerDots)
         pageControllerDots.layer.position.y = self.view.frame.height-50
