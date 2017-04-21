@@ -6,12 +6,14 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     let store = RecipeDataStore.shared
     var tableView: UITableView!
-    var addButton: UIButton!
-    var addBarButton: UIBarButtonItem!
+    var addBarButtonItem: UIBarButtonItem!
     var addButtonSelected = false
     var dropDownViewController: DropDownViewController!
     var groupedItems = [String: [String]]()
     var groupedFoods = [FoodGroups]()
+
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +27,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         createFoodGroups()
         self.tableView.reloadData()
     }
+
 
     // MARK: - Data Source
 
@@ -72,28 +75,21 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - UI
 
     func createUI() {
-        self.createTableView()
-        self.createAddButton()
-        self.createDropDownViewController()
-    }
-
-    func createTableView() {
-        self.tableView = UITableView(frame: self.view.frame)
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
-        self.tableView.register(FridgeCell.self, forCellReuseIdentifier: "fridgeCell")
-        self.tableView.separatorInset = UIEdgeInsets.zero
-        self.tableView.allowsSelection = false
+        self.tableView = {
+            let tv = UITableView(frame: self.view.frame)
+            tv.dataSource = self
+            tv.delegate = self
+            tv.register(FridgeCell.self, forCellReuseIdentifier: "fridgeCell")
+            tv.separatorInset = UIEdgeInsets.zero
+            tv.allowsSelection = false
+            return tv
+        }()
         self.view.addSubview(self.tableView)
-    }
 
-    func createAddButton() {
-        self.addBarButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addIngredient))
-        self.addBarButton.tintColor = Colors.flatironBlue
-        self.navigationItem.rightBarButtonItem = self.addBarButton
-    }
+        self.addBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addIngredient))
+        self.addBarButtonItem.tintColor = Colors.flatironBlue
+        self.navigationItem.rightBarButtonItem = self.addBarButtonItem
 
-    func createDropDownViewController() {
         self.dropDownViewController = DropDownViewController()
         self.addChildViewController(dropDownViewController)
         self.dropDownViewController.didMove(toParentViewController: self)
@@ -106,21 +102,12 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
+
     // MARK: - Actions
 
     func addIngredient() {
-        addButtonSelected = !addButtonSelected
-//        addBarButton.customView!.transform = CGAffineTransform(scaleX: 0, y: 0)
-//        if addButtonSelected {
-//            UIView.animate(withDuration: 0.5, animations:{
-//                self.addBarButton.customView!.transform = CGAffineTransform(rotationAngle: .pi / 4)
-//            })
-//        } else {
-//            UIView.animate(withDuration: 0.5, animations:{
-//                self.addBarButton.customView!.transform = CGAffineTransform(rotationAngle: .pi)
-//            })
-//        }
-        toggleMenu()
+        self.addButtonSelected = !self.addButtonSelected
+        self.toggleMenu()
     }
 
     func toggleMenu() {
@@ -135,7 +122,8 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
-    //MARK: - Food Sorting
+
+    // MARK: - Food Sorting
 
     func sortByCategory() -> [String: [String]] {
         var groupedByType = [String: [String]]()
@@ -197,6 +185,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             return false
         }
     }
+
     func isVeggie(_ food: String) -> Bool {
         if vegetables.contains(food) {
             return true
@@ -204,6 +193,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             return false
         }
     }
+
     func isFruit(_ food: String) -> Bool {
         if fruits.contains(food) {
             return true
@@ -211,6 +201,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             return false
         }
     }
+
     func isProtein(_ food: String) -> Bool {
         if meatsSeafoodsAndEggs.contains(food) ||
             beansPeasAndTofu.contains(food) ||
@@ -220,6 +211,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             return false
         }
     }
+
     func isDairy(_ food: String) -> Bool {
         if dairy.contains(food) {
             return true
@@ -227,6 +219,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             return false
         }
     }
+
     func isOther(_ food: String) -> Bool {
         if beverages.contains(food) ||
             alcoholicBeverages.contains(food) ||
