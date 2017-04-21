@@ -15,6 +15,7 @@
 		0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF781E954B4F00C29E22 /* TabBarController.swift */; };
 		0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */; };
 		0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF821E96BE5A00C29E22 /* RecipeCell.swift */; };
+		0799647C1EAA81FE001874D2 /* FridgeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */; };
 		07A8E9B41E9D2E5B00CDD886 /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */; };
 		07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */; };
 		07AC66B81E9812980000F195 /* SpoonacularAPIClientError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B71E9812980000F195 /* SpoonacularAPIClientError.swift */; };
@@ -65,6 +66,7 @@
 		0784DF781E954B4F00C29E22 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateRecipesViewController.swift; sourceTree = "<group>"; };
 		0784DF821E96BE5A00C29E22 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeSectionHeaderView.swift; sourceTree = "<group>"; };
 		07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedRecipesViewController.swift; sourceTree = "<group>"; };
 		07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientResponse.swift; sourceTree = "<group>"; };
 		07AC66B71E9812980000F195 /* SpoonacularAPIClientError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientError.swift; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 				7B8280371EA1533B000914F8 /* FridgeCell.swift */,
 				07D1834C1EA54158000B8F91 /* SettingsCell.swift */,
 				07E2865A1EA713AD00E6C90A /* SectionHeaderView.swift */,
+				0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				07E2865B1EA713AD00E6C90A /* SectionHeaderView.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
 				7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */,
+				0799647C1EAA81FE001874D2 /* FridgeSectionHeaderView.swift in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
 				075EE0401EA7CA70008DEA21 /* TypeAliases.swift in Sources */,
 				07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */,

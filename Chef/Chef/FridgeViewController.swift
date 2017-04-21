@@ -39,11 +39,8 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath) as! FridgeCell
         cell.textLabel?.text = groupedFoods[indexPath.section].groupItems[indexPath.row]
+        cell.textLabel?.font = Fonts.medium16
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return groupedFoods[section].groupName
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
@@ -54,15 +51,23 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
+
     // MARK: - Delegate
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(#function)
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(FridgeSectionHeaderView.height)
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = FridgeSectionHeaderView()
+        headerView.label.text = self.groupedFoods[section].groupName
+        return headerView
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+
 
     // MARK: - UI
 
@@ -77,6 +82,8 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.dataSource = self
         self.tableView.delegate = self
         self.tableView.register(FridgeCell.self, forCellReuseIdentifier: "fridgeCell")
+        self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.allowsSelection = false
         self.view.addSubview(self.tableView)
     }
 
