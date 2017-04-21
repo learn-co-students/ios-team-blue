@@ -30,19 +30,9 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         print("\nGenerateRecipesViewController.\(#function)")
         let recipe = sender.recipe!
         if recipe.isFavorite {
-            self.store.addSavedRecipe(recipe) {
-                DispatchQueue.main.async {
-                    print("GenerateRecipesViewController.\(#function) -- Reloading data")
-                    self.collectionView.reloadData()
-                }
-            }
+            self.store.addSavedRecipe(recipe) {}
         } else {
-            self.store.removeSavedRecipe(recipe) {
-                DispatchQueue.main.async {
-                    print("GenerateRecipesViewController.\(#function) -- Reloading data")
-                    self.collectionView.reloadData()
-                }
-            }
+            self.store.removeSavedRecipe(recipe) {}
         }
     }
 
