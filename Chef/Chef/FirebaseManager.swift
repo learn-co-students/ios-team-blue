@@ -137,4 +137,8 @@ class FirebaseManager {
         self.usersRef.child(user.id).child("dietaryRestrictions").child("allergies").setValue(allergy)
     }
 
+    static func setIngredients(_ dict: JSONDictionary, for user: User) {
+        self.usersRef.child(user.id).child("fridge").setValue(dict)
+    }
+
 }

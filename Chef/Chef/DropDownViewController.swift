@@ -10,17 +10,21 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
     var scannedReceiptVC: ScannedReceiptViewController!
     var parsedIngredients = [String]()
 
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.dropDownView = DropDownView()
+        let xcoordinate = view.bounds.width - 150
+        let menuStart = CGRect(x: xcoordinate, y: -160, width: 150, height: 80)
+        self.dropDownView = DropDownView(frame: menuStart)
         self.dropDownView.delegate = self
-
         self.view.addSubview(self.dropDownView)
-        self.dropDownView.snapToSuperview()
+    }
 
-        self.dropDownView.alpha = 0.0
+    func setupDropdown() {
+        dropDownView.translatesAutoresizingMaskIntoConstraints = false
+        dropDownView.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        dropDownView.widthAnchor.constraint(equalTo: view.widthAnchor , multiplier: 0.4).isActive = true
+        dropDownView.center.y -= self.view.bounds.height
+        dropDownView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
     }
 
     func manualEntryButtonTapped() {
@@ -45,7 +49,6 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
             let image = info[UIImagePickerControllerOriginalImage] as! UIImage
             base64img = base64EncodeImage(image)
             setParsedIngredients()
-
         }
     }
 
@@ -81,7 +84,7 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
                 self.scannedReceiptVC = ScannedReceiptViewController()
                 self.scannedReceiptVC.parsedIngredients = self.parsedIngredients
                 self.imagePicker.dismiss(animated: true) {
-                    self.present(self.scannedReceiptVC, animated: true, completion: nil)
+                    self.navigationController?.pushViewController(self.scannedReceiptVC, animated: true)
                 }
             }
         }

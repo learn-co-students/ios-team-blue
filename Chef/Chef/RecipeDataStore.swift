@@ -1,5 +1,4 @@
 import Foundation
-import SwiftyJSON
 
 final class RecipeDataStore {
 
@@ -142,6 +141,17 @@ final class RecipeDataStore {
                 completion()
             }
         }
+    }
+
+    //TODO: - Does not work, need to update to not overwirte existing firebase
+    func updateFridge(with newItems: [String]) {
+        var dictUpdate = JSONDictionary()
+        for (index, item) in newItems.enumerated() {
+            if !self.user.fridge.contains(item) {
+                dictUpdate["\(index)"] = item
+            }
+        }
+        FirebaseManager.setIngredients(dictUpdate, for: self.user)
     }
 
 }

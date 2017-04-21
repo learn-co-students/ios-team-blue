@@ -38,7 +38,7 @@ class DropDownView: UIView {
 
         self.addSubview(self.manualEntryButton)
         self.manualEntryButton.snp.makeConstraints { make in
-            make.left.equalToSuperview
+            make.right.equalToSuperview()
             make.top.equalToSuperview().offset(18)
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.5)
@@ -60,7 +60,7 @@ class DropDownView: UIView {
         self.addSubview(self.scanReceiptButton)
         self.scanReceiptButton.snp.makeConstraints { make in
             make.top.equalTo(self.manualEntryButton.snp.bottom).offset(1)
-            make.left.equalToSuperview
+            make.right.equalToSuperview()
             make.width.equalToSuperview()
             make.height.equalToSuperview().multipliedBy(0.5)
         }
