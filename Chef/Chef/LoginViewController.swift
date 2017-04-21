@@ -8,6 +8,9 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     var userIsSigningUp: Bool = false
     var isfirstTimeLoggingIn: Bool = false
 
+
+    // MARK: View Controller Life-Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,65 +31,106 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         super.viewDidDisappear(animated)
 
         if self.loginView.isLoading {
-            self.loginView.toggleLoading()
+            self.loginView.animateLoading(false)
             self.loginView.usernameTextField.text = ""
             self.loginView.passwordTextField.text = ""
         }
     }
 
-    func signUp() {
-        self.loginView.toggleLoading()
 
+    // MARK: Login/Signup
+
+    /// If user already exists, just log in
+    func signUp() {
+        print("\nLoginViewController.\(#function) -- Attempting signup")
+
+        // show loading view
+        self.loginView.animateLoading(true)
+
+        // guard against nil text fields
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
+            print("LoginViewController.\(#function) -- Error: Nil text field")
+            self.animateUIOnAuthFail()
             return
         }
-        FirebaseManager.signUp(email: email, password: password) { success in
-            if success {
-                self.isfirstTimeLoggingIn = true
-                self.logIn()
+
+        // create and validate new user and attempt login
+        let newUser = User(email: email)
+        FirebaseManager.checkIfUserExists(newUser) { userAlreadyExists in
+            if userAlreadyExists {
+                FirebaseManager.login(email: email, password: password) { success in
+                    self.handleLogin(success, newUser: newUser)
+                }
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.loginView.toggleLoading()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                        self.loginView.shakeTextFields()
+                FirebaseManager.signUp(email: email, password: password) { success in
+                    if success {
+                        FirebaseManager.login(email: email, password: password) { success in
+                            self.handleLogin(success, newUser: newUser)
+                        }
+                    } else {
+                        print("LoginViewController.\(#function) -- signup failed")
+                        self.animateUIOnAuthFail()
                     }
                 }
             }
         }
     }
-    
-    func logIn() {
-        if !self.loginView.isLoading {
-            self.loginView.toggleLoading()
-        }
 
+    func logIn() {
+        print("\nLoginViewController.\(#function) -- Attempting login")
+
+        // show loading view
+        self.loginView.animateLoading(true)
+
+        // guard against nil text fields
         guard let email = self.loginView.usernameTextField.text, let password = self.loginView.passwordTextField.text else {
+            print("LoginViewController.\(#function) -- Error: Nil text field")
+            self.animateUIOnAuthFail()
             return
         }
-        FirebaseManager.login(email: email, password: password) { success in
-            if success {
-                let user = User(email: email)
-                self.store.setUser(user)
 
-                FirebaseManager.checkIfUserExists(user) { userExists in
-                    if userExists {
-                        self.store.pullDataForUser(user) {
-                            self.pushToTabBarController()
-                        }
-                    } else {
-                        FirebaseManager.addUser(user)
-                        self.pushToTabBarController()
-                    }
+        // create user object and validate it
+        // attempt login
+        let newUser = User(email: email)
+        FirebaseManager.checkIfUserExists(newUser) { userAlreadyExists in
+            if userAlreadyExists {
+                FirebaseManager.login(email: email, password: password) { success in
+                    self.handleLogin(success, newUser: newUser)
                 }
             } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    self.loginView.toggleLoading()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-                        self.loginView.shakeTextFields()
-                    }
-                }
+                print("LoginViewController.\(#function) -- User \(email) does not exist")
+                self.animateUIOnAuthFail()
             }
         }
+    }
+
+
+    // MARK: - Helper
+
+    private func animateUIOnAuthFail() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.loginView.animateLoading(false)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                self.loginView.shakeTextFields()
+            }
+        }
+    }
+
+    /// Set user and push to the next view controller
+    private func handleLogin(_ loginIsSuccessful: Bool, newUser: User) {
+        if loginIsSuccessful {
+            self.store.setUser(newUser) {
+                self.pushToTabBarController()
+            }
+        } else {
+            print("LoginViewController.\(#function) -- login failed")
+            self.animateUIOnAuthFail()
+        }
+    }
+
+    private func pushToTabBarController() {
+        let tabBarController = TabBarController()
+        self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 
 
@@ -128,17 +172,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             self.loginView.loginSignupButton.titleLabel?.alpha = 1.0
             self.loginView.switchButton.titleLabel?.alpha = 1.0
         }
-    }
-
-
-    // MARK: - Navigation
-
-    func pushToTabBarController() {
-        let tabBarController = TabBarController()
-        if self.isfirstTimeLoggingIn {
-            tabBarController.generateRecipesVC.isFirstTimeLoggingIn = true
-        }
-        self.navigationController?.pushViewController(tabBarController, animated: true)
     }
 
 }
