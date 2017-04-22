@@ -5,7 +5,6 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
     var isFirstTimeLoggingIn: Bool = false
-//    let tutorialViewController = TutorialViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,12 +48,6 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         recipeVC.recipe = self.store.generatedRecipes[indexPath.row]
         self.navigationController?.pushViewController(recipeVC, animated: true)
     }
-
-//    func doneButtonTapped() {
-//    self.tutorialViewController.dismiss(animated: true)
-//
-//    }
-
 
     // MARK: - UI
 
