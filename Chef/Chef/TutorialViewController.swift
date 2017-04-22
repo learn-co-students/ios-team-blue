@@ -2,35 +2,49 @@ import UIKit
 
 class TutorialViewController: UIViewController {
 
-
-
+    @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var containerView: UIView!
+    
+    var tutorialPageViewController: TutorialPageViewController? {
+        didSet {
+            tutorialPageViewController?.tutorialDelegate = self
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    func setupTutorialViewController() {
-
-    }
-
-
-//    let contentSize = CGSize(width: 3 * self.view.frame.width, height: self.view.frame.height)
-//
-//    self.scrollView = {
-//    let sv = UIScrollView()
-//    sv.delegate = self
-//    sv.contentSize = contentSize
-//    sv.isPagingEnabled = true
-//    return sv
-//    }()
-//
-//    self.view.addSubview(self.scrollView)
-
-
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let tutorialPageViewController = segue.destination as? TutorialPageViewController {
+            self.tutorialPageViewController = tutorialPageViewController
+        }
+    }
 
+    @IBAction func didTapNextButton(_ sender: UIButton) {
+        tutorialPageViewController?.scrollToNextViewController()
+    }
+    
+    /**
+     Fired when the user taps on the pageControl to change its current page.
+     */
+    func didChangePageControlValue() {
+        tutorialPageViewController?.scrollToViewController(index: pageControl.currentPage)
+    }
+}
 
+extension TutorialViewController: TutorialPageViewControllerDelegate {
+    
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+        didUpdatePageCount count: Int) {
+        pageControl.numberOfPages = count
+    }
+    
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+        didUpdatePageIndex index: Int) {
+        pageControl.currentPage = index
+    }
+    
 }
