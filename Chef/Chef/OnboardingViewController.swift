@@ -13,9 +13,6 @@ class OnboardingViewController: UIPageViewController, UIPageViewControllerDataSo
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
     var page = 0
 
-
-
-
     override func viewDidLoad() {
         setUpFirstViewController()
         setUpSecondViewController()
