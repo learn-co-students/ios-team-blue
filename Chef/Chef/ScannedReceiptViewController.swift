@@ -13,7 +13,6 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
         super.viewDidLoad()
         editedIngredients = parsedIngredients
         self.createUI()
-
         self.navigationItem.title = "Receipt Content"
         saveButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveItems))
         navigationItem.rightBarButtonItem = saveButton
