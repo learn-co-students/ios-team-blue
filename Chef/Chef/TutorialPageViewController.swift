@@ -6,9 +6,10 @@ class TutorialPageViewController: UIPageViewController {
     
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
         // The view controllers will be shown in this order
-        return [self.newColoredViewController("Green"),
-            self.newColoredViewController("Red"),
-            self.newColoredViewController("Blue")]
+        return [self.newViewController("Green"),
+            self.newViewController("Red"),
+            self.newViewController("Blue"),
+            self.newViewController("Purple")]
     }()
     
     override func viewDidLoad() {
@@ -51,7 +52,7 @@ class TutorialPageViewController: UIPageViewController {
         }
     }
     
-    fileprivate func newColoredViewController(_ color: String) -> UIViewController {
+    fileprivate func newViewController(_ color: String) -> UIViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewController(withIdentifier: "\(color)ViewController")
     }
@@ -121,6 +122,8 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
             let nextIndex = viewControllerIndex + 1
             let orderedViewControllersCount = orderedViewControllers.count
             
+            // User is on the last view controller and swiped right to loop to
+            // the first view controller.
             guard orderedViewControllersCount != nextIndex else {
                 return orderedViewControllers.first
             }
@@ -142,5 +145,16 @@ extension TutorialPageViewController: UIPageViewControllerDelegate {
         transitionCompleted completed: Bool) {
         notifyTutorialDelegateOfNewIndex()
     }
+    
+}
+
+protocol TutorialPageViewControllerDelegate: class {
+
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+        didUpdatePageCount count: Int)
+    
+
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
+        didUpdatePageIndex index: Int)
     
 }

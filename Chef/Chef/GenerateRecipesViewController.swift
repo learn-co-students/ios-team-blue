@@ -19,8 +19,10 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         }
 
         if self.isFirstTimeLoggingIn {
-            let onboardingVC = OnboardingViewController()
-            self.present(onboardingVC, animated: true, completion: nil)
+
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialViewController") as UIViewController
+
+            self.present(viewController, animated: false, completion: nil)
         }
     }
 

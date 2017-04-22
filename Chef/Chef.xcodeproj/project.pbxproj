@@ -30,11 +30,10 @@
 		07E286611EA733D900E6C90A /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07E286601EA733D900E6C90A /* Fonts.swift */; };
 		569079CE71FE1EDE8D759D4B /* Pods_Chef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */; };
 		7B59FFB11EA92AEA0000B5F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B59FFB01EA92AEA0000B5F5 /* Assets.xcassets */; };
-		7B59FFCB1EA94AD70000B5F5 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFCA1EA94AD70000B5F5 /* OnboardingViewController.swift */; };
-		7B59FFD11EABC2610000B5F5 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B59FFD01EABC2610000B5F5 /* Onboarding.storyboard */; };
-		7B59FFD31EABC3060000B5F5 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFD21EABC3060000B5F5 /* TutorialPageViewController.swift */; };
-		7B59FFD51EABC3290000B5F5 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFD41EABC3290000B5F5 /* TutorialViewController.swift */; };
 		7B59FFD71EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFD61EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift */; };
+		7B59FFE01EABD5360000B5F5 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFDE1EABD5360000B5F5 /* TutorialViewController.swift */; };
+		7B59FFE11EABD5360000B5F5 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B59FFDF1EABD5360000B5F5 /* TutorialPageViewController.swift */; };
+		7B59FFE31EABD5450000B5F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7B59FFE21EABD5450000B5F5 /* Main.storyboard */; };
 		7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280371EA1533B000914F8 /* FridgeCell.swift */; };
 		7B82803A1EA15344000914F8 /* DropDownView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280391EA15344000914F8 /* DropDownView.swift */; };
 		7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */; };
@@ -86,11 +85,10 @@
 		07E2865E1EA733CF00E6C90A /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		07E286601EA733D900E6C90A /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		7B59FFB01EA92AEA0000B5F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7B59FFCA1EA94AD70000B5F5 /* OnboardingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
-		7B59FFD01EABC2610000B5F5 /* Onboarding.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
-		7B59FFD21EABC3060000B5F5 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
-		7B59FFD41EABC3290000B5F5 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		7B59FFD61EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewControllerDelegate.swift; sourceTree = "<group>"; };
+		7B59FFDE1EABD5360000B5F5 /* TutorialViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
+		7B59FFDF1EABD5360000B5F5 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		7B59FFE21EABD5450000B5F5 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7B8280371EA1533B000914F8 /* FridgeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeCell.swift; sourceTree = "<group>"; };
 		7B8280391EA15344000914F8 /* DropDownView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownView.swift; sourceTree = "<group>"; };
 		7B82803B1EA1534D000914F8 /* DropDownViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewDelegate.swift; sourceTree = "<group>"; };
@@ -158,9 +156,8 @@
 				98D03D411E9D4F320089416D /* LoginViewController.swift */,
 				07752C731EA146840090F76E /* RecipeDetailViewController.swift */,
 				7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */,
-				7B59FFCA1EA94AD70000B5F5 /* OnboardingViewController.swift */,
-				7B59FFD41EABC3290000B5F5 /* TutorialViewController.swift */,
-				7B59FFD21EABC3060000B5F5 /* TutorialPageViewController.swift */,
+				7B59FFDE1EABD5360000B5F5 /* TutorialViewController.swift */,
+				7B59FFDF1EABD5360000B5F5 /* TutorialPageViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -278,7 +275,7 @@
 				07AC66BB1E98133D0000F195 /* Hidden */,
 				07AC66BA1E98130B0000F195 /* Configurations */,
 				07BAD8441E92959400F3354A /* LaunchScreen.storyboard */,
-				7B59FFD01EABC2610000B5F5 /* Onboarding.storyboard */,
+				7B59FFE21EABD5450000B5F5 /* Main.storyboard */,
 				7B59FFB01EA92AEA0000B5F5 /* Assets.xcassets */,
 			);
 			path = Chef;
@@ -386,9 +383,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */,
-				7B59FFD11EABC2610000B5F5 /* Onboarding.storyboard in Resources */,
 				7B59FFB11EA92AEA0000B5F5 /* Assets.xcassets in Resources */,
 				7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */,
+				7B59FFE31EABD5450000B5F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -457,7 +454,7 @@
 				07BAD8711E92E7B000F3354A /* FirebaseManager.swift in Sources */,
 				7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */,
 				98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */,
-				7B59FFD31EABC3060000B5F5 /* TutorialPageViewController.swift in Sources */,
+				7B59FFE11EABD5360000B5F5 /* TutorialPageViewController.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
 				07E2865B1EA713AD00E6C90A /* SectionHeaderView.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
@@ -468,7 +465,6 @@
 				98B5FC2B1EA092C600217180 /* AddDietDelegate.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				07E286611EA733D900E6C90A /* Fonts.swift in Sources */,
-				7B59FFD51EABC3290000B5F5 /* TutorialViewController.swift in Sources */,
 				7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
 				98D03D3F1E9D4E100089416D /* GoogleVisionAPIClient.swift in Sources */,
@@ -477,7 +473,6 @@
 				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
 				7B59FFD71EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift in Sources */,
 				7B8280461EA15374000914F8 /* SecretFoodDataStore.swift in Sources */,
-				7B59FFCB1EA94AD70000B5F5 /* OnboardingViewController.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
@@ -487,6 +482,7 @@
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
 				07D7CE901E9BE39B00928E5B /* LoginViewDelegate.swift in Sources */,
 				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
+				7B59FFE01EABD5360000B5F5 /* TutorialViewController.swift in Sources */,
 				07A8E9B41E9D2E5B00CDD886 /* SavedRecipesViewController.swift in Sources */,
 				7B8280401EA15358000914F8 /* ManualEntryView.swift in Sources */,
 				07E2865F1EA733CF00E6C90A /* Colors.swift in Sources */,
