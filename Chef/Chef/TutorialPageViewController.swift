@@ -57,20 +57,12 @@ class TutorialPageViewController: UIPageViewController {
             instantiateViewController(withIdentifier: "\(color)ViewController")
     }
     
-    /**
-     Scrolls to the given 'viewController' page.
-     
-     - parameter viewController: the view controller to show.
-     */
     fileprivate func scrollToViewController(_ viewController: UIViewController,
         direction: UIPageViewControllerNavigationDirection = .forward) {
         setViewControllers([viewController],
             direction: direction,
             animated: true,
             completion: { (finished) -> Void in
-                // Setting the view controller programmatically does not fire
-                // any delegate methods, so we have to manually notify the
-                // 'tutorialDelegate' of the new index.
                 self.notifyTutorialDelegateOfNewIndex()
         })
     }
@@ -148,13 +140,3 @@ extension TutorialPageViewController: UIPageViewControllerDelegate {
     
 }
 
-protocol TutorialPageViewControllerDelegate: class {
-
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-        didUpdatePageCount count: Int)
-    
-
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-        didUpdatePageIndex index: Int)
-    
-}
