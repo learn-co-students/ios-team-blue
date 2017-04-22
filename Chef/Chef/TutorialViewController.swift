@@ -27,9 +27,6 @@ class TutorialViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
 
-    /**
-     Fired when the user taps on the pageControl to change its current page.
-     */
     func didChangePageControlValue() {
         tutorialPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
@@ -37,13 +34,11 @@ class TutorialViewController: UIViewController {
 
 extension TutorialViewController: TutorialPageViewControllerDelegate {
 
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-                                    didUpdatePageCount count: Int) {
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController, didUpdatePageCount count: Int) {
         pageControl.numberOfPages = count
     }
 
-    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController,
-                                    didUpdatePageIndex index: Int) {
+    func tutorialPageViewController(_ tutorialPageViewController: TutorialPageViewController, didUpdatePageIndex index: Int) {
         pageControl.currentPage = index
     }
     

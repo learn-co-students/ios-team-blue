@@ -5,7 +5,6 @@ class TutorialPageViewController: UIPageViewController {
     weak var tutorialDelegate: TutorialPageViewControllerDelegate?
     
     fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
-        // The view controllers will be shown in this order
         return [self.newViewController("Green"),
             self.newViewController("Red"),
             self.newViewController("Blue"),
@@ -26,9 +25,7 @@ class TutorialPageViewController: UIPageViewController {
             didUpdatePageCount: orderedViewControllers.count)
     }
     
-    /**
-     Scrolls to the next view controller.
-     */
+
     func scrollToNextViewController() {
         if let visibleViewController = viewControllers?.first,
             let nextViewController = pageViewController(self,
@@ -36,13 +33,7 @@ class TutorialPageViewController: UIPageViewController {
                     scrollToViewController(nextViewController)
         }
     }
-    
-    /**
-     Scrolls to the view controller at the given index. Automatically calculates
-     the direction.
-     
-     - parameter newIndex: the new index to scroll to
-     */
+
     func scrollToViewController(index newIndex: Int) {
         if let firstViewController = viewControllers?.first,
             let currentIndex = orderedViewControllers.index(of: firstViewController) {
@@ -56,7 +47,7 @@ class TutorialPageViewController: UIPageViewController {
         return UIStoryboard(name: "Main", bundle: nil) .
             instantiateViewController(withIdentifier: "\(color)ViewController")
     }
-    
+
     fileprivate func scrollToViewController(_ viewController: UIViewController,
         direction: UIPageViewControllerNavigationDirection = .forward) {
         setViewControllers([viewController],
