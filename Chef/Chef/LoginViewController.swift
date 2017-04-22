@@ -8,7 +8,7 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     var userIsSigningUp: Bool = false
 
 
-    // MARK: View Controller Life-Cycle
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

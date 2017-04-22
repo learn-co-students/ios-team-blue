@@ -1,10 +1,13 @@
 import UIKit
 
-class GenerateRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+class GenerateRecipesViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, RecipeCellDelegate {
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
     var isFirstTimeLoggingIn: Bool = false
+
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,8 +15,10 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         self.createUI()
         self.navigationItem.title = "My Cookbook"
 
+        print("\nGenerateRecipesViewController.\(#function) -- Generating recipes for first time")
         self.store.fetchGeneratedRecipesFromSpoonacular {
             DispatchQueue.main.async {
+                print("GenerateRecipesViewController.\(#function) -- Reloading collection view")
                 self.collectionView.reloadData()
             }
         }
@@ -23,6 +28,20 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
             self.present(viewController, animated: false, completion: nil)
         }
     }
+
+
+    // MARK: - Recipe Cell Delegate
+
+    func heartButtonTapped(_ sender: RecipeCell) {
+        print("\nGenerateRecipesViewController.\(#function)")
+        let recipe = sender.recipe!
+        if recipe.isFavorite {
+            self.store.addSavedRecipe(recipe) {}
+        } else {
+            self.store.removeSavedRecipe(recipe) {}
+        }
+    }
+
 
     // MARK: - Data Source
 
@@ -37,6 +56,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as! RecipeCell
         cell.recipe = self.store.generatedRecipes[indexPath.row]
+        cell.delegate = self
         return cell
     }
 

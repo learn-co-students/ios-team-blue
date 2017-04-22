@@ -8,7 +8,7 @@ class FirebaseManager {
     static let usersRef = FIRDatabase.database().reference().child("users")
 
     static func login(email: String, password: String, completion: @escaping (Bool) -> ()) {
-        print("\nFirebaseManager.\(#function)")
+        print("FirebaseManager.\(#function)")
 
         FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
@@ -22,7 +22,7 @@ class FirebaseManager {
     }
 
     static func signUp(email: String, password: String, completion: @escaping (Bool) -> ()) {
-        print("\nFirebaseManager.\(#function)")
+        print("FirebaseManager.\(#function)")
 
         FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
             if let error = error {
@@ -36,7 +36,7 @@ class FirebaseManager {
     }
 
     static func signOut(completion: ((Bool) -> ())) {
-        print("\nFirebaseManager.\(#function) -- Attempting signout")
+        print("FirebaseManager.\(#function) -- Attempting signout")
         do {
             try FIRAuth.auth()?.signOut()
             print("FirebaseManager.\(#function) -- User successfully signed out")
@@ -48,14 +48,14 @@ class FirebaseManager {
     }
 
     static func addUser(_ user: User) {
-        print("\nFirebaseManager.\(#function) -- Adding user")
+        print("FirebaseManager.\(#function) -- Adding user")
 
         let defaults = ["favRecipes": ["0": "default"], "fridge": ["0": "default"]]
         self.usersRef.child(user.id).setValue(defaults)
     }
 
     static func deleteUser(completion: @escaping (Bool) -> ()) {
-        print("\nFirebaseManager.\(#function) -- Removing user")
+        print("FirebaseManager.\(#function) -- Removing user")
 
         FIRAuth.auth()?.currentUser?.delete { error in
             if let error = error {
@@ -69,13 +69,13 @@ class FirebaseManager {
     }
 
     static func deleteUserData(_ user: User) {
-        print("\nFirebaseManager.\(#function) -- Deleting user data")
+        print("FirebaseManager.\(#function) -- Deleting user data")
 
         self.usersRef.child(user.id).removeValue()
     }
 
     static func checkIfUserExists(_ user: User, completion: @escaping (Bool) -> ()) {
-        print("\nFirebaseManager.\(#function) -- Checking if user exists")
+        print("FirebaseManager.\(#function) -- Checking if user exists")
 
         self.usersRef.observeSingleEvent(of: .value, with: { snapshot in
             guard let snap = snapshot.value as? JSONDictionary else {
@@ -93,7 +93,7 @@ class FirebaseManager {
     }
 
     static func getUserData(_ user: User, completion: @escaping ((favRecipeIDs: [String], fridge: [String], diet: [String]?, allergy: [String]?)) -> ()) {
-        print("\nFirebaseManager.\(#function) -- Getting user data")
+        print("FirebaseManager.\(#function) -- Getting user data")
 
         usersRef.child(user.id).observeSingleEvent(of: .value, with: { (snapshot) in
             guard let snap = snapshot.value as? [String: Any],
@@ -120,21 +120,25 @@ class FirebaseManager {
     }
 
     static func setFavoriteRecipes(_ dict: JSONDictionary, for user: User) {
-        print("\nFirebaseManager.\(#function) -- Setting favorite recipes")
+        print("FirebaseManager.\(#function) -- Setting favorite recipes")
 
         usersRef.child(user.id).child("favRecipes").setValue(dict)
     }
 
     static func addDietaryRestrictions(_ diet: [String], to user: User) {
-        print("\nFirebaseManager.\(#function) -- Adding dietary restrictions")
+        print("FirebaseManager.\(#function) -- Adding dietary restrictions")
 
         self.usersRef.child(user.id).child("dietaryRestrictions").child("diet").setValue(diet)
     }
 
     static func addAllergy(_ allergy: [String], to user: User) {
-        print("\nFirebaseManager.\(#function) -- Adding allergy")
+        print("FirebaseManager.\(#function) -- Adding allergy")
 
         self.usersRef.child(user.id).child("dietaryRestrictions").child("allergies").setValue(allergy)
+    }
+
+    static func setIngredients(_ dict: JSONDictionary, for user: User) {
+        self.usersRef.child(user.id).child("fridge").setValue(dict)
     }
 
 }

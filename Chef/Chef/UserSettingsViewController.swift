@@ -11,9 +11,6 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
 
         self.createUI()
         self.navigationItem.title = "User Settings"
-
-        
-
     }
 
 
@@ -64,18 +61,19 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
     // MARK: - Actions
 
     func tapDiet() {
-        print("Tap diet pressed")
+        print("UserSettingsViewController.\(#function)")
         let dietVC = AddDietViewController()
         self.present(dietVC, animated: true, completion: nil)
     }
 
     func returnToLogin() {
+        print("UserSettingsViewController.\(#function)")
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let _ = appDelegate.rootNavController.popToRootViewController(animated: true)
     }
 
     func tapLogOut() {
-        print("Tap logout pressed")
+        print("UserSettingsViewController.\(#function)")
         FirebaseManager.signOut { success in
             if success {
                 returnToLogin()
@@ -84,7 +82,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
     }
 
     func tapResetData() {
-        print("Tap reset data pressed")
+        print("UserSettingsViewController.\(#function)")
         let alertController = UIAlertController(title: "Reset Data", message: "Please confirm that you wish to reset your data. You will not be able to retrive your data after confirming.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .destructive) { (action) in
             //Using addUser here since it provides the same result as resetting a user
@@ -101,7 +99,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
     }
 
     func tapDeleteAcct() {
-        print("Tap delete account pressed")
+        print("UserSettingsViewController.\(#function)")
         let alertController = UIAlertController(title: "Delete Account", message: "Please confirm that you wish to delete your account. You will not be able to retrive your account after confirming.", preferredStyle: .alert)
         let confirm = UIAlertAction(title: "Confirm", style: .destructive) { (action) in
             FirebaseManager.deleteUser { success in
