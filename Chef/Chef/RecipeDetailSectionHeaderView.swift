@@ -2,7 +2,7 @@ import UIKit
 
 class RecipeDetailSectionHeaderView: UIView {
 
-    static let height: Int = 20
+    static let height: Int = 30
 
     lazy var label: UILabel = {
         let l = UILabel()
@@ -31,7 +31,8 @@ class RecipeDetailSectionHeaderView: UIView {
 
         self.addSubview(self.label)
         self.label.snp.makeConstraints { make in
-            make.left.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
         }
     }
 
