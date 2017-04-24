@@ -57,7 +57,14 @@ final class RecipeDataStore {
                 }
                 self.generatedRecipes.removeAll()
                 for dictionary in recipeList {
+                    var savedIDs = [String]()
+                    for recipeID in self.user.favRecipes {
+                        savedIDs.append(recipeID)
+                    }
                     if let recipe = Recipe(dictionary: dictionary) {
+                        if savedIDs.contains(recipe.id) {
+                            recipe.isFavorite = true
+                        }
                         self.generatedRecipes.append(recipe)
                     } else {
                         print("RecipeDataStore.\(#function) -- Recipe was filtered out")

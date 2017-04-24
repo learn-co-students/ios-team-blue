@@ -96,6 +96,19 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
 
     // MARK: - UITableViewDelegate
 
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if self.recipe.ingredients != [] {
+            switch section {
+            case 1, 2:
+                return CGFloat(RecipeDetailSectionHeaderView.height)
+            default:
+                return 0
+            }
+        } else {
+            return 0
+        }
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if self.recipe.ingredients != [] {
             switch section {
