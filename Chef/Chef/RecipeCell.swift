@@ -5,6 +5,13 @@ import Kingfisher
 class RecipeCell: UICollectionViewCell {
 
     weak var delegate: RecipeCellDelegate?
+    weak var imageViewDelegate: RecipeCellImageViewDelegate? {
+        didSet {
+            if let foodImage = self.imageView.image {
+                self.imageViewDelegate?.didReceiveImage(foodImage)
+            }
+        }
+    }
     var topContainerView: UIView!
     var bottomContainerView: UIView!
     var imageView: UIImageView!
@@ -98,12 +105,8 @@ class RecipeCell: UICollectionViewCell {
     }
 
     private func didSetRecipe() {
-        let url = URL(string: recipe.imageLink)
-        self.imageView.kf.setImage(with: url,
-                                   placeholder: nil,
-                                   options: [],
-                                   progressBlock: nil,
-                                   completionHandler: nil)
+        let url = URL(string: self.recipe.imageLink)
+        self.imageView.kf.setImage(with: url, placeholder: nil, options: [], progressBlock: nil, completionHandler: nil)
 
         self.nameLabel.text = self.recipe.title
         
@@ -121,23 +124,13 @@ class RecipeCell: UICollectionViewCell {
 
     private func animateHeart() {
         if self.recipe.isFavorite {
-            UIView.animate(withDuration: 1.5,
-                           delay: 0,
-                           usingSpringWithDamping: 30,
-                           initialSpringVelocity: 10,
-                           options: [.allowUserInteraction],
-                           animations: {
+            UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 30, initialSpringVelocity: 10, options: [.allowUserInteraction], animations: {
                 self.heartButton.imageView?.tintColor = Colors.flatironBlue
                 self.heartButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
                 self.heartButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             })
         } else {
-            UIView.animate(withDuration: 1.5,
-                           delay: 0,
-                           usingSpringWithDamping: 30,
-                           initialSpringVelocity: 10,
-                           options: [.allowUserInteraction],
-                           animations: {
+            UIView.animate(withDuration: 1.5, delay: 0, usingSpringWithDamping: 30, initialSpringVelocity: 10, options: [.allowUserInteraction], animations: {
                 self.heartButton.imageView?.tintColor = .lightGray
                 self.heartButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
                 self.heartButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)

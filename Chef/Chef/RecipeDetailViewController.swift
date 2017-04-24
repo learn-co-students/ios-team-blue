@@ -1,10 +1,11 @@
 import UIKit
 import SnapKit
 
-class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RecipeCellImageViewDelegate {
 
-    var imageView: UIImageView!
+    var foodImageView: UIImageView!
     var tableView: UITableView!
+    var foodImage: UIImage?
 
     var recipe: Recipe! {
         didSet {
@@ -34,7 +35,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
 
-    // MARK: - DataSource
+    // MARK: - UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -88,7 +89,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
 
-    // MARK: - Delegate
+    // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
@@ -154,12 +155,12 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func createUI() {
-        self.imageView = {
+        self.foodImageView = {
             let iv = UIImageView()
-            iv.image = UIImage(named: "bird")!
+            iv.image = self.foodImage ?? UIImage(named: "bird")!
             return iv
         }()
-        self.view.addSubview(self.imageView)
+        self.view.addSubview(self.foodImageView)
 
         self.tableView = {
             let tv = UITableView()
@@ -173,7 +174,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func constrainUI() {
-        self.imageView.snp.makeConstraints { make in
+        self.foodImageView.snp.makeConstraints { make in
             make.left.top.width.equalToSuperview()
             make.height.equalTo(self.view.snp.width)
         }
@@ -183,6 +184,13 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             make.top.equalToSuperview().offset(190)
             make.bottom.equalToSuperview()
         }
+    }
+
+
+    // MARK: - RecipeCellImageViewDelegate
+
+    func didReceiveImage(_ image: UIImage?) {
+        self.foodImage = image
     }
 
 }
