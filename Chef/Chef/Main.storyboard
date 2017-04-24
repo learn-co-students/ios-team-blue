@@ -91,7 +91,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyCookBook-1" translatesAutoresizingMaskIntoConstraints="NO" id="eEm-JB-kZz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyCookBook" translatesAutoresizingMaskIntoConstraints="NO" id="eEm-JB-kZz">
                                 <rect key="frame" x="25" y="28" width="325" height="600"/>
                             </imageView>
                         </subviews>
@@ -120,7 +120,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SavedRecipes-1" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-nr-zOO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SavedRecipes" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-nr-zOO">
                                 <rect key="frame" x="25" y="28" width="325" height="600"/>
                             </imageView>
                         </subviews>
@@ -149,7 +149,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FridgeVC-1" translatesAutoresizingMaskIntoConstraints="NO" id="zER-XG-qtc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FridgeVC" translatesAutoresizingMaskIntoConstraints="NO" id="zER-XG-qtc">
                                 <rect key="frame" x="25" y="28" width="324" height="600"/>
                             </imageView>
                         </subviews>
@@ -178,7 +178,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSettings-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkc-pw-hXi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSettings" translatesAutoresizingMaskIntoConstraints="NO" id="mkc-pw-hXi">
                                 <rect key="frame" x="25" y="28" width="325" height="600"/>
                             </imageView>
                         </subviews>
@@ -197,9 +197,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FridgeVC-1" width="375" height="667"/>
-        <image name="MyCookBook-1" width="375" height="667"/>
-        <image name="SavedRecipes-1" width="375" height="667"/>
-        <image name="UserSettings-1" width="375" height="667"/>
+        <image name="FridgeVC" width="750" height="1334"/>
+        <image name="MyCookBook" width="750" height="1346"/>
+        <image name="SavedRecipes" width="758" height="1346"/>
+        <image name="UserSettings" width="750" height="1335"/>
     </resources>
 </document>
