@@ -42,7 +42,7 @@ class AddDietView: UIView {
     }
 
     func createBackground() {
-        self.backgroundColor = .white
+        self.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
     }
 
 
