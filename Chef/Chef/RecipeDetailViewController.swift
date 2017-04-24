@@ -150,6 +150,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: - UI
 
     func makeUI() {
+        self.view.backgroundColor = .white
         self.createUI()
         self.constrainUI()
     }
@@ -168,6 +169,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             tv.delegate = self
             tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
             tv.separatorStyle = .none
+            tv.backgroundColor = .clear
             return tv
         }()
         self.view.addSubview(self.tableView)
