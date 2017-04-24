@@ -22,6 +22,7 @@
 		0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF781E954B4F00C29E22 /* TabBarController.swift */; };
 		0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */; };
 		0784DF831E96BE5A00C29E22 /* RecipeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0784DF821E96BE5A00C29E22 /* RecipeCell.swift */; };
+		078EE6331EAEA0B600D71026 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 078EE6321EAEA0B600D71026 /* GoogleService-Info.plist */; };
 		0799647C1EAA81FE001874D2 /* FridgeSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */; };
 		07A8E9B41E9D2E5B00CDD886 /* SavedRecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */; };
 		07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */; };
@@ -52,7 +53,6 @@
 		7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804D1EA51905000914F8 /* DropDownViewController.swift */; };
 		7B8280501EA66B90000914F8 /* ScannedReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */; };
 		7B8280541EA6B991000914F8 /* ReceiptDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */; };
-		7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */; };
 		7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8ADF1E1E92E77C000A3362 /* User.swift */; };
 		7BF533051E95961900687363 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533041E95961900687363 /* Secrets.swift */; };
 		7BF533071E95962000687363 /* RecipeDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF533061E95962000687363 /* RecipeDataStore.swift */; };
@@ -83,6 +83,7 @@
 		0784DF781E954B4F00C29E22 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0784DF7A1E954C2100C29E22 /* GenerateRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GenerateRecipesViewController.swift; sourceTree = "<group>"; };
 		0784DF821E96BE5A00C29E22 /* RecipeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCell.swift; sourceTree = "<group>"; };
+		078EE6321EAEA0B600D71026 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FridgeSectionHeaderView.swift; sourceTree = "<group>"; };
 		07A8E9B31E9D2E5B00CDD886 /* SavedRecipesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedRecipesViewController.swift; sourceTree = "<group>"; };
 		07AC66B51E98127D0000F195 /* SpoonacularAPIClientResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpoonacularAPIClientResponse.swift; sourceTree = "<group>"; };
@@ -114,7 +115,6 @@
 		7B82804D1EA51905000914F8 /* DropDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedReceiptViewController.swift; sourceTree = "<group>"; };
 		7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDataCell.swift; sourceTree = "<group>"; };
-		7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7B8ADF1E1E92E77C000A3362 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7BF533041E95961900687363 /* Secrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		7BF533061E95962000687363 /* RecipeDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDataStore.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				07BAD8471E92959400F3354A /* Info.plist */,
-				7B8ADF1C1E92DE05000A3362 /* GoogleService-Info.plist */,
+				078EE6321EAEA0B600D71026 /* GoogleService-Info.plist */,
 			);
 			name = Configurations;
 			sourceTree = "<group>";
@@ -285,7 +285,6 @@
 				074EDB4A1E940BF2001F95F2 /* Models */,
 				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
-				07AC66B91E9812C20000F195 /* Enumerations */,
 				074EDB4D1E940C1E001F95F2 /* DataStore */,
 				07AC66B91E9812C20000F195 /* Enumerations */,
 				07AC66B41E9811E60000F195 /* Networking */,
@@ -405,8 +404,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				07BAD8461E92959400F3354A /* LaunchScreen.storyboard in Resources */,
+				078EE6331EAEA0B600D71026 /* GoogleService-Info.plist in Resources */,
 				7B59FFB11EA92AEA0000B5F5 /* Assets.xcassets in Resources */,
-				7B8ADF1D1E92DE05000A3362 /* GoogleService-Info.plist in Resources */,
 				7B59FFE31EABD5450000B5F5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -638,7 +637,7 @@
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sejan-blue-team.culinarian";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamBlueCulinarian.ksc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -653,7 +652,7 @@
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sejan-blue-team.culinarian";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TeamBlueCulinarian.ksc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
