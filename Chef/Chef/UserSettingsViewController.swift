@@ -4,7 +4,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
-    private let settings = ["Set Dietary Restrictions", "Log Out", "Reset Data", "Delete Account"]
+    private let settings = ["Set Dietary Restrictions", "Log Out", "Reset Data", "Delete Account", "Credits"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -52,6 +52,8 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
             self.tapResetData()
         case 3:
             self.tapDeleteAcct()
+        case 4:
+            self.showCredits()
         default:
             break
         }
@@ -79,6 +81,13 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
                 returnToLogin()
             }
         }
+    }
+
+    func showCredits() {
+        let alertController = UIAlertController(title: "Credits", message: "\nMade with ♥️ at Flatiron School.\n\nLogin background by Unsplash\nIcons from the Noun Project\nChef by my name is mud\nRecipe Book by Shane David Kenna\nHeart by Molly Bramlet\nFridge by Focus\nUser by Kimmi Studio", preferredStyle: .alert)
+        let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+        alertController.addAction(okay)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     func tapResetData() {
