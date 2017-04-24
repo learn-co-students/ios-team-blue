@@ -121,7 +121,7 @@ class LoginView: UIView {
 
         self.headerLabel = {
             let hl = UILabel()
-            hl.text = "Chef"
+            hl.text = "Culinarian"
             hl.textColor = .white
             hl.font = Fonts.medium48
             return hl
