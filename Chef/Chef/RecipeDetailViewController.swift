@@ -9,7 +9,6 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
 
     var recipe: Recipe! {
         didSet {
-            self.navigationItem.title = self.recipe.title
             self.retrieveRecipeInfo {
                 self.tableView.reloadData()
             }
@@ -104,11 +103,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
         switch section {
         case 1:
             let headerView = RecipeDetailSectionHeaderView()
-            headerView.label.text = " Ingredients"
+            headerView.label.text = "Ingredients"
             return headerView
         case 2:
             let headerView = RecipeDetailSectionHeaderView()
-            headerView.label.text = " Instructions"
+            headerView.label.text = "Instructions"
             return headerView
         default:
             return nil
@@ -170,6 +169,10 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
             tv.separatorStyle = .none
             tv.backgroundColor = .clear
+            let frame = CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: RecipeDetailSectionHeaderView.height)
+            let thv = RecipeDetailHeaderView(frame: frame)
+            thv.label.text = self.recipe.title
+            tv.tableHeaderView = thv
             return tv
         }()
         self.view.addSubview(self.tableView)
