@@ -2,12 +2,12 @@ import UIKit
 
 class RecipeDetailHeaderView: UIView {
 
-    static let height: Int = 30
+    static let height: Int = 40
 
     lazy var label: UILabel = {
         let l = UILabel()
         l.textColor = .white
-        l.font = Fonts.medium16
+        l.font = Fonts.medium18
         l.textAlignment = .center
         return l
     }()

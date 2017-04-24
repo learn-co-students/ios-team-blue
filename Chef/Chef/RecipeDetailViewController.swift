@@ -54,30 +54,24 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.numberOfLines = 0
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeDetailCell", for: indexPath) as! RecipeDetailCell
 
         switch indexPath.section {
         case 0: // special cell
             if self.recipe != nil {
-                cell.textLabel?.font = Fonts.medium16
-                cell.textLabel?.text = "Servings: \(self.recipe.servings)        Cook Time: \(self.recipe.cookTime) min."
+                cell.label.text = "Servings: \(self.recipe.servings)        Cook Time: \(self.recipe.cookTime) min."
             } else {
                 break
             }
         case 1: // ingredients cell
             if self.recipe != nil {
-                cell.textLabel?.font = Fonts.medium16
-                cell.textLabel?.text = self.recipe.ingredients[indexPath.row]
+                cell.label.text = self.recipe.ingredients[indexPath.row]
             } else {
                 break
             }
         case 2: // instructions cell
             if self.recipe != nil {
-                cell.textLabel?.font = Fonts.medium16
-                cell.textLabel?.text = self.recipe.instructions[indexPath.row]
+                cell.label.text = self.recipe.instructions[indexPath.row]
             } else {
                 break
             }
@@ -166,13 +160,15 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             let tv = UITableView()
             tv.dataSource = self
             tv.delegate = self
-            tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            tv.register(RecipeDetailCell.self, forCellReuseIdentifier: "recipeDetailCell")
             tv.separatorStyle = .none
             tv.backgroundColor = .clear
-            let frame = CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: RecipeDetailSectionHeaderView.height)
+            let frame = CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: RecipeDetailHeaderView.height)
             let thv = RecipeDetailHeaderView(frame: frame)
             thv.label.text = self.recipe.title
             tv.tableHeaderView = thv
+            tv.rowHeight = UITableViewAutomaticDimension
+            tv.estimatedRowHeight = 140
             return tv
         }()
         self.view.addSubview(self.tableView)
