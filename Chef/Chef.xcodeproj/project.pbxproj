@@ -179,7 +179,6 @@
 		074EDB4D1E940C1E001F95F2 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
-				07AC66B91E9812C20000F195 /* Enumerations */,
 				7BF533061E95962000687363 /* RecipeDataStore.swift */,
 				07107AF21EAE4F70002689F2 /* FoodDataStore.swift */,
 			);
@@ -287,6 +286,7 @@
 				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
 				074EDB4D1E940C1E001F95F2 /* DataStore */,
+				07AC66B91E9812C20000F195 /* Enumerations */,
 				07AC66B41E9811E60000F195 /* Networking */,
 				07D7CE8E1E9BE38B00928E5B /* Protocols */,
 				07D7CE8B1E9BDA7900928E5B /* Extensions */,
