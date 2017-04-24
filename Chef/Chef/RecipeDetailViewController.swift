@@ -6,10 +6,15 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     var foodImageView: UIImageView!
     var tableView: UITableView!
     var foodImage: UIImage?
+    var loadingView: RecipeDetailLoadingView!
 
     var recipe: Recipe! {
         didSet {
             self.retrieveRecipeInfo {
+                self.loadingView.indicator.stopAnimating()
+                UIView.animate(withDuration: 0.6, animations: {
+                    self.loadingView.alpha = 0.0
+                })
                 self.tableView.reloadData()
             }
         }
@@ -41,15 +46,19 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return self.recipe != nil ? self.recipe.ingredients.count : 0
-        case 2:
-            return self.recipe != nil ? self.recipe.instructions.count : 0
-        default:
+        if self.recipe.ingredients == [] {
             return 0
+        } else {
+            switch section {
+            case 0:
+                return 1
+            case 1:
+                return self.recipe != nil ? self.recipe.ingredients.count : 0
+            case 2:
+                return self.recipe != nil ? self.recipe.instructions.count : 0
+            default:
+                return 0
+            }
         }
     }
 
@@ -87,38 +96,22 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
 
     // MARK: - UITableViewDelegate
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 1, 2:
-            return CGFloat(RecipeDetailSectionHeaderView.height)
-        default:
-            return 0
-        }
-    }
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 1:
-            let headerView = RecipeDetailSectionHeaderView()
-            headerView.label.text = "Ingredients"
-            return headerView
-        case 2:
-            let headerView = RecipeDetailSectionHeaderView()
-            headerView.label.text = "Instructions"
-            return headerView
-        default:
+        if self.recipe.ingredients != [] {
+            switch section {
+            case 1:
+                let headerView = RecipeDetailSectionHeaderView()
+                headerView.label.text = "Ingredients"
+                return headerView
+            case 2:
+                let headerView = RecipeDetailSectionHeaderView()
+                headerView.label.text = "Instructions"
+                return headerView
+            default:
+                return nil
+            }
+        } else {
             return nil
-        }
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 1:
-            return "Ingredients"
-        case 2:
-            return "Instructions"
-        default:
-            return ""
         }
     }
 
@@ -177,6 +170,15 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             return tv
         }()
         self.view.addSubview(self.tableView)
+
+        self.loadingView = {
+            let size = CGSize(width: self.view.bounds.width, height: 200)
+            let frame = CGRect(origin: CGPoint.zero, size: size)
+            let lv = RecipeDetailLoadingView(frame: frame)
+            lv.indicator.startAnimating()
+            return lv
+        }()
+        self.view.addSubview(self.loadingView)
     }
 
     func constrainUI() {
@@ -189,6 +191,12 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             make.left.width.equalToSuperview()
             make.top.equalToSuperview().offset(215)
             make.bottom.equalToSuperview()
+        }
+
+        self.loadingView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self.tableView.snp.top).offset(RecipeDetailHeaderView.height)
+            make.bottom.equalToSuperview().offset(-49)
         }
     }
 

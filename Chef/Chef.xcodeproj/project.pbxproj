@@ -10,6 +10,8 @@
 		0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702EB231E9C1863006754C4 /* NavigationController.swift */; };
 		0705B8641EADB44500D9D629 /* RecipeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */; };
 		07107AED1EAE378D002689F2 /* RecipeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07107AEC1EAE378D002689F2 /* RecipeLoadingView.swift */; };
+		07107AF11EAE4CF8002689F2 /* RecipeDetailLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07107AF01EAE4CF8002689F2 /* RecipeDetailLoadingView.swift */; };
+		07107AF31EAE4F70002689F2 /* FoodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07107AF21EAE4F70002689F2 /* FoodDataStore.swift */; };
 		073FFF121EADC5940033CA06 /* RecipeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */; };
 		073FFF141EADEFC20033CA06 /* FoodEntryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */; };
 		0745CD921EA9253E0071D7DF /* RecipeCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */; };
@@ -47,7 +49,6 @@
 		7B8280401EA15358000914F8 /* ManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82803F1EA15358000914F8 /* ManualEntryView.swift */; };
 		7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */; };
 		7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */; };
-		7B8280461EA15374000914F8 /* FoodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280451EA15374000914F8 /* FoodDataStore.swift */; };
 		7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804D1EA51905000914F8 /* DropDownViewController.swift */; };
 		7B8280501EA66B90000914F8 /* ScannedReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */; };
 		7B8280541EA6B991000914F8 /* ReceiptDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */; };
@@ -70,6 +71,8 @@
 		0702EB231E9C1863006754C4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailHeaderView.swift; sourceTree = "<group>"; };
 		07107AEC1EAE378D002689F2 /* RecipeLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeLoadingView.swift; sourceTree = "<group>"; };
+		07107AF01EAE4CF8002689F2 /* RecipeDetailLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailLoadingView.swift; sourceTree = "<group>"; };
+		07107AF21EAE4F70002689F2 /* FoodDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataStore.swift; sourceTree = "<group>"; };
 		073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailCell.swift; sourceTree = "<group>"; };
 		073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodEntryTextField.swift; sourceTree = "<group>"; };
 		0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellDelegate.swift; sourceTree = "<group>"; };
@@ -108,7 +111,6 @@
 		7B82803F1EA15358000914F8 /* ManualEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryView.swift; sourceTree = "<group>"; };
 		7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewController.swift; sourceTree = "<group>"; };
 		7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewDelegate.swift; sourceTree = "<group>"; };
-		7B8280451EA15374000914F8 /* FoodDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataStore.swift; sourceTree = "<group>"; };
 		7B82804D1EA51905000914F8 /* DropDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedReceiptViewController.swift; sourceTree = "<group>"; };
 		7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDataCell.swift; sourceTree = "<group>"; };
@@ -178,7 +180,7 @@
 			isa = PBXGroup;
 			children = (
 				7BF533061E95962000687363 /* RecipeDataStore.swift */,
-				7B8280451EA15374000914F8 /* FoodDataStore.swift */,
+				07107AF21EAE4F70002689F2 /* FoodDataStore.swift */,
 			);
 			name = DataStore;
 			sourceTree = "<group>";
@@ -209,6 +211,7 @@
 				0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */,
 				0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */,
 				07107AEC1EAE378D002689F2 /* RecipeLoadingView.swift */,
+				07107AF01EAE4CF8002689F2 /* RecipeDetailLoadingView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -372,7 +375,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = 75F4F97HUN;
+						DevelopmentTeam = T2QNE7E45K;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -481,11 +484,13 @@
 				7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */,
 				0799647C1EAA81FE001874D2 /* FridgeSectionHeaderView.swift in Sources */,
 				7BF533051E95961900687363 /* Secrets.swift in Sources */,
+				07107AF31EAE4F70002689F2 /* FoodDataStore.swift in Sources */,
 				075EE0401EA7CA70008DEA21 /* TypeAliases.swift in Sources */,
 				07D1834D1EA54158000B8F91 /* SettingsCell.swift in Sources */,
 				98B5FC2B1EA092C600217180 /* AddDietDelegate.swift in Sources */,
 				0784DF7B1E954C2100C29E22 /* GenerateRecipesViewController.swift in Sources */,
 				07E286611EA733D900E6C90A /* Fonts.swift in Sources */,
+				07107AF11EAE4CF8002689F2 /* RecipeDetailLoadingView.swift in Sources */,
 				7B8280381EA1533B000914F8 /* FridgeCell.swift in Sources */,
 				0771572E1EAD9D640037F3F8 /* RecipeCellImageViewDelegate.swift in Sources */,
 				07BAD8391E92959400F3354A /* AppDelegate.swift in Sources */,
@@ -494,7 +499,6 @@
 				7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */,
 				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
 				7B59FFD71EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift in Sources */,
-				7B8280461EA15374000914F8 /* FoodDataStore.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
@@ -629,7 +633,7 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 75F4F97HUN;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -644,7 +648,7 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 75F4F97HUN;
+				DEVELOPMENT_TEAM = T2QNE7E45K;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
