@@ -159,10 +159,9 @@ final class SpoonacularAPIClient {
     static func parseInstructions(_ json: [JSONDictionary]) -> [String] {
         var instructions = [String]()
 
-        let instructionsArray = json[0]
-
-        guard let steps = instructionsArray["steps"] as? [JSONDictionary] else {
-            fatalError("SpoonacularAPIClient.\(#function) -- failed")
+        guard let instructionsArray = json.first, let steps = instructionsArray["steps"] as? [JSONDictionary] else {
+            print("SpoonacularAPIClient.\(#function) -- Error")
+            return []
         }
 
         for step in steps {
