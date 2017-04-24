@@ -186,7 +186,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
 
         self.tableView.snp.makeConstraints { make in
             make.left.width.equalToSuperview()
-            make.top.equalToSuperview().offset(190)
+            make.top.equalToSuperview().offset(215)
             make.bottom.equalToSuperview()
         }
     }
