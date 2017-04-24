@@ -73,6 +73,9 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let recipeVC = RecipeDetailViewController()
         recipeVC.recipe = self.store.savedRecipes[indexPath.row]
+        if let cell = collectionView.cellForItem(at: indexPath) as? RecipeCell {
+            cell.imageViewDelegate = recipeVC
+        }
         self.navigationController?.pushViewController(recipeVC, animated: true)
     }
 
