@@ -110,7 +110,7 @@ class RecipeCell: UICollectionViewCell {
 
         self.nameLabel.text = self.recipe.title
         
-        self.heartButton.imageView?.tintColor = self.recipe.isFavorite ? Colors.flatironBlue : .lightGray
+        self.heartButton.imageView?.tintColor = self.recipe.isFavorite ? Colors.flatironBlue : Colors.lighterGray
     }
 
 
