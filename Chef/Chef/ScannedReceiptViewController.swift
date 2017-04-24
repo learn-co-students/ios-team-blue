@@ -38,10 +38,10 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == .delete){
+        if (editingStyle == .delete) {
             let selectedIngredient = parsedIngredients[indexPath.row]
             parsedIngredients = parsedIngredients.filter {$0 != selectedIngredient}
-            print("Filetered parsedIngredients is", parsedIngredients)
+            print("Filetered parsedIngredients are", parsedIngredients)
             editedIngredients = parsedIngredients
             self.receiptTableView.reloadData()
         }

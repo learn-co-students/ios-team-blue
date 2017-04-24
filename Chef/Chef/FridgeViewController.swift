@@ -99,7 +99,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
             make.right.equalToSuperview().offset(-4)
             make.top.equalToSuperview().offset(-40)
             make.width.equalToSuperview().multipliedBy(0.35)
-            make.height.equalTo(40)
+            make.height.equalTo(80)
         }
     }
 

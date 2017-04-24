@@ -5,7 +5,7 @@ class DropDownView: UIView {
 
     weak var delegate: DropDrownViewDelegate!
     var manualEntryButton: UIButton!
-//    var scanReceiptButton: UIButton!
+    var scanReceiptButton: UIButton!
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -38,36 +38,36 @@ class DropDownView: UIView {
         }()
         self.addSubview(self.manualEntryButton)
 
-//        self.scanReceiptButton = {
-//            let srb = UIButton()
-//            srb.backgroundColor = Colors.flatironBlue
-//            srb.layer.cornerRadius = 8
-//            srb.layer.borderColor = UIColor.white.cgColor
-//            srb.layer.borderWidth = 1
-//            srb.titleLabel?.textColor = UIColor.white
-//            srb.setTitle("Scan Receipt", for: .normal)
-//            srb.titleLabel?.font = Fonts.heavy16
-//            srb.addTarget(self, action: #selector(scanReceiptButtonTapped), for: .touchUpInside)
-//            return srb
-//        }()
-//        self.addSubview(self.scanReceiptButton)
+        self.scanReceiptButton = {
+            let srb = UIButton()
+            srb.backgroundColor = Colors.flatironBlue
+            srb.layer.cornerRadius = 1
+            srb.layer.borderColor = UIColor.white.cgColor
+            srb.layer.borderWidth = 1
+            srb.titleLabel?.textColor = .white
+            srb.setTitle("Scan Receipt", for: .normal)
+            srb.titleLabel?.font = Fonts.heavy16
+            srb.addTarget(self, action: #selector(scanReceiptButtonTapped), for: .touchUpInside)
+            return srb
+        }()
+        self.addSubview(self.scanReceiptButton)
     }
 
     private func constrainUI() {
-//        self.manualEntryButton.snp.makeConstraints { make in
-//            make.right.equalToSuperview().offset(-4)
-//            make.top.equalToSuperview().offset(18)
-//            make.width.equalToSuperview()
-//            make.height.equalToSuperview().multipliedBy(0.5)
-//        }
+        self.manualEntryButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-4)
+            make.top.equalToSuperview().offset(18)
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.5)
+        }
         self.manualEntryButton.snapToSuperview()
 
-//        self.scanReceiptButton.snp.makeConstraints { make in
-//            make.top.equalTo(self.manualEntryButton.snp.bottom).offset(1)
-//            make.right.equalToSuperview()
-//            make.width.equalToSuperview()
-//            make.height.equalToSuperview().multipliedBy(0.5)
-//        }
+        self.scanReceiptButton.snp.makeConstraints { make in
+            make.top.equalTo(self.manualEntryButton.snp.bottom).offset(1)
+            make.right.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.5)
+        }
     }
 
 
@@ -77,8 +77,8 @@ class DropDownView: UIView {
         self.delegate.manualEntryButtonTapped()
     }
 
-//    func scanReceiptButtonTapped() {
-//        self.delegate.scanReceiptButtonTapped()
-//    }
+    func scanReceiptButtonTapped() {
+        self.delegate.scanReceiptButtonTapped()
+    }
 
 }
