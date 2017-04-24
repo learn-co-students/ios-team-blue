@@ -1,4 +1,5 @@
 import Foundation
+import Firebase
 
 final class RecipeDataStore {
 
@@ -144,14 +145,51 @@ final class RecipeDataStore {
     }
 
     //TODO: - Does not work, need to update to not overwirte existing firebase
-    func updateFridge(with newItems: [String]) {
-        var dictUpdate = JSONDictionary()
-        for (index, item) in newItems.enumerated() {
-            if !self.user.fridge.contains(item) {
-                dictUpdate["\(index)"] = item
+//    func updateFridge(with newItems: [String]) {
+//        var dictUpdate = JSONDictionary()
+//        for (index, item) in newItems.enumerated() {
+//            if !self.user.fridge.contains(item) {
+//                dictUpdate["\(index)"] = item
+//            }
+//        }
+//        FirebaseManager.setIngredients(dictUpdate, for: self.user)
+//    }
+
+    func updateDiet(with newItems: [String]) {
+        var existingDiets = self.user.dietList
+        print("The existing diets are ", existingDiets)
+        for item in newItems {
+            if !existingDiets.contains(item) {
+                existingDiets.append(item)
             }
         }
-        FirebaseManager.setIngredients(dictUpdate, for: self.user)
+        print("The combined diets are ", existingDiets)
+        var dictUpdate = JSONDictionary()
+        for (index, item) in existingDiets.enumerated() {
+            dictUpdate["\(index)"] = item
+        }
+        FirebaseManager.addDietaryRestrictions(dictUpdate, to: self.user) {
+            self.refreshUser(completion: nil)
+        }
+    }
+
+    func updateAllergy(with newItems: [String]) {
+        var existingAllergies = user.allergyList
+        print("The existing allergies are ", existingAllergies)
+
+        for item in newItems {
+            if !existingAllergies.contains(item) {
+                existingAllergies.append(item)
+            }
+        }
+        print("The combined allergies are ", existingAllergies)
+        var dictUpdate = JSONDictionary()
+        for (index, item) in existingAllergies.enumerated() {
+            dictUpdate["\(index)"] = item
+        }
+        FirebaseManager.addAllergy(dictUpdate, to: self.user) {
+            self.refreshUser(completion: nil)
+        }
     }
 
 }

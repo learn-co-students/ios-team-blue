@@ -94,8 +94,8 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     //TODO: - Does not work, need to update dataStore to not overwirte existing firebase
     func saveItems() {
         print(editedIngredients)
-        let newIngredients = editedIngredients.filter { $0 != "" }
-        store.updateFridge(with: newIngredients)
+//        let newIngredients = editedIngredients.filter { $0 != "" }
+//        store.updateFridge(with: newIngredients)
         self.navigationController?.popToRootViewController(animated: true)
     }
 

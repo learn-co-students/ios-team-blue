@@ -5,7 +5,7 @@ class AddDietViewController: UIViewController, AddDietDelegate {
 
     var dietList = [String]()
     var allergyList = [String]()
-    let store = RecipeDataStore.shared
+    var store = RecipeDataStore.shared
     var addDietView: AddDietView!
 
     override func viewDidLoad() {
@@ -32,7 +32,6 @@ class AddDietViewController: UIViewController, AddDietDelegate {
             animate(button)
             self.dietList.append(btnTitle!)
         }
-        print(self.dietList)
     }
 
     func allergyButtonTapped(_ button: UIButton) {
@@ -50,7 +49,6 @@ class AddDietViewController: UIViewController, AddDietDelegate {
             animate(button)
             self.allergyList.append(btnTitle!)
         }
-        print(self.allergyList)
     }
 
     func animate(_ button: UIButton) {
@@ -64,36 +62,17 @@ class AddDietViewController: UIViewController, AddDietDelegate {
     }
 
     func saveButtonTapped() {
-        let user = store.user
-        user?.dietList = self.dietList
-        if !dietList.isEmpty{
-            FirebaseManager.addDietaryRestrictions(dietList, to: store.user)
+        if !self.dietList.isEmpty{
+            store.updateDiet(with: self.dietList)
         }
-        user?.allergyList = self.allergyList
-        if !allergyList.isEmpty{
-            FirebaseManager.addAllergy(allergyList, to: store.user)
+        if !self.allergyList.isEmpty{
+            store.updateAllergy(with: self.allergyList)
         }
         self.dismiss(animated: true, completion: nil)
     }
 
-    
-    func saveBtnSelection(_ button: UIButton, btnTitle: String?) {
-        let defaults = UserDefaults.standard
-        if button.isSelected{
-            if let btnTitle = btnTitle {
-                defaults.set(true, forKey: btnTitle)
-            }
-        } else {
-            if let btnTitle = btnTitle {
-                defaults.set(false, forKey: btnTitle)
-            }
-        }
-
-    }
-
     func selectButtons() {
         let allFoodButtons = [addDietView.pescetarian, addDietView.veg, addDietView.vegan, addDietView.paleo, addDietView.dairy, addDietView.egg, addDietView.gluten, addDietView.peanut, addDietView.sesame, addDietView.seafood, addDietView.shellfish, addDietView.soy, addDietView.sulfite, addDietView.treeNut, addDietView.wheat]
-        let defaults = UserDefaults.standard
 
         for button in allFoodButtons {
             var btnSelected = false
@@ -101,11 +80,14 @@ class AddDietViewController: UIViewController, AddDietDelegate {
             _ = btnTitle?.characters.popLast()
             _ = btnTitle?.characters.popFirst()
             if let btnTitle = btnTitle {
-                btnSelected = defaults.bool(forKey: btnTitle)
+                if store.user.allergyList.contains(btnTitle) || store.user.dietList.contains(btnTitle) {
+                    btnSelected = true
+                } else {
+                    btnSelected = false
+                }
             } else {
                 btnSelected = false
             }
-
             if btnSelected {
                 button?.isSelected = true
             }
