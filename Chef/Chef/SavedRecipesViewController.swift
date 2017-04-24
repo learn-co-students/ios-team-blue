@@ -4,6 +4,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
+    var loadingView: RecipeLoadingView!
 
 
     // MARK: - Life Cycle
@@ -30,6 +31,11 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         self.store.fetchSavedRecipes {
             DispatchQueue.main.async {
                 print("SavedRecipesViewController.\(#function) -- Reloading collection view")
+                self.loadingView.indicator.stopAnimating()
+                UIView.animate(withDuration: 0.6, animations: {
+                    self.loadingView.alpha = 0.0
+                    self.collectionView.alpha = 1.0
+                })
                 self.collectionView.reloadData()
             }
         }
@@ -102,11 +108,20 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
             cv.dataSource = self
             cv.delegate = self
             cv.register(RecipeCell.self, forCellWithReuseIdentifier: "recipeCell")
-            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+            cv.alpha = 0.0
             return cv
         }()
-
         self.view.addSubview(self.collectionView)
+
+        self.loadingView = {
+            let rlv = RecipeLoadingView()
+            rlv.indicator.startAnimating()
+            return rlv
+        }()
+
+        self.view.addSubview(self.loadingView)
+        self.loadingView.snapToSuperview()
     }
 
 }
