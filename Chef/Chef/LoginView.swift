@@ -4,6 +4,7 @@ import SnapKit
 class LoginView: UIView {
 
     weak var delegate: LoginViewDelegate!
+    var backgroundImageView: UIImageView!
     var blurredView: UIVisualEffectView!
     var headerLabel: UILabel!
     var usernameTextField: LoginTextField!
@@ -12,6 +13,9 @@ class LoginView: UIView {
     var switchButton: UIButton!
     var activityIndicator: UIActivityIndicatorView!
     private(set) var isLoading: Bool = false
+
+
+    // MARK: - Initialization
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,14 +28,8 @@ class LoginView: UIView {
     }
 
     private func commonInit() {
-        self.createBackgroundImage()
-        self.createBlurredView()
-        self.createHeaderLabel()
-        self.createUsernameTextField()
-        self.createPasswordTextField()
-        self.createLoginSignupButton()
-        self.createSwitchButton()
-        self.createActivityIndicator()
+        self.createUI()
+        self.constrainUI()
         self.createGestureRecognizer()
     }
 
@@ -105,69 +103,45 @@ class LoginView: UIView {
 
     // MARK: - UI
 
-    func createBackgroundImage() {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "food-background")
+    func createUI() {
+        self.backgroundImageView = {
+            let biv = UIImageView()
+            biv.image = UIImage(named: "food-background")!
+            return biv
+        }()
+        self.addSubview(self.backgroundImageView)
 
-        self.addSubview(imageView)
-        imageView.snapToSuperview()
-    }
-
-    func createBlurredView() {
         self.blurredView = {
             let blurEffect = UIBlurEffect(style: .dark)
             let bv = UIVisualEffectView(effect: blurEffect)
             bv.alpha = 0.0
             return bv
         }()
-
         self.addSubview(self.blurredView)
-        self.blurredView.snapToSuperview()
-    }
 
-    func createHeaderLabel() {
         self.headerLabel = {
             let hl = UILabel()
-            hl.text = "Chef"
+            hl.text = "Culinarian"
             hl.textColor = .white
             hl.font = Fonts.medium48
             return hl
         }()
-
         self.addSubview(self.headerLabel)
-        self.headerLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(75)
-        }
-    }
 
-    func createUsernameTextField() {
-        self.usernameTextField = LoginTextField()
-        self.usernameTextField.keyboardType = .emailAddress
-
+        self.usernameTextField = {
+            let utf = LoginTextField()
+            utf.keyboardType = .emailAddress
+            return utf
+        }()
         self.addSubview(self.usernameTextField)
-        self.usernameTextField.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.667)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(28)
-        }
-    }
 
-    func createPasswordTextField() {
-        self.passwordTextField = LoginTextField()
-        self.passwordTextField.isSecureTextEntry = true
-
+        self.passwordTextField = {
+            let ptf = LoginTextField()
+            ptf.isSecureTextEntry = true
+            return ptf
+        }()
         self.addSubview(self.passwordTextField)
-        self.passwordTextField.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(self.usernameTextField.snp.bottom).offset(20)
-            make.width.equalToSuperview().multipliedBy(0.8)
-            make.height.equalTo(28)
-        }
-    }
 
-    func createLoginSignupButton() {
         self.loginSignupButton = {
             let lb = UIButton()
             lb.backgroundColor = .white
@@ -178,16 +152,8 @@ class LoginView: UIView {
             lb.addTarget(self, action: #selector(loginSignupButtonTapped), for: .touchUpInside)
             return lb
         }()
-
         self.addSubview(self.loginSignupButton)
-        self.loginSignupButton.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
-            make.width.equalToSuperview().multipliedBy(0.333)
-        }
-    }
 
-    func createSwitchButton() {
         self.switchButton = {
             let sb = UIButton()
             sb.backgroundColor = .clear
@@ -197,22 +163,51 @@ class LoginView: UIView {
             sb.addTarget(self, action: #selector(switchButtonTapped), for: .touchUpInside)
             return sb
         }()
-
         self.addSubview(self.switchButton)
-        self.switchButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview().offset(-12)
-        }
-    }
 
-    func createActivityIndicator() {
         self.activityIndicator = {
             let ai = UIActivityIndicatorView(activityIndicatorStyle: .whiteLarge)
             ai.alpha = 0.0
             return ai
         }()
-
         self.addSubview(self.activityIndicator)
+    }
+
+    func constrainUI() {
+        self.backgroundImageView.snapToSuperview()
+
+        self.blurredView.snapToSuperview()
+
+        self.headerLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(75)
+        }
+
+        self.usernameTextField.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview().multipliedBy(0.667)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(28)
+        }
+
+        self.passwordTextField.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.usernameTextField.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.8)
+            make.height.equalTo(28)
+        }
+
+        self.loginSignupButton.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(self.passwordTextField.snp.bottom).offset(20)
+            make.width.equalToSuperview().multipliedBy(0.333)
+        }
+
+        self.switchButton.snp.makeConstraints { make in
+            make.right.equalToSuperview().offset(-16)
+            make.bottom.equalToSuperview().offset(-12)
+        }
+
         self.activityIndicator.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().multipliedBy(0.667)

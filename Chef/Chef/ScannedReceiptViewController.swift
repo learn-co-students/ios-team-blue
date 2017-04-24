@@ -93,8 +93,8 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
 
     func saveItems() {
         print(editedIngredients)
-        let newIngredients = editedIngredients.filter { $0 != "" }
-        store.updateFridge(with: newIngredients)
+//        let newIngredients = editedIngredients.filter { $0 != "" }
+//        store.updateFridge(with: newIngredients)
         self.navigationController?.popToRootViewController(animated: true)
     }
 

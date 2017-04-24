@@ -4,6 +4,8 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
+    var isFirstTimeLoggingIn: Bool = false
+    var loadingView: RecipeLoadingView!
 
 
     // MARK: - Life Cycle
@@ -18,8 +20,18 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         self.store.fetchGeneratedRecipesFromSpoonacular {
             DispatchQueue.main.async {
                 print("GenerateRecipesViewController.\(#function) -- Reloading collection view")
+                self.loadingView.indicator.stopAnimating()
+                UIView.animate(withDuration: 0.6, animations: { 
+                    self.loadingView.alpha = 0.0
+                    self.collectionView.alpha = 1.0
+                })
                 self.collectionView.reloadData()
             }
+        }
+
+        if self.isFirstTimeLoggingIn {
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialViewController") as UIViewController
+            self.present(viewController, animated: false, completion: nil)
         }
     }
 
@@ -30,19 +42,9 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         print("\nGenerateRecipesViewController.\(#function)")
         let recipe = sender.recipe!
         if recipe.isFavorite {
-            self.store.addSavedRecipe(recipe) {
-                DispatchQueue.main.async {
-                    print("GenerateRecipesViewController.\(#function) -- Reloading data")
-                    self.collectionView.reloadData()
-                }
-            }
+            self.store.addSavedRecipe(recipe) {}
         } else {
-            self.store.removeSavedRecipe(recipe) {
-                DispatchQueue.main.async {
-                    print("GenerateRecipesViewController.\(#function) -- Reloading data")
-                    self.collectionView.reloadData()
-                }
-            }
+            self.store.removeSavedRecipe(recipe) {}
         }
     }
 
@@ -70,9 +72,11 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let recipeVC = RecipeDetailViewController()
         recipeVC.recipe = self.store.generatedRecipes[indexPath.row]
+        if let cell = collectionView.cellForItem(at: indexPath) as? RecipeCell {
+            cell.imageViewDelegate = recipeVC
+        }
         self.navigationController?.pushViewController(recipeVC, animated: true)
     }
-
 
     // MARK: - UI
 
@@ -96,11 +100,20 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
             cv.dataSource = self
             cv.delegate = self
             cv.register(RecipeCell.self, forCellWithReuseIdentifier: "recipeCell")
-            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+            cv.alpha = 0.0
             return cv
         }()
-
         self.view.addSubview(self.collectionView)
+
+        self.loadingView = {
+            let rlv = RecipeLoadingView()
+            rlv.indicator.startAnimating()
+            return rlv
+        }()
+        
+        self.view.addSubview(self.loadingView)
+        self.loadingView.snapToSuperview()
     }
 
 }

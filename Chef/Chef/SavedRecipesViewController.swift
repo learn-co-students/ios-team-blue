@@ -4,6 +4,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
+    var loadingView: RecipeLoadingView!
 
 
     // MARK: - Life Cycle
@@ -22,6 +23,7 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         super.viewWillAppear(animated)
 
         // should probably be doing a check to see if anything changed
+        // TODO: - RefreshView shouldn't be getting called twice when view loads
         self.refreshView()
     }
 
@@ -29,6 +31,11 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
         self.store.fetchSavedRecipes {
             DispatchQueue.main.async {
                 print("SavedRecipesViewController.\(#function) -- Reloading collection view")
+                self.loadingView.indicator.stopAnimating()
+                UIView.animate(withDuration: 0.6, animations: {
+                    self.loadingView.alpha = 0.0
+                    self.collectionView.alpha = 1.0
+                })
                 self.collectionView.reloadData()
             }
         }
@@ -72,6 +79,9 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let recipeVC = RecipeDetailViewController()
         recipeVC.recipe = self.store.savedRecipes[indexPath.row]
+        if let cell = collectionView.cellForItem(at: indexPath) as? RecipeCell {
+            cell.imageViewDelegate = recipeVC
+        }
         self.navigationController?.pushViewController(recipeVC, animated: true)
     }
 
@@ -98,11 +108,20 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
             cv.dataSource = self
             cv.delegate = self
             cv.register(RecipeCell.self, forCellWithReuseIdentifier: "recipeCell")
-            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1)
+            cv.backgroundColor = UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 1.0)
+            cv.alpha = 0.0
             return cv
         }()
-
         self.view.addSubview(self.collectionView)
+
+        self.loadingView = {
+            let rlv = RecipeLoadingView()
+            rlv.indicator.startAnimating()
+            return rlv
+        }()
+
+        self.view.addSubview(self.loadingView)
+        self.loadingView.snapToSuperview()
     }
 
 }

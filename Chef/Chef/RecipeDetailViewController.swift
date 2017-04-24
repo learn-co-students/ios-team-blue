@@ -1,15 +1,20 @@
 import UIKit
 import SnapKit
 
-class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RecipeCellImageViewDelegate {
 
-    var imageView: UIImageView!
+    var foodImageView: UIImageView!
     var tableView: UITableView!
+    var foodImage: UIImage?
+    var loadingView: RecipeDetailLoadingView!
 
     var recipe: Recipe! {
         didSet {
-            self.navigationItem.title = self.recipe.title
             self.retrieveRecipeInfo {
+                self.loadingView.indicator.stopAnimating()
+                UIView.animate(withDuration: 0.6, animations: {
+                    self.loadingView.alpha = 0.0
+                })
                 self.tableView.reloadData()
             }
         }
@@ -34,50 +39,51 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
 
-    // MARK: - DataSource
+    // MARK: - UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return 1
-        case 1:
-            return self.recipe != nil ? self.recipe.ingredients.count : 0
-        case 2:
-            return self.recipe != nil ? self.recipe.instructions.count : 0
-        default:
+        if self.recipe.ingredients == [] {
             return 0
+        } else {
+            switch section {
+            case 0:
+                return 1
+            case 1:
+                return self.recipe != nil ? self.recipe.ingredients.count : 0
+            case 2:
+                return self.recipe != nil ? self.recipe.instructions.count : 0
+            default:
+                return 0
+            }
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        cell.textLabel?.numberOfLines = 0
-        cell.selectionStyle = .none
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeDetailCell", for: indexPath) as! RecipeDetailCell
 
         switch indexPath.section {
         case 0: // special cell
             if self.recipe != nil {
-                cell.textLabel?.font = Fonts.medium16
-                cell.textLabel?.text = "Servings: \(self.recipe.servings)        Cook Time: \(self.recipe.cookTime) min."
+                cell.numLabel.text = ""
+                cell.label.text = "Serves: \(self.recipe.servings)        Cook Time: \(self.recipe.cookTime) min."
             } else {
                 break
             }
         case 1: // ingredients cell
             if self.recipe != nil {
-                cell.textLabel?.font = Fonts.medium16
-                cell.textLabel?.text = self.recipe.ingredients[indexPath.row]
+                cell.numLabel.text = "\(indexPath.row + 1)."
+                cell.label.text = self.recipe.ingredients[indexPath.row]
             } else {
                 break
             }
         case 2: // instructions cell
             if self.recipe != nil {
-                cell.textLabel?.font = Fonts.medium16
-                cell.textLabel?.text = self.recipe.instructions[indexPath.row]
+                cell.numLabel.text = "\(indexPath.row + 1)."
+                cell.label.text = self.recipe.instructions[indexPath.row]
             } else {
                 break
             }
@@ -88,40 +94,37 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
 
-    // MARK: - Delegate
+    // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch section {
-        case 1, 2:
-            return CGFloat(SectionHeaderView.height)
-        default:
+        if self.recipe.ingredients != [] {
+            switch section {
+            case 1, 2:
+                return CGFloat(RecipeDetailSectionHeaderView.height)
+            default:
+                return 0
+            }
+        } else {
             return 0
         }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch section {
-        case 1:
-            let headerView = SectionHeaderView()
-            headerView.label.text = " Ingredients"
-            return headerView
-        case 2:
-            let headerView = SectionHeaderView()
-            headerView.label.text = " Instructions"
-            return headerView
-        default:
+        if self.recipe.ingredients != [] {
+            switch section {
+            case 1:
+                let headerView = RecipeDetailSectionHeaderView()
+                headerView.label.text = "Ingredients"
+                return headerView
+            case 2:
+                let headerView = RecipeDetailSectionHeaderView()
+                headerView.label.text = "Instructions"
+                return headerView
+            default:
+                return nil
+            }
+        } else {
             return nil
-        }
-    }
-
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 1:
-            return "Ingredients"
-        case 2:
-            return "Instructions"
-        default:
-            return ""
         }
     }
 
@@ -149,40 +152,72 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: - UI
 
     func makeUI() {
+        self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = Colors.flatironBlue
+
         self.createUI()
         self.constrainUI()
     }
 
     func createUI() {
-        self.imageView = {
+        self.foodImageView = {
             let iv = UIImageView()
-            iv.image = UIImage(named: "bird")!
+            iv.image = self.foodImage ?? UIImage(named: "bird")!
             return iv
         }()
-        self.view.addSubview(self.imageView)
+        self.view.addSubview(self.foodImageView)
 
         self.tableView = {
             let tv = UITableView()
             tv.dataSource = self
             tv.delegate = self
-            tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+            tv.register(RecipeDetailCell.self, forCellReuseIdentifier: "recipeDetailCell")
             tv.separatorStyle = .none
+            tv.backgroundColor = .clear
+            let frame = CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: RecipeDetailHeaderView.height)
+            let thv = RecipeDetailHeaderView(frame: frame)
+            thv.label.text = self.recipe.title
+            tv.tableHeaderView = thv
+            tv.rowHeight = UITableViewAutomaticDimension
+            tv.estimatedRowHeight = 140
             return tv
         }()
         self.view.addSubview(self.tableView)
+
+        self.loadingView = {
+            let size = CGSize(width: self.view.bounds.width, height: 200)
+            let frame = CGRect(origin: CGPoint.zero, size: size)
+            let lv = RecipeDetailLoadingView(frame: frame)
+            lv.indicator.startAnimating()
+            return lv
+        }()
+        self.view.addSubview(self.loadingView)
     }
 
     func constrainUI() {
-        self.imageView.snp.makeConstraints { make in
+        self.foodImageView.snp.makeConstraints { make in
             make.left.top.width.equalToSuperview()
             make.height.equalTo(self.view.snp.width)
         }
 
         self.tableView.snp.makeConstraints { make in
             make.left.width.equalToSuperview()
-            make.top.equalToSuperview().offset(190)
+            make.top.equalToSuperview().offset(215)
             make.bottom.equalToSuperview()
         }
+
+        self.loadingView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self.tableView.snp.top).offset(RecipeDetailHeaderView.height)
+            make.bottom.equalToSuperview().offset(-49)
+        }
+    }
+
+
+    // MARK: - RecipeCellImageViewDelegate
+
+    func didReceiveImage(_ image: UIImage?) {
+        self.foodImage = image
     }
 
 }
