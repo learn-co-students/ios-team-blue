@@ -57,7 +57,6 @@ final class RecipeDataStore {
                 }
                 self.generatedRecipes.removeAll()
                 for dictionary in recipeList {
-                    //if favorite recipe IDs contains the recipe ID, use different initializer
                     var savedIDs = [String]()
                     for recipeID in self.user.favRecipes {
                         savedIDs.append(recipeID)

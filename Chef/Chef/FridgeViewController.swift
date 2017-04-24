@@ -25,6 +25,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.groupedItems = self.sortByCategory()
         createFoodGroups()
         self.tableView.reloadData()
+        addButtonSelected = false
     }
 
 
