@@ -59,18 +59,21 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
         switch indexPath.section {
         case 0: // special cell
             if self.recipe != nil {
-                cell.label.text = "Servings: \(self.recipe.servings)        Cook Time: \(self.recipe.cookTime) min."
+                cell.numLabel.text = ""
+                cell.label.text = "Serves: \(self.recipe.servings)        Cook Time: \(self.recipe.cookTime) min."
             } else {
                 break
             }
         case 1: // ingredients cell
             if self.recipe != nil {
+                cell.numLabel.text = "\(indexPath.row + 1)."
                 cell.label.text = self.recipe.ingredients[indexPath.row]
             } else {
                 break
             }
         case 2: // instructions cell
             if self.recipe != nil {
+                cell.numLabel.text = "\(indexPath.row + 1)."
                 cell.label.text = self.recipe.instructions[indexPath.row]
             } else {
                 break
