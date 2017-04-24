@@ -14,6 +14,10 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.view.backgroundColor = Colors.flatironBlue
+
+
+
         pageControl.addTarget(self, action: #selector(TutorialViewController.didChangePageControlValue), for: .valueChanged)
     }
 

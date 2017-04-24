@@ -4,12 +4,13 @@ class TutorialPageViewController: UIPageViewController {
     
     weak var tutorialDelegate: TutorialPageViewControllerDelegate?
     
-    fileprivate(set) lazy var orderedViewControllers: [UIViewController] = {
+    lazy var orderedViewControllers: [UIViewController] = {
         return [self.newViewController("Green"),
             self.newViewController("Red"),
             self.newViewController("Blue"),
             self.newViewController("Purple")]
     }()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +24,7 @@ class TutorialPageViewController: UIPageViewController {
         
         tutorialDelegate?.tutorialPageViewController(self,
             didUpdatePageCount: orderedViewControllers.count)
+
     }
     
 
@@ -58,9 +60,7 @@ class TutorialPageViewController: UIPageViewController {
         })
     }
     
-    /**
-     Notifies '_tutorialDelegate' that the current page index was updated.
-     */
+
     fileprivate func notifyTutorialDelegateOfNewIndex() {
         if let firstViewController = viewControllers?.first,
             let index = orderedViewControllers.index(of: firstViewController) {
@@ -82,9 +82,7 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
             }
             
             let previousIndex = viewControllerIndex - 1
-            
-            // User is on the first view controller and swiped left to loop to
-            // the last view controller.
+
             guard previousIndex >= 0 else {
                 return orderedViewControllers.last
             }
@@ -104,9 +102,7 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
             
             let nextIndex = viewControllerIndex + 1
             let orderedViewControllersCount = orderedViewControllers.count
-            
-            // User is on the last view controller and swiped right to loop to
-            // the first view controller.
+
             guard orderedViewControllersCount != nextIndex else {
                 return orderedViewControllers.first
             }
@@ -119,6 +115,8 @@ extension TutorialPageViewController: UIPageViewControllerDataSource {
     }
     
 }
+
+
 
 extension TutorialPageViewController: UIPageViewControllerDelegate {
     
