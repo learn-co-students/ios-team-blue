@@ -94,7 +94,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1, 2:
-            return CGFloat(SectionHeaderView.height)
+            return CGFloat(RecipeDetailSectionHeaderView.height)
         default:
             return 0
         }
@@ -103,11 +103,11 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            let headerView = SectionHeaderView()
+            let headerView = RecipeDetailSectionHeaderView()
             headerView.label.text = " Ingredients"
             return headerView
         case 2:
-            let headerView = SectionHeaderView()
+            let headerView = RecipeDetailSectionHeaderView()
             headerView.label.text = " Instructions"
             return headerView
         default:

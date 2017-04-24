@@ -1,6 +1,6 @@
 import UIKit
 
-class SectionHeaderView: UIView {
+class RecipeDetailSectionHeaderView: UIView {
 
     static let height: Int = 20
 
