@@ -2,15 +2,17 @@ import UIKit
 
 class TabBarController: UITabBarController {
 
+    var generateRecipesVC: GenerateRecipesViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         UIApplication.shared.statusBarStyle = .default
         self.tabBar.tintColor = Colors.flatironBlue
 
-        let generateRecipesVC = GenerateRecipesViewController()
-        generateRecipesVC.tabBarItem = UITabBarItem(title: "Generate", image: UIImage(named: "cookbook"), tag: 1)
-        let gNavVC = NavigationController(rootViewController: generateRecipesVC)
+        self.generateRecipesVC = GenerateRecipesViewController()
+        self.generateRecipesVC.tabBarItem = UITabBarItem(title: "Generate", image: UIImage(named: "cookbook"), tag: 1)
+        let gNavVC = NavigationController(rootViewController: self.generateRecipesVC)
 
         let savedRecipesVC = SavedRecipesViewController()
         savedRecipesVC.tabBarItem = UITabBarItem(title: "Saved", image: UIImage(named: "heart"), tag: 2)

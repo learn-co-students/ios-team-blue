@@ -1,14 +1,14 @@
 import UIKit
 import SnapKit
 
-class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RecipeCellImageViewDelegate {
 
-    var imageView: UIImageView!
+    var foodImageView: UIImageView!
     var tableView: UITableView!
+    var foodImage: UIImage?
 
     var recipe: Recipe! {
         didSet {
-            self.navigationItem.title = self.recipe.title
             self.retrieveRecipeInfo {
                 self.tableView.reloadData()
             }
@@ -34,7 +34,7 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
 
-    // MARK: - DataSource
+    // MARK: - UITableViewDataSource
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
@@ -88,12 +88,12 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     }
 
 
-    // MARK: - Delegate
+    // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 1, 2:
-            return CGFloat(SectionHeaderView.height)
+            return CGFloat(RecipeDetailSectionHeaderView.height)
         default:
             return 0
         }
@@ -102,12 +102,12 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch section {
         case 1:
-            let headerView = SectionHeaderView()
-            headerView.label.text = " Ingredients"
+            let headerView = RecipeDetailSectionHeaderView()
+            headerView.label.text = "Ingredients"
             return headerView
         case 2:
-            let headerView = SectionHeaderView()
-            headerView.label.text = " Instructions"
+            let headerView = RecipeDetailSectionHeaderView()
+            headerView.label.text = "Instructions"
             return headerView
         default:
             return nil
@@ -149,17 +149,18 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: - UI
 
     func makeUI() {
+        self.view.backgroundColor = .white
         self.createUI()
         self.constrainUI()
     }
 
     func createUI() {
-        self.imageView = {
+        self.foodImageView = {
             let iv = UIImageView()
-            iv.image = UIImage(named: "bird")!
+            iv.image = self.foodImage ?? UIImage(named: "bird")!
             return iv
         }()
-        self.view.addSubview(self.imageView)
+        self.view.addSubview(self.foodImageView)
 
         self.tableView = {
             let tv = UITableView()
@@ -167,13 +168,18 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             tv.delegate = self
             tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
             tv.separatorStyle = .none
+            tv.backgroundColor = .clear
+            let frame = CGRect(x: 0, y: 0, width: Int(self.view.frame.width), height: RecipeDetailSectionHeaderView.height)
+            let thv = RecipeDetailHeaderView(frame: frame)
+            thv.label.text = self.recipe.title
+            tv.tableHeaderView = thv
             return tv
         }()
         self.view.addSubview(self.tableView)
     }
 
     func constrainUI() {
-        self.imageView.snp.makeConstraints { make in
+        self.foodImageView.snp.makeConstraints { make in
             make.left.top.width.equalToSuperview()
             make.height.equalTo(self.view.snp.width)
         }
@@ -183,6 +189,13 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
             make.top.equalToSuperview().offset(190)
             make.bottom.equalToSuperview()
         }
+    }
+
+
+    // MARK: - RecipeCellImageViewDelegate
+
+    func didReceiveImage(_ image: UIImage?) {
+        self.foodImage = image
     }
 
 }

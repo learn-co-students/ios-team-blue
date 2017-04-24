@@ -64,7 +64,18 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
                 FirebaseManager.signUp(email: email, password: password) { success in
                     if success {
                         FirebaseManager.login(email: email, password: password) { success in
-                            self.handleLogin(success, newUser: newUser)
+                            //self.handleLogin(success, newUser: newUser)
+                            if success {
+                                self.store.setUser(newUser) {
+                                    //self.pushToTabBarController()
+                                    let tabBarController = TabBarController()
+                                    tabBarController.generateRecipesVC.isFirstTimeLoggingIn = true
+                                    self.navigationController?.pushViewController(tabBarController, animated: true)
+                                }
+                            } else {
+                                print("LoginViewController.\(#function) -- login failed")
+                                self.animateUIOnAuthFail()
+                            }
                         }
                     } else {
                         print("LoginViewController.\(#function) -- signup failed")

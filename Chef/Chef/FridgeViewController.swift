@@ -1,5 +1,4 @@
 import UIKit
-import Foundation
 import SnapKit
 
 class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
@@ -96,9 +95,10 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
         self.view.addSubview(dropDownViewController.view)
         self.dropDownViewController.view.snp.makeConstraints { make in
-            make.left.width.equalToSuperview()
-            make.top.equalToSuperview().offset(50)
-            make.height.equalToSuperview().multipliedBy(0.3)
+            make.right.equalToSuperview().offset(-4)
+            make.top.equalToSuperview().offset(-40)
+            make.width.equalToSuperview().multipliedBy(0.35)
+            make.height.equalTo(40)
         }
     }
 
@@ -112,12 +112,12 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     func toggleMenu() {
         if addButtonSelected {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.dropDownViewController.dropDownView.center.y += 160
+            UIView.animate(withDuration: 0.2, animations: {
+                self.dropDownViewController.view.center.y += 110
             })
         } else {
-            UIView.animate(withDuration: 0.5, animations: {
-                self.dropDownViewController.dropDownView.center.y -= 160
+            UIView.animate(withDuration: 0.2, animations: {
+                self.dropDownViewController.view.center.y -= 110
             })
         }
     }

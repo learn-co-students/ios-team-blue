@@ -4,6 +4,7 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
 
     let store = RecipeDataStore.shared
     var collectionView: UICollectionView!
+    var isFirstTimeLoggingIn: Bool = false
 
 
     // MARK: - Life Cycle
@@ -20,6 +21,11 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
                 print("GenerateRecipesViewController.\(#function) -- Reloading collection view")
                 self.collectionView.reloadData()
             }
+        }
+
+        if self.isFirstTimeLoggingIn {
+            let viewController:UIViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TutorialViewController") as UIViewController
+            self.present(viewController, animated: false, completion: nil)
         }
     }
 
@@ -60,9 +66,11 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let recipeVC = RecipeDetailViewController()
         recipeVC.recipe = self.store.generatedRecipes[indexPath.row]
+        if let cell = collectionView.cellForItem(at: indexPath) as? RecipeCell {
+            cell.imageViewDelegate = recipeVC
+        }
         self.navigationController?.pushViewController(recipeVC, animated: true)
     }
-
 
     // MARK: - UI
 
