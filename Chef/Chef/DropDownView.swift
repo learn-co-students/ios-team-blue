@@ -27,7 +27,7 @@ class DropDownView: UIView {
         self.manualEntryButton = {
             let meb = UIButton()
             meb.backgroundColor = Colors.flatironBlue
-            meb.layer.cornerRadius = 8
+            meb.layer.cornerRadius = 1
             meb.layer.borderColor = UIColor.white.cgColor
             meb.layer.borderWidth = 1
             meb.titleLabel?.textColor = .white

@@ -199,7 +199,7 @@ class LoginView: UIView {
 
         self.loginSignupButton.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.top.equalTo(self.passwordTextField.snp.bottom).offset(20)
             make.width.equalToSuperview().multipliedBy(0.333)
         }
 

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702EB231E9C1863006754C4 /* NavigationController.swift */; };
 		0705B8641EADB44500D9D629 /* RecipeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */; };
+		073FFF121EADC5940033CA06 /* RecipeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */; };
+		073FFF141EADEFC20033CA06 /* FoodEntryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */; };
 		0745CD921EA9253E0071D7DF /* RecipeCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */; };
 		075EE0401EA7CA70008DEA21 /* TypeAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */; };
 		0771572E1EAD9D640037F3F8 /* RecipeCellImageViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0771572D1EAD9D640037F3F8 /* RecipeCellImageViewDelegate.swift */; };
@@ -66,6 +68,8 @@
 /* Begin PBXFileReference section */
 		0702EB231E9C1863006754C4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailHeaderView.swift; sourceTree = "<group>"; };
+		073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailCell.swift; sourceTree = "<group>"; };
+		073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodEntryTextField.swift; sourceTree = "<group>"; };
 		0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellDelegate.swift; sourceTree = "<group>"; };
 		075EE03F1EA7CA70008DEA21 /* TypeAliases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeAliases.swift; sourceTree = "<group>"; };
 		0771572D1EAD9D640037F3F8 /* RecipeCellImageViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellImageViewDelegate.swift; sourceTree = "<group>"; };
@@ -193,10 +197,12 @@
 				0784DF761E9535F200C29E22 /* LoginTextField.swift */,
 				7B82803F1EA15358000914F8 /* ManualEntryView.swift */,
 				7B8280391EA15344000914F8 /* DropDownView.swift */,
+				073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */,
 				0784DF821E96BE5A00C29E22 /* RecipeCell.swift */,
 				7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */,
 				7B8280371EA1533B000914F8 /* FridgeCell.swift */,
 				07D1834C1EA54158000B8F91 /* SettingsCell.swift */,
+				073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */,
 				07E2865A1EA713AD00E6C90A /* RecipeDetailSectionHeaderView.swift */,
 				0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */,
 				0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */,
@@ -465,6 +471,7 @@
 				7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */,
 				98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */,
 				7B59FFE11EABD5360000B5F5 /* TutorialPageViewController.swift in Sources */,
+				073FFF141EADEFC20033CA06 /* FoodEntryTextField.swift in Sources */,
 				7BF5330B1E95962F00687363 /* Recipe.swift in Sources */,
 				07E2865B1EA713AD00E6C90A /* RecipeDetailSectionHeaderView.swift in Sources */,
 				9884D6BA1E97DD1300F26859 /* UserSettingsViewController.swift in Sources */,
@@ -499,6 +506,7 @@
 				7B8280401EA15358000914F8 /* ManualEntryView.swift in Sources */,
 				07E2865F1EA733CF00E6C90A /* Colors.swift in Sources */,
 				7B82803A1EA15344000914F8 /* DropDownView.swift in Sources */,
+				073FFF121EADC5940033CA06 /* RecipeDetailCell.swift in Sources */,
 				0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */,
 				7BF533091E95962700687363 /* SpoonacularAPIClient.swift in Sources */,
 				7BF533071E95962000687363 /* RecipeDataStore.swift in Sources */,
