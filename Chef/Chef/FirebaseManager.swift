@@ -125,20 +125,23 @@ class FirebaseManager {
         usersRef.child(user.id).child("favRecipes").setValue(dict)
     }
 
-    static func addDietaryRestrictions(_ diet: [String], to user: User) {
+    static func addDietaryRestrictions(_ dict: JSONDictionary, to user: User, completion: () -> ()) {
         print("FirebaseManager.\(#function) -- Adding dietary restrictions")
 
-        self.usersRef.child(user.id).child("dietaryRestrictions").child("diet").setValue(diet)
+        self.usersRef.child(user.id).child("dietaryRestrictions").child("diet").setValue(dict)
+        completion()
     }
 
-    static func addAllergy(_ allergy: [String], to user: User) {
+    static func addAllergy(_ dict: JSONDictionary, to user: User, completion: () -> ()) {
         print("FirebaseManager.\(#function) -- Adding allergy")
 
-        self.usersRef.child(user.id).child("dietaryRestrictions").child("allergies").setValue(allergy)
+        self.usersRef.child(user.id).child("dietaryRestrictions").child("allergies").setValue(dict)
+        completion()
     }
 
     static func setIngredients(_ dict: JSONDictionary, for user: User) {
         self.usersRef.child(user.id).child("fridge").setValue(dict)
     }
+    
 
 }
