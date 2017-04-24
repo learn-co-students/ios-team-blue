@@ -79,9 +79,9 @@ final class RecipeDataStore {
 
     /// Goes to spoonacular and sets the proper current generated recipes
     /// Occurs after hearting or unhearting an object, I think?
-    func fetchSavedRecipes(completion: @escaping () -> ()) {
+    func fetchSavedRecipes(completion: @escaping (Bool) -> ()) {
         print("RecipeDataStore.\(#function) -- fetching saved recipes from Spoonacular")
-        // MARK: - THIS IS WHERE THE PROBLEM WAS BEFORE
+
         SpoonacularAPIClient.fetchSavedRecipes(ids: self.user.favRecipes) { result in
             switch result {
             case .success(let recipes):
@@ -91,9 +91,10 @@ final class RecipeDataStore {
                     return
                 }
                 self.savedRecipes = recipes
-                completion()
+                completion(true)
             case .failure(let error):
                 print("RecipeDataStore.\(#function) -- Failure: \(error)")
+                completion(false)
             }
         }
     }
@@ -118,7 +119,7 @@ final class RecipeDataStore {
         FirebaseManager.setFavoriteRecipes(savedRecipeDict, for: self.user)
 
         self.refreshUser() {
-            self.fetchSavedRecipes() {
+            self.fetchSavedRecipes() { _ in
                 completion()
             }
         }
@@ -145,7 +146,7 @@ final class RecipeDataStore {
         FirebaseManager.setFavoriteRecipes(savedRecipeDict, for: self.user)
 
         self.refreshUser() {
-            self.fetchSavedRecipes() {
+            self.fetchSavedRecipes() { _ in
                 completion()
             }
         }
