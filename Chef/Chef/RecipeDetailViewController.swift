@@ -147,6 +147,8 @@ class RecipeDetailViewController: UIViewController, UITableViewDataSource, UITab
 
     func makeUI() {
         self.view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = Colors.flatironBlue
+
         self.createUI()
         self.constrainUI()
     }
