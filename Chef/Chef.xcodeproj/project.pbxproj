@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0702EB241E9C1863006754C4 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0702EB231E9C1863006754C4 /* NavigationController.swift */; };
 		0705B8641EADB44500D9D629 /* RecipeDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */; };
+		07107AED1EAE378D002689F2 /* RecipeLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07107AEC1EAE378D002689F2 /* RecipeLoadingView.swift */; };
 		073FFF121EADC5940033CA06 /* RecipeDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */; };
 		073FFF141EADEFC20033CA06 /* FoodEntryTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */; };
 		0745CD921EA9253E0071D7DF /* RecipeCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */; };
@@ -46,7 +47,6 @@
 		7B8280401EA15358000914F8 /* ManualEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82803F1EA15358000914F8 /* ManualEntryView.swift */; };
 		7B8280421EA1535F000914F8 /* ManualEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */; };
 		7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */; };
-		7B8280461EA15374000914F8 /* FoodDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280451EA15374000914F8 /* FoodDataStore.swift */; };
 		7B82804E1EA51905000914F8 /* DropDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804D1EA51905000914F8 /* DropDownViewController.swift */; };
 		7B8280501EA66B90000914F8 /* ScannedReceiptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */; };
 		7B8280541EA6B991000914F8 /* ReceiptDataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */; };
@@ -68,6 +68,7 @@
 /* Begin PBXFileReference section */
 		0702EB231E9C1863006754C4 /* NavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailHeaderView.swift; sourceTree = "<group>"; };
+		07107AEC1EAE378D002689F2 /* RecipeLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeLoadingView.swift; sourceTree = "<group>"; };
 		073FFF111EADC5940033CA06 /* RecipeDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeDetailCell.swift; sourceTree = "<group>"; };
 		073FFF131EADEFC20033CA06 /* FoodEntryTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodEntryTextField.swift; sourceTree = "<group>"; };
 		0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeCellDelegate.swift; sourceTree = "<group>"; };
@@ -106,7 +107,6 @@
 		7B82803F1EA15358000914F8 /* ManualEntryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryView.swift; sourceTree = "<group>"; };
 		7B8280411EA1535F000914F8 /* ManualEntryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewController.swift; sourceTree = "<group>"; };
 		7B8280431EA15365000914F8 /* ManualEntryViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ManualEntryViewDelegate.swift; sourceTree = "<group>"; };
-		7B8280451EA15374000914F8 /* FoodDataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodDataStore.swift; sourceTree = "<group>"; };
 		7B82804D1EA51905000914F8 /* DropDownViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropDownViewController.swift; sourceTree = "<group>"; };
 		7B82804F1EA66B90000914F8 /* ScannedReceiptViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScannedReceiptViewController.swift; sourceTree = "<group>"; };
 		7B8280531EA6B991000914F8 /* ReceiptDataCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiptDataCell.swift; sourceTree = "<group>"; };
@@ -176,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				7BF533061E95962000687363 /* RecipeDataStore.swift */,
-				7B8280451EA15374000914F8 /* FoodDataStore.swift */,
 			);
 			name = DataStore;
 			sourceTree = "<group>";
@@ -206,6 +205,7 @@
 				07E2865A1EA713AD00E6C90A /* RecipeDetailSectionHeaderView.swift */,
 				0705B8631EADB44500D9D629 /* RecipeDetailHeaderView.swift */,
 				0799647B1EAA81FE001874D2 /* FridgeSectionHeaderView.swift */,
+				07107AEC1EAE378D002689F2 /* RecipeLoadingView.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -491,11 +491,11 @@
 				7B8280441EA15365000914F8 /* ManualEntryViewDelegate.swift in Sources */,
 				98B5FC291EA0846D00217180 /* AddDietView.swift in Sources */,
 				7B59FFD71EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift in Sources */,
-				7B8280461EA15374000914F8 /* FoodDataStore.swift in Sources */,
 				07D7CE8A1E9BD88300928E5B /* LoginView.swift in Sources */,
 				7B82803C1EA1534D000914F8 /* DropDownViewDelegate.swift in Sources */,
 				0784DF791E954B4F00C29E22 /* TabBarController.swift in Sources */,
 				07AC66B61E98127D0000F195 /* SpoonacularAPIClientResponse.swift in Sources */,
+				07107AED1EAE378D002689F2 /* RecipeLoadingView.swift in Sources */,
 				07D7CE8D1E9BDA8A00928E5B /* UIView+SnapKit.swift in Sources */,
 				7B8280541EA6B991000914F8 /* ReceiptDataCell.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,

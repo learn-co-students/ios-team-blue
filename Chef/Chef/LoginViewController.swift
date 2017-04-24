@@ -7,7 +7,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
     var loginView: LoginView!
     var userIsSigningUp: Bool = false
 
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -35,7 +34,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
             self.loginView.passwordTextField.text = ""
         }
     }
-
 
     // MARK: Login/Signup
 
@@ -142,7 +140,6 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         let tabBarController = TabBarController()
         self.navigationController?.pushViewController(tabBarController, animated: true)
     }
-
 
     // MARK: - Login View Delegate
 
