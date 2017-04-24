@@ -179,6 +179,7 @@
 		074EDB4D1E940C1E001F95F2 /* DataStore */ = {
 			isa = PBXGroup;
 			children = (
+				07AC66B91E9812C20000F195 /* Enumerations */,
 				7BF533061E95962000687363 /* RecipeDataStore.swift */,
 				07107AF21EAE4F70002689F2 /* FoodDataStore.swift */,
 			);
@@ -285,7 +286,6 @@
 				074EDB4A1E940BF2001F95F2 /* Models */,
 				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
-				07AC66B91E9812C20000F195 /* Enumerations */,
 				074EDB4D1E940C1E001F95F2 /* DataStore */,
 				07AC66B41E9811E60000F195 /* Networking */,
 				07D7CE8E1E9BE38B00928E5B /* Protocols */,
@@ -375,7 +375,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = T2QNE7E45K;
+						DevelopmentTeam = 8X5723UG7D;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -633,7 +633,7 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T2QNE7E45K;
+				DEVELOPMENT_TEAM = 8X5723UG7D;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -648,7 +648,7 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T2QNE7E45K;
+				DEVELOPMENT_TEAM = 8X5723UG7D;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

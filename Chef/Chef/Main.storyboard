@@ -28,31 +28,36 @@
                                     <segue destination="A7T-Ec-iyt" kind="embed" id="NV1-3y-c0E"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ku-Ht-96p">
-                                <rect key="frame" x="317" y="630" width="58" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ku-Ht-96p">
+                                <rect key="frame" x="309" y="637" width="56" height="22"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.22992110252380371" green="0.69972521066665649" blue="0.90706592798233032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapDoneButton:" destination="gjb-cV-ex8" eventType="touchUpInside" id="rTT-4m-Wkt"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xvt-1d-6RY">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xvt-1d-6RY">
                                 <rect key="frame" x="168" y="630" width="55" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="pageIndicatorTintColor" red="0.25228744745254517" green="0.88723957538604736" blue="0.91873455047607422" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.22992110252380371" green="0.69972521066665649" blue="0.90706592798233032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="U86-eW-DBU" firstAttribute="leading" secondItem="w7O-um-obi" secondAttribute="leading" id="1b5-LW-rKK"/>
+                            <constraint firstItem="Xvt-1d-6RY" firstAttribute="centerX" secondItem="w7O-um-obi" secondAttribute="centerX" constant="8" id="ASj-dd-T7u"/>
+                            <constraint firstItem="Xvt-1d-6RY" firstAttribute="bottom" secondItem="211-Dy-ZQs" secondAttribute="top" id="aDd-BA-y4M"/>
+                            <constraint firstItem="3Ku-Ht-96p" firstAttribute="top" secondItem="U86-eW-DBU" secondAttribute="bottom" constant="8" id="cXf-Kg-RnS"/>
+                            <constraint firstItem="Xvt-1d-6RY" firstAttribute="bottom" secondItem="3Ku-Ht-96p" secondAttribute="bottom" constant="8" id="ewg-WA-gfP"/>
+                            <constraint firstItem="3Ku-Ht-96p" firstAttribute="leading" secondItem="w7O-um-obi" secondAttribute="leadingMargin" constant="293" id="f5N-Id-mya"/>
                             <constraint firstItem="U86-eW-DBU" firstAttribute="top" secondItem="w7O-um-obi" secondAttribute="top" id="s6o-np-JJg"/>
+                            <constraint firstItem="Xvt-1d-6RY" firstAttribute="leading" secondItem="U86-eW-DBU" secondAttribute="leading" constant="168" id="vMX-x7-SiD"/>
                             <constraint firstItem="211-Dy-ZQs" firstAttribute="top" secondItem="U86-eW-DBU" secondAttribute="bottom" constant="38" id="xyw-5J-M1T"/>
                             <constraint firstAttribute="trailing" secondItem="U86-eW-DBU" secondAttribute="trailing" id="zWw-pU-BjU"/>
                         </constraints>
@@ -86,7 +91,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyCookBook" translatesAutoresizingMaskIntoConstraints="NO" id="eEm-JB-kZz">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MyCookBook-1" translatesAutoresizingMaskIntoConstraints="NO" id="eEm-JB-kZz">
                                 <rect key="frame" x="25" y="28" width="325" height="600"/>
                             </imageView>
                         </subviews>
@@ -115,7 +120,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SavedRecipes" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-nr-zOO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SavedRecipes-1" translatesAutoresizingMaskIntoConstraints="NO" id="kvf-nr-zOO">
                                 <rect key="frame" x="25" y="28" width="325" height="600"/>
                             </imageView>
                         </subviews>
@@ -144,7 +149,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FridgeVC" translatesAutoresizingMaskIntoConstraints="NO" id="zER-XG-qtc">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="FridgeVC-1" translatesAutoresizingMaskIntoConstraints="NO" id="zER-XG-qtc">
                                 <rect key="frame" x="25" y="28" width="324" height="600"/>
                             </imageView>
                         </subviews>
@@ -173,7 +178,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSettings" translatesAutoresizingMaskIntoConstraints="NO" id="mkc-pw-hXi">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserSettings-1" translatesAutoresizingMaskIntoConstraints="NO" id="mkc-pw-hXi">
                                 <rect key="frame" x="25" y="28" width="325" height="600"/>
                             </imageView>
                         </subviews>
@@ -192,9 +197,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FridgeVC" width="376" height="667"/>
-        <image name="MyCookBook" width="376" height="667"/>
-        <image name="SavedRecipes" width="375" height="667"/>
-        <image name="UserSettings" width="380" height="667"/>
+        <image name="FridgeVC-1" width="375" height="667"/>
+        <image name="MyCookBook-1" width="375" height="667"/>
+        <image name="SavedRecipes-1" width="375" height="667"/>
+        <image name="UserSettings-1" width="375" height="667"/>
     </resources>
 </document>
