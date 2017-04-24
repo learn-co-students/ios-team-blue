@@ -10,6 +10,4 @@ target 'Chef' do
     pod 'Alamofire'
     pod 'SwiftyJSON'
     pod 'Kingfisher'
-    pod 'CHIPageControl'
-    
 end
