@@ -139,8 +139,11 @@ class FirebaseManager {
         completion()
     }
 
-    static func setIngredients(_ dict: JSONDictionary, for user: User) {
+    static func setIngredients(_ dict: JSONDictionary, for user: User, completion: () -> ()) {
+        print("FirebaseManager.\(#function) -- Setting ingredients")
+
         self.usersRef.child(user.id).child("fridge").setValue(dict)
+        completion()
     }
     
 

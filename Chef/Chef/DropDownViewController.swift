@@ -5,6 +5,8 @@ import Photos
 class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     var dropDownView: DropDownView!
+    var manualEntryViewController = ManualEntryViewController()
+
 //    var imagePicker: UIImagePickerController!
 //    var base64img = String()
 //    var parsedIngredients = [String]()
@@ -20,13 +22,13 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         self.dropDownView.delegate = self
         self.view.addSubview(self.dropDownView)
         self.dropDownView.snapToSuperview()
+
     }
 
 
     // MARK: - DropDownViewDelegate
 
     func manualEntryButtonTapped() {
-        let manualEntryViewController = ManualEntryViewController()
         self.present(manualEntryViewController, animated: true, completion: nil)
     }
 

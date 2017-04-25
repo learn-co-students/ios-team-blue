@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ReloadTable {
 
     let store = RecipeDataStore.shared
     var tableView: UITableView!
@@ -19,6 +19,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.navigationItem.title = "Fridge"
         self.createUI()
         self.tableView.reloadData()
+//        dropDownViewController.manualEntryViewController.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -27,7 +28,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.tableView.reloadData()
         addButtonSelected = false
     }
-
 
     // MARK: - Data Source
 
@@ -48,6 +48,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
+            //TODO:- Update so not mutating store
             let selectedIngredient = store.user.fridge[indexPath.row]
             store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
             self.tableView.reloadData()
@@ -93,6 +94,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.dropDownViewController = DropDownViewController()
         self.addChildViewController(dropDownViewController)
         self.dropDownViewController.didMove(toParentViewController: self)
+        self.dropDownViewController.manualEntryViewController.fridgeVC = self
 
         self.view.addSubview(dropDownViewController.view)
         self.dropDownViewController.view.snp.makeConstraints { make in
@@ -236,6 +238,10 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         for (key, value) in groupedItems {
             groupedFoods.append(FoodGroups(groupName: key, groupItems: value))
         }
+    }
+
+    func reloadTable() {
+        self.tableView.reloadData()
     }
 
 }

@@ -65,6 +65,7 @@
 		98D03D421E9D50360089416D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D411E9D4F320089416D /* LoginViewController.swift */; };
 		98D03D651E9E7AAE0089416D /* AddDietViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98D03D641E9E7AAE0089416D /* AddDietViewController.swift */; };
 		98EA432E1EA80DBE002F317A /* FoodGroups.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EA432D1EA80DBE002F317A /* FoodGroups.swift */; };
+		98EBF35B1EAE9CD900B8D394 /* ReloadTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98EBF35A1EAE9CD900B8D394 /* ReloadTable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -127,6 +128,7 @@
 		98D03D411E9D4F320089416D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		98D03D641E9E7AAE0089416D /* AddDietViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddDietViewController.swift; sourceTree = "<group>"; };
 		98EA432D1EA80DBE002F317A /* FoodGroups.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodGroups.swift; sourceTree = "<group>"; };
+		98EBF35A1EAE9CD900B8D394 /* ReloadTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReloadTable.swift; sourceTree = "<group>"; };
 		C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.debug.xcconfig"; sourceTree = "<group>"; };
 		CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chef.release.xcconfig"; path = "Pods/Target Support Files/Pods-Chef/Pods-Chef.release.xcconfig"; sourceTree = "<group>"; };
 		F3C9E0E65040B15B772D4294 /* Pods_Chef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Chef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -285,7 +287,6 @@
 				074EDB4A1E940BF2001F95F2 /* Models */,
 				0784DF751E9535E300C29E22 /* Views */,
 				074EDB4B1E940BF8001F95F2 /* Controllers */,
-				07AC66B91E9812C20000F195 /* Enumerations */,
 				074EDB4D1E940C1E001F95F2 /* DataStore */,
 				07AC66B91E9812C20000F195 /* Enumerations */,
 				07AC66B41E9811E60000F195 /* Networking */,
@@ -320,6 +321,7 @@
 				0745CD911EA9253E0071D7DF /* RecipeCellDelegate.swift */,
 				0771572D1EAD9D640037F3F8 /* RecipeCellImageViewDelegate.swift */,
 				7B59FFD61EABC3E10000B5F5 /* TutorialPageViewControllerDelegate.swift */,
+				98EBF35A1EAE9CD900B8D394 /* ReloadTable.swift */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -376,7 +378,7 @@
 				TargetAttributes = {
 					07BAD8341E92959400F3354A = {
 						CreatedOnToolsVersion = 8.3;
-						DevelopmentTeam = T2QNE7E45K;
+						DevelopmentTeam = JPTWYQZ85B;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -509,6 +511,7 @@
 				7B8280541EA6B991000914F8 /* ReceiptDataCell.swift in Sources */,
 				7B8ADF1F1E92E77C000A3362 /* User.swift in Sources */,
 				07D7CE901E9BE39B00928E5B /* LoginViewDelegate.swift in Sources */,
+				98EBF35B1EAE9CD900B8D394 /* ReloadTable.swift in Sources */,
 				0784DF771E9535F200C29E22 /* LoginTextField.swift in Sources */,
 				7B59FFE01EABD5360000B5F5 /* TutorialViewController.swift in Sources */,
 				07A8E9B41E9D2E5B00CDD886 /* SavedRecipesViewController.swift in Sources */,
@@ -634,7 +637,7 @@
 			baseConfigurationReference = C2B178A00509E5C0BF4976AA /* Pods-Chef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T2QNE7E45K;
+				DEVELOPMENT_TEAM = JPTWYQZ85B;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -649,7 +652,7 @@
 			baseConfigurationReference = CC26D008C10F3438E7CE7D88 /* Pods-Chef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = T2QNE7E45K;
+				DEVELOPMENT_TEAM = JPTWYQZ85B;
 				INFOPLIST_FILE = Chef/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
