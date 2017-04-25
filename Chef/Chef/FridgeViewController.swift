@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ReloadTable {
+class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddIngredients {
 
     let store = RecipeDataStore.shared
     var tableView: UITableView!
@@ -23,7 +23,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.groupedItems = self.sortByCategory()
+        self.groupedItems = self.sortByCategory(nil)
         createFoodGroups()
         self.tableView.reloadData()
         addButtonSelected = false
@@ -128,12 +128,15 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     // MARK: - Food Sorting
 
-    func sortByCategory() -> [String: [String]] {
+    func sortByCategory(_ newItem: String?) -> [String: [String]] {
         var groupedByType = [String: [String]]()
         var items: [String] {
             var correctCase = [String]()
             for item in store.user.fridge {
                 correctCase.append(item.capitalized)
+                if let newItem = newItem {
+                    correctCase.append(newItem.capitalized)
+                }
             }
             return correctCase
         }
@@ -240,8 +243,8 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
 
-    func reloadTable() {
-        self.tableView.reloadData()
+    func add(ingredients: [String]) {
+
     }
 
 }

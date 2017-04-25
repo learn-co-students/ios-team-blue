@@ -1,5 +1,5 @@
 //
-//  ReloadTable.swift
+//  AddIngredients.swift
 //  Chef
 //
 //  Created by Kaypree Hodges on 4/24/17.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ReloadTable: class {
-    func reloadTable()
+protocol AddIngredients: class {
+    func add(ingredients: [String])
 }

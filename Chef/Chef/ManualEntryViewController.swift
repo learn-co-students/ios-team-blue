@@ -9,7 +9,7 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
     var autoCompleteTableView: UITableView!
     var autoCompleteData = [pastaAndNoodles, otherGrains, vegetables, fruits,  meatsSeafoodsAndEggs, beansPeasAndTofu,nutsAndSeeds, dairy, beverages, alcoholicBeverages, condimentsAndSauce]
     var autoComplete = [String]()
-    weak var delegate: ReloadTable!
+    weak var delegate: AddIngredients!
     weak var fridgeVC: FridgeViewController! {
         didSet{
             self.delegate = fridgeVC
@@ -33,7 +33,7 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
     func saveFoodButtonTapped() {
         if let text = manualEntryView.foodEntryTextField.text {
             store.updateFridge(with: [text], completion: {
-                self.delegate.reloadTable()
+                self.delegate.add(ingredients: [text])
             })
             self.dismiss(animated: true, completion: nil)
         }
