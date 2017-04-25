@@ -6,7 +6,7 @@ protocol LoginViewDelegate: class {
     func loginSignupButtonTapped()
     func switchButtonTapped()
 
-    // MARK: - Test
-    func backgroundDoubleTapped()
+    // MARK: - For testing
+//    func backgroundDoubleTapped()
 
 }

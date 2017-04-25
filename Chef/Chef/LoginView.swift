@@ -96,9 +96,10 @@ class LoginView: UIView {
         self.delegate.switchButtonTapped()
     }
 
-    func backgroundDoubleTapped() {     // MARK: - Tmp
-        self.delegate.backgroundDoubleTapped()
-    }
+    // MARK: - For testing
+//    func backgroundDoubleTapped() {
+//        self.delegate.backgroundDoubleTapped()
+//    }
 
 
     // MARK: - UI
@@ -220,18 +221,16 @@ class LoginView: UIView {
             tgr.numberOfTapsRequired = 1
             return tgr
         }()
-
-        // MARK: - Tmp
-        let doubleTap: UITapGestureRecognizer = {
-            let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundDoubleTapped))
-            tgr.numberOfTapsRequired = 2
-            return tgr
-        }()
-
-        tap.require(toFail: doubleTap)
-
         self.addGestureRecognizer(tap)
-        self.addGestureRecognizer(doubleTap)
+
+        // MARK: - For testing
+//        let doubleTap: UITapGestureRecognizer = {
+//            let tgr = UITapGestureRecognizer(target: self, action: #selector(backgroundDoubleTapped))
+//            tgr.numberOfTapsRequired = 2
+//            return tgr
+//        }()
+//        self.addGestureRecognizer(doubleTap)
+//        tap.require(toFail: doubleTap)
     }
 
 }
