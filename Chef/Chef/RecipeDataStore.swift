@@ -153,7 +153,7 @@ final class RecipeDataStore {
     }
 
     //TODO: - Does not work, need to update to not overwirte existing firebase
-    func updateFridge(with newItems: [String], completion: @escaping () -> ()) {
+    func updateFridge(with newItems: [String]) {
         var existingIngredients = self.user.fridge
         print("The existing ingredients are ", existingIngredients)
         for item in newItems {
@@ -169,7 +169,6 @@ final class RecipeDataStore {
         FirebaseManager.setIngredients(dictUpdate, for: self.user) { 
             self.refreshUser(completion: {
                 print(self.user)
-                completion()
             })
         }
     }

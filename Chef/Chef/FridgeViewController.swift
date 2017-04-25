@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, AddIngredients {
+class FridgeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     let store = RecipeDataStore.shared
     var tableView: UITableView!
@@ -9,7 +9,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var addButtonSelected = false
     var dropDownViewController: DropDownViewController!
     var groupedItems = [String: [String]]()
-    var groupedFoods = [FoodGroups]()
+    var foodCollection = [FoodGroups]()
 
 
     // MARK: - Life Cycle
@@ -18,8 +18,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         self.navigationItem.title = "Fridge"
         self.createUI()
-        self.tableView.reloadData()
-//        dropDownViewController.manualEntryViewController.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -32,16 +30,16 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Data Source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return groupedFoods.count
+        return foodCollection.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupedFoods[section].groupItems.count
+        return foodCollection[section].groupItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath) as! FridgeCell
-        cell.textLabel?.text = groupedFoods[indexPath.section].groupItems[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath)
+        cell.textLabel?.text = foodCollection[indexPath.section].groupItems[indexPath.row]
         cell.textLabel?.font = Fonts.medium16
         return cell
     }
@@ -64,7 +62,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = FridgeSectionHeaderView()
-        headerView.label.text = self.groupedFoods[section].groupName
+        headerView.label.text = self.foodCollection[section].groupName
         return headerView
     }
 
@@ -94,7 +92,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         self.dropDownViewController = DropDownViewController()
         self.addChildViewController(dropDownViewController)
         self.dropDownViewController.didMove(toParentViewController: self)
-        self.dropDownViewController.manualEntryViewController.fridgeVC = self
 
         self.view.addSubview(dropDownViewController.view)
         self.dropDownViewController.view.snp.makeConstraints { make in
@@ -237,14 +234,12 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createFoodGroups() {
-        groupedFoods.removeAll()
+        foodCollection.removeAll()
         for (key, value) in groupedItems {
-            groupedFoods.append(FoodGroups(groupName: key, groupItems: value))
+            let foodGroup = FoodGroups(groupName: key, groupItems: value)
+            foodCollection.append(foodGroup)
         }
     }
 
-    func add(ingredients: [String]) {
-
-    }
 
 }
