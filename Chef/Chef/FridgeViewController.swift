@@ -46,10 +46,12 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            //TODO:- Update so not mutating store
-            let selectedIngredient = store.user.fridge[indexPath.row]
-            store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
-            self.tableView.reloadData()
+            let itemDelete = foodCollection[indexPath.section].groupItems[indexPath.row]
+            store.deleteIngredient(itemDelete) {
+                tableView.reloadData()
+            }
+            foodCollection[indexPath.section].groupItems.remove(at: indexPath.row)
+            tableView.reloadData()
         }
     }
 

@@ -210,4 +210,20 @@ final class RecipeDataStore {
         }
     }
 
+    func deleteIngredient(_ item: String, completion: () -> ()) {
+        let fridge = self.user.fridge
+        let filteredFridge = fridge.filter{ $0 != item }
+        var dictUpdate = JSONDictionary()
+        for (index, item) in filteredFridge.enumerated() {
+            dictUpdate["\(index)"] = item
+        }
+        FirebaseManager.setIngredients(dictUpdate, for: self.user) { 
+            self.refreshUser(completion: nil)
+        }
+
+    }
+
+
+
+
 }
