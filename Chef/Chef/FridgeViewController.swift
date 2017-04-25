@@ -51,6 +51,9 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
                 tableView.reloadData()
             }
             foodCollection[indexPath.section].groupItems.remove(at: indexPath.row)
+            if foodCollection[indexPath.section].groupItems.isEmpty {
+                foodCollection.remove(at: indexPath.section)
+            }
             tableView.reloadData()
         }
     }
