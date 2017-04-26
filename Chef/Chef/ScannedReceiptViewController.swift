@@ -1,6 +1,8 @@
 import UIKit
 
 class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
+    
+    //need to edit the cell text in the datasource in order to fix swipe to delete bug.
 
     var store = RecipeDataStore.shared
     var receiptTableView: UITableView!
@@ -21,12 +23,12 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
     // MARK: - Data Source
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-                return self.parsedIngredients.count
+                return self.editedIngredients.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "receiptDataCell", for: indexPath) as! ReceiptDataCell
-            cell.ingredientTextField.text = parsedIngredients[indexPath.row]
+            cell.ingredientTextField.text = editedIngredients[indexPath.row]
             cell.ingredientTextField.delegate = self
             return cell
     }
@@ -39,10 +41,9 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            let selectedIngredient = parsedIngredients[indexPath.row]
-            parsedIngredients = parsedIngredients.filter {$0 != selectedIngredient}
-            print("Filetered parsedIngredients are", parsedIngredients)
-            editedIngredients = parsedIngredients
+            let selectedIngredient = editedIngredients[indexPath.row]
+            editedIngredients = editedIngredients.filter {$0 != selectedIngredient}
+            print("Filetered parsedIngredients are", editedIngredients)
             self.receiptTableView.reloadData()
         }
     }
@@ -93,8 +94,8 @@ class ScannedReceiptViewController: UIViewController, UITableViewDataSource, UIT
 
     func saveItems() {
         print(editedIngredients)
-//        let newIngredients = editedIngredients.filter { $0 != "" }
-//        store.updateFridge(with: newIngredients)
+        let newIngredients = editedIngredients.filter { $0 != "" }
+        store.updateFridge(with: newIngredients)
         self.navigationController?.popToRootViewController(animated: true)
     }
 
