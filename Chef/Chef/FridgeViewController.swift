@@ -11,7 +11,6 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var groupedItems = [String: [String]]()
     var foodCollection = [FoodGroups]()
 
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -51,13 +50,13 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
                 tableView.reloadData()
             }
             foodCollection[indexPath.section].groupItems.remove(at: indexPath.row)
+            //deletes section header in the case that the section is empty
             if foodCollection[indexPath.section].groupItems.isEmpty {
                 foodCollection.remove(at: indexPath.section)
             }
             tableView.reloadData()
         }
     }
-
 
     // MARK: - Delegate
 

@@ -5,7 +5,7 @@ class AddDietViewController: UIViewController, AddDietDelegate {
 
     var dietList = [String]()
     var allergyList = [String]()
-    var store = RecipeDataStore.shared
+    let store = RecipeDataStore.shared
     var addDietView: AddDietView!
 
     override func viewDidLoad() {
@@ -15,6 +15,15 @@ class AddDietViewController: UIViewController, AddDietDelegate {
         self.view.addSubview(addDietView)
         addDietView.snapToSuperview()
         selectButtons()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print("dietList in ", dietList)
+        print("allergyList in ", allergyList)
+        dietList = store.user.dietList
+        allergyList = store.user.allergyList
+
     }
 
     func dietButtonTapped(_ button: UIButton) {
@@ -62,12 +71,8 @@ class AddDietViewController: UIViewController, AddDietDelegate {
     }
 
     func saveButtonTapped() {
-        if !self.dietList.isEmpty{
-            store.updateDiet(with: self.dietList)
-        }
-        if !self.allergyList.isEmpty{
-            store.updateAllergy(with: self.allergyList)
-        }
+        store.updateDiet(with: self.dietList)
+        store.updateAllergy(with: self.allergyList)
         self.dismiss(animated: true, completion: nil)
     }
 

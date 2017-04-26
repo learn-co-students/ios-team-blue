@@ -173,16 +173,9 @@ final class RecipeDataStore {
     }
 
     func updateDiet(with newItems: [String]) {
-        var existingDiets = self.user.dietList
-        print("The existing diets are ", existingDiets)
-        for item in newItems {
-            if !existingDiets.contains(item) {
-                existingDiets.append(item)
-            }
-        }
-        print("The combined diets are ", existingDiets)
+
         var dictUpdate = JSONDictionary()
-        for (index, item) in existingDiets.enumerated() {
+        for (index, item) in newItems.enumerated() {
             dictUpdate["\(index)"] = item
         }
         FirebaseManager.addDietaryRestrictions(dictUpdate, to: self.user) {
@@ -191,17 +184,9 @@ final class RecipeDataStore {
     }
 
     func updateAllergy(with newItems: [String]) {
-        var existingAllergies = user.allergyList
-        print("The existing allergies are ", existingAllergies)
 
-        for item in newItems {
-            if !existingAllergies.contains(item) {
-                existingAllergies.append(item)
-            }
-        }
-        print("The combined allergies are ", existingAllergies)
         var dictUpdate = JSONDictionary()
-        for (index, item) in existingAllergies.enumerated() {
+        for (index, item) in newItems.enumerated() {
             dictUpdate["\(index)"] = item
         }
         FirebaseManager.addAllergy(dictUpdate, to: self.user) {
