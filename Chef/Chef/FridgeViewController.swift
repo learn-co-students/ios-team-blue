@@ -9,7 +9,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     var addButtonSelected = false
     var dropDownViewController: DropDownViewController!
     var groupedItems = [String: [String]]()
-    var groupedFoods = [FoodGroups]()
+    var foodCollection = [FoodGroups]()
 
 
     // MARK: - Life Cycle
@@ -18,39 +18,43 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         self.navigationItem.title = "Fridge"
         self.createUI()
-        self.tableView.reloadData()
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        self.groupedItems = self.sortByCategory()
+        self.groupedItems = self.sortByCategory(nil)
         createFoodGroups()
         self.tableView.reloadData()
         addButtonSelected = false
     }
 
-
     // MARK: - Data Source
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return groupedFoods.count
+        return foodCollection.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return groupedFoods[section].groupItems.count
+        return foodCollection[section].groupItems.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath) as! FridgeCell
-        cell.textLabel?.text = groupedFoods[indexPath.section].groupItems[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "fridgeCell", for: indexPath)
+        cell.textLabel?.text = foodCollection[indexPath.section].groupItems[indexPath.row]
         cell.textLabel?.font = Fonts.medium16
         return cell
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            let selectedIngredient = store.user.fridge[indexPath.row]
-            store.user.fridge = store.user.fridge.filter {$0 != selectedIngredient}
-            self.tableView.reloadData()
+            let itemDelete = foodCollection[indexPath.section].groupItems[indexPath.row]
+            store.deleteIngredient(itemDelete) {
+                tableView.reloadData()
+            }
+            foodCollection[indexPath.section].groupItems.remove(at: indexPath.row)
+            if foodCollection[indexPath.section].groupItems.isEmpty {
+                foodCollection.remove(at: indexPath.section)
+            }
+            tableView.reloadData()
         }
     }
 
@@ -63,7 +67,7 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = FridgeSectionHeaderView()
-        headerView.label.text = self.groupedFoods[section].groupName
+        headerView.label.text = self.foodCollection[section].groupName
         return headerView
     }
 
@@ -126,12 +130,15 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
 
     // MARK: - Food Sorting
 
-    func sortByCategory() -> [String: [String]] {
+    func sortByCategory(_ newItem: String?) -> [String: [String]] {
         var groupedByType = [String: [String]]()
         var items: [String] {
             var correctCase = [String]()
             for item in store.user.fridge {
                 correctCase.append(item.capitalized)
+                if let newItem = newItem {
+                    correctCase.append(newItem.capitalized)
+                }
             }
             return correctCase
         }
@@ -232,10 +239,12 @@ class FridgeViewController: UIViewController, UITableViewDataSource, UITableView
     }
 
     func createFoodGroups() {
-        groupedFoods.removeAll()
+        foodCollection.removeAll()
         for (key, value) in groupedItems {
-            groupedFoods.append(FoodGroups(groupName: key, groupItems: value))
+            let foodGroup = FoodGroups(groupName: key, groupItems: value)
+            foodCollection.append(foodGroup)
         }
     }
+
 
 }

@@ -28,30 +28,34 @@
                                     <segue destination="A7T-Ec-iyt" kind="embed" id="NV1-3y-c0E"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ku-Ht-96p">
-                                <rect key="frame" x="317" y="630" width="58" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Ku-Ht-96p">
+                                <rect key="frame" x="311" y="637" width="56" height="22"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <inset key="contentEdgeInsets" minX="8" minY="8" maxX="8" maxY="8"/>
                                 <state key="normal" title="Done">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="titleColor" red="0.22992110252380371" green="0.69972521066665649" blue="0.90706592798233032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="didTapDoneButton:" destination="gjb-cV-ex8" eventType="touchUpInside" id="rTT-4m-Wkt"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xvt-1d-6RY">
-                                <rect key="frame" x="168" y="630" width="55" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="pageIndicatorTintColor" red="0.25228744745254517" green="0.88723957538604736" blue="0.91873455047607422" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="Xvt-1d-6RY">
+                                <rect key="frame" x="160" y="630" width="55" height="37"/>
+                                <color key="pageIndicatorTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="0.058941222727298737" green="0.033069014549255371" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </pageControl>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.22992110252380371" green="0.69972521066665649" blue="0.90706592798233032" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="U86-eW-DBU" firstAttribute="leading" secondItem="w7O-um-obi" secondAttribute="leading" id="1b5-LW-rKK"/>
+                            <constraint firstItem="Xvt-1d-6RY" firstAttribute="centerX" secondItem="w7O-um-obi" secondAttribute="centerX" id="ASj-dd-T7u"/>
+                            <constraint firstAttribute="trailing" secondItem="3Ku-Ht-96p" secondAttribute="trailing" constant="8" id="Ow3-cb-D1d"/>
+                            <constraint firstItem="Xvt-1d-6RY" firstAttribute="bottom" secondItem="211-Dy-ZQs" secondAttribute="top" id="aDd-BA-y4M"/>
+                            <constraint firstItem="3Ku-Ht-96p" firstAttribute="top" secondItem="U86-eW-DBU" secondAttribute="bottom" constant="8" id="cXf-Kg-RnS"/>
+                            <constraint firstAttribute="bottom" secondItem="3Ku-Ht-96p" secondAttribute="bottom" constant="8" id="df0-dq-pk2"/>
                             <constraint firstItem="U86-eW-DBU" firstAttribute="top" secondItem="w7O-um-obi" secondAttribute="top" id="s6o-np-JJg"/>
                             <constraint firstItem="211-Dy-ZQs" firstAttribute="top" secondItem="U86-eW-DBU" secondAttribute="bottom" constant="38" id="xyw-5J-M1T"/>
                             <constraint firstAttribute="trailing" secondItem="U86-eW-DBU" secondAttribute="trailing" id="zWw-pU-BjU"/>
@@ -192,9 +196,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="FridgeVC" width="376" height="667"/>
-        <image name="MyCookBook" width="376" height="667"/>
-        <image name="SavedRecipes" width="375" height="667"/>
-        <image name="UserSettings" width="380" height="667"/>
+        <image name="FridgeVC" width="750" height="1334"/>
+        <image name="MyCookBook" width="750" height="1346"/>
+        <image name="SavedRecipes" width="758" height="1346"/>
+        <image name="UserSettings" width="750" height="1335"/>
     </resources>
 </document>

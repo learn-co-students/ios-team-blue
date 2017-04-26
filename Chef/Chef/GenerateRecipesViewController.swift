@@ -35,6 +35,22 @@ class GenerateRecipesViewController: UIViewController, UICollectionViewDataSourc
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        print("\nGenerateRecipesViewController.\(#function) -- Generating recipes again")
+
+        self.store.fetchGeneratedRecipesFromSpoonacular {
+            DispatchQueue.main.async {
+                print("GenerateRecipesViewController.\(#function) -- Reloading collection view")
+                self.loadingView.indicator.stopAnimating()
+                UIView.animate(withDuration: 0.6, animations: {
+                    self.loadingView.alpha = 0.0
+                    self.collectionView.alpha = 1.0
+                })
+                self.collectionView.reloadData()
+            }
+        }
+    }
+
 
     // MARK: - Recipe Cell Delegate
 

@@ -5,10 +5,12 @@ import Photos
 class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     var dropDownView: DropDownView!
+    var manualEntryViewController: ManualEntryViewController!
+    var scannedReceiptVC: ScannedReceiptViewController!
     var imagePicker: UIImagePickerController!
     var base64img = String()
     var parsedIngredients = [String]()
-    var scannedReceiptVC: ScannedReceiptViewController!
+
 
     
     // MARK: - Life Cycle
@@ -20,13 +22,14 @@ class DropDownViewController: UIViewController, DropDrownViewDelegate, UIImagePi
         self.dropDownView.delegate = self
         self.view.addSubview(self.dropDownView)
         self.dropDownView.snapToSuperview()
+
     }
 
 
     // MARK: - DropDownViewDelegate
 
     func manualEntryButtonTapped() {
-        let manualEntryViewController = ManualEntryViewController()
+        manualEntryViewController = ManualEntryViewController()
         self.present(manualEntryViewController, animated: true, completion: nil)
     }
 

@@ -23,13 +23,10 @@ class ManualEntryViewController: UIViewController, UITableViewDataSource, UITabl
 
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func saveFoodButtonTapped() {
         if let text = manualEntryView.foodEntryTextField.text {
-            store.user.fridge.append(text.capitalized)
+            store.user.fridge.append(text.capitalized) 
+            store.updateFridge(with: [text])
             self.dismiss(animated: true, completion: nil)
         }
     }

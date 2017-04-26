@@ -79,9 +79,9 @@ final class RecipeDataStore {
 
     /// Goes to spoonacular and sets the proper current generated recipes
     /// Occurs after hearting or unhearting an object, I think?
-    func fetchSavedRecipes(completion: @escaping () -> ()) {
+    func fetchSavedRecipes(completion: @escaping (Bool) -> ()) {
         print("RecipeDataStore.\(#function) -- fetching saved recipes from Spoonacular")
-        // MARK: - THIS IS WHERE THE PROBLEM WAS BEFORE
+
         SpoonacularAPIClient.fetchSavedRecipes(ids: self.user.favRecipes) { result in
             switch result {
             case .success(let recipes):
@@ -91,9 +91,10 @@ final class RecipeDataStore {
                     return
                 }
                 self.savedRecipes = recipes
-                completion()
+                completion(true)
             case .failure(let error):
                 print("RecipeDataStore.\(#function) -- Failure: \(error)")
+                completion(false)
             }
         }
     }
@@ -118,7 +119,7 @@ final class RecipeDataStore {
         FirebaseManager.setFavoriteRecipes(savedRecipeDict, for: self.user)
 
         self.refreshUser() {
-            self.fetchSavedRecipes() {
+            self.fetchSavedRecipes() { _ in
                 completion()
             }
         }
@@ -145,22 +146,31 @@ final class RecipeDataStore {
         FirebaseManager.setFavoriteRecipes(savedRecipeDict, for: self.user)
 
         self.refreshUser() {
-            self.fetchSavedRecipes() {
+            self.fetchSavedRecipes() { _ in
                 completion()
             }
         }
     }
 
-    //TODO: - Does not work, need to update to not overwirte existing firebase
-    //    func updateFridge(with newItems: [String]) {
-    //        var dictUpdate = JSONDictionary()
-    //        for (index, item) in newItems.enumerated() {
-    //            if !self.user.fridge.contains(item) {
-    //                dictUpdate["\(index)"] = item
-    //            }
-    //        }
-    //        FirebaseManager.setIngredients(dictUpdate, for: self.user)
-    //    }
+    func updateFridge(with newItems: [String]) {
+        var existingIngredients = self.user.fridge
+        print("The existing ingredients are ", existingIngredients)
+        for item in newItems {
+            if !existingIngredients.contains(item) {
+                existingIngredients.append(item)
+            }
+        }
+        print("The combined ingredients are ", existingIngredients)
+        var dictUpdate = JSONDictionary()
+        for (index, item) in existingIngredients.enumerated() {
+            dictUpdate["\(index)"] = item
+        }
+        FirebaseManager.setIngredients(dictUpdate, for: self.user) { 
+            self.refreshUser(completion: {
+                print(self.user)
+            })
+        }
+    }
 
     func updateDiet(with newItems: [String]) {
         var existingDiets = self.user.dietList
@@ -198,5 +208,17 @@ final class RecipeDataStore {
             self.refreshUser(completion: nil)
         }
     }
-    
+
+    func deleteIngredient(_ item: String, completion: () -> ()) {
+        let fridge = self.user.fridge
+        let filteredFridge = fridge.filter{ $0 != item }
+        var dictUpdate = JSONDictionary()
+        for (index, item) in filteredFridge.enumerated() {
+            dictUpdate["\(index)"] = item
+        }
+        FirebaseManager.setIngredients(dictUpdate, for: self.user) { 
+            self.refreshUser(completion: nil)
+        }
+    }
+
 }

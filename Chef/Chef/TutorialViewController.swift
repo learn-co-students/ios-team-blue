@@ -14,7 +14,7 @@ class TutorialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = Colors.flatironBlue
+//        self.view.backgroundColor = Colors.flatironBlue
 
 
 

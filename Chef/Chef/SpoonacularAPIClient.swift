@@ -92,6 +92,7 @@ final class SpoonacularAPIClient {
                 completion(.success(recipes))
             } else {
                 print("SpoonacularAPIClient.\(#function) -- Failed")
+                completion(.failure(.error))
             }
         }
     }
@@ -113,6 +114,7 @@ final class SpoonacularAPIClient {
                 completion(SpoonacularAPIClientResponse.success(savedRecipes))
             case .failure(let error):
                 print(error)
+                completion(.failure(.error))
             }
         }
     }

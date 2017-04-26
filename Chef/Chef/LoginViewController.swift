@@ -147,11 +147,12 @@ class LoginViewController: UIViewController, LoginViewDelegate, UITextFieldDeleg
         self.loginView.hideKeyboard()
     }
 
-    func backgroundDoubleTapped() {
-        self.loginView.usernameTextField.text = "blue@flatiron.com"
-        self.loginView.passwordTextField.text = "password"
-        self.logIn()
-    }
+    // MARK: For testing
+//    func backgroundDoubleTapped() {
+//        self.loginView.usernameTextField.text = "blue@flatiron.com"
+//        self.loginView.passwordTextField.text = "password"
+//        self.logIn()
+//    }
 
     func loginSignupButtonTapped() {
         if userIsSigningUp {

@@ -28,15 +28,26 @@ class SavedRecipesViewController: UIViewController, UICollectionViewDataSource, 
     }
 
     func refreshView() {
-        self.store.fetchSavedRecipes {
-            DispatchQueue.main.async {
-                print("SavedRecipesViewController.\(#function) -- Reloading collection view")
-                self.loadingView.indicator.stopAnimating()
-                UIView.animate(withDuration: 0.6, animations: {
-                    self.loadingView.alpha = 0.0
-                    self.collectionView.alpha = 1.0
-                })
-                self.collectionView.reloadData()
+        self.store.fetchSavedRecipes { success in
+            if success {
+                DispatchQueue.main.async {
+                    print("SavedRecipesViewController.\(#function) -- Reloading collection view")
+                    self.loadingView.indicator.stopAnimating()
+                    UIView.animate(withDuration: 0.6, animations: {
+                        self.loadingView.alpha = 0.0
+                        self.collectionView.alpha = 1.0
+                    })
+                    self.collectionView.reloadData()
+                }
+            } else {
+                DispatchQueue.main.async {
+                    print("SavedRecipesViewController.\(#function) -- There was a failure, ending animation")
+                    self.loadingView.indicator.stopAnimating()
+                    UIView.animate(withDuration: 0.6, animations: {
+                        self.loadingView.alpha = 0.0
+                        self.collectionView.alpha = 1.0
+                    })
+                }
             }
         }
     }
