@@ -64,7 +64,8 @@ class UserSettingsViewController: UIViewController, UICollectionViewDataSource, 
 
     func tapDiet() {
         print("UserSettingsViewController.\(#function)")
-        let dietVC = AddDietViewController()
+        let dietVC = AddDietCollectionViewController()
+        
         self.present(dietVC, animated: true, completion: nil)
     }
 
