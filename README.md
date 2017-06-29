@@ -1,6 +1,9 @@
-# ios-team-blue
+![](https://gifyu.com/images/Culinarian-Icon.png)
 
-Culinarian is an app designed to help users catalog ingredients in thier fridge and reccomends new recipies for you based on whats available in your home.
+# Culinarian
+Culinarian is an iOS application that curates recipes for the user to cook based on the ingredients available in his or her home.
 
+## Credits
+The app icon was created by my name is mud from [The Noun Project](https://thenounproject.com/).
 
-FoodDataStore credit to Luna An (mimicatcodes)
+FoodDataStore developed with the help of Luna An @mimicatcodes.
